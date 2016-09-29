@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		735966355E4463D2536DBA59 /* Pods_ZJArmoire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D3786BFEA58AE82CD32A73 /* Pods_ZJArmoire.framework */; };
 		CC73E8E81D9D1AEE00C283D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC73E8E71D9D1AEE00C283D2 /* AppDelegate.swift */; };
 		CC73E8EA1D9D1AEE00C283D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC73E8E91D9D1AEE00C283D2 /* ViewController.swift */; };
 		CC73E8ED1D9D1AEE00C283D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8EB1D9D1AEE00C283D2 /* Main.storyboard */; };
@@ -26,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F7E1769D8D89489386E5348 /* Pods-ZJArmoire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.release.xcconfig"; sourceTree = "<group>"; };
+		82D3786BFEA58AE82CD32A73 /* Pods_ZJArmoire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJArmoire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8E41D9D1AEE00C283D2 /* ZJArmoire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJArmoire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8E71D9D1AEE00C283D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC73E8E91D9D1AEE00C283D2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		CC73E8F81D9D1AEE00C283D2 /* ZJArmoireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJArmoireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJArmoireTests.swift; sourceTree = "<group>"; };
 		CC73E8FE1D9D1AEE00C283D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0B3A26AB57145D43DC346C2 /* Pods-ZJArmoire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				735966355E4463D2536DBA59 /* Pods_ZJArmoire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +61,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AC7823059A1CC43F602C626 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82D3786BFEA58AE82CD32A73 /* Pods_ZJArmoire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CC73E8DB1D9D1AEE00C283D2 = {
 			isa = PBXGroup;
 			children = (
 				CC73E8E61D9D1AEE00C283D2 /* ZJArmoire */,
 				CC73E8FB1D9D1AEE00C283D2 /* ZJArmoireTests */,
 				CC73E8E51D9D1AEE00C283D2 /* Products */,
+				EAB1D098F5965AF14AE8C8BF /* Pods */,
+				0AC7823059A1CC43F602C626 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +111,15 @@
 			path = ZJArmoireTests;
 			sourceTree = "<group>";
 		};
+		EAB1D098F5965AF14AE8C8BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D0B3A26AB57145D43DC346C2 /* Pods-ZJArmoire.debug.xcconfig */,
+				3F7E1769D8D89489386E5348 /* Pods-ZJArmoire.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC73E9011D9D1AEE00C283D2 /* Build configuration list for PBXNativeTarget "ZJArmoire" */;
 			buildPhases = (
+				5B2313D6CEBF859B87CF1F74 /* [CP] Check Pods Manifest.lock */,
 				CC73E8E01D9D1AEE00C283D2 /* Sources */,
 				CC73E8E11D9D1AEE00C283D2 /* Frameworks */,
 				CC73E8E21D9D1AEE00C283D2 /* Resources */,
+				F8E1B5F28E49D913AD1D12D9 /* [CP] Embed Pods Frameworks */,
+				F63D66FCA6CF74B6F9966DA2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -147,11 +174,13 @@
 					CC73E8E31D9D1AEE00C283D2 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = EVS35XY3A5;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					CC73E8F71D9D1AEE00C283D2 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = EVS35XY3A5;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CC73E8E31D9D1AEE00C283D2;
 					};
@@ -195,6 +224,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B2313D6CEBF859B87CF1F74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F63D66FCA6CF74B6F9966DA2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8E1B5F28E49D913AD1D12D9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CC73E8E01D9D1AEE00C283D2 /* Sources */ = {
@@ -337,6 +414,7 @@
 		};
 		CC73E9021D9D1AEE00C283D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B3A26AB57145D43DC346C2 /* Pods-ZJArmoire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = EVS35XY3A5;
@@ -350,6 +428,7 @@
 		};
 		CC73E9031D9D1AEE00C283D2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F7E1769D8D89489386E5348 /* Pods-ZJArmoire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = EVS35XY3A5;
@@ -410,6 +489,7 @@
 				CC73E9031D9D1AEE00C283D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC73E9041D9D1AEE00C283D2 /* Build configuration list for PBXNativeTarget "ZJArmoireTests" */ = {
 			isa = XCConfigurationList;
@@ -418,6 +498,7 @@
 				CC73E9061D9D1AEE00C283D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

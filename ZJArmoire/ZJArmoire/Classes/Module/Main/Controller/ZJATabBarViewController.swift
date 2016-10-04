@@ -13,6 +13,11 @@ class ZJATabBarController: UITabBarController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tabBar = ZJATabBar()
+        setValue(tabBar, forKey: "tabBar")
+        tabBar.tintColor = MAIN_APP_COLOR
+        
         prepareVc()
     }
     

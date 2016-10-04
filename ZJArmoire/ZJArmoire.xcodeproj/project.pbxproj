@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		735966355E4463D2536DBA59 /* Pods_ZJArmoire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D3786BFEA58AE82CD32A73 /* Pods_ZJArmoire.framework */; };
-		CC73E8EF1D9D1AEE00C283D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8EE1D9D1AEE00C283D2 /* Assets.xcassets */; };
 		CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */; };
 		CC73E8FD1D9D1AEE00C283D2 /* ZJArmoireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */; };
 		CCBFCCC91D9E0D2A00D80C78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCC21D9E0D2A00D80C78 /* AppDelegate.swift */; };
@@ -21,6 +20,8 @@
 		CCBFCCE21DA37B5C00D80C78 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCE11DA37B5C00D80C78 /* UIColorExtension.swift */; };
 		CCBFCCEE1DA37F3300D80C78 /* ZJADaPeiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCED1DA37F3300D80C78 /* ZJADaPeiController.swift */; };
 		CCBFCCF01DA37F4B00D80C78 /* ZJAMineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */; };
+		CCBFCCF51DA3A53F00D80C78 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCF41DA3A53F00D80C78 /* UIViewExtension.swift */; };
+		CCBFCCF71DA3B18600D80C78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBFCCF61DA3B18600D80C78 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 		3F7E1769D8D89489386E5348 /* Pods-ZJArmoire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.release.xcconfig"; sourceTree = "<group>"; };
 		82D3786BFEA58AE82CD32A73 /* Pods_ZJArmoire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZJArmoire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8E41D9D1AEE00C283D2 /* ZJArmoire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJArmoire.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC73E8EE1D9D1AEE00C283D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC73E8F11D9D1AEE00C283D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC73E8F31D9D1AEE00C283D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC73E8F81D9D1AEE00C283D2 /* ZJArmoireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJArmoireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +53,8 @@
 		CCBFCCE11DA37B5C00D80C78 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CCBFCCED1DA37F3300D80C78 /* ZJADaPeiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADaPeiController.swift; sourceTree = "<group>"; };
 		CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAMineController.swift; sourceTree = "<group>"; };
+		CCBFCCF41DA3A53F00D80C78 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		CCBFCCF61DA3B18600D80C78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0B3A26AB57145D43DC346C2 /* Pods-ZJArmoire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,8 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				CCBFCCC01D9E0D2A00D80C78 /* Classes */,
-				CC73E8EE1D9D1AEE00C283D2 /* Assets.xcassets */,
 				CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */,
+				CCBFCCF61DA3B18600D80C78 /* Assets.xcassets */,
 				CC73E8F31D9D1AEE00C283D2 /* Info.plist */,
 			);
 			path = ZJArmoire;
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				CCBFCCE11DA37B5C00D80C78 /* UIColorExtension.swift */,
+				CCBFCCF41DA3A53F00D80C78 /* UIViewExtension.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 		CCBFCCC41D9E0D2A00D80C78 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				CCBFCCF11DA3A16800D80C78 /* XiangJi */,
 				CCBFCCE31DA37E5C00D80C78 /* DaPei */,
 				CCBFCCE61DA37E5C00D80C78 /* Mine */,
 				CCBFCCDA1D9E337700D80C78 /* YiGui */,
@@ -316,6 +320,29 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CCBFCCF11DA3A16800D80C78 /* XiangJi */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCF21DA3A16800D80C78 /* Model */,
+				CCBFCCF31DA3A16800D80C78 /* ViewController */,
+			);
+			path = XiangJi;
+			sourceTree = "<group>";
+		};
+		CCBFCCF21DA3A16800D80C78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CCBFCCF31DA3A16800D80C78 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		EAB1D098F5965AF14AE8C8BF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,8 +442,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBFCCF71DA3B18600D80C78 /* Assets.xcassets in Resources */,
 				CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */,
-				CC73E8EF1D9D1AEE00C283D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +511,7 @@
 			files = (
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
+				CCBFCCF51DA3A53F00D80C78 /* UIViewExtension.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
 				CCBFCCE21DA37B5C00D80C78 /* UIColorExtension.swift in Sources */,
 				CCBFCCF01DA37F4B00D80C78 /* ZJAMineController.swift in Sources */,

@@ -17,6 +17,10 @@
 		CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCD41D9E143400D80C78 /* ZJANavigationController.swift */; };
 		CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCD61D9E15F100D80C78 /* ZJATabBar.swift */; };
 		CCBFCCD91D9E297F00D80C78 /* ZJAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCD81D9E297F00D80C78 /* ZJAHomeViewController.swift */; };
+		CCBFCCE01D9E33BD00D80C78 /* ZJAYiGuiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCDF1D9E33BD00D80C78 /* ZJAYiGuiViewController.swift */; };
+		CCBFCCE21DA37B5C00D80C78 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCE11DA37B5C00D80C78 /* UIColorExtension.swift */; };
+		CCBFCCEE1DA37F3300D80C78 /* ZJADaPeiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCED1DA37F3300D80C78 /* ZJADaPeiController.swift */; };
+		CCBFCCF01DA37F4B00D80C78 /* ZJAMineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		CCBFCCD41D9E143400D80C78 /* ZJANavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJANavigationController.swift; sourceTree = "<group>"; };
 		CCBFCCD61D9E15F100D80C78 /* ZJATabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATabBar.swift; sourceTree = "<group>"; };
 		CCBFCCD81D9E297F00D80C78 /* ZJAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeViewController.swift; sourceTree = "<group>"; };
+		CCBFCCDF1D9E33BD00D80C78 /* ZJAYiGuiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiViewController.swift; sourceTree = "<group>"; };
+		CCBFCCE11DA37B5C00D80C78 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CCBFCCED1DA37F3300D80C78 /* ZJADaPeiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADaPeiController.swift; sourceTree = "<group>"; };
+		CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAMineController.swift; sourceTree = "<group>"; };
 		D0B3A26AB57145D43DC346C2 /* Pods-ZJArmoire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +147,7 @@
 		CCBFCCC31D9E0D2A00D80C78 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				CCBFCCE11DA37B5C00D80C78 /* UIColorExtension.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -146,6 +155,9 @@
 		CCBFCCC41D9E0D2A00D80C78 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				CCBFCCE31DA37E5C00D80C78 /* DaPei */,
+				CCBFCCE61DA37E5C00D80C78 /* Mine */,
+				CCBFCCDA1D9E337700D80C78 /* YiGui */,
 				CCBFCCC51D9E0D2A00D80C78 /* Home */,
 				CCBFCCC61D9E0D2A00D80C78 /* Main */,
 			);
@@ -212,6 +224,94 @@
 			isa = PBXGroup;
 			children = (
 				CCBFCCD61D9E15F100D80C78 /* ZJATabBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCBFCCDA1D9E337700D80C78 /* YiGui */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCDB1D9E339C00D80C78 /* Controller */,
+				CCBFCCDC1D9E339C00D80C78 /* Model */,
+				CCBFCCDD1D9E339C00D80C78 /* View */,
+				CCBFCCDE1D9E339C00D80C78 /* ViewModel */,
+			);
+			path = YiGui;
+			sourceTree = "<group>";
+		};
+		CCBFCCDB1D9E339C00D80C78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCDF1D9E33BD00D80C78 /* ZJAYiGuiViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CCBFCCDC1D9E339C00D80C78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CCBFCCDD1D9E339C00D80C78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCBFCCDE1D9E339C00D80C78 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CCBFCCE31DA37E5C00D80C78 /* DaPei */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCE41DA37E5C00D80C78 /* Controller */,
+				CCBFCCE51DA37E5C00D80C78 /* View */,
+			);
+			path = DaPei;
+			sourceTree = "<group>";
+		};
+		CCBFCCE41DA37E5C00D80C78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCED1DA37F3300D80C78 /* ZJADaPeiController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CCBFCCE51DA37E5C00D80C78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCBFCCE61DA37E5C00D80C78 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCE71DA37E5C00D80C78 /* Controller */,
+				CCBFCCE81DA37E5C00D80C78 /* View */,
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
+		CCBFCCE71DA37E5C00D80C78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CCBFCCE81DA37E5C00D80C78 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -385,7 +485,11 @@
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
+				CCBFCCE21DA37B5C00D80C78 /* UIColorExtension.swift in Sources */,
+				CCBFCCF01DA37F4B00D80C78 /* ZJAMineController.swift in Sources */,
 				CCBFCCC91D9E0D2A00D80C78 /* AppDelegate.swift in Sources */,
+				CCBFCCEE1DA37F3300D80C78 /* ZJADaPeiController.swift in Sources */,
+				CCBFCCE01D9E33BD00D80C78 /* ZJAYiGuiViewController.swift in Sources */,
 				CCBFCCD31D9E130100D80C78 /* Config.swift in Sources */,
 				CCBFCCD91D9E297F00D80C78 /* ZJAHomeViewController.swift in Sources */,
 			);

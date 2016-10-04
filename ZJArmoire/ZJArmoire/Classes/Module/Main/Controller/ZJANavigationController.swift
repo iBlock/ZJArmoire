@@ -10,4 +10,21 @@ import UIKit
 
 class ZJANavigationController: UINavigationController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let navBar = navigationBar
+        navBar.barTintColor = UIColor.colorWithHexString(hex: "00bb9c")
+        navBar.isTranslucent = false
+        navBar.barStyle = UIBarStyle.black
+        navBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navBar.shadowImage = UIImage()
+        
+        navigationBar.titleTextAttributes = [
+            NSFontAttributeName : UIFont.systemFont(ofSize: 18),
+            NSForegroundColorAttributeName : UIColor.white
+        ]
+        
+    }
+    
 }

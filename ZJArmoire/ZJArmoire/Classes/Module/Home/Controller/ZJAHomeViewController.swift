@@ -13,7 +13,14 @@ class ZJAHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = MAIN_BACKGROUND_COLOR
     }
+    
+    // MARK: - Getter and Setter
+    
+    private lazy var homeCollectionView:UICollectionView = {
+        let collectionView = UICollectionView(frame: self.view.bounds)
+        return collectionView
+    }()
 
 }

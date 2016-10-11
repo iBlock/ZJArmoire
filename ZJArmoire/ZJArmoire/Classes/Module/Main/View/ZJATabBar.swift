@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ZJATabBarDelegate: NSObjectProtocol {
+    func didTappedAddButton()
+}
+
 class ZJATabBar: UITabBar {
     
     required init?(coder aDecoder: NSCoder) {
@@ -16,7 +20,61 @@ class ZJATabBar: UITabBar {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        shadowImage = UIImage()
+        addSubview(addPhoneButton)
     }
     
+    /**
+     重新布局tabBar子控件
+     */
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // 重新布局tabBarButton
+        let y: CGFloat = 0
+        let width: CGFloat = SCREEN_WIDTH / 5
+        let height: CGFloat = 49
+        
+        var index = 0
+        for view in subviews {
+            if !view.isKind(of: NSClassFromString("UITabBarButton")!) {
+                continue
+            }
+            
+            let x = CGFloat(index > 1 ? index + 1 : index) * width
+            view.frame = CGRect(x: x, y: y, width: width, height: height)
+            index += 1
+        }
+        
+    }
     
+    /**
+     处理tabBar子控件的事件响应
+     */
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        return super.hitTest(point, with: event)
+    }
+    
+    /// 自定义tabBar代理
+    weak var tabBarDelegate: ZJATabBarDelegate?
+    
+    /**
+     +号按钮点击事件
+     */
+    @objc private func didTappedAddButton(button: UIButton) {
+        tabBarDelegate?.didTappedAddButton()
+    }
+    
+    // MARK: - 懒加载
+    
+    private lazy var addPhoneButton: UIButton = {
+        let phoneButton = UIButton(type: .custom)
+        phoneButton.setImage(UIImage(named: "XiangJi"), for: .normal)
+        phoneButton.setImage(UIImage(named: "XiangJi"), for: .highlighted)
+        phoneButton.size = CGSize(width: SCREEN_WIDTH / 5, height: SCREEN_WIDTH / 5)
+        phoneButton.center = CGPoint(x: SCREEN_WIDTH * 0.5, y: 49 * 0.5)
+        phoneButton.addTarget(self, action: #selector(didTappedAddButton), for: .touchUpInside)
+        return phoneButton
+    }()
 }

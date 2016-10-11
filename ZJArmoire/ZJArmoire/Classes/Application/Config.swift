@@ -14,3 +14,4 @@ let SCREEN_HEIGHT = SCREEN_BOUNDS.height
 
 //主工程颜色
 let MAIN_APP_COLOR = UIColor.colorWithHexString(hex: "00bb9c")
+let MAIN_BACKGROUND_COLOR = UIColor.colorWithHexString(hex: "f5f5f5")

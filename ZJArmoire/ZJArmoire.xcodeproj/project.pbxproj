@@ -455,7 +455,7 @@
 				TargetAttributes = {
 					CC73E8E31D9D1AEE00C283D2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = EVS35XY3A5;
+						DevelopmentTeam = SYNJQ6CWNM;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -707,7 +707,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = EVS35XY3A5;
+				DEVELOPMENT_TEAM = SYNJQ6CWNM;
 				INFOPLIST_FILE = ZJArmoire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.iBlock.ZJArmoire;
@@ -725,7 +725,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = EVS35XY3A5;
+				DEVELOPMENT_TEAM = SYNJQ6CWNM;
 				INFOPLIST_FILE = ZJArmoire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.iBlock.ZJArmoire;

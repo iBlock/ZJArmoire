@@ -48,10 +48,21 @@ class ZJAHomeTableHeaderView: UIView {
         }
     }
     
+    //点击页控件时事件处理
+    func pageChanged(sender:UIPageControl) {
+        //根据点击的页数，计算scrollView需要显示的偏移量
+        var frame = scrollView.frame
+        frame.origin.x = frame.size.width * CGFloat(sender.currentPage)
+        frame.origin.y = 0
+        //展现当前页面内容
+        scrollView.scrollRectToVisible(frame, animated:true)
+    }
+    
     public lazy var pageController:UIPageControl = {
         let pageController = UIPageControl()
         pageController.backgroundColor = UIColor.clear
         pageController.numberOfPages = 3
+        pageController.addTarget(self, action: .pageControlValueChange, for: .valueChanged)
         return pageController
     }()
     
@@ -63,6 +74,10 @@ class ZJAHomeTableHeaderView: UIView {
         scrollView.delegate = self
         return scrollView
     }()
+}
+
+private extension Selector {
+    static let pageControlValueChange = #selector(ZJAHomeTableHeaderView.pageChanged(sender:))
 }
 
 extension ZJAHomeTableHeaderView: UIScrollViewDelegate {

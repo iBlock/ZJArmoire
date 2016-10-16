@@ -15,6 +15,9 @@ class ZJAHomeTableView: UITableView {
         delegate = self
         dataSource = self
         separatorStyle = .none
+        backgroundColor = COLOR_MAIN_BACKGROUND
+        let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:174))
+        tableHeaderView = ZJAHomeTableHeaderView(frame: frame)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,24 +32,27 @@ extension ZJAHomeTableView: UITableViewDataSource {
         return 1
     }
     
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ZJAHomeCellIdentifier"
-        var homeCell:UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        if (homeCell == nil) {
-            homeCell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
+        let cellIdentifier = "ZJAHomeTuiJianIdentifier"
+        var tuiJianCell:ZJAHomeTuiJianCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJAHomeTuiJianCell!
+        if (tuiJianCell == nil) {
+            tuiJianCell = ZJAHomeTuiJianCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         
-        return homeCell
+        return tuiJianCell
     }
 }
 
 extension ZJAHomeTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 174
+        return 15
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = ZJAHomeTableHeaderView(frame: CGRect(origin: self.bounds.origin, size: CGSize(width:self.bounds.size.width,height:174)))
-        return headerView
+        return nil
     }
 }

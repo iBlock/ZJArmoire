@@ -1,0 +1,121 @@
+//
+//  ZJAHomeTableHeaderView.swift
+//  ZJArmoire
+//
+//  Created by iBlock on 16/10/16.
+//  Copyright © 2016年 iBlock. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+import Kingfisher
+
+class ZJAHomeTableHeaderView: UIView {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = COLOR_MAIN_APP
+        
+        prepareUI()
+        setUpViewConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func prepareUI() {
+        temperatureLabel.text = "19°"
+        addSubview(temperatureLabel)
+        let url = URL(string: "http://app1.showapi.com/weather/icon/day/01.png")
+        weatherImage.kf.setImage(with: url)
+        addSubview(weatherImage)
+        addSubview(weatherInfoView)
+    }
+    
+    private func setUpViewConstraints() {
+        temperatureLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(10)
+        }
+        
+        weatherImage.snp.makeConstraints { (make) in
+            make.bottom.equalTo(0)
+            make.left.equalTo(40)
+        }
+        
+        weatherInfoView.snp.makeConstraints { (make) in
+            make.top.equalTo(temperatureLabel.snp.bottom).offset(10)
+            make.left.equalTo(weatherImage.snp.right).offset(10)
+            make.size.equalTo(CGSize(width:100,height:50))
+        }
+        
+        weatherLabel.snp.makeConstraints({ (make) in
+            make.top.equalTo(0)
+            make.left.equalTo(10)
+        })
+        
+        airQualityLabel.snp.makeConstraints({ (make) in
+            make.top.equalTo(self.weatherLabel.snp.bottom).offset(5)
+            make.left.equalTo(self.lineView.snp.right).offset(10)
+            make.size.equalTo(CGSize(width:105,height:21))
+        })
+        
+        lineView.snp.makeConstraints({ (make) in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(0)
+            make.size.equalTo(CGSize(width:0.5,height:30))
+        })
+    }
+    
+    //MARK: - Setter and Getter
+    
+    /** 温度 */
+    private lazy var temperatureLabel:UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 64)
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    /** 天气图片 */
+    private lazy var weatherImage:UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
+    /** 温度详细 */
+    private lazy var weatherInfoView:UIView = {
+        let weatherView = UIView()
+        weatherView.addSubview(self.lineView)
+        weatherView.addSubview(self.weatherLabel)
+        weatherView.addSubview(self.airQualityLabel)
+        return weatherView
+    }()
+    
+    private lazy var weatherLabel:UILabel = {
+        let weatherLabel = UILabel()
+        weatherLabel.text = "10~22°   多云"
+        weatherLabel.textColor = UIColor.white
+        weatherLabel.font = UIFont.systemFont(ofSize: 17)
+        return weatherLabel
+    }()
+    
+    private lazy var airQualityLabel:UILabel = {
+        let airQualityLabel = UILabel()
+        airQualityLabel.layer.cornerRadius = 10.0
+        airQualityLabel.layer.masksToBounds = true
+        airQualityLabel.backgroundColor = UIColor.colorWithHexString(hex: "7ED321")
+        airQualityLabel.text = "43  空气质量 优"
+        airQualityLabel.font = UIFont.systemFont(ofSize: 12)
+        airQualityLabel.textAlignment = .center
+        airQualityLabel.textColor = UIColor.white
+        return airQualityLabel
+    }()
+    
+    private lazy var lineView:UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor.white
+        return lineView
+    }()
+}

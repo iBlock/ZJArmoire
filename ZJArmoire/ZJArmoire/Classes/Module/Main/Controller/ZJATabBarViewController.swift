@@ -16,7 +16,7 @@ class ZJATabBarController: UITabBarController {
         
         let tabBar = ZJATabBar()
         setValue(tabBar, forKey: "tabBar")
-        tabBar.tintColor = MAIN_APP_COLOR
+        tabBar.tintColor = COLOR_MAIN_APP
         
         prepareVc()
     }
@@ -29,7 +29,7 @@ class ZJATabBarController: UITabBarController {
     }
     
     private func configChildViewController(childViewController: UIViewController, title: String, imageName: String, selectedImageName: String) {
-        childViewController.title = title
+        childViewController.tabBarItem.title = title
         childViewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
         childViewController.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 12)], for: UIControlState.normal)
         childViewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.colorWithHexString(hex: "00bb9c")], for: UIControlState.highlighted)

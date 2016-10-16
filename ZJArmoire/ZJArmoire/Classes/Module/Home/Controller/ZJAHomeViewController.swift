@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import SnapKit
 
 class ZJAHomeViewController: UIViewController {
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = MAIN_BACKGROUND_COLOR
+        
+        prepareUI()
+        setUpViewConstraints()
+    }
+    
+    private func prepareUI() {
+        navigationItem.title = "今天 · 北京"
+        view.backgroundColor = COLOR_MAIN_BACKGROUND
+        view.addSubview(homeTableView)
+    }
+    
+    private func setUpViewConstraints() {
+        homeTableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view).inset(UIEdgeInsetsMake(0.5, 0, 0, 0))
+        }
     }
     
     // MARK: - Getter and Setter
@@ -21,6 +36,11 @@ class ZJAHomeViewController: UIViewController {
     private lazy var homeCollectionView:UICollectionView = {
         let collectionView = UICollectionView(frame: self.view.bounds)
         return collectionView
+    }()
+    
+    private lazy var homeTableView:ZJAHomeTableView = {
+        let homeTable = ZJAHomeTableView(frame: self.view.bounds, style: .plain)
+        return homeTable
     }()
 
 }

@@ -10,6 +10,5 @@
 #define ZJArmoire_Swift_Bridging_Header_h
 
 #import "AppInclude.h"
-//#import "HttpUtil.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

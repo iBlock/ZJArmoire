@@ -14,7 +14,7 @@ class ZJANavigationController: UINavigationController {
         super.viewDidLoad()
         
         let navBar = navigationBar
-        navBar.barTintColor = MAIN_APP_COLOR
+        navBar.barTintColor = COLOR_MAIN_APP
         navBar.isTranslucent = false
         navBar.barStyle = UIBarStyle.black
         navBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)

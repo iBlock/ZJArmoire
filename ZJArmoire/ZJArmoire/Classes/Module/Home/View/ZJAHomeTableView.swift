@@ -14,6 +14,7 @@ class ZJAHomeTableView: UITableView {
         super.init(frame: frame, style: style)
         delegate = self
         dataSource = self
+        separatorStyle = .none
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,7 +46,7 @@ extension ZJAHomeTableView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = ZJAHomeTableHeaderView(frame: self.bounds)
+        let headerView = ZJAHomeTableHeaderView(frame: CGRect(origin: self.bounds.origin, size: CGSize(width:self.bounds.size.width,height:174)))
         return headerView
     }
 }

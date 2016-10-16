@@ -11,10 +11,76 @@ import SnapKit
 import Kingfisher
 
 class ZJAHomeTableHeaderView: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.frame = frame
+        prepareUI()
+        setUpViewContraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func prepareUI() {
+        
+        scrollView.contentSize = CGSize(width:size.width*3, height:frame.height)
+        var x:CGFloat = 0
+        for _ in 0...3 {
+            let rect = CGRect(x: x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
+            scrollView.addSubview(ZJAHomeSectionHeaderView(frame: rect))
+            x += frame.size.width
+        }
+        addSubview(scrollView)
+        addSubview(pageController)
+    }
+    
+    private func setUpViewContraints() {
+        scrollView.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(0)
+            make.height.equalTo(frame.height)
+        }
+        
+        pageController.snp.makeConstraints { (make) in
+            make.top.equalTo(174-30)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    public lazy var pageController:UIPageControl = {
+        let pageController = UIPageControl()
+        pageController.backgroundColor = UIColor.clear
+        pageController.numberOfPages = 3
+        return pageController
+    }()
+    
+    private lazy var scrollView:UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = COLOR_MAIN_APP
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        scrollView.delegate = self
+        return scrollView
+    }()
+}
+
+extension ZJAHomeTableHeaderView: UIScrollViewDelegate {
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        //通过scrollView内容的偏移计算当前显示的是第几页
+        let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        //设置pageController的当前页
+        pageController.currentPage = page
+    }
+}
+
+class ZJAHomeSectionHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = COLOR_MAIN_APP
+        
         
         prepareUI()
         setUpViewConstraints()
@@ -33,6 +99,8 @@ class ZJAHomeTableHeaderView: UIView {
         addSubview(weatherInfoView)
     }
     
+    // MARK: - 统一添加界面约束
+    
     private func setUpViewConstraints() {
         temperatureLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -40,8 +108,8 @@ class ZJAHomeTableHeaderView: UIView {
         }
         
         weatherImage.snp.makeConstraints { (make) in
-            make.bottom.equalTo(0)
-            make.left.equalTo(40)
+            make.top.equalTo(40)
+            make.left.equalTo(30)
         }
         
         weatherInfoView.snp.makeConstraints { (make) in

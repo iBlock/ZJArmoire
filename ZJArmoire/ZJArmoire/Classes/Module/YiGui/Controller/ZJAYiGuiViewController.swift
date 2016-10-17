@@ -20,10 +20,17 @@ class ZJAYiGuiViewController: UIViewController {
     
     private func prepareUI() {
         navigationItem.title = "我的衣柜"
+        navigationItem.rightBarButtonItem = rightBarButtonItem
         view.addSubview(yiGuiTypeCollectionView)
         yiGuiTypeCollectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+    }
+    
+    // MARK: - Event and Respone
+    
+    @objc private func rightBarButtonClick(sender:UIBarButtonItem) {
+        
     }
     
     private lazy var yiGuiTypeCollectionView:ZJAYiGuiCollectionView = {
@@ -31,7 +38,13 @@ class ZJAYiGuiViewController: UIViewController {
         return yiGuiTypeView
     }()
     
-    private lazy var rightNavigationItemBar:UINavigationBar = {
-        let navigationBar = UINavigationBar(frame: <#T##CGRect#>)
+    private lazy var rightBarButtonItem:UIBarButtonItem = {
+        var addImage = UIImage(named: "Global_Add")
+        addImage = addImage?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        let barItem = UIBarButtonItem(image: addImage,
+                                      style: .plain,
+                                      target: self,
+                                      action:#selector(ZJAYiGuiViewController.rightBarButtonClick(sender:)))
+        return barItem
     }()
 }

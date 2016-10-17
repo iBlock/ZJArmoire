@@ -112,6 +112,7 @@ class ZJAHomeSectionHeaderView: UIView {
         weatherImage.kf.setImage(with: url)
         addSubview(weatherImage)
         addSubview(weatherInfoView)
+        addSubview(updateTimerLabel)
     }
     
     // MARK: - 统一添加界面约束
@@ -149,6 +150,12 @@ class ZJAHomeSectionHeaderView: UIView {
             make.left.equalTo(0)
             make.size.equalTo(CGSize(width:0.5,height:30))
         })
+        
+        updateTimerLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(15)
+            make.right.equalTo(-15)
+            make.size.equalTo(CGSize(width:55,height:15))
+        }
     }
     
     //MARK: - Setter and Getter
@@ -200,5 +207,15 @@ class ZJAHomeSectionHeaderView: UIView {
         let lineView = UIView()
         lineView.backgroundColor = UIColor.white
         return lineView
+    }()
+    
+    /** 更新时间 */
+    private lazy var updateTimerLabel:UILabel = {
+        let timerLabel = UILabel()
+        timerLabel.textAlignment = .center
+        timerLabel.textColor = UIColor.white
+        timerLabel.text = "22:53 更新"
+        timerLabel.font = UIFont.systemFont(ofSize: 10)
+        return timerLabel
     }()
 }

@@ -27,9 +27,11 @@ class ZJAYiGuiViewController: UIViewController {
     }
     
     private lazy var yiGuiTypeCollectionView:ZJAYiGuiCollectionView = {
-        
         let yiGuiTypeView = ZJAYiGuiCollectionView(frame: self.view.bounds)
-        
         return yiGuiTypeView
+    }()
+    
+    private lazy var rightNavigationItemBar:UINavigationBar = {
+        let navigationBar = UINavigationBar(frame: <#T##CGRect#>)
     }()
 }

@@ -28,6 +28,7 @@
 		CCC96DB61DB32F7C00465131 /* ZJAHomeTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC96DB51DB32F7C00465131 /* ZJAHomeTableHeaderView.swift */; };
 		CCC96DBA1DB338A300465131 /* ZJAHomeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC96DB91DB338A300465131 /* ZJAHomeTableView.swift */; };
 		CCC96DBC1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC96DBB1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift */; };
+		CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC96DBD1DB4943A00465131 /* ZJAYiGuiTypeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		CCC96DB51DB32F7C00465131 /* ZJAHomeTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeTableHeaderView.swift; sourceTree = "<group>"; };
 		CCC96DB91DB338A300465131 /* ZJAHomeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeTableView.swift; sourceTree = "<group>"; };
 		CCC96DBB1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeTuiJianCell.swift; sourceTree = "<group>"; };
+		CCC96DBD1DB4943A00465131 /* ZJAYiGuiTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiTypeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */,
+				CCC96DBD1DB4943A00465131 /* ZJAYiGuiTypeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
 				CCC96DB61DB32F7C00465131 /* ZJAHomeTableHeaderView.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
+				CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */,
 				CCBFCCF51DA3A53F00D80C78 /* UIViewExtension.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
 				CCC96DBC1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift in Sources */,

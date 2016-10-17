@@ -13,6 +13,23 @@ class ZJAYiGuiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = COLOR_MAIN_BACKGROUND
+        
+        prepareUI()
     }
+    
+    private func prepareUI() {
+        navigationItem.title = "我的衣柜"
+        view.addSubview(yiGuiTypeCollectionView)
+        yiGuiTypeCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private lazy var yiGuiTypeCollectionView:ZJAYiGuiCollectionView = {
+        
+        let yiGuiTypeView = ZJAYiGuiCollectionView(frame: self.view.bounds)
+        
+        return yiGuiTypeView
+    }()
 }

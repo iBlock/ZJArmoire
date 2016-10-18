@@ -70,8 +70,8 @@ class ZJATabBar: UITabBar {
     
     private lazy var addPhoneButton: UIButton = {
         let phoneButton = UIButton(type: .custom)
-        phoneButton.setImage(UIImage(named: "XiangJi"), for: .normal)
-        phoneButton.setImage(UIImage(named: "XiangJi"), for: .highlighted)
+        phoneButton.setImage(UIImage(named: "Global_Add"), for: .normal)
+        phoneButton.setImage(UIImage(named: "Global_Add_Sel"), for: .highlighted)
         phoneButton.size = CGSize(width: SCREEN_WIDTH / 5, height: SCREEN_WIDTH / 5)
         phoneButton.center = CGPoint(x: SCREEN_WIDTH * 0.5, y: 49 * 0.5)
         phoneButton.addTarget(self, action: #selector(didTappedAddButton), for: .touchUpInside)

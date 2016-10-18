@@ -14,11 +14,13 @@ class ZJAYiGuiCollectionView: UICollectionView {
     
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 15
-        layout.minimumLineSpacing = 15
-        layout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 15)
+        let specing:CGFloat = 15
+        layout.minimumInteritemSpacing = specing
+        layout.minimumLineSpacing = specing
+        layout.sectionInset = UIEdgeInsetsMake(specing, specing, specing, specing)
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: SCREEN_WIDTH * 0.435, height: SCREEN_WIDTH * 0.5)
+        let itemWidth = (frame.width - specing*CGFloat(3))/CGFloat(2)
+        layout.itemSize = CGSize(width: itemWidth, height: SCREEN_WIDTH * 0.5)
         super.init(frame: frame, collectionViewLayout: layout)
         
         prepareUI()

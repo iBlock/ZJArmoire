@@ -20,7 +20,7 @@ class ZJAYiGuiViewController: UIViewController {
     
     private func prepareUI() {
         navigationItem.title = "我的衣柜"
-        navigationItem.rightBarButtonItem = rightBarButtonItem
+//        navigationItem.rightBarButtonItem = rightBarButtonItem
         view.addSubview(yiGuiTypeCollectionView)
         yiGuiTypeCollectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -38,6 +38,7 @@ class ZJAYiGuiViewController: UIViewController {
         return yiGuiTypeView
     }()
     
+    /*
     private lazy var rightBarButtonItem:UIBarButtonItem = {
         var addImage = UIImage(named: "Global_Add")
         addImage = addImage?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
@@ -47,4 +48,5 @@ class ZJAYiGuiViewController: UIViewController {
                                       action:#selector(ZJAYiGuiViewController.rightBarButtonClick(sender:)))
         return barItem
     }()
+ */
 }

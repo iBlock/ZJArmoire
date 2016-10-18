@@ -135,6 +135,37 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		37D68EED1DB5EF1D00EFC185 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				37D68EEE1DB5EF1E00EFC185 /* Controller */,
+				37D68EEF1DB5EF1E00EFC185 /* View */,
+				37D68EF01DB5EF1E00EFC185 /* ViewModel */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		37D68EEE1DB5EF1E00EFC185 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		37D68EEF1DB5EF1E00EFC185 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		37D68EF01DB5EF1E00EFC185 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CC26032D1DA4131B0090F916 /* WeatherSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +267,7 @@
 		CCBFCCC41D9E0D2A00D80C78 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				37D68EED1DB5EF1D00EFC185 /* Add */,
 				CCBFCCF11DA3A16800D80C78 /* XiangJi */,
 				CCBFCCE31DA37E5C00D80C78 /* DaPei */,
 				CCBFCCE61DA37E5C00D80C78 /* Mine */,

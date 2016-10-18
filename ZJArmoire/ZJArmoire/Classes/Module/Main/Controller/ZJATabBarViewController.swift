@@ -15,6 +15,7 @@ class ZJATabBarController: UITabBarController {
         super.viewDidLoad()
         
         let tabBar = ZJATabBar()
+        tabBar.tabBarDelegate = self
         setValue(tabBar, forKey: "tabBar")
         tabBar.tintColor = COLOR_MAIN_APP
         
@@ -66,4 +67,13 @@ class ZJATabBarController: UITabBarController {
         self.configChildViewController(childViewController: mineVc, title: "我的", imageName: "Mine", selectedImageName: "Mine-Click")
         return ZJANavigationController(rootViewController: mineVc)
     }()
+}
+
+// MARK: - ZJATabBarDelegate
+extension ZJATabBarController: ZJATabBarDelegate {
+    /** 点击添加按钮 */
+    func didTappedAddButton() {
+        let publicNaviController = ZJANavigationController(rootViewController: ZJACameraController())
+        present(publicNaviController, animated: true, completion: nil)
+    }
 }

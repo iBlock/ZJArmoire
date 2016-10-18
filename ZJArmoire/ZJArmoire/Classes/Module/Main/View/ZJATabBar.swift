@@ -53,6 +53,10 @@ class ZJATabBar: UITabBar {
      */
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let newPoint = self.convert(point, to: addPhoneButton)
+        if addPhoneButton.point(inside: newPoint, with: event) {
+            return addPhoneButton
+        }
         return super.hitTest(point, with: event)
     }
     
@@ -70,7 +74,7 @@ class ZJATabBar: UITabBar {
     
     private lazy var addPhoneButton: UIButton = {
         let phoneButton = UIButton(type: .custom)
-        phoneButton.setImage(UIImage(named: "Global_Add"), for: .normal)
+        phoneButton.setImage(UIImage(named: "Global_Add_Sel"), for: .normal)
         phoneButton.setImage(UIImage(named: "Global_Add_Sel"), for: .highlighted)
         phoneButton.size = CGSize(width: SCREEN_WIDTH / 5, height: SCREEN_WIDTH / 5)
         phoneButton.center = CGPoint(x: SCREEN_WIDTH * 0.5, y: 49 * 0.5)

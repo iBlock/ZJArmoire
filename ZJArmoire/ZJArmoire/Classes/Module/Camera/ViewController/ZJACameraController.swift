@@ -77,6 +77,11 @@ class ZJACameraController: UIViewController {
         if session.canAddInput(self.captureDeviceInput) {
             session.addInput(self.captureDeviceInput)
         }
+        
+        if session.canAddOutput(self.captureStillImageOutput) {
+            session.addOutput(self.captureStillImageOutput)
+        }
+        
         return session
     }()
     
@@ -87,11 +92,29 @@ class ZJACameraController: UIViewController {
         return viewLayer
     }()
     
+    //使用AVCaptureStillImageOutput捕获静态图片
+    
+    public lazy var captureStillImageOutput:AVCaptureStillImageOutput = {
+        return AVCaptureStillImageOutput()
+    }()
+    
+    
+    
 }
 
 extension ZJACameraController:ZJACameraActionViewDelegate {
     func didTappedCameraButton() {
-        
+        if let videoConnection = captureStillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
+            captureStillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (imageDataSampleBuffer, error) in
+                if imageDataSampleBuffer == nil {
+                    return
+                }
+                
+                let imageData:Data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
+                let image = UIImage(data: imageData)
+                
+            })
+        }
     }
 
     func didTappedCancelButton() {

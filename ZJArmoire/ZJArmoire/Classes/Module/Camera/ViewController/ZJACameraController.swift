@@ -10,38 +10,24 @@ import UIKit
 import AVFoundation
 
 class ZJACameraController: UIViewController {
+    
+    var avCaptureSesstion:AVCaptureSession?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
         setUpViewControllerConstraints()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.didOpenCameraAnimation(imageView: self.cameraStartAnimalView)
-        }
-        
-//        ZJACameraManager.authorizationStatus { [weak self] (isAuthor) in
-//            if isAuthor == false {
-//                self?.navigationController?.popViewController(animated: true)
-//            } else {
-//                
-//            }
-//        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
+        cameraManager.checkAuthorizationStatus()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        captureSession.startRunning()
+        cameraManager.startTakePhoto()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        captureSession.stopRunning()
+        cameraManager.StopTakePhoto()
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,7 +38,7 @@ class ZJACameraController: UIViewController {
     private func prepareUI() {
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = COLOR_MAIN_BACKGROUND
-        view.layer.addSublayer(captureVideoViewLayer)
+//        view.layer.addSublayer(captureVideoViewLayer)
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
     }
@@ -73,7 +59,7 @@ class ZJACameraController: UIViewController {
     // MARK: - Event and Respone
     
     /** 打开相机动画 */
-    private func didOpenCameraAnimation(imageView:UIImageView) {
+    func didOpenCameraAnimation(imageView:UIImageView) {
         let animation = CATransition()
         animation.duration = 0.5
         animation.delegate = self
@@ -84,12 +70,19 @@ class ZJACameraController: UIViewController {
         imageView.layer.add(animation, forKey: "animation")
     }
     
+    public lazy var cameraManager:ZJACameraManager = {
+        let manager = ZJACameraManager()
+        manager.cameraManagerDelegate = self
+        return manager
+    }()
+    
     private lazy var captureActionView:ZJACameraActionView = {
         let actionView = ZJACameraActionView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 100))
         actionView.actionViewDelegate = self
         return actionView
     }()
     
+    /*
     /** 获取拍照设备 */
     private lazy var captureDevice:AVCaptureDevice = {
         var device:AVCaptureDevice! = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -124,11 +117,13 @@ class ZJACameraController: UIViewController {
             session.addOutput(self.captureStillImageOutput)
         }
         
+        self.avCaptureSesstion = session
+        
         return session
     }()
     
     /** 图像预览图层 */
-    private lazy var captureVideoViewLayer:AVCaptureVideoPreviewLayer = {
+    lazy var captureVideoViewLayer:AVCaptureVideoPreviewLayer = {
         let viewLayer:AVCaptureVideoPreviewLayer! = AVCaptureVideoPreviewLayer(session: self.captureSession)
         viewLayer.frame = self.view.layer.frame
         return viewLayer
@@ -139,6 +134,7 @@ class ZJACameraController: UIViewController {
     public lazy var captureStillImageOutput:AVCaptureStillImageOutput = {
         return AVCaptureStillImageOutput()
     }()
+ */
     
     public lazy var cameraStartAnimalView:UIImageView = {
         let animalView = UIImageView(image: UIImage(named: "Camera_Start"))
@@ -147,21 +143,37 @@ class ZJACameraController: UIViewController {
     
 }
 
+extension ZJACameraController:ZJACameraManagerProtocol {
+    func cameraAuthorResult(manager: ZJACameraManager) {
+        if manager.isAuthor == true {
+//            view.layer.addSublayer(self.captureVideoViewLayer)
+            cameraManager.initalSession(preview: self.view)
+            self.view.bringSubview(toFront: cameraStartAnimalView)
+            self.didOpenCameraAnimation(imageView: self.cameraStartAnimalView)
+        } else {
+            let alertView = UIAlertController(title: "请打开相机权限", message: "设置-隐私-相机", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "确定", style: .default, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertView.addAction(cancelAction)
+            alertView.addAction(okAction)
+            self.navigationController?.present(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    func cameraTakePhoneResult(manager: ZJACameraManager) {
+        
+    }
+}
+
 extension ZJACameraController:ZJACameraActionViewDelegate {
     func didTappedCameraButton() {
-        if let videoConnection = captureStillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
-            captureStillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (imageDataSampleBuffer, error) in
-                if imageDataSampleBuffer == nil {
-                    return
-                }
-                
-                let imageData:Data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
-                let image = UIImage(data: imageData)
-                let imageEditController = ZJACameraEditController()
-                imageEditController.previewImage = image
-                self.navigationController?.pushViewController(imageEditController, animated: true)
-            })
-        }
+        /*
+        
+ */
     }
 
     func didTappedCancelButton() {

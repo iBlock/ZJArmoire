@@ -315,7 +315,6 @@
 			children = (
 				37D68EF11DB5F7C000EFC185 /* Camera */,
 				37D68EED1DB5EF1D00EFC185 /* Add */,
-				CCBFCCF11DA3A16800D80C78 /* XiangJi */,
 				CCBFCCE31DA37E5C00D80C78 /* DaPei */,
 				CCBFCCE61DA37E5C00D80C78 /* Mine */,
 				CCBFCCDA1D9E337700D80C78 /* YiGui */,
@@ -457,29 +456,6 @@
 			children = (
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		CCBFCCF11DA3A16800D80C78 /* XiangJi */ = {
-			isa = PBXGroup;
-			children = (
-				CCBFCCF21DA3A16800D80C78 /* Model */,
-				CCBFCCF31DA3A16800D80C78 /* ViewController */,
-			);
-			path = XiangJi;
-			sourceTree = "<group>";
-		};
-		CCBFCCF21DA3A16800D80C78 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CCBFCCF31DA3A16800D80C78 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

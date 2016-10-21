@@ -38,7 +38,7 @@ class ZJACameraController: UIViewController {
     private func prepareUI() {
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = COLOR_MAIN_BACKGROUND
-//        view.layer.addSublayer(captureVideoViewLayer)
+        cameraManager.initalSession(preview: self.view)
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
     }
@@ -146,10 +146,9 @@ class ZJACameraController: UIViewController {
 extension ZJACameraController:ZJACameraManagerProtocol {
     func cameraAuthorResult(manager: ZJACameraManager) {
         if manager.isAuthor == true {
-//            view.layer.addSublayer(self.captureVideoViewLayer)
-            cameraManager.initalSession(preview: self.view)
-            self.view.bringSubview(toFront: cameraStartAnimalView)
-            self.didOpenCameraAnimation(imageView: self.cameraStartAnimalView)
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.8, execute: {
+                self.didOpenCameraAnimation(imageView: self.cameraStartAnimalView)
+            })
         } else {
             let alertView = UIAlertController(title: "请打开相机权限", message: "设置-隐私-相机", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "确定", style: .default, handler: { (action) in
@@ -165,15 +164,16 @@ extension ZJACameraController:ZJACameraManagerProtocol {
     }
     
     func cameraTakePhoneResult(manager: ZJACameraManager) {
-        
+        let takeImage = manager.takePhoneImage
+        let cameraEditController = ZJACameraEditController()
+        cameraEditController.previewImage = takeImage
+        navigationController?.pushViewController(cameraEditController, animated: true)
     }
 }
 
 extension ZJACameraController:ZJACameraActionViewDelegate {
     func didTappedCameraButton() {
-        /*
-        
- */
+        cameraManager.takePhoto()
     }
 
     func didTappedCancelButton() {

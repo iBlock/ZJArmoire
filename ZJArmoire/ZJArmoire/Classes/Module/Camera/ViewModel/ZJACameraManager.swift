@@ -45,7 +45,7 @@ class ZJACameraManager: NSObject {
     private var flashLightState  :KFlashLightState?
     private var sessionQueue = DispatchQueue(label: "com.ZJArmoire.camera.capture_session")
     
-    var isAuthor :Bool!
+    var isAuthor :Bool! = false
     var takePhoneImage :UIImage?
     weak var cameraManagerDelegate:ZJACameraManagerProtocol?
     
@@ -61,14 +61,9 @@ class ZJACameraManager: NSObject {
         }
         self.stillImageOutput = AVCaptureStillImageOutput()
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-        
-        // frame ..
-        let kDeviceWidth  = UIScreen.main.bounds.size.width
-        let kDeviceHeight  = UIScreen.main.bounds.size.height
-        self.previewLayer!.frame = CGRect(x: 0, y:0, width:kDeviceWidth,height:(kDeviceHeight-160-20))
-//        self.previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
+        self.previewLayer!.frame = CGRect(x: 0, y:0, width:SCREEN_WIDTH,height:SCREEN_HEIGHT-100)
+        self.previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
         preview.layer.addSublayer(self.previewLayer!)
-        
         let outputSettings :NSDictionary = NSDictionary(object: AVVideoCodecJPEG, forKey: AVVideoCodecKey as NSCopying)
         self.stillImageOutput!.outputSettings = outputSettings as [NSObject : AnyObject]
         self.session!.sessionPreset = AVCaptureSessionPresetPhoto
@@ -80,8 +75,6 @@ class ZJACameraManager: NSObject {
         if self.session!.canAddOutput(self.stillImageOutput){
             self.session! .addOutput(self.stillImageOutput)
         }
-        
-        self.startTakePhoto()
     }
     
     func fontCarmer() ->AVCaptureDevice {
@@ -267,15 +260,17 @@ class ZJACameraManager: NSObject {
                 else {
                     self.isAuthor = false
                 }
+                self.cameraManagerDelegate?.cameraAuthorResult(manager: self)
             })
             break
         case .authorized:
             self.isAuthor = true
+            cameraManagerDelegate?.cameraAuthorResult(manager: self)
             break
         case .denied, .restricted:
             self.isAuthor = false
+            cameraManagerDelegate?.cameraAuthorResult(manager: self)
             break
         }
-        cameraManagerDelegate?.cameraAuthorResult(manager: self)
     }
 }

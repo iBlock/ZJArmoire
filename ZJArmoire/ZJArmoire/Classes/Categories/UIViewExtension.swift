@@ -71,3 +71,19 @@ extension UIView {
     }
     
 }
+
+//加载错误界面
+
+extension UIView {
+    func loadErrorView() -> ZJAErrorView {
+        let errorView = ZJAErrorView(frame: bounds)
+        addSubview(errorView)
+        let height:CGFloat = errorView.viewHeight
+        errorView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.height.equalTo(height)
+            make.width.equalTo(errorView.width)
+        }
+        return errorView
+    }
+}

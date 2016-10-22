@@ -16,4 +16,4 @@ let SCREEN_HEIGHT = SCREEN_BOUNDS.height
 let COLOR_MAIN_APP = UIColor.colorWithHexString(hex: "00bb9c")
 let COLOR_MAIN_BACKGROUND = UIColor.colorWithHexString(hex: "f5f5f5")
 let COLOR_BORDER_LINE = UIColor.colorWithHexString(hex: "e6e6e6")
-let COLOR_TEXT_FONT = UIColor.colorWithHexString(hex: "999999")
+let COLOR_TEXT_LABEL = UIColor.colorWithHexString(hex: "999999")

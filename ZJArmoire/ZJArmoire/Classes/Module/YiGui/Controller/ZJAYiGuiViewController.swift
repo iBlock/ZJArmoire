@@ -35,6 +35,7 @@ class ZJAYiGuiViewController: UIViewController {
     
     private lazy var yiGuiTypeCollectionView:ZJAYiGuiCollectionView = {
         let yiGuiTypeView = ZJAYiGuiCollectionView(frame: self.view.bounds)
+        yiGuiTypeView.cellDelegate = self
         return yiGuiTypeView
     }()
     
@@ -49,4 +50,12 @@ class ZJAYiGuiViewController: UIViewController {
         return barItem
     }()
  */
+}
+
+extension ZJAYiGuiViewController: ZJAYiGuiTypeCellDelegate {
+    func typeCellClickCallback(index: IndexPath) {
+        let typeListController = ZJATypeListController()
+        typeListController.type = index.row
+        navigationController?.pushViewController(typeListController, animated: true)
+    }
 }

@@ -24,7 +24,29 @@ class ZJANavigationController: UINavigationController {
             NSFontAttributeName : UIFont.systemFont(ofSize: 18),
             NSForegroundColorAttributeName : UIColor.white
         ]
-        
+    }
+    
+    /**
+     拦截push操作，修改需要push的控制器的返回按钮
+     
+     - parameter viewController: 需要push的控制器
+     - parameter animated:       是否有push动画
+     */
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if childViewControllers.count > 0 {
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.leftItem(normalImage: "Global_Navi_Goback", highlightedImage: "Global_Navi_Goback", target: self, action: #selector(didTappedBackButton(button:)))
+            viewController.hidesBottomBarWhenPushed = true
+        } else {
+            viewController.hidesBottomBarWhenPushed = false
+        }
+        super.pushViewController(viewController, animated: animated)
+    }
+    
+    /**
+     返回事件
+     */
+    @objc private func didTappedBackButton(button: UIBarButtonItem) {
+        popViewController(animated: true)
     }
     
 }

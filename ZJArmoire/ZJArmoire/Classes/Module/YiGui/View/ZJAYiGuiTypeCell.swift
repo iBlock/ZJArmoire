@@ -77,7 +77,7 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
     
     private lazy var typeLabel:UILabel = {
         var typeLabel = UILabel()
-        typeLabel.textColor = COLOR_TEXT_FONT
+        typeLabel.textColor = COLOR_TEXT_LABEL
         typeLabel.text = "上装"
         typeLabel.textAlignment = .left
         return typeLabel
@@ -85,7 +85,7 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
     
     private lazy var typeCountLabel:UILabel = {
         var countLabel = UILabel()
-        countLabel.textColor = COLOR_TEXT_FONT
+        countLabel.textColor = COLOR_TEXT_LABEL
         countLabel.text = "3"
         countLabel.textAlignment = .right
         return countLabel

@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol ZJAYiGuiTypeCellDelegate:NSObjectProtocol {
+    func typeCellClickCallback(index:IndexPath)
+}
+
 class ZJAYiGuiCollectionView: UICollectionView {
     
     let categoryIdentifier = "YiguiCategoriesCellItem"
+    weak var cellDelegate:ZJAYiGuiTypeCellDelegate?
     
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
@@ -48,6 +53,11 @@ extension ZJAYiGuiCollectionView: UICollectionViewDelegate,UICollectionViewDataS
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath)
+        cellDelegate?.typeCellClickCallback(index: indexPath)
     }
 
 }

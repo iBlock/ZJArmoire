@@ -47,8 +47,17 @@ class ZJATypeListController: UIViewController {
     // MARK: - Event and Respone
     
     @objc private func didTappedAddButton(sender:UIBarButtonItem?) {
-        let addController = ZJAClothesAddController()
-        navigationController?.pushViewController(addController, animated: true)
+        let selectorView = ZJAPhotoSelectorView()
+        selectorView.photoTypeClick = { [weak self](type: ZJAPhotoSelectorType) -> () in
+            switch type {
+            case .takeImage:
+                let cameraController = ZJACameraController()
+//                self?.navigationController?.present(cameraController, animated: true, completion: nil)
+                self?.navigationController?.pushViewController(cameraController, animated: true)
+            case .selectorImage: break
+            }
+        }
+        selectorView.show()
     }
     
     // MARK: - Lazy Method

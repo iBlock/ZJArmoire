@@ -24,6 +24,7 @@
 		CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA7268F1DBA52AE0099BC98 /* UIBarButtonItemExtension.swift */; };
 		CCA726941DBA59FF0099BC98 /* ZJAErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA726931DBA59FF0099BC98 /* ZJAErrorView.swift */; };
 		CCA726961DBB25690099BC98 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA726951DBB25690099BC98 /* UIImageExtension.swift */; };
+		CCA726981DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA726971DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift */; };
 		CCBFCCC91D9E0D2A00D80C78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCC21D9E0D2A00D80C78 /* AppDelegate.swift */; };
 		CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCD01D9E102900D80C78 /* ZJATabBarViewController.swift */; };
 		CCBFCCD31D9E130100D80C78 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCD21D9E130100D80C78 /* Config.swift */; };
@@ -87,6 +88,7 @@
 		CCA7268F1DBA52AE0099BC98 /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		CCA726931DBA59FF0099BC98 /* ZJAErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAErrorView.swift; sourceTree = "<group>"; };
 		CCA726951DBB25690099BC98 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		CCA726971DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAPhotoSelectorView.swift; sourceTree = "<group>"; };
 		CCBFCCC21D9E0D2A00D80C78 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCBFCCD01D9E102900D80C78 /* ZJATabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATabBarViewController.swift; sourceTree = "<group>"; };
 		CCBFCCD21D9E130100D80C78 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */,
 				37D68EFA1DB7301400EFC185 /* ZJACameraEditActionView.swift */,
+				CCA726971DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				CCC96DBA1DB338A300465131 /* ZJAHomeTableView.swift in Sources */,
 				CCBFCCD31D9E130100D80C78 /* Config.swift in Sources */,
 				CCA726961DBB25690099BC98 /* UIImageExtension.swift in Sources */,
+				CCA726981DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift in Sources */,
 				CCBFCCD91D9E297F00D80C78 /* ZJAHomeViewController.swift in Sources */,
 				CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */,
 				37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */,

@@ -177,7 +177,18 @@ extension ZJACameraController:ZJACameraActionViewDelegate {
     }
 
     func didTappedCancelButton() {
-        dismiss(animated: true, completion: nil)
+        //等相机启动后才可以退出，否则影响动画效果
+        if cameraStartAnimalView.isHidden == false {
+            return
+        }
+        let viewControllers:NSArray = (self.navigationController?.viewControllers)! as NSArray
+        if viewControllers.count > 1 {
+            if viewControllers.object(at: viewControllers.count-1) as! ZJACameraController == self {
+                _ = navigationController?.popViewController(animated: true)
+            }
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
 

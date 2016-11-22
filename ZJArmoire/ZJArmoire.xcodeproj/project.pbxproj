@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3744C2661DB9E8FB004F40AD /* ZJACameraDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */; };
+		37BF23251DE4697800666B52 /* ZJAAddSKUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23241DE4697800666B52 /* ZJAAddSKUController.swift */; };
 		37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */; };
 		37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */; };
 		37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		2E9AD36B472132147CDB0DDC /* Pods-ZJArmoire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.release.xcconfig"; sourceTree = "<group>"; };
 		3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraDataCenter.swift; sourceTree = "<group>"; };
+		37BF23241DE4697800666B52 /* ZJAAddSKUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddSKUController.swift; sourceTree = "<group>"; };
 		37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiCollectionView.swift; sourceTree = "<group>"; };
 		37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraController.swift; sourceTree = "<group>"; };
 		37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraActionView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */,
 				37D68EF81DB72FC800EFC185 /* ZJACameraEditController.swift */,
+				37BF23241DE4697800666B52 /* ZJAAddSKUController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -567,7 +570,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = iBlock;
 				TargetAttributes = {
 					CC73E8E31D9D1AEE00C283D2 = {
@@ -677,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
+				37BF23251DE4697800666B52 /* ZJAAddSKUController.swift in Sources */,
 				CCC96DB61DB32F7C00465131 /* ZJAHomeTableHeaderView.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
 				CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */,

@@ -55,7 +55,7 @@ class ZJACameraEditActionView: UIView {
     }
     
     @objc func didTappedConfirmButton() {
-        editImageActionDelegate?.didTappedAgainCameraButton()
+        editImageActionDelegate?.didTappedConfirmButton()
     }
     
     // MARK: - Lazy Method

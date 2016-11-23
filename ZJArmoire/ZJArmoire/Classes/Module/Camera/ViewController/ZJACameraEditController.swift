@@ -74,10 +74,10 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     }
     
     func didTappedConfirmButton() {
-        let rootViewController:UIViewController = (UIApplication.shared.keyWindow?.rootViewController)!
-        let controllers = rootViewController.navigationController?.viewControllers
-        let controllerList:NSMutableArray = (controllers! as NSArray).mutableCopy() as! NSMutableArray
-//        controllerList.enumerateObjects({ (object, idx, stop) in
+        let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
+        let controllers = rootViewController.viewControllers
+        let controllerList:NSMutableArray = (controllers as NSArray).mutableCopy() as! NSMutableArray
+//        controllers.enumerateObjects({ (object, idx, stop) in
 //            let controller:UIViewController = object as! UIViewController
 //            if controller.isKind(of: ZJACameraEditController.self) ||
 //                controller.isKind(of: ZJACameraController.self) {
@@ -87,6 +87,6 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
         controllerList.add(ZJAAddSKUController())
 //        let array = NSArray.init(array: controllerList)
 //        self.navigationController?.viewControllers = controllers!//controllerList as NSArray as! [UIViewController]
-        rootViewController.navigationController?.viewControllers = controllerList as NSArray as! [UIViewController]
+        rootViewController.viewControllers = controllerList as NSArray as! [UIViewController]
     }
 }

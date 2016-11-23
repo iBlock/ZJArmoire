@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>是否强制信任证书</string>
+			<key>Key</key>
+			<string>SYDebugTrustSSLSwitch</string>
+			<key>DefaultValue</key>
+			<string>NO</string>
+		</dict>
+	</array>
+</dict>
+</plist>

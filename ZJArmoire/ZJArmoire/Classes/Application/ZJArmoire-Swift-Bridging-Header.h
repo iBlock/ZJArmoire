@@ -10,5 +10,6 @@
 #define ZJArmoire_Swift_Bridging_Header_h
 
 #import "AppInclude.h"
+#import "DJDebugHeader.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

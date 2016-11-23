@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.rootViewController = ZJANavigationController(rootViewController: ZJATabBarController())
         window?.rootViewController = ZJATabBarController()
         window?.makeKeyAndVisible()
+        let debugConfig = DJDebugConfig()
+        DJDebug.initWith(debugConfig)
     }
 }
 

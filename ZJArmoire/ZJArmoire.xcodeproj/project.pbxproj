@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3744C2661DB9E8FB004F40AD /* ZJACameraDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */; };
 		37BF23251DE4697800666B52 /* ZJAAddSKUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23241DE4697800666B52 /* ZJAAddSKUController.swift */; };
+		37BF23291DE55A5E00666B52 /* DJDebug.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37BF23281DE55A5E00666B52 /* DJDebug.bundle */; };
 		37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */; };
 		37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */; };
 		37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */; };
@@ -58,6 +59,7 @@
 		2E9AD36B472132147CDB0DDC /* Pods-ZJArmoire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.release.xcconfig"; sourceTree = "<group>"; };
 		3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraDataCenter.swift; sourceTree = "<group>"; };
 		37BF23241DE4697800666B52 /* ZJAAddSKUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddSKUController.swift; sourceTree = "<group>"; };
+		37BF23281DE55A5E00666B52 /* DJDebug.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DJDebug.bundle; path = ../Pods/DJDebug/DJDebug/DJDebug.bundle; sourceTree = "<group>"; };
 		37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiCollectionView.swift; sourceTree = "<group>"; };
 		37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraController.swift; sourceTree = "<group>"; };
 		37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraActionView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */,
 				CCBFCCF61DA3B18600D80C78 /* Assets.xcassets */,
 				CC73E8F31D9D1AEE00C283D2 /* Info.plist */,
+				37BF23281DE55A5E00666B52 /* DJDebug.bundle */,
 			);
 			path = ZJArmoire;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 			files = (
 				CCBFCCF71DA3B18600D80C78 /* Assets.xcassets in Resources */,
 				CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */,
+				37BF23291DE55A5E00666B52 /* DJDebug.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,7 +844,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A86C3A27C473C44792B9A788 /* Pods-ZJArmoire.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = SYNJQ6CWNM;
@@ -852,6 +856,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "ZJArmoire/Classes/Application/ZJArmoire-Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 			};
 			name = Debug;
 		};
@@ -859,7 +864,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E9AD36B472132147CDB0DDC /* Pods-ZJArmoire.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = SYNJQ6CWNM;
@@ -870,6 +875,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ZJArmoire/Classes/Application/ZJArmoire-Swift-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
 			};
 			name = Release;
 		};

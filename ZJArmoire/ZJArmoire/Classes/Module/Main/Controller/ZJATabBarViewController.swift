@@ -44,29 +44,34 @@ class ZJATabBarController: UITabBarController {
     private lazy var homeController: UIViewController = {
         let homeVc = ZJAHomeViewController()
         self.configChildViewController(childViewController: homeVc, title: "首页", imageName: "Home", selectedImageName: "Home-Click")
-        return ZJANavigationController(rootViewController: homeVc)
+//        return ZJANavigationController(rootViewController: homeVc)
+        return homeVc
     }()
     
     /** 搭配 */
     private lazy var daPeiController: UIViewController = {
         let daPeiVc = ZJADaPeiController()
         self.configChildViewController(childViewController: daPeiVc, title: "搭配", imageName: "DaPei", selectedImageName: "DaPei-click")
-        return ZJANavigationController(rootViewController: daPeiVc)
+//        return ZJANavigationController(rootViewController: daPeiVc)
+        return daPeiVc
     }()
     
     /** 衣柜 */
     private lazy var yiGuiViewController: UIViewController = {
         let yiguiVc = ZJAYiGuiViewController()
         self.configChildViewController(childViewController: yiguiVc, title: "衣柜", imageName: "YiGui", selectedImageName: "YiGui-click")
-        return ZJANavigationController(rootViewController: yiguiVc)
+//        return ZJANavigationController(rootViewController: yiguiVc)
+        return yiguiVc
     }()
     
     /** 我的 */
     private lazy var mineController: UIViewController = {
         let mineVc = ZJAMineController()
         self.configChildViewController(childViewController: mineVc, title: "我的", imageName: "Mine", selectedImageName: "Mine-Click")
-        return ZJANavigationController(rootViewController: mineVc)
+//        return ZJANavigationController(rootViewController: mineVc)
+        return mineVc
     }()
+    
 }
 
 // MARK: - ZJATabBarDelegate

@@ -18,12 +18,16 @@ class ZJAYiGuiViewController: UIViewController {
         prepareUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "衣柜";
+    }
+    
     private func prepareUI() {
-        navigationItem.title = "我的衣柜"
-//        navigationItem.rightBarButtonItem = rightBarButtonItem
         view.addSubview(yiGuiTypeCollectionView)
         yiGuiTypeCollectionView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.top.right.equalTo(0)
+            make.bottom.equalTo(-(tabBarController?.tabBar.size.height)!)
         }
     }
     

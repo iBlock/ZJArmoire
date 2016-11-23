@@ -29,6 +29,16 @@ class ZJACameraController: UIViewController {
         super.viewDidDisappear(animated)
         cameraManager.StopTakePhoto()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,7 +46,6 @@ class ZJACameraController: UIViewController {
     }
     
     private func prepareUI() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         cameraManager.initalSession(preview: self.view)
         view.addSubview(cameraStartAnimalView)

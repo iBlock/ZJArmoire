@@ -16,4 +16,9 @@ class ZJADaPeiController: UIViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "搭配";
+    }
+    
 }

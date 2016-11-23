@@ -35,9 +35,9 @@ class ZJANavigationController: UINavigationController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if childViewControllers.count > 0 {
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem.leftItem(normalImage: "Global_Navi_Goback", highlightedImage: "Global_Navi_Goback", target: self, action: #selector(didTappedBackButton(button:)))
-            viewController.hidesBottomBarWhenPushed = true
+//            viewController.hidesBottomBarWhenPushed = true
         } else {
-            viewController.hidesBottomBarWhenPushed = false
+//            viewController.hidesBottomBarWhenPushed = false
         }
         super.pushViewController(viewController, animated: animated)
     }

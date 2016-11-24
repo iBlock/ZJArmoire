@@ -75,18 +75,18 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     
     func didTappedConfirmButton() {
         let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
+        rootViewController.pushViewController(ZJAAddSKUController(), animated: false)
+        //下面代码是为了将modal出来的拍照界面dismiss掉，测试过如果是push出来的执行也没影响
+        dismiss(animated: true, completion: nil)
         let controllers = rootViewController.viewControllers
         let controllerList:NSMutableArray = (controllers as NSArray).mutableCopy() as! NSMutableArray
-//        controllers.enumerateObjects({ (object, idx, stop) in
-//            let controller:UIViewController = object as! UIViewController
-//            if controller.isKind(of: ZJACameraEditController.self) ||
-//                controller.isKind(of: ZJACameraController.self) {
-//                controllerList.remove(controller)
-//            }
-//        })
-        controllerList.add(ZJAAddSKUController())
-//        let array = NSArray.init(array: controllerList)
-//        self.navigationController?.viewControllers = controllers!//controllerList as NSArray as! [UIViewController]
+        for item in controllers {
+            let controller:UIViewController = item
+            if controller.isKind(of: ZJACameraEditController.self) ||
+                controller.isKind(of: ZJACameraController.self){
+                controllerList.remove(controller)
+            }
+        }
         rootViewController.viewControllers = controllerList as NSArray as! [UIViewController]
     }
 }

@@ -24,13 +24,20 @@ class ZJAAddSKUController: UIViewController {
         setUpViewConstraints()
     }
     
-    func prepareUI() {
+    private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         title = "添加单品"
+        view.backgroundColor = COLOR_MAIN_BACKGROUND
+        view.addSubview(skuAddTableView)
     }
     
     func setUpViewConstraints() {
         
     }
+    
+    private lazy var skuAddTableView:ZJASKUAddTableView = {
+        let clothesTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
+        return clothesTableView
+    }()
 
 }

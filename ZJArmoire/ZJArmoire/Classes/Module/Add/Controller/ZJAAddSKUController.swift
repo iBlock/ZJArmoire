@@ -36,7 +36,7 @@ class ZJAAddSKUController: UIViewController {
     }
     
     private lazy var skuAddTableView:ZJASKUAddTableView = {
-        let clothesTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
+        let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
         return clothesTableView
     }()
 

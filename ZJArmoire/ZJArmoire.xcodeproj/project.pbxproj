@@ -13,6 +13,9 @@
 		37BF23351DEDA43B00666B52 /* ZJAAddSKUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23341DEDA43B00666B52 /* ZJAAddSKUController.swift */; };
 		37BF23371DEDA4F700666B52 /* ZJASKUAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23361DEDA4F700666B52 /* ZJASKUAddCell.swift */; };
 		37BF233B1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF233A1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift */; };
+		37BF233E1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF233D1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift */; };
+		37BF23421DEEA0AD00666B52 /* ZJASKUItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23411DEEA0AD00666B52 /* ZJASKUItemModel.swift */; };
+		37BF23441DEEA69500666B52 /* ZJASKUDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23431DEEA69500666B52 /* ZJASKUDataCenter.swift */; };
 		37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */; };
 		37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */; };
 		37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */; };
@@ -65,6 +68,9 @@
 		37BF23341DEDA43B00666B52 /* ZJAAddSKUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddSKUController.swift; sourceTree = "<group>"; };
 		37BF23361DEDA4F700666B52 /* ZJASKUAddCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUAddCell.swift; sourceTree = "<group>"; };
 		37BF233A1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUAddPhotoView.swift; sourceTree = "<group>"; };
+		37BF233D1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUAddPhotoCell.swift; sourceTree = "<group>"; };
+		37BF23411DEEA0AD00666B52 /* ZJASKUItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUItemModel.swift; sourceTree = "<group>"; };
+		37BF23431DEEA69500666B52 /* ZJASKUDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUDataCenter.swift; sourceTree = "<group>"; };
 		37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiCollectionView.swift; sourceTree = "<group>"; };
 		37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraController.swift; sourceTree = "<group>"; };
 		37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraActionView.swift; sourceTree = "<group>"; };
@@ -157,6 +163,22 @@
 				3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */,
 			);
 			path = DataCenter;
+			sourceTree = "<group>";
+		};
+		37BF233F1DEEA07400666B52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37BF23411DEEA0AD00666B52 /* ZJASKUItemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		37BF23401DEEA07400666B52 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				37BF23431DEEA69500666B52 /* ZJASKUDataCenter.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		37D68EE91DB48FEF00EFC185 /* ViewModel */ = {
@@ -507,6 +529,8 @@
 		CCC82FDB1DBA48B3009DFD21 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				37BF233F1DEEA07400666B52 /* Model */,
+				37BF23401DEEA07400666B52 /* ViewModel */,
 				CCC82FDC1DBA48B3009DFD21 /* Controller */,
 				CCC82FDD1DBA48B3009DFD21 /* View */,
 			);
@@ -524,9 +548,10 @@
 		CCC82FDD1DBA48B3009DFD21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				37BF233A1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift */,
+				37BF233D1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift */,
 				37BF232C1DED820500666B52 /* ZJASKUAddTableView.swift */,
 				37BF23361DEDA4F700666B52 /* ZJASKUAddCell.swift */,
-				37BF233A1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -711,14 +736,17 @@
 				CCC96DBA1DB338A300465131 /* ZJAHomeTableView.swift in Sources */,
 				CCBFCCD31D9E130100D80C78 /* Config.swift in Sources */,
 				CCA726961DBB25690099BC98 /* UIImageExtension.swift in Sources */,
+				37BF23421DEEA0AD00666B52 /* ZJASKUItemModel.swift in Sources */,
 				CCA726981DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift in Sources */,
 				CCBFCCD91D9E297F00D80C78 /* ZJAHomeViewController.swift in Sources */,
 				CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */,
 				37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */,
+				37BF233E1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift in Sources */,
 				CC26033C1DA4131B0090F916 /* SignUtil.m in Sources */,
 				37BF232D1DED820500666B52 /* ZJASKUAddTableView.swift in Sources */,
 				CCA726941DBA59FF0099BC98 /* ZJAErrorView.swift in Sources */,
 				3744C2661DB9E8FB004F40AD /* ZJACameraDataCenter.swift in Sources */,
+				37BF23441DEEA69500666B52 /* ZJASKUDataCenter.swift in Sources */,
 				37BF233B1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift in Sources */,
 				37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */,
 				37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */,

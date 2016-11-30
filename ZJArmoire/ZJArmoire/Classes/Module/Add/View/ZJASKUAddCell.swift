@@ -9,10 +9,20 @@
 import UIKit
 
 class ZJASKUAddCell: UITableViewCell {
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        prepareUI()
+        setUpViewConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -20,5 +30,24 @@ class ZJASKUAddCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    public func getCollectionItemHeight() -> CGFloat {
+        return addPhotoView.getCollectionItemHeight()
+    }
+    
+    private func prepareUI() {
+        contentView.addSubview(addPhotoView)
+    }
+    
+    private func setUpViewConstraints() {
+        addPhotoView.snp.makeConstraints { (make) in
+            make.edges.equalTo(UIEdgeInsets.zero)
+        }
+    }
+    
+    private lazy var addPhotoView:ZJASKUAddPhotoView = {
+        let addPhotoView:ZJASKUAddPhotoView = ZJASKUAddPhotoView(frame: self.bounds)
+        return addPhotoView
+    }()
 
 }

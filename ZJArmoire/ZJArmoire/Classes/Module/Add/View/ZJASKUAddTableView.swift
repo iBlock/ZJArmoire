@@ -9,6 +9,8 @@
 import UIKit
 
 class ZJASKUAddTableView: UITableView {
+    
+    let ZJASKUAddCellIdentifier = "ZJASKUAddCellIdentifier"
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -24,11 +26,17 @@ class ZJASKUAddTableView: UITableView {
     func prepareUI() -> Void {
         delegate = self
         dataSource = self
+        register(ZJASKUAddCell.self, forCellReuseIdentifier: ZJASKUAddCellIdentifier)
     }
     
     func setUpViewConstraints() -> Void {
         
     }
+    
+    lazy var skuItemArray:NSArray = {
+        let dataCenter:ZJASKUDataCenter = ZJASKUDataCenter.sharedInstance
+        return dataCenter.skuItemArray
+    }()
 
 }
 
@@ -83,6 +91,21 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             return 0
         }
     }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section{
+        case 0:
+            let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
+            let itemHeight = cell.getCollectionItemHeight()
+            if skuItemArray.count > 3 {
+                return itemHeight*2+15
+            } else {
+                return itemHeight
+            }
+        default:
+            return 100
+        }
+    }
 }
 
 extension ZJASKUAddTableView: UITableViewDataSource {
@@ -99,9 +122,7 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         var cell:UITableViewCell?;
         switch indexPath.section {
         case 0:
-            let cellIdentifier = "ZJASKUAddCell"
-            cell = ZJASKUAddCell(style: .default, reuseIdentifier: cellIdentifier)
-            cell?.backgroundColor = UIColor.yellow
+            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
         default:
             let cellIdentifier = "ZJASKUNormalCell"
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)

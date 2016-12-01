@@ -11,6 +11,7 @@ import UIKit
 class ZJASKUAddPhotoView: UIView {
     
     let addPhotoCellIdentifier = "ZJASKUAddPhotoCellIdentifier"
+    let addButtonCellIdentifier = "ZJASKUAddButtonCellIdentifier"
     var itemWidth:CGFloat = 0
 
     override init(frame: CGRect) {
@@ -66,10 +67,13 @@ class ZJASKUAddPhotoView: UIView {
 extension ZJASKUAddPhotoView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataCenter.skuItemArray.count
+        return dataCenter.skuItemArray.count+1
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row == dataCenter.skuItemArray.count {
+            
+        }
         let addPhotoCell:ZJASKUAddPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: addPhotoCellIdentifier, for: indexPath) as! ZJASKUAddPhotoCell
         let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel
         let photoImage:UIImage = itemModel.photoImage!

@@ -97,8 +97,8 @@ extension ZJASKUAddTableView: UITableViewDelegate {
         case 0:
             let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
             let itemHeight = cell.getCollectionItemHeight()
-            if skuItemArray.count > 3 {
-                return itemHeight*2+15
+            if skuItemArray.count > 2 {
+                return itemHeight*2+20
             } else {
                 return itemHeight
             }

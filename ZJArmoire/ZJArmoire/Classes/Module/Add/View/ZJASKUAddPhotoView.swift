@@ -52,6 +52,7 @@ class ZJASKUAddPhotoView: UIView {
         let collectionView:UICollectionView = UICollectionView(frame: self.frame, collectionViewLayout: collectionLayout)
         collectionView.backgroundColor = UIColor.white
         collectionView.register(ZJASKUAddPhotoCell.self, forCellWithReuseIdentifier: self.addPhotoCellIdentifier)
+        collectionView.register(ZJASKUAddButtonCell.self, forCellWithReuseIdentifier: self.addButtonCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -72,7 +73,8 @@ extension ZJASKUAddPhotoView: UICollectionViewDelegate, UICollectionViewDataSour
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == dataCenter.skuItemArray.count {
-            
+            let addButtonCell:ZJASKUAddButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: addButtonCellIdentifier, for: indexPath) as! ZJASKUAddButtonCell
+            return addButtonCell
         }
         let addPhotoCell:ZJASKUAddPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: addPhotoCellIdentifier, for: indexPath) as! ZJASKUAddPhotoCell
         let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel

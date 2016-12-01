@@ -21,13 +21,13 @@ class ZJASKUAddPhotoHeaderView: UITableViewHeaderFooterView {
     }
     
     private func prepareUI() {
-        backgroundColor = UIColor.white
+        contentView.backgroundColor = UIColor.white
         let titleLabel = UILabel()
         titleLabel.text = "照片"
         titleLabel.textColor = COLOR_TEXT_LABEL
         titleLabel.font = UIFont.systemFont(ofSize: 15)
         titleLabel.textAlignment = .left
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
         
         titleLabel.snp.makeConstraints({ (make) in
             make.left.equalTo(15)

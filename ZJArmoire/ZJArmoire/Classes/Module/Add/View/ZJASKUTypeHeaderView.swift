@@ -23,16 +23,16 @@ class ZJASKUTypeHeaderView: UITableViewHeaderFooterView {
     
     public func configHeaderView(isClickArrowButton:Bool) {
         if isClickArrowButton == true {
-            let image = UIImage(named: "SKUAdd_Arrow_up")
+            let image = UIImage(named: "SKUAdd_Arrow_down")
             arrowButton.setImage(image, for: .normal)
         } else {
-            let image = UIImage(named: "SKUAdd_Arrow_down")
+            let image = UIImage(named: "SKUAdd_Arrow_up")
             arrowButton.setImage(image, for: .normal)
         }
     }
     
     private func prepareUI() {
-        backgroundColor = UIColor.white
+        contentView.backgroundColor = UIColor.white
         
         let titleLabel = UILabel()
         titleLabel.text = "分类    上装"
@@ -44,8 +44,8 @@ class ZJASKUTypeHeaderView: UITableViewHeaderFooterView {
         arrowButton.setImage(image, for: .normal)
 //        arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
         
-        addSubview(titleLabel)
-        addSubview(arrowButton)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(arrowButton)
         
         titleLabel.snp.makeConstraints({ (make) in
             make.left.equalTo(15)

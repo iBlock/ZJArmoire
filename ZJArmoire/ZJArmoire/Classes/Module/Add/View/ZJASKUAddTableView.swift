@@ -16,6 +16,7 @@ class ZJASKUAddTableView: UITableView {
     let ZJASKUTypeHeaderViewIdentifier = "ZJASKUTypeHeaderViewIdentifier"
     
     var isClickTypeArrowButton:Bool = false
+    static var isAddTarget:Bool = false
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -35,8 +36,8 @@ class ZJASKUAddTableView: UITableView {
         separatorStyle = .none
         register(ZJASKUAddCell.self, forCellReuseIdentifier: ZJASKUAddCellIdentifier)
         register(ZJASKUTypeViewCell.self, forCellReuseIdentifier: ZJASKUTypeViewCellIdentifier)
-        register(ZJASKUAddPhotoHeaderView.self, forCellReuseIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
-        register(ZJASKUTypeHeaderView.self, forCellReuseIdentifier: ZJASKUTypeViewCellIdentifier)
+        register(ZJASKUAddPhotoHeaderView.self, forHeaderFooterViewReuseIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
+        register(ZJASKUTypeHeaderView.self, forHeaderFooterViewReuseIdentifier: ZJASKUTypeViewCellIdentifier)
     }
     
     func setUpViewConstraints() -> Void {
@@ -75,38 +76,14 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             return headerView
             
         case 1:
-            /*
-            let titleView = UIView()
-            titleView.backgroundColor = UIColor.white
-            
-            let titleLabel = UILabel()
-            titleLabel.text = "分类    上装"
-            titleLabel.textColor = COLOR_TEXT_LABEL
-            titleLabel.font = UIFont.systemFont(ofSize: 15)
-            titleLabel.textAlignment = .left
-            
-            let arrowButton = UIButton(type: UIButtonType.custom)
-            let image = UIImage(named: "SKUAdd_Arrow_up")
-            arrowButton.setImage(image, for: .normal)
-            arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
-            
-            titleView.addSubview(titleLabel)
-            titleView.addSubview(arrowButton)
-            
-            titleLabel.snp.makeConstraints({ (make) in
-                make.left.equalTo(15)
-                make.top.right.bottom.equalTo(0)
-            })
-            
-            arrowButton.snp.makeConstraints({ (make) in
-                make.right.equalTo(-15)
-                make.centerY.equalToSuperview()
-                make.size.equalTo(image!.size)
-            })
- */
             let headerView:ZJASKUTypeHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
                 ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeHeaderView
-            headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
+            if ZJASKUAddTableView.isAddTarget == false {
+                 headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
+                let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
+                headerView.addGestureRecognizer(panGester)
+                ZJASKUAddTableView.isAddTarget = true
+            }
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
             
             return headerView
@@ -119,6 +96,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
         switch section {
         case 0:
             let footerView = UIView()
+            footerView.backgroundColor = UIColor.white
             let lineView = UIView()
             lineView.backgroundColor = UIColor.colorWithHexString(hex: "d9d9d9")
             footerView.addSubview(lineView)

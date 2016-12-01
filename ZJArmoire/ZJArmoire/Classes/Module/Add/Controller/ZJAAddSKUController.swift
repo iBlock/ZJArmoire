@@ -27,7 +27,6 @@ class ZJAAddSKUController: UIViewController {
     private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         title = "添加单品"
-        view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(skuAddTableView)
     }
     

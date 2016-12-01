@@ -36,7 +36,7 @@ class ZJASKUTypeViewCell: UITableViewCell {
     }
     
     public func getItemHeight() -> CGFloat {
-        return itemSize*3+2
+        return itemSize*2+5
     }
     
     private func prepareUI() {
@@ -52,11 +52,12 @@ class ZJASKUTypeViewCell: UITableViewCell {
     lazy var skuTypeView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let specing:CGFloat = 15
-        layout.minimumInteritemSpacing = 1
-        layout.minimumLineSpacing = 1
+        let viewSpecing:CGFloat = 5
+        layout.minimumInteritemSpacing = viewSpecing
+        layout.minimumLineSpacing = viewSpecing
         layout.sectionInset = UIEdgeInsetsMake(0, specing, 0, specing)
         layout.scrollDirection = .vertical
-        self.itemSize = (SCREEN_WIDTH-specing*CGFloat(2)-2)/3
+        self.itemSize = (SCREEN_WIDTH-specing*CGFloat(2)-viewSpecing*3)/4
         layout.itemSize = CGSize(width: self.itemSize, height: self.itemSize)
         
         let typeView:UICollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)

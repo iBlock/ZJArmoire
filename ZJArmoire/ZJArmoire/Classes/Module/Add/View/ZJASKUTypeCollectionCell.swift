@@ -42,7 +42,7 @@ class ZJASKUTypeCollectionCell: UICollectionViewCell {
     
     private lazy var typeButton:UIButton = {
         let typeButton:UIButton = UIButton(type: UIButtonType.custom)
-        typeButton.backgroundColor = COLOR_MAIN_APP
+        typeButton.backgroundColor = UIColor.colorHex(hex: "00bb9c", alpha: 0.5)
         return typeButton
     }()
     

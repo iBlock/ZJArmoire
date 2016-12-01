@@ -12,6 +12,10 @@ class ZJASKUAddTableView: UITableView {
     
     let ZJASKUAddCellIdentifier = "ZJASKUAddCellIdentifier"
     let ZJASKUTypeViewCellIdentifier = "ZJASKUTypeViewCellIdentifier"
+    let ZJASKUAddPhotoHeaderViewIdentifier = "ZJASKUAddPhotoHeaderViewIdentifier"
+    let ZJASKUTypeHeaderViewIdentifier = "ZJASKUTypeHeaderViewIdentifier"
+    
+    var isClickTypeArrowButton:Bool = false
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -25,10 +29,14 @@ class ZJASKUAddTableView: UITableView {
     }
     
     func prepareUI() -> Void {
+        backgroundColor = COLOR_MAIN_BACKGROUND
         delegate = self
         dataSource = self
+        separatorStyle = .none
         register(ZJASKUAddCell.self, forCellReuseIdentifier: ZJASKUAddCellIdentifier)
         register(ZJASKUTypeViewCell.self, forCellReuseIdentifier: ZJASKUTypeViewCellIdentifier)
+        register(ZJASKUAddPhotoHeaderView.self, forCellReuseIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
+        register(ZJASKUTypeHeaderView.self, forCellReuseIdentifier: ZJASKUTypeViewCellIdentifier)
     }
     
     func setUpViewConstraints() -> Void {
@@ -39,7 +47,23 @@ class ZJASKUAddTableView: UITableView {
         let dataCenter:ZJASKUDataCenter = ZJASKUDataCenter.sharedInstance
         return dataCenter.skuItemArray
     }()
-
+    
+    lazy var addPhotoHeaderView:UIView = {
+        let titleView = UIView()
+        titleView.backgroundColor = UIColor.white
+        let titleLabel = UILabel()
+        titleLabel.text = "照片"
+        titleLabel.textColor = COLOR_TEXT_LABEL
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.textAlignment = .left
+        titleView.addSubview(titleLabel)
+        
+        titleLabel.snp.makeConstraints({ (make) in
+            make.left.equalTo(15)
+            make.top.right.bottom.equalTo(0)
+        })
+        return titleView
+    }()
 }
 
 extension ZJASKUAddTableView: UITableViewDelegate {
@@ -47,37 +71,85 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let titleView = UIView()
-            titleView.backgroundColor = UIColor.white
-            let titleLabel = UILabel()
-            titleLabel.text = "照片"
-            titleLabel.textColor = COLOR_TEXT_LABEL
-            titleLabel.font = UIFont.systemFont(ofSize: 15)
-            titleLabel.textAlignment = .left
-            titleView.addSubview(titleLabel)
+            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
+            return headerView
             
-            titleLabel.snp.makeConstraints({ (make) in
-                make.left.equalTo(15)
-                make.top.right.bottom.equalTo(0)
-            })
-            
-            return titleView
         case 1:
+            /*
             let titleView = UIView()
             titleView.backgroundColor = UIColor.white
+            
             let titleLabel = UILabel()
             titleLabel.text = "分类    上装"
             titleLabel.textColor = COLOR_TEXT_LABEL
             titleLabel.font = UIFont.systemFont(ofSize: 15)
             titleLabel.textAlignment = .left
+            
+            let arrowButton = UIButton(type: UIButtonType.custom)
+            let image = UIImage(named: "SKUAdd_Arrow_up")
+            arrowButton.setImage(image, for: .normal)
+            arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
+            
             titleView.addSubview(titleLabel)
+            titleView.addSubview(arrowButton)
             
             titleLabel.snp.makeConstraints({ (make) in
                 make.left.equalTo(15)
                 make.top.right.bottom.equalTo(0)
             })
             
-            return titleView
+            arrowButton.snp.makeConstraints({ (make) in
+                make.right.equalTo(-15)
+                make.centerY.equalToSuperview()
+                make.size.equalTo(image!.size)
+            })
+ */
+            let headerView:ZJASKUTypeHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+                ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeHeaderView
+            headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
+            headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
+            
+            return headerView
+        default:
+            return nil
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            let footerView = UIView()
+            let lineView = UIView()
+            lineView.backgroundColor = UIColor.colorWithHexString(hex: "d9d9d9")
+            footerView.addSubview(lineView)
+            
+            lineView.snp.makeConstraints({ (make) in
+                make.left.equalTo(15)
+                make.bottom.right.equalTo(0)
+                make.height.equalTo(0.5)
+            })
+            
+            return footerView
+        case 1:
+            let footerView = UIView()
+            let topLineView = UIView()
+            topLineView.backgroundColor = COLOR_BORDER_LINE
+            let bottomLineView = UIView()
+            bottomLineView.backgroundColor = COLOR_BORDER_LINE
+            footerView.addSubview(topLineView)
+            footerView.addSubview(bottomLineView)
+            
+            topLineView.snp.makeConstraints({ (make) in
+                make.left.right.top.equalTo(0)
+                make.height.equalTo(0.5)
+            })
+            
+            bottomLineView.snp.makeConstraints({ (make) in
+                make.left.right.bottom.equalTo(0)
+                make.height.equalTo(0.5)
+            })
+            
+            return footerView
         default:
             return nil
         }
@@ -94,19 +166,34 @@ extension ZJASKUAddTableView: UITableViewDelegate {
         }
     }
     
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 15
+        case 1:
+            return 15
+        default:
+            return 0
+        }
+    }
+    
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section{
         case 0:
             let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
             let itemHeight = cell.getCollectionItemHeight()
             if skuItemArray.count > 2 {
-                return itemHeight*2+20
+                return itemHeight*2+15
             } else {
                 return itemHeight
             }
         case 1:
-            let cell:ZJASKUTypeViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeViewCell
-            return cell.getItemHeight()
+            if isClickTypeArrowButton == true {
+                let cell:ZJASKUTypeViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeViewCell
+                return cell.getItemHeight()+15
+            } else {
+                return 0
+            }
         default:
             return 100
         }
@@ -136,4 +223,14 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         }
         return cell!
     }
+}
+
+// MARK: - Event and Respones
+extension ZJASKUAddTableView {
+    
+    @objc func didTappendArrowButton(sender:UIButton) {
+        isClickTypeArrowButton = !isClickTypeArrowButton
+        reloadData()
+    }
+    
 }

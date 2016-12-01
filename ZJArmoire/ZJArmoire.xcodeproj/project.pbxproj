@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3744C2661DB9E8FB004F40AD /* ZJACameraDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */; };
+		375E30FF1DF0475D00FAF03D /* ZJASKUAddPhotoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E30FE1DF0475D00FAF03D /* ZJASKUAddPhotoHeaderView.swift */; };
+		375E31011DF0485200FAF03D /* ZJASKUTypeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375E31001DF0485200FAF03D /* ZJASKUTypeHeaderView.swift */; };
 		37BF23291DE55A5E00666B52 /* DJDebug.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37BF23281DE55A5E00666B52 /* DJDebug.bundle */; };
 		37BF232D1DED820500666B52 /* ZJASKUAddTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF232C1DED820500666B52 /* ZJASKUAddTableView.swift */; };
 		37BF23351DEDA43B00666B52 /* ZJAAddSKUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23341DEDA43B00666B52 /* ZJAAddSKUController.swift */; };
@@ -66,6 +68,8 @@
 /* Begin PBXFileReference section */
 		2E9AD36B472132147CDB0DDC /* Pods-ZJArmoire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJArmoire.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZJArmoire/Pods-ZJArmoire.release.xcconfig"; sourceTree = "<group>"; };
 		3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraDataCenter.swift; sourceTree = "<group>"; };
+		375E30FE1DF0475D00FAF03D /* ZJASKUAddPhotoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUAddPhotoHeaderView.swift; sourceTree = "<group>"; };
+		375E31001DF0485200FAF03D /* ZJASKUTypeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUTypeHeaderView.swift; sourceTree = "<group>"; };
 		37BF23281DE55A5E00666B52 /* DJDebug.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DJDebug.bundle; path = ../Pods/DJDebug/DJDebug/DJDebug.bundle; sourceTree = "<group>"; };
 		37BF232C1DED820500666B52 /* ZJASKUAddTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUAddTableView.swift; sourceTree = "<group>"; };
 		37BF23341DEDA43B00666B52 /* ZJAAddSKUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddSKUController.swift; sourceTree = "<group>"; };
@@ -169,6 +173,15 @@
 				3744C2651DB9E8FB004F40AD /* ZJACameraDataCenter.swift */,
 			);
 			path = DataCenter;
+			sourceTree = "<group>";
+		};
+		375E30FD1DF0471700FAF03D /* HeaderAndFooter */ = {
+			isa = PBXGroup;
+			children = (
+				375E30FE1DF0475D00FAF03D /* ZJASKUAddPhotoHeaderView.swift */,
+				375E31001DF0485200FAF03D /* ZJASKUTypeHeaderView.swift */,
+			);
+			name = HeaderAndFooter;
 			sourceTree = "<group>";
 		};
 		37BF233F1DEEA07400666B52 /* Model */ = {
@@ -554,6 +567,7 @@
 		CCC82FDD1DBA48B3009DFD21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				375E30FD1DF0471700FAF03D /* HeaderAndFooter */,
 				37BF233A1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift */,
 				37BF233D1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift */,
 				37BF232C1DED820500666B52 /* ZJASKUAddTableView.swift */,
@@ -747,6 +761,7 @@
 				CCBFCCD31D9E130100D80C78 /* Config.swift in Sources */,
 				CCA726961DBB25690099BC98 /* UIImageExtension.swift in Sources */,
 				37BF23421DEEA0AD00666B52 /* ZJASKUItemModel.swift in Sources */,
+				375E31011DF0485200FAF03D /* ZJASKUTypeHeaderView.swift in Sources */,
 				CCA726981DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift in Sources */,
 				CCBFCCD91D9E297F00D80C78 /* ZJAHomeViewController.swift in Sources */,
 				CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */,
@@ -755,6 +770,7 @@
 				37BF233E1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift in Sources */,
 				CC26033C1DA4131B0090F916 /* SignUtil.m in Sources */,
 				37BF232D1DED820500666B52 /* ZJASKUAddTableView.swift in Sources */,
+				375E30FF1DF0475D00FAF03D /* ZJASKUAddPhotoHeaderView.swift in Sources */,
 				CCA726941DBA59FF0099BC98 /* ZJAErrorView.swift in Sources */,
 				3744C2661DB9E8FB004F40AD /* ZJACameraDataCenter.swift in Sources */,
 				37BF23441DEEA69500666B52 /* ZJASKUDataCenter.swift in Sources */,

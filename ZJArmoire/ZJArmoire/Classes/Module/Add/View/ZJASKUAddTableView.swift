@@ -11,6 +11,7 @@ import UIKit
 class ZJASKUAddTableView: UITableView {
     
     let ZJASKUAddCellIdentifier = "ZJASKUAddCellIdentifier"
+    let ZJASKUTypeViewCellIdentifier = "ZJASKUTypeViewCellIdentifier"
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -27,6 +28,7 @@ class ZJASKUAddTableView: UITableView {
         delegate = self
         dataSource = self
         register(ZJASKUAddCell.self, forCellReuseIdentifier: ZJASKUAddCellIdentifier)
+        register(ZJASKUTypeViewCell.self, forCellReuseIdentifier: ZJASKUTypeViewCellIdentifier)
     }
     
     func setUpViewConstraints() -> Void {
@@ -102,6 +104,9 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             } else {
                 return itemHeight
             }
+        case 1:
+            let cell:ZJASKUTypeViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeViewCell
+            return cell.getItemHeight()
         default:
             return 100
         }
@@ -123,6 +128,8 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
+        case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
         default:
             let cellIdentifier = "ZJASKUNormalCell"
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)

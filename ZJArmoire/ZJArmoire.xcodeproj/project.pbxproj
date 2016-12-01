@@ -17,6 +17,8 @@
 		37BF23421DEEA0AD00666B52 /* ZJASKUItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23411DEEA0AD00666B52 /* ZJASKUItemModel.swift */; };
 		37BF23441DEEA69500666B52 /* ZJASKUDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23431DEEA69500666B52 /* ZJASKUDataCenter.swift */; };
 		37BF23461DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23451DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift */; };
+		37BF23481DF0005900666B52 /* ZJASKUTypeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23471DF0005900666B52 /* ZJASKUTypeViewCell.swift */; };
+		37BF234A1DF002B700666B52 /* ZJASKUTypeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BF23491DF002B700666B52 /* ZJASKUTypeCollectionCell.swift */; };
 		37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */; };
 		37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */; };
 		37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */; };
@@ -73,6 +75,8 @@
 		37BF23411DEEA0AD00666B52 /* ZJASKUItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUItemModel.swift; sourceTree = "<group>"; };
 		37BF23431DEEA69500666B52 /* ZJASKUDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUDataCenter.swift; sourceTree = "<group>"; };
 		37BF23451DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUAddButtonCell.swift; sourceTree = "<group>"; };
+		37BF23471DF0005900666B52 /* ZJASKUTypeViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUTypeViewCell.swift; sourceTree = "<group>"; };
+		37BF23491DF002B700666B52 /* ZJASKUTypeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUTypeCollectionCell.swift; sourceTree = "<group>"; };
 		37D68EEB1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiCollectionView.swift; sourceTree = "<group>"; };
 		37D68EF41DB5F98A00EFC185 /* ZJACameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraController.swift; sourceTree = "<group>"; };
 		37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraActionView.swift; sourceTree = "<group>"; };
@@ -555,6 +559,8 @@
 				37BF232C1DED820500666B52 /* ZJASKUAddTableView.swift */,
 				37BF23361DEDA4F700666B52 /* ZJASKUAddCell.swift */,
 				37BF23451DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift */,
+				37BF23471DF0005900666B52 /* ZJASKUTypeViewCell.swift */,
+				37BF23491DF002B700666B52 /* ZJASKUTypeCollectionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -722,6 +728,7 @@
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
 				CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */,
 				CCBFCCF51DA3A53F00D80C78 /* UIViewExtension.swift in Sources */,
+				37BF234A1DF002B700666B52 /* ZJASKUTypeCollectionCell.swift in Sources */,
 				37BF23351DEDA43B00666B52 /* ZJAAddSKUController.swift in Sources */,
 				37D68EFB1DB7301400EFC185 /* ZJACameraEditActionView.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
@@ -753,6 +760,7 @@
 				37BF23441DEEA69500666B52 /* ZJASKUDataCenter.swift in Sources */,
 				37BF233B1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift in Sources */,
 				37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */,
+				37BF23481DF0005900666B52 /* ZJASKUTypeViewCell.swift in Sources */,
 				37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

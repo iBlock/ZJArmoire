@@ -217,7 +217,15 @@ alpha:1.0]
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField.text.length == 0 &&
         string.length == 0) {
-        
+        [textField resignFirstResponder];
+        UIButton *lastButton = [self.itemArray lastObject];
+        if (lastButton.isSelected) {
+            [lastButton removeFromSuperview];
+            [self.itemArray removeLastObject];
+            [self resetItemsFrame];
+        } else {
+            [self buttonClicked:lastButton];
+        }
     }
     return YES;
 }

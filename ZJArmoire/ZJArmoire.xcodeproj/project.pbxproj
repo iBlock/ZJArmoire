@@ -30,6 +30,8 @@
 		3A609CB3A4FB262F8B273043 /* Pods_ZJArmoire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4011202FF407A2C6431B9F5 /* Pods_ZJArmoire.framework */; };
 		CC26033B1DA4131B0090F916 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2603381DA4131B0090F916 /* HttpUtil.m */; };
 		CC26033C1DA4131B0090F916 /* SignUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CC26033A1DA4131B0090F916 /* SignUtil.m */; };
+		CC56432B1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */; };
+		CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */; };
 		CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */; };
 		CC73E8FD1D9D1AEE00C283D2 /* ZJArmoireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */; };
 		CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA7268D1DBA49AF0099BC98 /* ZJATypeListController.swift */; };
@@ -102,6 +104,9 @@
 		CC2603391DA4131B0090F916 /* SignUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUtil.h; sourceTree = "<group>"; };
 		CC26033A1DA4131B0090F916 /* SignUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUtil.m; sourceTree = "<group>"; };
 		CC2603401DA413A90090F916 /* ZJArmoire-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZJArmoire-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUTagViewCell.swift; sourceTree = "<group>"; };
+		CC56432C1DF0846C00FEC5A8 /* SYTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTagListView.h; sourceTree = "<group>"; };
+		CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTagListView.m; sourceTree = "<group>"; };
 		CC73E8E41D9D1AEE00C283D2 /* ZJArmoire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJArmoire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8F11D9D1AEE00C283D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC73E8F31D9D1AEE00C283D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -432,6 +437,8 @@
 		CCBFCCC71D9E0D2A00D80C78 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CC56432C1DF0846C00FEC5A8 /* SYTagListView.h */,
+				CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -575,6 +582,7 @@
 				37BF23451DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift */,
 				37BF23471DF0005900666B52 /* ZJASKUTypeViewCell.swift */,
 				37BF23491DF002B700666B52 /* ZJASKUTypeCollectionCell.swift */,
+				CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -740,6 +748,7 @@
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
 				CCC96DB61DB32F7C00465131 /* ZJAHomeTableHeaderView.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
+				CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */,
 				CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */,
 				CCBFCCF51DA3A53F00D80C78 /* UIViewExtension.swift in Sources */,
 				37BF234A1DF002B700666B52 /* ZJASKUTypeCollectionCell.swift in Sources */,
@@ -776,6 +785,7 @@
 				37BF23441DEEA69500666B52 /* ZJASKUDataCenter.swift in Sources */,
 				37BF233B1DEDAEE500666B52 /* ZJASKUAddPhotoView.swift in Sources */,
 				37D68EEC1DB4901200EFC185 /* ZJAYiGuiCollectionView.swift in Sources */,
+				CC56432B1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift in Sources */,
 				37BF23481DF0005900666B52 /* ZJASKUTypeViewCell.swift in Sources */,
 				37D68EF71DB611C100EFC185 /* ZJACameraActionView.swift in Sources */,
 			);

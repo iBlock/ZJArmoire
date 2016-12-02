@@ -15,7 +15,7 @@ class ZJASKUDataCenter: NSObject {
     
     private override init() {
         let testList = NSMutableArray()
-        for _ in 1...7 {
+        for _ in 1...2 {
             let skuModel = ZJASKUItemModel()
             skuModel.photoImage = UIImage(named: "test")
             testList.add(skuModel)

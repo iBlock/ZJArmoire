@@ -14,9 +14,10 @@ class ZJASKUAddTableView: UITableView {
     let ZJASKUTypeViewCellIdentifier = "ZJASKUTypeViewCellIdentifier"
     let ZJASKUAddPhotoHeaderViewIdentifier = "ZJASKUAddPhotoHeaderViewIdentifier"
     let ZJASKUTypeHeaderViewIdentifier = "ZJASKUTypeHeaderViewIdentifier"
+    let ZJASKUTagCellIdentifier = "ZJASKUTagCellIdentifier"
     
     var isClickTypeArrowButton:Bool = false
-    static var isAddTarget:Bool = false
+    var isAddTarget:Bool = false
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -38,6 +39,7 @@ class ZJASKUAddTableView: UITableView {
         register(ZJASKUTypeViewCell.self, forCellReuseIdentifier: ZJASKUTypeViewCellIdentifier)
         register(ZJASKUAddPhotoHeaderView.self, forHeaderFooterViewReuseIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
         register(ZJASKUTypeHeaderView.self, forHeaderFooterViewReuseIdentifier: ZJASKUTypeViewCellIdentifier)
+        register(ZJASKUTagViewCell.self, forCellReuseIdentifier: ZJASKUTagCellIdentifier)
     }
     
     func setUpViewConstraints() -> Void {
@@ -78,11 +80,11 @@ extension ZJASKUAddTableView: UITableViewDelegate {
         case 1:
             let headerView:ZJASKUTypeHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
                 ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeHeaderView
-            if ZJASKUAddTableView.isAddTarget == false {
+            if isAddTarget == false {
                  headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
                 let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
                 headerView.addGestureRecognizer(panGester)
-                ZJASKUAddTableView.isAddTarget = true
+                isAddTarget = true
             }
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
             
@@ -98,7 +100,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             let footerView = UIView()
             footerView.backgroundColor = UIColor.white
             let lineView = UIView()
-            lineView.backgroundColor = UIColor.colorWithHexString(hex: "d9d9d9")
+            lineView.backgroundColor = COLOR_TABLE_LINE
             footerView.addSubview(lineView)
             
             lineView.snp.makeConstraints({ (make) in
@@ -113,7 +115,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             let topLineView = UIView()
             topLineView.backgroundColor = COLOR_BORDER_LINE
             let bottomLineView = UIView()
-            bottomLineView.backgroundColor = COLOR_BORDER_LINE
+            bottomLineView.backgroundColor = COLOR_TABLE_LINE
             footerView.addSubview(topLineView)
             footerView.addSubview(bottomLineView)
             
@@ -195,6 +197,9 @@ extension ZJASKUAddTableView: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
+        case 2:
+            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
+            cell?.selectionStyle = .none;
         default:
             let cellIdentifier = "ZJASKUNormalCell"
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)

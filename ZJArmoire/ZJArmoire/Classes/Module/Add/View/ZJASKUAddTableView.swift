@@ -174,6 +174,9 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             } else {
                 return 0
             }
+        case 2:
+            let cell:ZJASKUTagViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier) as! ZJASKUTagViewCell
+            return cell.getTagListViewHeight()
         default:
             return 100
         }
@@ -200,6 +203,9 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
             cell?.selectionStyle = .none;
+            (cell as! ZJASKUTagViewCell).reloadTableViewBlock = {[weak self]() in
+                self?.reloadData()
+            }
         default:
             let cellIdentifier = "ZJASKUNormalCell"
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)

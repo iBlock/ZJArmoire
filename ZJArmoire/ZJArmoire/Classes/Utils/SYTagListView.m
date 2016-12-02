@@ -172,7 +172,7 @@ alpha:1.0]
     self.frame = CGRectMake(self.frame.origin.x,
                             self.frame.origin.y,
                             self.frame.size.width,
-                            CGRectGetMaxY(lastObj.frame) + self.contentInsets.bottom);
+                            CGRectGetMaxY(lastObj?lastObj.frame:self.tagTextField.frame) + self.contentInsets.bottom);
     
     if (self.updateFrameBlock) {
          self.updateFrameBlock(self.frame);
@@ -205,6 +205,10 @@ alpha:1.0]
 
 #pragma mark - UITextFieldDelegate
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField.text.length > 0) {
         [self addTagWithTagName:textField.text];
@@ -217,7 +221,7 @@ alpha:1.0]
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField.text.length == 0 &&
         string.length == 0) {
-        [textField resignFirstResponder];
+//        textField.tintColor=[UIColor clearColor];
         UIButton *lastButton = [self.itemArray lastObject];
         if (lastButton.isSelected) {
             [lastButton removeFromSuperview];

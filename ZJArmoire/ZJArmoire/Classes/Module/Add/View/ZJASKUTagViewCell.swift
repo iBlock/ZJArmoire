@@ -10,6 +10,11 @@ import UIKit
 
 class ZJASKUTagViewCell: UITableViewCell {
     
+    typealias reloadTableViewCallback = () -> ()
+    
+    var tagListViewHeight:CGFloat! = 40
+    var reloadTableViewBlock:reloadTableViewCallback!
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -27,6 +32,10 @@ class ZJASKUTagViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    public func getTagListViewHeight() -> CGFloat {
+        return tagListViewHeight
     }
     
     private func prepareUI() {
@@ -69,6 +78,10 @@ class ZJASKUTagViewCell: UITableViewCell {
         tagView.itemHeight = 20
         tagView.oneItemSpacing = 56
         tagView.resetItemsFrame()
+        tagView.didUpdatedTagListViewFrame({ [weak self] (frame:CGRect) in
+            self?.tagListViewHeight = frame.size.height
+            self?.reloadTableViewBlock()
+        })
         
         return tagView
     }()

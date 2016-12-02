@@ -10,6 +10,8 @@ import UIKit
 
 class ZJATabBarController: UITabBarController {
     
+    static let sharedInstance = ZJATabBarController()
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

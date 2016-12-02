@@ -48,7 +48,7 @@ class ZJASKUTagViewCell: UITableViewCell {
         tagTitleView.snp.makeConstraints { (make) in
             make.left.equalTo(15)
             make.top.equalTo(0)
-            make.size.equalTo(CGSize(width:50, height:40))
+            make.size.equalTo(CGSize(width:40, height:40))
         }
         
         tagView.snp.makeConstraints { (make) in
@@ -57,15 +57,18 @@ class ZJASKUTagViewCell: UITableViewCell {
     }
     
     private lazy var tagView:SYTagListView = {
-        let tagView:SYTagListView = SYTagListView(frame: self.bounds, andTags: ["hello","word"])
-        tagView.tagBackgroundColor = UIColor.colorHex(hex: "00bb9c", alpha: 1)
+        let tagView:SYTagListView = SYTagListView(canEdit: CGRect(x:0,y:0,width:SCREEN_WIDTH,height:0))
+        tagView.tagBackgroundColor = COLOR_MAIN_APP
         tagView.tagTextColor = UIColor.white
         tagView.tagCornerRadius = 10.0
-        tagView.contentInsets = UIEdgeInsetsMake(10, 0, 5, 0)
+        tagView.contentInsets = UIEdgeInsetsMake(10, 10, 5, 20)
         tagView.autoItemHeightWithFontSize = false
+        tagView.tagBorderWidth = 0.5
+        tagView.tagBoarderColor = COLOR_MAIN_APP
+        tagView.selectTagBoarderColor = UIColor.black
         tagView.itemHeight = 20
         tagView.oneItemSpacing = 56
-        tagView.isClickEnable = false
+        tagView.resetItemsFrame()
         
         return tagView
     }()
@@ -73,7 +76,6 @@ class ZJASKUTagViewCell: UITableViewCell {
     private lazy var tagTitleView:UILabel = {
         let tagLabel:UILabel = UILabel()
         tagLabel.text = "标签"
-        tagLabel.backgroundColor = UIColor.yellow
         tagLabel.font = UIFont.systemFont(ofSize: 15)
         tagLabel.textColor = COLOR_TEXT_LABEL
         return tagLabel

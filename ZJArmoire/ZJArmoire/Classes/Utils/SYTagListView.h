@@ -16,7 +16,11 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
 @interface SYTagListView : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr;
+- (instancetype)initWithCanEdit:(CGRect)frame;
 - (void)addTagWithTagName:(NSString *)tagName;
+
+/** 调整完样式后需要调用该方法进行更新 */
+- (void)resetItemsFrame;
 
 /**
  *  可以实现代理，也可以不实现，有相同的功能的block方法代替。

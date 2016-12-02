@@ -8,15 +8,20 @@
 
 #import "SYTagListView.h"
 
-@interface SYTagListView ()
+#define ColorOfHex(value)                                                                                              \
+[UIColor colorWithRed:((value & 0xFF0000) >> 16) / 255.0                                                           \
+green:((value & 0xFF00) >> 8) / 255.0                                                              \
+blue:(value & 0xFF) / 255.0                                                                       \
+alpha:1.0]
+
+@interface SYTagListView ()<UITextFieldDelegate>
 
 @property (assign, nonatomic) CGFloat validContentWidth;
-
+@property (assign, nonatomic) BOOL isCanEditTagView;
 @property (strong, nonatomic) NSMutableArray *itemArray;
-
 @property (copy, nonatomic) ClickedIndexBlock clickedIndexBlock;
-
 @property (copy, nonatomic) TagListViewUpdateFrameBlock updateFrameBlock;
+@property (nonatomic, strong) UITextField *tagTextField;
 
 @end
 
@@ -34,10 +39,14 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithCanEdit:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        
+        _isCanEditTagView = YES;
+        [self addSubview:self.tagTextField];
+        [self configInitValueForProperty];
+        [self resetItemsFrame];
     }
+    
     return self;
 }
 
@@ -68,11 +77,11 @@
     _tagBackgroundColor = [UIColor whiteColor];
     _tagTextColor = [UIColor blackColor];
     _tagBoarderColor = [UIColor whiteColor];
-    _tagBorderWidth = 1;
+    _tagBorderWidth = 0;
     _tagCornerRadius = 3;
     _isClickEnable = YES;
     _selectTagTextColor = [UIColor whiteColor];
-    _selectTagBoarderColor = [UIColor clearColor];
+    _selectTagBoarderColor = [UIColor whiteColor];
     
     if (self.autoItemHeightWithFontSize) {
         UIFontDescriptor *fontDescriptor = [self.font fontDescriptor];
@@ -118,10 +127,6 @@
         CGSize size = [button.titleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
         if (_autoItemWidthWithFontSize) {
             size.width += 20;
-//            /** 根据UI图显示最小为70 */
-//            if (size.width < 70) {
-//                size.width = 70;
-//            }
         } else {
             size.width = _itemWidth;
         }
@@ -142,11 +147,33 @@
         y = button.frame.origin.y;
         
     }
-    UIButton *lastObj = [self.itemArray lastObject];
+    UIView *lastObj = [self.itemArray lastObject];
+    
+    if (_isCanEditTagView) {
+        CGSize size = [self.tagTextField sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+        if (self.itemArray.count == 0) {
+            size = CGSizeMake(self.validContentWidth-_oneItemSpacing-self.contentInsets.left, size.height);
+        }
+        CGRect textFieldFrame = CGRectMake(x, y-self.contentInsets.top, size.width, 40);
+        //判断是否已经超出了有效区域
+        if (CGRectGetMaxX(textFieldFrame) > self.validContentWidth) {
+            //如果超出换行到下一行
+            //重新计算x,y
+            x = self.contentInsets.left;
+            y = CGRectGetMaxY(lastObj.frame) + self.lineSpacing;
+            textFieldFrame = CGRectMake(15, y-self.contentInsets.top, self.validContentWidth-x, 40);
+            lastObj = self.tagTextField;
+        } else {
+            textFieldFrame = CGRectMake(x, y-self.contentInsets.top, self.validContentWidth-x, 40);
+        }
+        self.tagTextField.frame = textFieldFrame;
+    }
+    
     self.frame = CGRectMake(self.frame.origin.x,
                             self.frame.origin.y,
                             self.frame.size.width,
                             CGRectGetMaxY(lastObj.frame) + self.contentInsets.bottom);
+    
     if (self.updateFrameBlock) {
          self.updateFrameBlock(self.frame);
     }
@@ -174,6 +201,25 @@
 - (void)didUpdatedTagListViewFrame:(TagListViewUpdateFrameBlock)block
 {
     self.updateFrameBlock = block;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField.text.length > 0) {
+        [self addTagWithTagName:textField.text];
+        textField.text = @"";
+    }
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.text.length == 0 &&
+        string.length == 0) {
+        
+    }
+    return YES;
 }
 
 #pragma mark - button action
@@ -210,35 +256,29 @@
 {
     _contentInsets = contentInsets;
     self.validContentWidth = CGRectGetWidth(self.frame) - self.contentInsets.right;
-    [self resetItemsFrame];
 }
 
 - (void)setItemSpacing:(CGFloat)itemSpacing
 {
     _itemSpacing = itemSpacing;
-    [self resetItemsFrame];
 }
 
 - (void)setOneItemSpacing:(CGFloat)oneItemSpacing
 {
     _oneItemSpacing = oneItemSpacing;
-    [self resetItemsFrame];
 }
 
 - (void)setLineSpacing:(CGFloat)lineSpacing
 {
     _lineSpacing = lineSpacing;
-    [self resetItemsFrame];
 }
 
 - (void)setItemHeight:(CGFloat)itemHeight
 {
-    
     if (self.autoItemHeightWithFontSize) {
         return;
     }else{
         _itemHeight = itemHeight;
-        [self resetItemsFrame];
     }
 }
 
@@ -252,7 +292,6 @@
         UIFontDescriptor *fontDescriptor = [self.font fontDescriptor];
         _itemHeight = [[[fontDescriptor fontAttributes] objectForKey:UIFontDescriptorSizeAttribute] floatValue] + 4;
     }
-    [self resetItemsFrame];
 }
 
 - (void)setAutoItemHeightWithFontSize:(BOOL)autoItemHeightWithFontSize
@@ -261,7 +300,6 @@
     if (autoItemHeightWithFontSize) {
         UIFontDescriptor *fontDescriptor = [self.font fontDescriptor];
         _itemHeight = [[[fontDescriptor fontAttributes] objectForKey:UIFontDescriptorSizeAttribute] floatValue] + 4;
-        [self resetItemsFrame];
     }
 }
 
@@ -320,7 +358,7 @@
 
 - (void)setSelectTagBoarderColor:(UIColor *)selectTagBoarderColor {
     
-    _selectTagTextColor = selectTagBoarderColor;
+    _selectTagBoarderColor = selectTagBoarderColor;
     for (UIButton *button in self.itemArray) {
         if (button.state == UIControlStateSelected) {
             button.layer.borderColor = selectTagBoarderColor.CGColor;
@@ -340,6 +378,20 @@
 
 - (UIButton *)fetchTagAtIndex:(int)index {
     return self.itemArray[index];
+}
+
+- (UITextField *)tagTextField {
+    if (!_tagTextField) {
+        _tagTextField = [[UITextField alloc] init];
+        _tagTextField.placeholder = @"  添加标签";
+        _tagTextField.font = [UIFont systemFontOfSize:13];
+        _tagTextField.textColor = ColorOfHex(0x666666);
+        [_tagTextField setValue:ColorOfHex(0x00bb9c) forKeyPath:@"_placeholderLabel.textColor"];
+        _tagTextField.tintColor = ColorOfHex(0x00bb9c);
+        _tagTextField.delegate = self;
+        _tagTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    }
+    return _tagTextField;
 }
 
 @end

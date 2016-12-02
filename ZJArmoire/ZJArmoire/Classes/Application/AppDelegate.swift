@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         let debugConfig = DJDebugConfig()
         DJDebug.initWith(debugConfig)
+        let keyboardManager = IQKeyboardManager.sharedManager()
+        keyboardManager.toolbarDoneBarButtonItemText = "确认"
     }
 }
 

@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DJDebug.initWith(debugConfig)
         let keyboardManager = IQKeyboardManager.sharedManager()
         keyboardManager.toolbarDoneBarButtonItemText = "确认"
+        keyboardManager.enable = true
     }
 }
 

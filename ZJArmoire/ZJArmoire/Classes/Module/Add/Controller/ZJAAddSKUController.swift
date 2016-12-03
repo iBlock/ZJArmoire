@@ -20,6 +20,11 @@ class ZJAAddSKUController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ZJASKUDataCenter.sharedInstance.removeAllItem()
+    }
+    
     override func viewDidLayoutSubviews() {
         setUpViewConstraints()
     }
@@ -38,5 +43,15 @@ class ZJAAddSKUController: UIViewController {
         let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
         return clothesTableView
     }()
+    
+    public func DJDebugViewController() -> ZJAAddSKUController {
+        let skuDataCenter = ZJASKUDataCenter.sharedInstance
+        let skuModel = ZJASKUItemModel()
+        skuModel.photoImage = UIImage(named:"test")
+        skuModel.category = "上装"
+        skuDataCenter.addSKUItem(model: skuModel)
+        return ZJAAddSKUController()
+    }
 
 }
+

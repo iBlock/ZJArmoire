@@ -10,11 +10,13 @@ import UIKit
 
 class ZJASKUTagViewCell: UITableViewCell {
     
-    typealias reloadTableViewCallback = () -> ()
+    typealias reloadTableViewCallback = () -> Void
+    typealias updateTagListCallback = (Array<Any>) -> Void
     
     var tagListViewHeight:CGFloat! = 40
-    var reloadTableViewBlock:reloadTableViewCallback!
-    
+    var reloadTableViewBlock:reloadTableViewCallback?
+    var updateTagListBlock:updateTagListCallback?
+    var tagLabel:UILabel!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -38,12 +40,28 @@ class ZJASKUTagViewCell: UITableViewCell {
         return tagListViewHeight
     }
     
+    public func configTagCell(tagList:Array<Any>?) {
+        tagView.tagsArr = tagList
+        tagLabel.text = "哈哈"
+    }
+    
     private func prepareUI() {
         contentView.backgroundColor = UIColor.white
         
         let bottomLine = UIView()
         bottomLine.backgroundColor = COLOR_TABLE_LINE
-        contentView.addSubview(tagTitleView)
+//        contentView.addSubview(tagTitleView)
+        tagLabel = UILabel()
+        tagLabel.text = "标签"
+        tagLabel.font = UIFont.systemFont(ofSize: 15)
+        tagLabel.textColor = COLOR_TEXT_LABEL
+
+        contentView.addSubview(tagLabel)
+        tagLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.top.equalTo(0)
+            make.size.equalTo(CGSize(width:40, height:40))
+        }
         contentView.addSubview(tagView)
         contentView.addSubview(bottomLine)
         
@@ -54,19 +72,20 @@ class ZJASKUTagViewCell: UITableViewCell {
     }
     
     private func setUpViewConstraints() {
-        tagTitleView.snp.makeConstraints { (make) in
-            make.left.equalTo(15)
-            make.top.equalTo(0)
-            make.size.equalTo(CGSize(width:40, height:40))
-        }
+//        tagTitleView.snp.makeConstraints { (make) in
+//            make.left.equalTo(15)
+//            make.top.equalTo(0)
+//            make.size.equalTo(CGSize(width:40, height:40))
+//        }
         
         tagView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets.zero)
         }
     }
     
-    private lazy var tagView:SYTagListView = {
-        let tagView:SYTagListView = SYTagListView(canEdit: CGRect(x:0,y:0,width:SCREEN_WIDTH,height:0))
+    lazy var tagView:SYTagListView = {
+        let tagFrame = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:0)
+        let tagView:SYTagListView = SYTagListView(frame: tagFrame, andTags: [], isCanEdit: true)
         tagView.tagBackgroundColor = COLOR_MAIN_APP
         tagView.tagTextColor = UIColor.white
         tagView.tagCornerRadius = 10.0
@@ -80,17 +99,21 @@ class ZJASKUTagViewCell: UITableViewCell {
         tagView.resetItemsFrame()
         tagView.didUpdatedTagListViewFrame({ [weak self] (frame:CGRect) in
             self?.tagListViewHeight = frame.size.height
-            self?.reloadTableViewBlock()
+            self?.reloadTableViewBlock?()
+        })
+        
+        tagView.addSKUTag({ [weak self](tagNameList) in
+            self?.updateTagListBlock?(tagNameList!)
         })
         
         return tagView
     }()
 
-    private lazy var tagTitleView:UILabel = {
-        let tagLabel:UILabel = UILabel()
-        tagLabel.text = "标签"
-        tagLabel.font = UIFont.systemFont(ofSize: 15)
-        tagLabel.textColor = COLOR_TEXT_LABEL
-        return tagLabel
-    }()
+//    private lazy var tagTitleView:UILabel = {
+//        let tagLabel:UILabel = UILabel()
+//        tagLabel.text = "标签"
+//        tagLabel.font = UIFont.systemFont(ofSize: 15)
+//        tagLabel.textColor = COLOR_TEXT_LABEL
+//        return tagLabel
+//    }()
 }

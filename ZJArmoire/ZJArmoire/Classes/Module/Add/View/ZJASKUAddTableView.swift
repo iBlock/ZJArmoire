@@ -18,6 +18,8 @@ class ZJASKUAddTableView: UITableView {
     
     var isClickTypeArrowButton:Bool = false
     var isAddTarget:Bool = false
+    
+    var currentSKUItemModel:ZJASKUItemModel?
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -31,6 +33,9 @@ class ZJASKUAddTableView: UITableView {
     }
     
     func prepareUI() -> Void {
+        if skuItemArray.count > 0 {
+            currentSKUItemModel = skuItemArray.object(at: 0) as? ZJASKUItemModel
+        }
         backgroundColor = COLOR_MAIN_BACKGROUND
         delegate = self
         dataSource = self
@@ -181,6 +186,20 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             return 100
         }
     }
+    
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        var cell:UITableViewCell?;
+        switch indexPath.section {
+        case 0: break
+        case 1: break
+        case 2:
+            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
+            (cell as! ZJASKUTagViewCell).configTagCell(tagList: currentSKUItemModel?.tagList)
+        default: break
+            
+        }
+    }
+
 }
 
 extension ZJASKUAddTableView: UITableViewDataSource {
@@ -204,7 +223,10 @@ extension ZJASKUAddTableView: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
             cell?.selectionStyle = .none;
             (cell as! ZJASKUTagViewCell).reloadTableViewBlock = {[weak self]() in
-                self?.reloadData()
+//                self?.reloadData()
+            }
+            (cell as! ZJASKUTagViewCell).updateTagListBlock = {[weak self] (tagNameList:Array<Any>) in
+                self?.currentSKUItemModel?.tagList = tagNameList
             }
         default:
             let cellIdentifier = "ZJASKUNormalCell"

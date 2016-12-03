@@ -11,6 +11,7 @@ import UIKit
 class ZJACameraEditController: UIViewController {
     
     var previewImage:UIImage?
+    var isPushAddSKUController:Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,19 @@ class ZJACameraEditController: UIViewController {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(previewImageView)
         view.addSubview(editImageActionView)
+        
+        // 针对添加单品页面的处理
+        DispatchQueue.global().async {
+            let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
+            let controllers = rootViewController.viewControllers
+            for item in controllers {
+                let controller:UIViewController = item
+                if controller.isKind(of: ZJAAddSKUController.self) {
+                    self.isPushAddSKUController = false
+                    break
+                }
+            }
+        }
     }
     
     private func setUpViewConstraints() {
@@ -74,11 +88,19 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     }
     
     func didTappedConfirmButton() {
+        let skuDataCenter = ZJASKUDataCenter.sharedInstance
+        let skuModel = ZJASKUItemModel()
+        skuModel.photoImage = UIImage(named:"test")
+        skuModel.category = "上装"
+        skuDataCenter.addSKUItem(model: skuModel)
+        
         let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
-        rootViewController.pushViewController(ZJAAddSKUController(), animated: false)
-        //下面代码是为了将modal出来的拍照界面dismiss掉，测试过如果是push出来的执行也没影响
-        dismiss(animated: true, completion: nil)
+        if isPushAddSKUController == true {
+            rootViewController.pushViewController(ZJAAddSKUController(), animated: false)
+        }
+        
         let controllers = rootViewController.viewControllers
+        
         let controllerList:NSMutableArray = (controllers as NSArray).mutableCopy() as! NSMutableArray
         for item in controllers {
             let controller:UIViewController = item
@@ -87,6 +109,9 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
                 controllerList.remove(controller)
             }
         }
+        //下面代码是为了将modal出来的拍照界面dismiss掉，测试过如果是push出来的执行也没影响
+        dismiss(animated: true, completion: nil)
+
         rootViewController.viewControllers = controllerList as NSArray as! [UIViewController]
     }
 }

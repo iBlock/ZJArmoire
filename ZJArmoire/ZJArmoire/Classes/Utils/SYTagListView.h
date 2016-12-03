@@ -10,14 +10,13 @@
 
 typedef void(^ClickedIndexBlock)(UIButton *cityBtn);
 typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
+typedef void(^TagListViewAddItemBlock)(NSArray *tagList);
 
 @protocol SYTagListViewDelegate;
 
 @interface SYTagListView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr;
-- (instancetype)initWithCanEdit:(CGRect)frame;
-- (void)addTagWithTagName:(NSString *)tagName;
+- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr isCanEdit:(BOOL)isCanEdit;
 
 /** 调整完样式后需要调用该方法进行更新 */
 - (void)resetItemsFrame;
@@ -124,6 +123,9 @@ typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
  *  @param block frame更新的block
  */
 - (void)didUpdatedTagListViewFrame:(TagListViewUpdateFrameBlock)block;
+
+/** 添加tag回调 */
+- (void)addSKUTag:(TagListViewAddItemBlock)block;
 
 /** 根据数据位置Index获取Tag */
 - (UIButton *)fetchTagAtIndex:(int)index;

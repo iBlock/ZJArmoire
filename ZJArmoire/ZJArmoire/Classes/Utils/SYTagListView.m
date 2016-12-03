@@ -21,32 +21,25 @@ alpha:1.0]
 @property (strong, nonatomic) NSMutableArray *itemArray;
 @property (copy, nonatomic) ClickedIndexBlock clickedIndexBlock;
 @property (copy, nonatomic) TagListViewUpdateFrameBlock updateFrameBlock;
+@property (copy, nonatomic) TagListViewAddItemBlock addTagBlock;
 @property (nonatomic, strong) UITextField *tagTextField;
 
 @end
 
 @implementation SYTagListView
 
-- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr
-{
+- (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr isCanEdit:(BOOL)isCanEdit {
     if (self = [super initWithFrame:frame]) {
+        _isCanEditTagView = isCanEdit;
+        if (isCanEdit) {
+            [self addSubview:self.tagTextField];
+        }
         [self configInitValueForProperty];
         self.tagsArr = tagsArr;
         [self checkObjectTypeNSString];
         [self makeItems];
         [self resetItemsFrame];
     }
-    return self;
-}
-
-- (instancetype)initWithCanEdit:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        _isCanEditTagView = YES;
-        [self addSubview:self.tagTextField];
-        [self configInitValueForProperty];
-        [self resetItemsFrame];
-    }
-    
     return self;
 }
 
@@ -122,7 +115,9 @@ alpha:1.0]
 {
     CGFloat x = self.contentInsets.left+_oneItemSpacing;
     CGFloat y = self.contentInsets.top;
+    NSMutableArray *tagNameList = @[].mutableCopy;
     for (UIButton *button in self.itemArray) {
+        [tagNameList addObject:button.titleLabel.text];
         //计算文字所占的宽高
         CGSize size = [button.titleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
         if (_autoItemWidthWithFontSize) {
@@ -180,6 +175,9 @@ alpha:1.0]
     if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
         [self.delegate tagListView:self didUpdateFrame:self.frame];
     }
+    if (self.addTagBlock) {
+        self.addTagBlock(tagNameList);
+    }
 }
 
 #pragma mark - Public Methods
@@ -201,6 +199,10 @@ alpha:1.0]
 - (void)didUpdatedTagListViewFrame:(TagListViewUpdateFrameBlock)block
 {
     self.updateFrameBlock = block;
+}
+
+- (void)addSKUTag:(TagListViewAddItemBlock)block {
+    self.addTagBlock = block;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -376,6 +378,13 @@ alpha:1.0]
             button.layer.borderColor = selectTagBoarderColor.CGColor;
         }
     }
+}
+
+- (void)setTagsArr:(NSArray *)tagsArr {
+    [self.itemArray removeAllObjects];
+    _tagsArr = tagsArr;
+    [self makeItems];
+    [self resetItemsFrame];
 }
 
 #pragma mark - getter

@@ -237,11 +237,12 @@ extension ZJASKUAddTableView: UITableViewDataSource {
 //                cell = ZJASKUTagViewCell(style: .default, reuseIdentifier: ZJASKUTagCellIdentifier)
 //            }
             cell?.selectionStyle = .none;
-            (cell as! ZJASKUTagViewCell).reloadTableViewBlock = {[weak self]() in
+//            (cell as! ZJASKUTagViewCell).reloadTableViewBlock = {[weak self]() in
 //                self?.reloadData()
-            }
+//            }
             (cell as! ZJASKUTagViewCell).updateTagListBlock = {[weak self] (tagNameList:Array<Any>) in
                 self?.currentSKUItemModel?.tagList = tagNameList
+                self?.reloadData()
             }
         default:
             let cellIdentifier = "ZJASKUNormalCell"

@@ -14,6 +14,15 @@ class ZJAAddSKUController: UIViewController {
         super.viewDidLoad()
         prepareUI()
     }
+    
+    deinit {
+        ZJASKUDataCenter.sharedInstance.removeAllItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.skuAddTableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -22,7 +31,6 @@ class ZJAAddSKUController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ZJASKUDataCenter.sharedInstance.removeAllItem()
     }
     
     override func viewDidLayoutSubviews() {

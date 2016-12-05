@@ -37,7 +37,8 @@ class ZJASKUTagViewCell: UITableViewCell {
     }
     
     public func getTagListViewHeight() -> CGFloat {
-        return tagListViewHeight
+//        return tagListViewHeight
+        return self.tagView.frame.size.height
     }
     
     public func configTagCell(tagList:Array<Any>?) {
@@ -84,10 +85,10 @@ class ZJASKUTagViewCell: UITableViewCell {
         tagView.itemHeight = 20
         tagView.oneItemSpacing = 56
         tagView.resetItemsFrame()
-        tagView.didUpdatedTagListViewFrame({ [weak self] (frame:CGRect) in
-            self?.tagListViewHeight = frame.size.height
-            self?.reloadTableViewBlock?()
-        })
+//        tagView.didUpdatedTagListViewFrame({ [weak self] (frame:CGRect) in
+//            self?.tagListViewHeight = frame.size.height
+//            self?.reloadTableViewBlock?()
+//        })
         
         tagView.addSKUTag({ [weak self](tagNameList) in
             self?.updateTagListBlock?(tagNameList!)

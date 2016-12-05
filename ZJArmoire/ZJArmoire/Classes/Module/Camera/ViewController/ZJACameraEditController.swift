@@ -23,6 +23,20 @@ class ZJACameraEditController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        // 针对添加单品页面的处理
+        let keyController = UIApplication.shared.keyWindow?.rootViewController
+        if (keyController?.isKind(of: ZJANavigationController.self))! {
+            let rootViewController:ZJANavigationController = keyController as! ZJANavigationController
+            let controllers = rootViewController.viewControllers
+            for item in controllers {
+                let controller:UIViewController = item
+                if controller.isKind(of: ZJAAddSKUController.self) {
+                    self.isPushAddSKUController = false
+                    break
+                }
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -39,19 +53,6 @@ class ZJACameraEditController: UIViewController {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(previewImageView)
         view.addSubview(editImageActionView)
-        
-        // 针对添加单品页面的处理
-        DispatchQueue.global().async {
-            let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
-            let controllers = rootViewController.viewControllers
-            for item in controllers {
-                let controller:UIViewController = item
-                if controller.isKind(of: ZJAAddSKUController.self) {
-                    self.isPushAddSKUController = false
-                    break
-                }
-            }
-        }
     }
     
     private func setUpViewConstraints() {

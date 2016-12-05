@@ -27,13 +27,141 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUTagViewCell.swift"
-            timestampString = "502452219.803523"
+            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUAddTableView.swift"
+            timestampString = "502633793.92466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "configTagCell(tagList:)"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUTagViewCell.swift"
+            timestampString = "502635050.092408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "tagView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUAddTableView.swift"
+            timestampString = "502634377.285919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZJArmoire.ZJASKUAddTableView.tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell"
+                  moduleName = "ZJArmoire"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a58/Documents/Code/ZJArmoire/ZJArmoire/ZJArmoire/Classes/Module/Add/View/ZJASKUAddTableView.swift"
+                  timestampString = "502635543.811657"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "988">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZJArmoire.ZJASKUAddTableView.(tableView (__ObjC.UITableView, cellForRowAt : Foundation.IndexPath) -&gt; __ObjC.UITableViewCell).(closure #2)"
+                  moduleName = "ZJArmoire"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a58/Documents/Code/ZJArmoire/ZJArmoire/ZJArmoire/Classes/Module/Add/View/ZJASKUAddTableView.swift"
+                  timestampString = "502635543.813041"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "243"
+                  endingLineNumber = "243"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUTagViewCell.swift"
+            timestampString = "502635050.092408"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "tagView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZJArmoire.ZJASKUTagViewCell.(tagView.getter : __ObjC.SYTagListView).(closure #1)"
+                  moduleName = "ZJArmoire"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a58/Documents/Code/ZJArmoire/ZJArmoire/ZJArmoire/Classes/Module/Add/View/ZJASKUTagViewCell.swift"
+                  timestampString = "502635543.816059"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "832">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZJArmoire.ZJASKUTagViewCell.(tagView.getter : __ObjC.SYTagListView).(closure #1).(closure #1)"
+                  moduleName = "ZJArmoire"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a58/Documents/Code/ZJArmoire/ZJArmoire/ZJArmoire/Classes/Module/Add/View/ZJASKUTagViewCell.swift"
+                  timestampString = "502635543.817418"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZJArmoire/Classes/Module/Add/Controller/ZJAAddSKUController.swift"
+            timestampString = "502635597.251814"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

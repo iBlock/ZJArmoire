@@ -49,6 +49,14 @@ alpha:1.0]
     [self.itemArray addObject:button];
     [self addSubview:button];
     [self resetItemsFrame];
+    
+    NSMutableArray *tagNameList = @[].mutableCopy;
+    for (UIButton *button in self.itemArray) {
+        [tagNameList addObject:button.titleLabel.text];
+    }
+    if (self.addTagBlock) {
+        self.addTagBlock(tagNameList);
+    }
 }
 
 /** Tag标签数据检查 */
@@ -170,15 +178,12 @@ alpha:1.0]
                             self.frame.size.width,
                             CGRectGetMaxY(lastObj?lastObj.frame:self.tagTextField.frame) + self.contentInsets.bottom);
     
-    if (self.updateFrameBlock) {
-         self.updateFrameBlock(self.frame);
-    }
-    if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
-        [self.delegate tagListView:self didUpdateFrame:self.frame];
-    }
-    if (self.addTagBlock) {
-        self.addTagBlock(tagNameList);
-    }
+//    if (self.updateFrameBlock) {
+//         self.updateFrameBlock(self.frame);
+//    }
+//    if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
+//        [self.delegate tagListView:self didUpdateFrame:self.frame];
+//    }
 }
 
 #pragma mark - Public Methods

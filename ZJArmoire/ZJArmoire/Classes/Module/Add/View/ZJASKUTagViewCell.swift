@@ -42,29 +42,16 @@ class ZJASKUTagViewCell: UITableViewCell {
     
     public func configTagCell(tagList:Array<Any>?) {
         tagView.tagsArr = tagList
-        tagLabel.text = "哈哈"
     }
     
     private func prepareUI() {
         contentView.backgroundColor = UIColor.white
-        
         let bottomLine = UIView()
         bottomLine.backgroundColor = COLOR_TABLE_LINE
-//        contentView.addSubview(tagTitleView)
-        tagLabel = UILabel()
-        tagLabel.text = "标签"
-        tagLabel.font = UIFont.systemFont(ofSize: 15)
-        tagLabel.textColor = COLOR_TEXT_LABEL
-
-        contentView.addSubview(tagLabel)
-        tagLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(15)
-            make.top.equalTo(0)
-            make.size.equalTo(CGSize(width:40, height:40))
-        }
+        contentView.addSubview(tagTitleView)
         contentView.addSubview(tagView)
         contentView.addSubview(bottomLine)
-        
+
         bottomLine.snp.makeConstraints { (make) in
             make.left.bottom.right.equalTo(0)
             make.height.equalTo(0.5)
@@ -72,11 +59,11 @@ class ZJASKUTagViewCell: UITableViewCell {
     }
     
     private func setUpViewConstraints() {
-//        tagTitleView.snp.makeConstraints { (make) in
-//            make.left.equalTo(15)
-//            make.top.equalTo(0)
-//            make.size.equalTo(CGSize(width:40, height:40))
-//        }
+        tagTitleView.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.top.equalTo(0)
+            make.size.equalTo(CGSize(width:40, height:40))
+        }
         
         tagView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets.zero)
@@ -109,11 +96,11 @@ class ZJASKUTagViewCell: UITableViewCell {
         return tagView
     }()
 
-//    private lazy var tagTitleView:UILabel = {
-//        let tagLabel:UILabel = UILabel()
-//        tagLabel.text = "标签"
-//        tagLabel.font = UIFont.systemFont(ofSize: 15)
-//        tagLabel.textColor = COLOR_TEXT_LABEL
-//        return tagLabel
-//    }()
+    private lazy var tagTitleView:UILabel = {
+        let tagLabel:UILabel = UILabel()
+        tagLabel.text = "标签"
+        tagLabel.font = UIFont.systemFont(ofSize: 15)
+        tagLabel.textColor = COLOR_TEXT_LABEL
+        return tagLabel
+    }()
 }

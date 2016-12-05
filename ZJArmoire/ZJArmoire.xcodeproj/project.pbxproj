@@ -29,6 +29,7 @@
 		3A609CB3A4FB262F8B273043 /* Pods_ZJArmoire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4011202FF407A2C6431B9F5 /* Pods_ZJArmoire.framework */; };
 		CC26033B1DA4131B0090F916 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2603381DA4131B0090F916 /* HttpUtil.m */; };
 		CC26033C1DA4131B0090F916 /* SignUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CC26033A1DA4131B0090F916 /* SignUtil.m */; };
+		CC303CA51DF50DFE00B262A7 /* ZJATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CC303CA41DF50DFE00B262A7 /* ZJATextField.m */; };
 		CC56432B1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */; };
 		CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */; };
 		CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */; };
@@ -102,6 +103,8 @@
 		CC2603391DA4131B0090F916 /* SignUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUtil.h; sourceTree = "<group>"; };
 		CC26033A1DA4131B0090F916 /* SignUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUtil.m; sourceTree = "<group>"; };
 		CC2603401DA413A90090F916 /* ZJArmoire-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZJArmoire-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
+		CC303CA31DF50DFE00B262A7 /* ZJATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJATextField.h; sourceTree = "<group>"; };
+		CC303CA41DF50DFE00B262A7 /* ZJATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJATextField.m; sourceTree = "<group>"; };
 		CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUTagViewCell.swift; sourceTree = "<group>"; };
 		CC56432C1DF0846C00FEC5A8 /* SYTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTagListView.h; sourceTree = "<group>"; };
 		CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTagListView.m; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 			children = (
 				CC56432C1DF0846C00FEC5A8 /* SYTagListView.h */,
 				CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */,
+				CC303CA31DF50DFE00B262A7 /* ZJATextField.h */,
+				CC303CA41DF50DFE00B262A7 /* ZJATextField.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
 				CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */,
 				37D68EFE1DB796F000EFC185 /* ZJACameraManager.swift in Sources */,
+				CC303CA51DF50DFE00B262A7 /* ZJATextField.m in Sources */,
 				CCC96DBC1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift in Sources */,
 				CCBFCCE21DA37B5C00D80C78 /* UIColorExtension.swift in Sources */,
 				CCBFCCF01DA37F4B00D80C78 /* ZJAMineController.swift in Sources */,

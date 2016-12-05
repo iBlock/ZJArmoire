@@ -21,6 +21,11 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>InAppSettingsKit-InAppSettingsKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -70,7 +75,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>52F9CE2DE19E1EEBA455475B3D915D7E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>53601E4F14FD9D6BC70E4AADDD3C0D3C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -111,6 +126,11 @@
 			<true/>
 		</dict>
 		<key>C4944FEC314D1A66588651D006273ADE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C875236FEBDBF117C12E57BBA7B73340</key>
 		<dict>
 			<key>primary</key>
 			<true/>

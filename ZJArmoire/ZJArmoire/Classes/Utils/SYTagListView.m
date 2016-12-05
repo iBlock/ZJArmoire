@@ -7,6 +7,7 @@
 //
 
 #import "SYTagListView.h"
+#import "ZJATextField.h"
 
 #define ColorOfHex(value)                                                                                              \
 [UIColor colorWithRed:((value & 0xFF0000) >> 16) / 255.0                                                           \
@@ -14,7 +15,7 @@ green:((value & 0xFF00) >> 8) / 255.0                                           
 blue:(value & 0xFF) / 255.0                                                                       \
 alpha:1.0]
 
-@interface SYTagListView ()<UITextFieldDelegate>
+@interface SYTagListView ()<UITextFieldDelegate, ZJATextFieldDelegate>
 
 @property (assign, nonatomic) CGFloat validContentWidth;
 @property (assign, nonatomic) BOOL isCanEditTagView;
@@ -22,7 +23,7 @@ alpha:1.0]
 @property (copy, nonatomic) ClickedIndexBlock clickedIndexBlock;
 @property (copy, nonatomic) TagListViewUpdateFrameBlock updateFrameBlock;
 @property (copy, nonatomic) TagListViewAddItemBlock addTagBlock;
-@property (nonatomic, strong) UITextField *tagTextField;
+@property (nonatomic, strong) ZJATextField *tagTextField;
 
 @end
 
@@ -220,20 +221,31 @@ alpha:1.0]
     return YES;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (textField.text.length == 0 &&
-        string.length == 0) {
-//        textField.tintColor=[UIColor clearColor];
-        UIButton *lastButton = [self.itemArray lastObject];
-        if (lastButton.isSelected) {
-            [lastButton removeFromSuperview];
-            [self.itemArray removeLastObject];
-            [self resetItemsFrame];
-        } else {
-            [self buttonClicked:lastButton];
-        }
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+//    if (textField.text.length == 0 &&
+//        string.length == 0) {
+////        textField.tintColor=[UIColor clearColor];
+//        UIButton *lastButton = [self.itemArray lastObject];
+//        if (lastButton.isSelected) {
+//            [lastButton removeFromSuperview];
+//            [self.itemArray removeLastObject];
+//            [self resetItemsFrame];
+//        } else {
+//            [self buttonClicked:lastButton];
+//        }
+//    }
+//    return YES;
+//}
+
+- (void)ZJATextFieldDeleteBackward:(UITextField *)textField; {
+    UIButton *lastButton = [self.itemArray lastObject];
+    if (lastButton.isSelected) {
+        [lastButton removeFromSuperview];
+        [self.itemArray removeLastObject];
+        [self resetItemsFrame];
+    } else {
+        [self buttonClicked:lastButton];
     }
-    return YES;
 }
 
 #pragma mark - button action
@@ -403,13 +415,14 @@ alpha:1.0]
 
 - (UITextField *)tagTextField {
     if (!_tagTextField) {
-        _tagTextField = [[UITextField alloc] init];
+        _tagTextField = [[ZJATextField alloc] init];
         _tagTextField.placeholder = @"  添加标签";
         _tagTextField.font = [UIFont systemFontOfSize:13];
         _tagTextField.textColor = ColorOfHex(0x666666);
         [_tagTextField setValue:ColorOfHex(0x00bb9c) forKeyPath:@"_placeholderLabel.textColor"];
         _tagTextField.tintColor = ColorOfHex(0x00bb9c);
         _tagTextField.delegate = self;
+        _tagTextField.zja_delegate = self;
         _tagTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     }
     return _tagTextField;

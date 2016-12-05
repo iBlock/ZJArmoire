@@ -37,6 +37,7 @@ class ZJASKUAddTableView: UITableView {
             currentSKUItemModel = skuItemArray.object(at: 0) as? ZJASKUItemModel
         }
         backgroundColor = COLOR_MAIN_BACKGROUND
+        estimatedRowHeight = 45
         delegate = self
         dataSource = self
         separatorStyle = .none
@@ -188,12 +189,11 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        var cell:UITableViewCell?;
+//        var cell:UITableViewCell?;
         switch indexPath.section {
         case 0: break
         case 1: break
         case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
             (cell as! ZJASKUTagViewCell).configTagCell(tagList: currentSKUItemModel?.tagList)
         default: break
             
@@ -221,6 +221,9 @@ extension ZJASKUAddTableView: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
+//            if cell == nil {
+//                cell = ZJASKUTagViewCell(style: .default, reuseIdentifier: ZJASKUTagCellIdentifier)
+//            }
             cell?.selectionStyle = .none;
             (cell as! ZJASKUTagViewCell).reloadTableViewBlock = {[weak self]() in
 //                self?.reloadData()

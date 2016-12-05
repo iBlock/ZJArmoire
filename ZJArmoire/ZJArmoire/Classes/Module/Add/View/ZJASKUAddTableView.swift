@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ZJASKUAddTableViewDelegate:NSObjectProtocol {
+    func didTappedAddPhotoButton()
+}
+
 class ZJASKUAddTableView: UITableView {
     
     let ZJASKUAddCellIdentifier = "ZJASKUAddCellIdentifier"
@@ -15,6 +19,8 @@ class ZJASKUAddTableView: UITableView {
     let ZJASKUAddPhotoHeaderViewIdentifier = "ZJASKUAddPhotoHeaderViewIdentifier"
     let ZJASKUTypeHeaderViewIdentifier = "ZJASKUTypeHeaderViewIdentifier"
     let ZJASKUTagCellIdentifier = "ZJASKUTagCellIdentifier"
+    
+    weak var skuDelegate:ZJASKUAddTableViewDelegate?
     
     var isClickTypeArrowButton:Bool = false
     var isAddTarget:Bool = false
@@ -217,6 +223,12 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
+//            (cell as! ZJASKUAddCell).clickIndexBlock = {[weak self] (itemModel:ZJASKUItemModel) in
+//                
+//            }
+            (cell as! ZJASKUAddCell).clickAddButtonblock = {
+                self.skuDelegate?.didTappedAddPhotoButton()
+            }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
         case 2:

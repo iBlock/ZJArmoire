@@ -41,6 +41,7 @@ class ZJAAddSKUController: UIViewController {
     
     private lazy var skuAddTableView:ZJASKUAddTableView = {
         let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
+        clothesTableView.skuDelegate = self
         return clothesTableView
     }()
     
@@ -53,5 +54,11 @@ class ZJAAddSKUController: UIViewController {
         return ZJAAddSKUController()
     }
 
+}
+
+extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
+    func didTappedAddPhotoButton() {
+        navigationController?.pushViewController(ZJACameraController(), animated: true)
+    }
 }
 

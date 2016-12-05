@@ -11,11 +11,13 @@ import UIKit
 class ZJASKUAddCell: UITableViewCell {
     
     typealias ClickPhotoIndexCallback = (ZJASKUItemModel) -> ()
+    typealias ClickAddButtonCallback = () -> ()
     
     let addPhotoCellIdentifier = "ZJASKUAddPhotoCellIdentifier"
     let addButtonCellIdentifier = "ZJASKUAddButtonCellIdentifier"
     var itemWidth:CGFloat = 0
     var clickIndexBlock:ClickPhotoIndexCallback?
+    var clickAddButtonblock:ClickAddButtonCallback?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -98,8 +100,12 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let itemModel = ZJASKUDataCenter.sharedInstance.getSKUItemModel(index: indexPath.row)
-        self.clickIndexBlock?(itemModel)
+        if indexPath.row == dataCenter.skuItemArray.count {
+            self.clickAddButtonblock?()
+        } else {
+            let itemModel = ZJASKUDataCenter.sharedInstance.getSKUItemModel(index: indexPath.row)
+            self.clickIndexBlock?(itemModel)
+        }
     }
     
 }

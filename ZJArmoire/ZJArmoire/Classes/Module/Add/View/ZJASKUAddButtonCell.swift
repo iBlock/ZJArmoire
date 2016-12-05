@@ -35,6 +35,7 @@ class ZJASKUAddButtonCell: UICollectionViewCell {
         button.setImage(UIImage(named: "Global_Add2"), for: .normal)
         button.layer.borderColor = COLOR_BORDER_LINE.cgColor
         button.layer.borderWidth = 1
+        button.isUserInteractionEnabled = false
         return button
     }()
 

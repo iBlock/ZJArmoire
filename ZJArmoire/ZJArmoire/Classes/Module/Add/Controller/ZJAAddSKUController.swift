@@ -21,7 +21,7 @@ class ZJAAddSKUController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.skuAddTableView.reloadData()
+//        self.skuAddTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

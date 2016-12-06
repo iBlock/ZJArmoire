@@ -43,7 +43,7 @@ class ZJASKUAddTableView: UITableView {
             currentSKUItemModel = skuItemArray.object(at: 0) as? ZJASKUItemModel
         }
         backgroundColor = COLOR_MAIN_BACKGROUND
-        estimatedRowHeight = 45
+        estimatedRowHeight = 85
         delegate = self
         dataSource = self
         separatorStyle = .none
@@ -170,37 +170,60 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section{
-        case 0:
-            let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
-            let itemHeight = cell.getCollectionItemHeight()
-            if skuItemArray.count > 2 {
-                return itemHeight*2+15
-            } else {
-                return itemHeight
-            }
-        case 1:
-            if isClickTypeArrowButton == true {
-                let cell:ZJASKUTypeViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeViewCell
-                return cell.getItemHeight()+15
-            } else {
-                return 0
-            }
-        case 2:
-            let cell:ZJASKUTagViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier) as! ZJASKUTagViewCell
-            return cell.getTagListViewHeight()
-        default:
-            return 100
-        }
+//        let cell = self.tableView(tableView, cellForRowAt: indexPath)
+//        
+//        if cell.reuseIdentifier == ZJASKUAddCellIdentifier {
+//            let itemHeight = (cell as! ZJASKUAddCell).getCollectionItemHeight()
+//            if skuItemArray.count > 2 {
+//                return itemHeight*2+15
+//            } else {
+//                return itemHeight
+//            }
+//        } else if cell.reuseIdentifier == ZJASKUTypeViewCellIdentifier {
+//            if isClickTypeArrowButton == true {
+//                return (cell as! ZJASKUTypeViewCell).getItemHeight()+15
+//            } else {
+//                return 0
+//            }
+//        } else if cell.reuseIdentifier == ZJASKUTagCellIdentifier {
+//            return (cell as! ZJASKUTagViewCell).tagView.size.height
+//        }
+//        switch indexPath.section{
+//        case 0:
+//            let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
+//            let itemHeight = cell.getCollectionItemHeight()
+//            if skuItemArray.count > 2 {
+//                return itemHeight*2+15
+//            } else {
+//                return itemHeight
+//            }
+//        case 1:
+//            if isClickTypeArrowButton == true {
+//                let cell:ZJASKUTypeViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeViewCell
+//                return cell.getItemHeight()+15
+//            } else {
+//                return 0
+//            }
+//        case 2:
+////            let cell:ZJASKUTagViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier) as! ZJASKUTagViewCell
+////            return cell.getTagListViewHeight()
+//            let cell:ZJASKUTagViewCell = tableView.cellForRow(at: indexPath) as! ZJASKUTagViewCell
+//            return cell.tagView.frame.size.height
+//        default:
+//            return 100
+//        }
+        return 0
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        var cell:UITableViewCell?;
         switch indexPath.section {
-        case 0: break
+        case 0:
+            (cell as! ZJASKUAddCell).configCell()
         case 1: break
         case 2:
-            (cell as! ZJASKUTagViewCell).configTagCell(tagList: currentSKUItemModel?.tagList)
+//            (cell as! ZJASKUTagViewCell).configTagCell(tagList: currentSKUItemModel?.tagList)
+            (cell as! ZJASKUTagViewCell).tagView.tagsArr = currentSKUItemModel?.tagList
         default: break
             
         }
@@ -232,17 +255,17 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
         case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
-//            if cell == nil {
-//                cell = ZJASKUTagViewCell(style: .default, reuseIdentifier: ZJASKUTagCellIdentifier)
-//            }
+//            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
+            cell = tableView.cellForRow(at: indexPath)
+            if cell == nil {
+                cell = ZJASKUTagViewCell(style: .default, reuseIdentifier: ZJASKUTagCellIdentifier)
+            }
             cell?.selectionStyle = .none;
-//            (cell as! ZJASKUTagViewCell).reloadTableViewBlock = {[weak self]() in
-//                self?.reloadData()
-//            }
+
             (cell as! ZJASKUTagViewCell).updateTagListBlock = {[weak self] (tagNameList:Array<Any>) in
                 self?.currentSKUItemModel?.tagList = tagNameList
-                self?.reloadData()
+                self?.reloadSections(NSIndexSet(index: 2) as IndexSet, with: .automatic)
+//                self?.reloadRows(at: [indexPath], with: .automatic)
             }
         default:
             let cellIdentifier = "ZJASKUNormalCell"

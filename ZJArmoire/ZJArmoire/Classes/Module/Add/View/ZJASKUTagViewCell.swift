@@ -17,6 +17,7 @@ class ZJASKUTagViewCell: UITableViewCell {
     var reloadTableViewBlock:reloadTableViewCallback?
     var updateTagListBlock:updateTagListCallback?
     var tagLabel:UILabel!
+    var tagView:SYTagListView!
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -36,17 +37,18 @@ class ZJASKUTagViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func getTagListViewHeight() -> CGFloat {
-//        return tagListViewHeight
-        return self.tagView.frame.size.height
-    }
-    
-    public func configTagCell(tagList:Array<Any>?) {
-        tagView.tagsArr = tagList
-    }
+//    public func getTagListViewHeight() -> CGFloat {
+////        return tagListViewHeight
+//        return self.tagView.frame.size.height
+//    }
+//    
+//    public func configTagCell(tagList:Array<Any>?) {
+//        tagView.tagsArr = tagList
+//    }
     
     private func prepareUI() {
         contentView.backgroundColor = UIColor.white
+        tagView = makeTagView()
         let bottomLine = UIView()
         bottomLine.backgroundColor = COLOR_TABLE_LINE
         contentView.addSubview(tagTitleView)
@@ -71,7 +73,7 @@ class ZJASKUTagViewCell: UITableViewCell {
         }
     }
     
-    lazy var tagView:SYTagListView = {
+    private func makeTagView() ->SYTagListView {
         let tagFrame = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:0)
         let tagView:SYTagListView = SYTagListView(frame: tagFrame, andTags: [], isCanEdit: true)
         tagView.tagBackgroundColor = COLOR_MAIN_APP
@@ -85,17 +87,34 @@ class ZJASKUTagViewCell: UITableViewCell {
         tagView.itemHeight = 20
         tagView.oneItemSpacing = 56
         tagView.resetItemsFrame()
-//        tagView.didUpdatedTagListViewFrame({ [weak self] (frame:CGRect) in
-//            self?.tagListViewHeight = frame.size.height
-//            self?.reloadTableViewBlock?()
-//        })
         
         tagView.addSKUTag({ [weak self](tagNameList) in
             self?.updateTagListBlock?(tagNameList!)
         })
-        
         return tagView
-    }()
+    }
+    
+//    lazy var tagView:SYTagListView = {
+//        let tagFrame = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:0)
+//        let tagView:SYTagListView = SYTagListView(frame: tagFrame, andTags: [], isCanEdit: true)
+//        tagView.tagBackgroundColor = COLOR_MAIN_APP
+//        tagView.tagTextColor = UIColor.white
+//        tagView.tagCornerRadius = 10.0
+//        tagView.contentInsets = UIEdgeInsetsMake(10, 10, 5, 20)
+//        tagView.autoItemHeightWithFontSize = false
+//        tagView.tagBorderWidth = 0.5
+//        tagView.tagBoarderColor = COLOR_MAIN_APP
+//        tagView.selectTagBoarderColor = UIColor.black
+//        tagView.itemHeight = 20
+//        tagView.oneItemSpacing = 56
+//        tagView.resetItemsFrame()
+//        
+//        tagView.addSKUTag({ [weak self](tagNameList) in
+//            self?.updateTagListBlock?(tagNameList!)
+//        })
+//        
+//        return tagView
+//    }()
 
     private lazy var tagTitleView:UILabel = {
         let tagLabel:UILabel = UILabel()

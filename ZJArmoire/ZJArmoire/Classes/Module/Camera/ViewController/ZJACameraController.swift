@@ -11,7 +11,10 @@ import AVFoundation
 
 class ZJACameraController: UIViewController {
     
-    var avCaptureSesstion:AVCaptureSession?
+    typealias ConfirmPhotoCallback = () -> ()
+    
+    var avCaptureSesstion: AVCaptureSession?
+    var addPhotoBlock: ConfirmPhotoCallback?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,6 +179,9 @@ extension ZJACameraController:ZJACameraManagerProtocol {
         let takeImage = manager.takePhoneImage
         let cameraEditController = ZJACameraEditController()
         cameraEditController.previewImage = takeImage
+        cameraEditController.confirmPhotoBlock = {[weak self] () in
+            self?.addPhotoBlock?()
+        }
         navigationController?.pushViewController(cameraEditController, animated: true)
     }
 }

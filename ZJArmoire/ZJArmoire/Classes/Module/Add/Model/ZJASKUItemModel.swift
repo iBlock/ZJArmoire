@@ -12,4 +12,5 @@ class ZJASKUItemModel: NSObject {
     var photoImage:UIImage?
     var category:String?
     var tagList:Array<Any>?
+    var isSelecter:Bool?
 }

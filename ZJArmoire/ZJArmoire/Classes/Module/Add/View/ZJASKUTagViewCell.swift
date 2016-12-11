@@ -42,9 +42,13 @@ class ZJASKUTagViewCell: UITableViewCell {
 //        return self.tagView.frame.size.height
 //    }
 //    
-//    public func configTagCell(tagList:Array<Any>?) {
+    public func configTagCell(tagList:Array<Any>?) {
 //        tagView.tagsArr = tagList
-//    }
+        let tagViewHeight = tagView.frame.size.height
+        tagView.snp.updateConstraints { (make) in
+            make.height.equalTo(tagViewHeight)
+        }
+    }
     
     private func prepareUI() {
         contentView.backgroundColor = UIColor.white
@@ -70,6 +74,7 @@ class ZJASKUTagViewCell: UITableViewCell {
         
         tagView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets.zero)
+            make.height.equalTo(0)
         }
     }
     

@@ -7,7 +7,6 @@
 //
 
 #import "SYTagListView.h"
-#import "ZJATextField.h"
 
 #define ColorOfHex(value)                                                                                              \
 [UIColor colorWithRed:((value & 0xFF0000) >> 16) / 255.0                                                           \
@@ -23,11 +22,14 @@ alpha:1.0]
 @property (copy, nonatomic) ClickedIndexBlock clickedIndexBlock;
 @property (copy, nonatomic) TagListViewUpdateFrameBlock updateFrameBlock;
 @property (copy, nonatomic) TagListViewAddItemBlock addTagBlock;
-@property (nonatomic, strong) ZJATextField *tagTextField;
 
 @end
 
 @implementation SYTagListView
+
+- (void)dealloc {
+    printf("SYTagListView内存释放");
+}
 
 - (instancetype)initWithFrame:(CGRect)frame andTags:(NSArray*)tagsArr isCanEdit:(BOOL)isCanEdit {
     if (self = [super initWithFrame:frame]) {
@@ -48,15 +50,40 @@ alpha:1.0]
     UIButton *button = [self makeItemButton:tagName];
     [self.itemArray addObject:button];
     [self addSubview:button];
+    [self tagListUpdateCallback];
+}
+
+- (void)removeTagWithTagName:(NSString *)tagName {
+    for (UIButton *tagButton in self.itemArray) {
+        if ([tagButton.titleLabel.text isEqualToString:tagName]) {
+            [tagButton removeFromSuperview];
+            [self.itemArray removeObject:tagButton];
+            break;
+        }
+    }
+    [self tagListUpdateCallback];
+}
+
+- (void)tagListUpdateCallback {
     [self resetItemsFrame];
-    
     NSMutableArray *tagNameList = @[].mutableCopy;
     for (UIButton *button in self.itemArray) {
         [tagNameList addObject:button.titleLabel.text];
     }
+    
     if (self.addTagBlock) {
         self.addTagBlock(tagNameList);
     }
+}
+
+- (void)resetWithTags:(NSArray *)tagList {
+    for (UIButton *tagButton in self.itemArray) {
+        [tagButton removeFromSuperview];
+    }
+    [self.itemArray removeAllObjects];
+    _tagsArr = tagList;
+    [self makeItems];
+    [self tagListUpdateCallback];
 }
 
 /** Tag标签数据检查 */
@@ -124,6 +151,7 @@ alpha:1.0]
 {
     CGFloat x = self.contentInsets.left+_oneItemSpacing;
     CGFloat y = self.contentInsets.top;
+    CGFloat textFieldHeight = 40;
     NSMutableArray *tagNameList = @[].mutableCopy;
     for (UIButton *button in self.itemArray) {
         [tagNameList addObject:button.titleLabel.text];
@@ -158,32 +186,36 @@ alpha:1.0]
         if (self.itemArray.count == 0) {
             size = CGSizeMake(self.validContentWidth-_oneItemSpacing-self.contentInsets.left, size.height);
         }
-        CGRect textFieldFrame = CGRectMake(x, y-self.contentInsets.top, size.width, 40);
+        CGRect textFieldFrame = CGRectMake(x, y-self.contentInsets.top, size.width, textFieldHeight);
         //判断是否已经超出了有效区域
         if (CGRectGetMaxX(textFieldFrame) > self.validContentWidth) {
             //如果超出换行到下一行
             //重新计算x,y
             x = self.contentInsets.left;
             y = CGRectGetMaxY(lastObj.frame) + self.lineSpacing;
-            textFieldFrame = CGRectMake(15, y-self.contentInsets.top, self.validContentWidth-x, 40);
+            textFieldFrame = CGRectMake(15, y-self.contentInsets.top, self.validContentWidth-x, textFieldHeight);
             lastObj = self.tagTextField;
         } else {
-            textFieldFrame = CGRectMake(x, y-self.contentInsets.top, self.validContentWidth-x, 40);
+            textFieldFrame = CGRectMake(x, y-self.contentInsets.top, self.validContentWidth-x, textFieldHeight);
         }
         self.tagTextField.frame = textFieldFrame;
     }
     
+    CGFloat lastObjHeight = CGRectGetMaxY(lastObj?lastObj.frame:self.tagTextField.frame);
+    if (lastObjHeight < textFieldHeight) {
+        lastObjHeight = textFieldHeight;
+    }
     self.frame = CGRectMake(self.frame.origin.x,
                             self.frame.origin.y,
                             self.frame.size.width,
-                            CGRectGetMaxY(lastObj?lastObj.frame:self.tagTextField.frame) + self.contentInsets.bottom);
+                            lastObjHeight + self.contentInsets.bottom);
     
-//    if (self.updateFrameBlock) {
-//         self.updateFrameBlock(self.frame);
-//    }
-//    if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
-//        [self.delegate tagListView:self didUpdateFrame:self.frame];
-//    }
+    if (self.updateFrameBlock) {
+         self.updateFrameBlock(self.frame);
+    }
+    if ([self.delegate respondsToSelector:@selector(tagListView:didUpdateFrame:)]) {
+        [self.delegate tagListView:self didUpdateFrame:self.frame];
+    }
 }
 
 #pragma mark - Public Methods
@@ -397,12 +429,12 @@ alpha:1.0]
     }
 }
 
-- (void)setTagsArr:(NSArray *)tagsArr {
-    [self.itemArray removeAllObjects];
-    _tagsArr = tagsArr;
-    [self makeItems];
-    [self resetItemsFrame];
-}
+//- (void)setTagsArr:(NSArray *)tagsArr {
+//    [self.itemArray removeAllObjects];
+//    _tagsArr = tagsArr;
+//    [self makeItems];
+//    [self resetItemsFrame];
+//}
 
 #pragma mark - getter
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class ZJAAddSKUController: UIViewController {
 
@@ -17,6 +18,7 @@ class ZJAAddSKUController: UIViewController {
     
     deinit {
         ZJASKUDataCenter.sharedInstance.removeAllItem()
+        print("%s已释放", NSStringFromClass(self.classForCoder))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +49,7 @@ class ZJAAddSKUController: UIViewController {
         
     }
     
-    private lazy var skuAddTableView:ZJASKUAddTableView = {
+    public lazy var skuAddTableView:ZJASKUAddTableView = {
         let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
         clothesTableView.skuDelegate = self
         return clothesTableView
@@ -66,7 +68,12 @@ class ZJAAddSKUController: UIViewController {
 
 extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
     func didTappedAddPhotoButton() {
-        navigationController?.pushViewController(ZJACameraController(), animated: true)
+        let cameraController = ZJACameraController()
+        cameraController.addPhotoBlock = {[weak self]() in
+            let index = NSIndexSet(index: 0)
+            self?.skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
+        }
+        navigationController?.pushViewController(cameraController, animated: true)
     }
 }
 

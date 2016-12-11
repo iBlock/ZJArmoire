@@ -12,6 +12,8 @@ class ZJASKUDataCenter: NSObject {
     static let sharedInstance = ZJASKUDataCenter()
     
     var skuItemArray:NSArray! = NSArray()
+    var selCellIndexPath:IndexPath?
+    
     private var skuItemMutableList:NSMutableArray! = NSMutableArray()
     
     public func getSKUItemModel(index:NSInteger) -> ZJASKUItemModel {
@@ -37,6 +39,7 @@ class ZJASKUDataCenter: NSObject {
     public func removeAllItem() {
         skuItemMutableList.removeAllObjects()
         skuItemArray = skuItemMutableList
+        selPhotoCell = nil
     }
     
 //    private override init() {

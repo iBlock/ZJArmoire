@@ -10,8 +10,11 @@ import UIKit
 
 class ZJACameraEditController: UIViewController {
     
+    typealias ConfirmPhotoCallback = () -> ()
     var previewImage:UIImage?
     var isPushAddSKUController:Bool = true
+    
+    var confirmPhotoBlock: ConfirmPhotoCallback?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +97,8 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
         skuModel.photoImage = UIImage(named:"test")
         skuModel.category = "上装"
         skuDataCenter.addSKUItem(model: skuModel)
+        
+        confirmPhotoBlock?()
         
         let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
         if isPushAddSKUController == true {

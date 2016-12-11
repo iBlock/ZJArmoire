@@ -16,6 +16,8 @@ class ZJASKUAddCell: UITableViewCell {
     let addPhotoCellIdentifier = "ZJASKUAddPhotoCellIdentifier"
     let addButtonCellIdentifier = "ZJASKUAddButtonCellIdentifier"
     var itemWidth:CGFloat = 0
+    var cellIndexPath:IndexPath?
+    var selPhotoCell:ZJASKUAddPhotoCell?
     var clickIndexBlock:ClickPhotoIndexCallback?
     var clickAddButtonblock:ClickAddButtonCallback?
     
@@ -57,7 +59,7 @@ class ZJASKUAddCell: UITableViewCell {
         }
     }
     
-    private lazy var addPhotoCollectionView:UICollectionView = {
+    public lazy var addPhotoCollectionView:UICollectionView = {
         let collectionLayout = UICollectionViewFlowLayout()
         let specing:CGFloat = 15
         collectionLayout.minimumInteritemSpacing = specing
@@ -95,20 +97,47 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
             return addButtonCell
         }
         let addPhotoCell:ZJASKUAddPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: addPhotoCellIdentifier, for: indexPath) as! ZJASKUAddPhotoCell
+        addPhotoCell.photoImageView.addTarget(self, action: #selector(didTapCollectionView(sender:)), for: .touchUpInside)
         let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel
         let photoImage:UIImage = itemModel.photoImage!
         addPhotoCell.configCell(image: photoImage)
+        
+        if ZJASKUDataCenter.sharedInstance.selCellIndexPath == nil {
+            cellIndexPath = indexPath
+            ZJASKUDataCenter.sharedInstance.selCellIndexPath = indexPath
+        } else {
+            cellIndexPath = ZJASKUDataCenter.sharedInstance.selCellIndexPath
+        }
+        
         return addPhotoCell
     }
     
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row < dataCenter.skuItemArray.count {
+            if indexPath.row == cellIndexPath?.row {
+                (cell as! ZJASKUAddPhotoCell).photoImageView.layer.borderWidth = 1
+                (cell as! ZJASKUAddPhotoCell).photoImageView.layer.borderColor = COLOR_MAIN_APP.cgColor
+            } else {
+                (cell as! ZJASKUAddPhotoCell).photoImageView.layer.borderWidth = 0
+            }
+        }
+    }
+    
+    @objc public func didTapCollectionView(sender:UIButton) {
+        let cell:ZJASKUAddPhotoCell = sender.superview?.superview as! ZJASKUAddPhotoCell
+        selPhotoCell?.photoImageView.layer.borderWidth = 0
+        cellIndexPath = self.addPhotoCollectionView.indexPath(for: cell)
+        let itemModel = ZJASKUDataCenter.sharedInstance.getSKUItemModel(index: (cellIndexPath?.row)!)
+        self.clickIndexBlock?(itemModel)
+        addPhotoCollectionView.reloadData()
+        selPhotoCell = cell
+        ZJASKUDataCenter.sharedInstance.selCellIndexPath = cellIndexPath
+    }
+
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        if indexPath.row == dataCenter.skuItemArray.count {
-            self.clickAddButtonblock?()
-        } else {
-            let itemModel = ZJASKUDataCenter.sharedInstance.getSKUItemModel(index: indexPath.row)
-            self.clickIndexBlock?(itemModel)
-        }
+        self.clickAddButtonblock?()
     }
     
 }

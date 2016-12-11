@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZJATextField.h"
 
 typedef void(^ClickedIndexBlock)(UIButton *cityBtn);
 typedef void(^TagListViewUpdateFrameBlock)(CGRect frame);
@@ -21,10 +22,14 @@ typedef void(^TagListViewAddItemBlock)(NSArray *tagList);
 /** 调整完样式后需要调用该方法进行更新 */
 - (void)resetItemsFrame;
 
+- (void)resetWithTags:(NSArray *)tagList;
+
 /**
  *  可以实现代理，也可以不实现，有相同的功能的block方法代替。
  */
 @property (weak, nonatomic) id<SYTagListViewDelegate>delegate;
+
+@property (nonatomic, strong) ZJATextField *tagTextField;
 
 
 /**

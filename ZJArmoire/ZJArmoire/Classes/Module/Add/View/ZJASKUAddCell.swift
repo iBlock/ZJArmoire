@@ -92,21 +92,23 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let skuInstance:ZJASKUDataCenter! = ZJASKUDataCenter.sharedInstance
         if indexPath.row == dataCenter.skuItemArray.count {
             let addButtonCell:ZJASKUAddButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: addButtonCellIdentifier, for: indexPath) as! ZJASKUAddButtonCell
             return addButtonCell
         }
         let addPhotoCell:ZJASKUAddPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: addPhotoCellIdentifier, for: indexPath) as! ZJASKUAddPhotoCell
         addPhotoCell.photoImageView.addTarget(self, action: #selector(didTapCollectionView(sender:)), for: .touchUpInside)
+        addPhotoCell.deleteButton.addTarget(self, action: #selector(didTappedPhotoDeleteBtn(sender:)), for: .touchUpInside)
         let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel
         let photoImage:UIImage = itemModel.photoImage!
-        addPhotoCell.configCell(image: photoImage)
+        addPhotoCell.configCell(image: photoImage, isEdit: skuInstance.isEditState)
         
-        if ZJASKUDataCenter.sharedInstance.selCellIndexPath == nil {
+        if skuInstance.selCellIndexPath == nil {
             cellIndexPath = indexPath
-            ZJASKUDataCenter.sharedInstance.selCellIndexPath = indexPath
+            skuInstance.selCellIndexPath = indexPath
         } else {
-            cellIndexPath = ZJASKUDataCenter.sharedInstance.selCellIndexPath
+            cellIndexPath = skuInstance.selCellIndexPath
         }
         
         return addPhotoCell
@@ -133,6 +135,13 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
         addPhotoCollectionView.reloadData()
         selPhotoCell = cell
         ZJASKUDataCenter.sharedInstance.selCellIndexPath = cellIndexPath
+    }
+    
+    @objc public func didTappedPhotoDeleteBtn(sender: UIButton) {
+        let cell:ZJASKUAddPhotoCell = sender.superview?.superview?.superview as! ZJASKUAddPhotoCell
+        cellIndexPath = self.addPhotoCollectionView.indexPath(for: cell)
+        ZJASKUDataCenter.sharedInstance.removeSKUItem(index: (cellIndexPath?.row)!)
+        addPhotoCollectionView.reloadData()
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

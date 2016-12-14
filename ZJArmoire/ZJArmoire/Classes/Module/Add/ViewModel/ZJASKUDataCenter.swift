@@ -13,6 +13,7 @@ class ZJASKUDataCenter: NSObject {
     
     var skuItemArray:NSArray! = NSArray()
     var selCellIndexPath:IndexPath?
+    var isEditState: Bool! = false
     
     private var skuItemMutableList:NSMutableArray! = NSMutableArray()
     
@@ -39,7 +40,6 @@ class ZJASKUDataCenter: NSObject {
     public func removeAllItem() {
         skuItemMutableList.removeAllObjects()
         skuItemArray = skuItemMutableList
-        selPhotoCell = nil
     }
     
 //    private override init() {

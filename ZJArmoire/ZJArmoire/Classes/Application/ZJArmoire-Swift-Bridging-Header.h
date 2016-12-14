@@ -12,6 +12,5 @@
 #import "AppInclude.h"
 #import "DJDebugHeader.h"
 #import "SYTagListView.h"
-#import "UITableView+FDTemplateLayoutCell.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

@@ -36,14 +36,8 @@ class ZJASKUTagViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-//    public func getTagListViewHeight() -> CGFloat {
-////        return tagListViewHeight
-//        return self.tagView.frame.size.height
-//    }
-//    
+     
     public func configTagCell(tagList:Array<Any>?) {
-//        tagView.tagsArr = tagList
         let tagViewHeight = tagView.frame.size.height
         tagView.snp.updateConstraints { (make) in
             make.height.equalTo(tagViewHeight)
@@ -98,28 +92,6 @@ class ZJASKUTagViewCell: UITableViewCell {
         })
         return tagView
     }
-    
-//    lazy var tagView:SYTagListView = {
-//        let tagFrame = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:0)
-//        let tagView:SYTagListView = SYTagListView(frame: tagFrame, andTags: [], isCanEdit: true)
-//        tagView.tagBackgroundColor = COLOR_MAIN_APP
-//        tagView.tagTextColor = UIColor.white
-//        tagView.tagCornerRadius = 10.0
-//        tagView.contentInsets = UIEdgeInsetsMake(10, 10, 5, 20)
-//        tagView.autoItemHeightWithFontSize = false
-//        tagView.tagBorderWidth = 0.5
-//        tagView.tagBoarderColor = COLOR_MAIN_APP
-//        tagView.selectTagBoarderColor = UIColor.black
-//        tagView.itemHeight = 20
-//        tagView.oneItemSpacing = 56
-//        tagView.resetItemsFrame()
-//        
-//        tagView.addSKUTag({ [weak self](tagNameList) in
-//            self?.updateTagListBlock?(tagNameList!)
-//        })
-//        
-//        return tagView
-//    }()
 
     private lazy var tagTitleView:UILabel = {
         let tagLabel:UILabel = UILabel()

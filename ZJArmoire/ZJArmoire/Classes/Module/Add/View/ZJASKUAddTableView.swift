@@ -69,22 +69,35 @@ class ZJASKUAddTableView: UITableView {
         return dataCenter.skuItemArray
     }()
     
-    lazy var addPhotoHeaderView:UIView = {
-        let titleView = UIView()
-        titleView.backgroundColor = UIColor.white
-        let titleLabel = UILabel()
-        titleLabel.text = "照片"
-        titleLabel.textColor = COLOR_TEXT_LABEL
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
-        titleLabel.textAlignment = .left
-        titleView.addSubview(titleLabel)
-        
-        titleLabel.snp.makeConstraints({ (make) in
-            make.left.equalTo(15)
-            make.top.right.bottom.equalTo(0)
-        })
-        return titleView
-    }()
+//    lazy var addPhotoHeaderView:UIView = {
+//        let titleView = UIView()
+//        titleView.backgroundColor = UIColor.white
+//        let titleLabel = UILabel()
+//        titleLabel.text = "照片"
+//        titleLabel.textColor = COLOR_TEXT_LABEL
+//        titleLabel.font = UIFont.systemFont(ofSize: 15)
+//        titleLabel.textAlignment = .left
+//        titleView.addSubview(titleLabel)
+//        
+//        let editButton = UIButton(type: UIButtonType.custom)
+//        editButton.backgroundColor = UIColor.gray
+//        editButton.setTitle("编辑", for: .normal)
+//        editButton.setTitleColor(UIColor.colorWithHexString(hex: "e6454a"), for: .normal)
+//        titleView.addSubview(editButton)
+//        
+//        titleLabel.snp.makeConstraints({ (make) in
+//            make.left.equalTo(15)
+//            make.right.equalTo(editButton.snp.left).offset(0)
+//            make.top.bottom.equalTo(0)
+//        })
+//        editButton.snp.makeConstraints({ (make) in
+//            make.right.equalTo(0)
+//            make.width.equalTo(50)
+//            make.height.equalTo(50)
+//            make.top.equalTo(0)
+//        })
+//        return titleView
+//    }()
     
     lazy var tagListHeaderView:SYTagListView = {
         let tagView:SYTagListView = SYTagListView(frame: self.tagListFrame, andTags: [], isCanEdit: true)
@@ -118,8 +131,7 @@ class ZJASKUAddTableView: UITableView {
         })
 
         tagView.addSKUTag({ [weak self](tagNameList) in
-            let index = NSIndexSet(index: 2)
-            self?.reloadSections(index as IndexSet, with: .none)
+            self?.reloadData()
             self?.currentSKUItemModel?.tagList = tagNameList
         })
         
@@ -145,6 +157,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
         switch section {
         case 0:
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
+            (headerView as! ZJASKUAddPhotoHeaderView).editButton.addTarget(self, action: #selector(didTappedEditButton(sender:)), for: .touchUpInside)
             return headerView
             
         case 1:
@@ -240,10 +253,6 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             } else {
                 return 0
             }
-//        case 2:
-//            return tableView.fd_heightForCell(withIdentifier: ZJASKUTagCellIdentifier, configuration: {[weak self] (cell) in
-//                (cell as! ZJASKUTagViewCell).configTagCell(tagList: self?.currentSKUItemModel?.tagList)
-//            })
         default:
             return 0
         }
@@ -265,7 +274,12 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         switch section {
-        case 0: break
+        case 0:
+            if ZJASKUDataCenter.sharedInstance.isEditState == true {
+                (view as! ZJASKUAddPhotoHeaderView).editButton.setTitle("完成", for: .normal)
+            } else {
+                (view as! ZJASKUAddPhotoHeaderView).editButton.setTitle("删除", for: .normal)
+            }
         case 1:
             let headerView = view as! ZJASKUTypeHeaderView
             if isAddTarget == false {
@@ -329,6 +343,17 @@ extension ZJASKUAddTableView {
     @objc func didTappendArrowButton(sender:UIButton) {
         isClickTypeArrowButton = !isClickTypeArrowButton
         reloadData()
+    }
+    
+    @objc func didTappedEditButton(sender: UIButton) {
+        let skuInstance = ZJASKUDataCenter.sharedInstance
+        if skuInstance.isEditState == true {
+            skuInstance.isEditState = false
+        } else {
+            skuInstance.isEditState = true
+        }
+        let index = NSIndexSet(index: 0)
+        reloadSections(index as IndexSet, with: .none)
     }
     
 }

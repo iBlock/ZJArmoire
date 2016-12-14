@@ -50,7 +50,7 @@ alpha:1.0]
     UIButton *button = [self makeItemButton:tagName];
     [self.itemArray addObject:button];
     [self addSubview:button];
-    [self tagListUpdateCallback];
+    [self resetItemsFrame];
 }
 
 - (void)removeTagWithTagName:(NSString *)tagName {
@@ -61,19 +61,7 @@ alpha:1.0]
             break;
         }
     }
-    [self tagListUpdateCallback];
-}
-
-- (void)tagListUpdateCallback {
     [self resetItemsFrame];
-    NSMutableArray *tagNameList = @[].mutableCopy;
-    for (UIButton *button in self.itemArray) {
-        [tagNameList addObject:button.titleLabel.text];
-    }
-    
-    if (self.addTagBlock) {
-        self.addTagBlock(tagNameList);
-    }
 }
 
 - (void)resetWithTags:(NSArray *)tagList {
@@ -83,7 +71,7 @@ alpha:1.0]
     [self.itemArray removeAllObjects];
     _tagsArr = tagList;
     [self makeItems];
-    [self tagListUpdateCallback];
+    [self resetItemsFrame];
 }
 
 /** Tag标签数据检查 */
@@ -172,8 +160,7 @@ alpha:1.0]
             x = self.contentInsets.left;
             y = CGRectGetMaxY(button.frame) + self.lineSpacing;
             button.frame = CGRectMake(x, y, size.width, self.itemHeight);
-            
-            }
+        }
         //计算下一个的x,y
         x += size.width + self.itemSpacing;
         y = button.frame.origin.y;
@@ -245,16 +232,23 @@ alpha:1.0]
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    return YES;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField.text.length > 0) {
         [self addTagWithTagName:textField.text];
         textField.text = @"";
     }
     
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (self.addTagBlock) {
+        NSMutableArray *tagNameList = @[].mutableCopy;
+        for (UIButton *button in self.itemArray) {
+            [tagNameList addObject:button.titleLabel.text];
+        }
+        self.addTagBlock(tagNameList);
+    }
     return YES;
 }
 

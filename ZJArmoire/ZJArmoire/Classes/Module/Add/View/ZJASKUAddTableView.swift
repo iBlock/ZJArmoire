@@ -23,7 +23,6 @@ class ZJASKUAddTableView: UITableView {
     weak var skuDelegate:ZJASKUAddTableViewDelegate?
     
     var isClickTypeArrowButton:Bool = false
-    var isAddTarget:Bool = false
     var tagListFrame:CGRect! = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:45)
     
     var currentSKUItemModel:ZJASKUItemModel?
@@ -68,36 +67,6 @@ class ZJASKUAddTableView: UITableView {
         let dataCenter:ZJASKUDataCenter = ZJASKUDataCenter.sharedInstance
         return dataCenter.skuItemArray
     }()
-    
-//    lazy var addPhotoHeaderView:UIView = {
-//        let titleView = UIView()
-//        titleView.backgroundColor = UIColor.white
-//        let titleLabel = UILabel()
-//        titleLabel.text = "照片"
-//        titleLabel.textColor = COLOR_TEXT_LABEL
-//        titleLabel.font = UIFont.systemFont(ofSize: 15)
-//        titleLabel.textAlignment = .left
-//        titleView.addSubview(titleLabel)
-//        
-//        let editButton = UIButton(type: UIButtonType.custom)
-//        editButton.backgroundColor = UIColor.gray
-//        editButton.setTitle("编辑", for: .normal)
-//        editButton.setTitleColor(UIColor.colorWithHexString(hex: "e6454a"), for: .normal)
-//        titleView.addSubview(editButton)
-//        
-//        titleLabel.snp.makeConstraints({ (make) in
-//            make.left.equalTo(15)
-//            make.right.equalTo(editButton.snp.left).offset(0)
-//            make.top.bottom.equalTo(0)
-//        })
-//        editButton.snp.makeConstraints({ (make) in
-//            make.right.equalTo(0)
-//            make.width.equalTo(50)
-//            make.height.equalTo(50)
-//            make.top.equalTo(0)
-//        })
-//        return titleView
-//    }()
     
     lazy var tagListHeaderView:SYTagListView = {
         let tagView:SYTagListView = SYTagListView(frame: self.tagListFrame, andTags: [], isCanEdit: true)
@@ -282,13 +251,11 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             }
         case 1:
             let headerView = view as! ZJASKUTypeHeaderView
-            if isAddTarget == false {
-                headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
-                let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
-                headerView.addGestureRecognizer(panGester)
-                isAddTarget = true
-            }
+            headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
+            let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
+            headerView.addGestureRecognizer(panGester)
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
+            headerView.configCell(type: (currentSKUItemModel?.category)!)
         default: break
         }
     }
@@ -316,19 +283,21 @@ extension ZJASKUAddTableView: UITableViewDataSource {
             (cell as! ZJASKUAddCell).clickIndexBlock = {[weak self] (itemModel:ZJASKUItemModel) in
                 self?.currentSKUItemModel = itemModel
                 self?.tagListHeaderView.reset(withTags: itemModel.tagList)
+                let indexSet = NSIndexSet(index: 1)
+                self?.reloadSections(indexSet as IndexSet, with: .automatic)
             }
             (cell as! ZJASKUAddCell).clickAddButtonblock = {[weak self] in
                 self?.skuDelegate?.didTappedAddPhotoButton()
             }
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
-//        case 2:
-//            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTagCellIdentifier)
-//            cell?.selectionStyle = .none;
-//            (cell as! ZJASKUTagViewCell).updateTagListBlock = {[weak self] (tagNameList:Array<Any>) in
-//                self?.currentSKUItemModel?.tagList = tagNameList
-//                self?.reloadRows(at: [indexPath], with: .none)
-//            }
+            (cell as! ZJASKUTypeViewCell).clickTypeBtnBlock =
+            {[weak self](indexPath) in
+                let indexSet = NSIndexSet(index: 1)
+                self?.currentSKUItemModel?.category = (CONFIG_YIGUI_TYPENAMES as NSArray).object(at: indexPath.row) as? String
+                self?.isClickTypeArrowButton = !(self?.isClickTypeArrowButton)!
+                self?.reloadSections(indexSet as IndexSet, with: .automatic)
+            }
         default:
             let cellIdentifier = "ZJASKUNormalCell"
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
@@ -342,7 +311,10 @@ extension ZJASKUAddTableView {
     
     @objc func didTappendArrowButton(sender:UIButton) {
         isClickTypeArrowButton = !isClickTypeArrowButton
-        reloadData()
+        let index = NSIndexSet(index: 1)
+        self.beginUpdates()
+        self.reloadSections(index as IndexSet, with: .automatic)
+        self.endUpdates()
     }
     
     @objc func didTappedEditButton(sender: UIButton) {

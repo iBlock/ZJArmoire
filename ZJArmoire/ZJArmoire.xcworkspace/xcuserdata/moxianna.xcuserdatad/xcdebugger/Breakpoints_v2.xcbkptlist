@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUAddTableView.swift"
-            timestampString = "503379089.891405"
+            filePath = "ZJArmoire/Classes/Module/Add/View/ZJASKUTypeViewCell.swift"
+            timestampString = "503410208.728914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "tableView(_:heightForHeaderInSection:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

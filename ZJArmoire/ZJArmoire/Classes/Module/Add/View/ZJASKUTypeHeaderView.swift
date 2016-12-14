@@ -31,25 +31,23 @@ class ZJASKUTypeHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    public func configCell(type: String) {
+        titleLabel.text = type
+    }
+    
     private func prepareUI() {
         contentView.backgroundColor = UIColor.white
         
-        let titleLabel = UILabel()
-        titleLabel.text = "分类    上装"
-        titleLabel.textColor = COLOR_TEXT_LABEL
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
-        titleLabel.textAlignment = .left
-        
         let image = UIImage(named: "SKUAdd_Arrow_up")
         arrowButton.setImage(image, for: .normal)
-//        arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
         
         contentView.addSubview(titleLabel)
+        contentView.addSubview(typeLabel)
         contentView.addSubview(arrowButton)
         
         titleLabel.snp.makeConstraints({ (make) in
             make.left.equalTo(15)
-            make.top.right.bottom.equalTo(0)
+            make.top.bottom.equalTo(0)
         })
         
         arrowButton.snp.makeConstraints({ (make) in
@@ -58,5 +56,28 @@ class ZJASKUTypeHeaderView: UITableViewHeaderFooterView {
             make.size.equalTo(image!.size)
         })
     }
+    
+    private func setUpViewConstraints() {
+        typeLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(titleLabel.snp.right).offset(10)
+            make.top.right.bottom.equalTo(0)
+        }
+    }
+    
+    private lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = COLOR_TEXT_LABEL
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
+        titleLabel.textAlignment = .left
+        return titleLabel
+    }()
+    
+    private lazy var typeLabel: UILabel = {
+        let typeLabel = UILabel()
+        typeLabel.textColor = COLOR_TEXT_LABEL
+        typeLabel.font = UIFont.systemFont(ofSize: 15)
+        typeLabel.textAlignment = .left
+        return typeLabel
+    }()
 
 }

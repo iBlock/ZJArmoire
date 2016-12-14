@@ -43,18 +43,31 @@ class ZJAAddSKUController: UIViewController {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         title = "添加单品"
         view.addSubview(skuAddTableView)
+        view.addSubview(confirmButton)
     }
     
     func setUpViewConstraints() {
+        skuAddTableView.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(0)
+            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
+        }
         
+        confirmButton.snp.makeConstraints { (make) in
+            make.left.equalTo(15)
+            make.right.equalTo(-15)
+            make.height.equalTo(44)
+            make.bottom.equalTo(-10)
+        }
     }
     
     public lazy var skuAddTableView:ZJASKUAddTableView = {
         let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
+        clothesTableView.delaysContentTouches = false
         clothesTableView.skuDelegate = self
         return clothesTableView
     }()
     
+    // MARK: - Debug
     public func DJDebugViewController() -> ZJAAddSKUController {
         let skuDataCenter = ZJASKUDataCenter.sharedInstance
         let skuModel = ZJASKUItemModel()
@@ -64,6 +77,23 @@ class ZJAAddSKUController: UIViewController {
         return ZJAAddSKUController()
     }
 
+    private lazy var confirmButton:UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        button.setTitle("确认", for: .normal)
+        let image:UIImage! = UIImage(named: "Global_Button")
+        let imageInsets = UIEdgeInsetsMake(0, image.size.width/2-1, 0, image.size.height/2-1)
+        let imageSel:UIImage! = UIImage(named: "Global_Button_Sel")
+        let resizeImage = image.resizableImage(withCapInsets: imageInsets)
+        let resizeImageSel = imageSel.resizableImage(withCapInsets: imageInsets)
+        
+        button.setBackgroundImage(resizeImage, for: .normal)
+        button.setTitleColor(COLOR_MAIN_APP, for: .normal)
+        button.setBackgroundImage(resizeImageSel, for: .highlighted)
+        button.setTitleColor(UIColor.white, for: .highlighted)
+        button.addTarget(self, action: #selector(didTappedConfirmButton), for: .touchUpInside)
+        
+        return button
+    }()
 }
 
 extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
@@ -74,6 +104,10 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
             self?.skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
         }
         navigationController?.pushViewController(cameraController, animated: true)
+    }
+    
+    func didTappedConfirmButton() {
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 

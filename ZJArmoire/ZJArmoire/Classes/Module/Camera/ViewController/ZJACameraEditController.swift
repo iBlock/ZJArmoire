@@ -12,6 +12,7 @@ class ZJACameraEditController: UIViewController {
     
     typealias ConfirmPhotoCallback = () -> ()
     var previewImage:UIImage?
+    var typeName: String?
     var isPushAddSKUController:Bool = true
     
     var confirmPhotoBlock: ConfirmPhotoCallback?
@@ -94,8 +95,34 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     func didTappedConfirmButton() {
         let skuDataCenter = ZJASKUDataCenter.sharedInstance
         let skuModel = ZJASKUItemModel()
-        skuModel.photoImage = UIImage(named:"test")
-        skuModel.category = "上装"
+        skuModel.photoImage = previewImage
+        
+        /*
+        //图片大小 
+        let imageData = UIImageJPEGRepresentation(previewImage!, 1)        //992400
+        let length: UInt = UInt(imageData!.count)
+        let length2 = (previewImage?.cgImage)!.width * (previewImage?.cgImage)!.bytesPerRow
+        
+        let image = previewImage?.compressImageSize()
+        let imageData2 = UIImageJPEGRepresentation(image!, 1)
+        let length3 = (image?.cgImage)!.width * (image?.cgImage)!.bytesPerRow
+        
+        let image1 = previewImage?.compress()
+        let imageData3 = UIImageJPEGRepresentation(image1!, 1)
+        let length4 = (image1?.cgImage)!.width * (image1?.cgImage)!.bytesPerRow
+        
+        var paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        var documentsDirectory = paths[0] as! String
+        var filePath = documentsDirectory.appending("/1.png")
+        var filePath2 = documentsDirectory.appending("/2.png")
+        var filePath3 = documentsDirectory.appending("/3.png")
+        
+        (imageData as! NSData).write(toFile: filePath, atomically: true)
+        (imageData2 as! NSData).write(toFile: filePath2, atomically: true)
+        (imageData3 as! NSData).write(toFile: filePath3, atomically: true)
+        */
+        
+        skuModel.category = typeName
         skuDataCenter.addSKUItem(model: skuModel)
         
         confirmPhotoBlock?()

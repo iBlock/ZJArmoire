@@ -147,15 +147,15 @@ class ZJACameraManager: NSObject {
     //拍照
     func takePhoto() {
         if let videoConnection = self.stillImageOutput!.connection(withMediaType: AVMediaTypeVideo) {
-            self.stillImageOutput!.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (imageDataSampleBuffer, error) in
+            self.stillImageOutput!.captureStillImageAsynchronously(from: videoConnection, completionHandler: {[weak self] (imageDataSampleBuffer, error) in
                 if imageDataSampleBuffer == nil {
                     return
                 }
                 
                 let imageData:Data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataSampleBuffer)
                 let image = UIImage(data: imageData)
-                self.takePhoneImage = image
-                self.cameraManagerDelegate?.cameraTakePhoneResult(manager: self)
+                self?.takePhoneImage = image
+                self?.cameraManagerDelegate?.cameraTakePhoneResult(manager: self!)
             })
         }
     }

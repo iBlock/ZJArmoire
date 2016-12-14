@@ -34,6 +34,7 @@
 		CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */; };
 		CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */; };
 		CC73E8FD1D9D1AEE00C283D2 /* ZJArmoireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */; };
+		CCA44ECF1E01136E0070FDB2 /* UIImage+CompressForSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA44ECE1E01136E0070FDB2 /* UIImage+CompressForSize.m */; };
 		CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA7268D1DBA49AF0099BC98 /* ZJATypeListController.swift */; };
 		CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA7268F1DBA52AE0099BC98 /* UIBarButtonItemExtension.swift */; };
 		CCA726941DBA59FF0099BC98 /* ZJAErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA726931DBA59FF0099BC98 /* ZJAErrorView.swift */; };
@@ -115,6 +116,8 @@
 		CC73E8F81D9D1AEE00C283D2 /* ZJArmoireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJArmoireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJArmoireTests.swift; sourceTree = "<group>"; };
 		CC73E8FE1D9D1AEE00C283D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCA44ECD1E01136E0070FDB2 /* UIImage+CompressForSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CompressForSize.h"; sourceTree = "<group>"; };
+		CCA44ECE1E01136E0070FDB2 /* UIImage+CompressForSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CompressForSize.m"; sourceTree = "<group>"; };
 		CCA7268D1DBA49AF0099BC98 /* ZJATypeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATypeListController.swift; sourceTree = "<group>"; };
 		CCA7268F1DBA52AE0099BC98 /* UIBarButtonItemExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemExtension.swift; sourceTree = "<group>"; };
 		CCA726931DBA59FF0099BC98 /* ZJAErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAErrorView.swift; sourceTree = "<group>"; };
@@ -445,6 +448,8 @@
 				CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */,
 				CC303CA31DF50DFE00B262A7 /* ZJATextField.h */,
 				CC303CA41DF50DFE00B262A7 /* ZJATextField.m */,
+				CCA44ECD1E01136E0070FDB2 /* UIImage+CompressForSize.h */,
+				CCA44ECE1E01136E0070FDB2 /* UIImage+CompressForSize.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -752,6 +757,7 @@
 			files = (
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
 				CCC96DB61DB32F7C00465131 /* ZJAHomeTableHeaderView.swift in Sources */,
+				CCA44ECF1E01136E0070FDB2 /* UIImage+CompressForSize.m in Sources */,
 				CCBBDFAF1DFE7A500095E2F2 /* ZJAPopView.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
 				CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */,

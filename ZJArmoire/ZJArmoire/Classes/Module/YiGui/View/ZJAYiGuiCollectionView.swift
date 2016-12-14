@@ -41,13 +41,23 @@ class ZJAYiGuiCollectionView: UICollectionView {
         delegate = self
         dataSource = self
     }
+    
+    lazy var typeImageList: NSArray = {
+        return CONFIG_YIGUI_TYPEIMAGES as NSArray
+    }()
 
+    lazy var typeNameList: NSArray = {
+        return CONFIG_YIGUI_TYPENAMES as NSArray
+    }()
 }
 
 extension ZJAYiGuiCollectionView: UICollectionViewDelegate,UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionView:ZJAYiGuiTypeCell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath) as! ZJAYiGuiTypeCell
+        let imageName = typeImageList.object(at: indexPath.row) as! String
+        let imageTitle = typeNameList.object(at: indexPath.row) as! String
+        collectionView.configCell(image:imageName, title:imageTitle)
         return collectionView
     }
 

@@ -22,27 +22,25 @@ class ZJASKUTypeCollectionCell: UICollectionViewCell {
     }
     
     public func configCell(index:NSInteger) {
-        switch index {
-        case 0:
-            typeButton.setImage(UIImage(named: "YiGui_Type_YiFu"), for: .normal)
-        default:
-            typeButton.setImage(UIImage(named: "YiGui_Type_YiFu"), for: .normal)
-        }
+        let typeImage = (CONFIG_YIGUI_TYPEIMAGES as NSArray).object(at: index)
+        typeButton.setImage(UIImage(named: typeImage as! String), for: .normal)
     }
     
     private func prepareUI() {
+        backgroundColor = UIColor.colorHex(hex: "00bb9c", alpha: 0.5)
         contentView.addSubview(typeButton)
     }
     
     private func setUpViewConstraints() {
         typeButton.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsets.zero)
+            make.top.left.equalTo(10)
+            make.bottom.right.equalTo(-10)
         }
     }
     
     private lazy var typeButton:UIButton = {
         let typeButton:UIButton = UIButton(type: UIButtonType.custom)
-        typeButton.backgroundColor = UIColor.colorHex(hex: "00bb9c", alpha: 0.5)
+        typeButton.isUserInteractionEnabled = false
         return typeButton
     }()
     

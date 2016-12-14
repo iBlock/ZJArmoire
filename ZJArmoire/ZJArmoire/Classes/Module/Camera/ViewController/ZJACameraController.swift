@@ -15,6 +15,7 @@ class ZJACameraController: UIViewController {
     
     var avCaptureSesstion: AVCaptureSession?
     var addPhotoBlock: ConfirmPhotoCallback?
+    var typeName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,10 @@ class ZJACameraController: UIViewController {
         cameraManager.initalSession(preview: self.view)
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
+        
+        if typeName == nil {
+            typeName = "上装"
+        }
     }
     
     private func setUpViewControllerConstraints() {
@@ -179,6 +184,7 @@ extension ZJACameraController:ZJACameraManagerProtocol {
         let takeImage = manager.takePhoneImage
         let cameraEditController = ZJACameraEditController()
         cameraEditController.previewImage = takeImage
+        cameraEditController.typeName = typeName
         cameraEditController.confirmPhotoBlock = {[weak self] () in
             self?.addPhotoBlock?()
         }

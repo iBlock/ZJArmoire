@@ -20,6 +20,11 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configCell(image: String, title: String) {
+        typeImageView.image = UIImage(named: image)
+        typeLabel.text = title
+    }
+    
     private func prepareUI() {
         contentView.addSubview(yiGuiTypeView)
     }
@@ -78,7 +83,6 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
     private lazy var typeLabel:UILabel = {
         var typeLabel = UILabel()
         typeLabel.textColor = COLOR_TEXT_LABEL
-        typeLabel.text = "上装"
         typeLabel.textAlignment = .left
         return typeLabel
     }()
@@ -93,7 +97,6 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
     
     private lazy var typeImageView:UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "YiGui_Type_YiFu")
         return imageView
     }()
     

@@ -9,9 +9,12 @@
 import UIKit
 
 class ZJASKUTypeViewCell: UITableViewCell {
+    
+    typealias ClickTypeButtonCallback = (IndexPath) -> ()
 
     let SKUTypeViewCellIdentifier = "SKUTypeViewCellIdentifier"
     var itemSize:CGFloat = 0
+    var clickTypeBtnBlock: ClickTypeButtonCallback?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -81,6 +84,10 @@ extension ZJASKUTypeViewCell: UICollectionViewDelegate,UICollectionViewDataSourc
         let cell:ZJASKUTypeCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: SKUTypeViewCellIdentifier, for: indexPath) as! ZJASKUTypeCollectionCell
         cell.configCell(index: indexPath.row)
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.clickTypeBtnBlock?(indexPath)
     }
     
 }

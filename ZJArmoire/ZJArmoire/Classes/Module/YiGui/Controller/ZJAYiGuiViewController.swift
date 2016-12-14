@@ -59,7 +59,7 @@ class ZJAYiGuiViewController: UIViewController {
 extension ZJAYiGuiViewController: ZJAYiGuiTypeCellDelegate {
     func typeCellClickCallback(index: IndexPath) {
         let typeListController = ZJATypeListController()
-        typeListController.type = index.row
+        typeListController.yiguiType = index.row
         navigationController?.pushViewController(typeListController, animated: true)
     }
 }

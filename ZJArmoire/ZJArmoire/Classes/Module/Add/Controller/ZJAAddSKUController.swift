@@ -72,7 +72,7 @@ class ZJAAddSKUController: UIViewController {
         let skuDataCenter = ZJASKUDataCenter.sharedInstance
         let skuModel = ZJASKUItemModel()
         skuModel.photoImage = UIImage(named:"test")
-        skuModel.category = "上装"
+        skuModel.category = 0
         skuDataCenter.addSKUItem(model: skuModel)
         return ZJAAddSKUController()
     }
@@ -107,7 +107,55 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
     }
     
     func didTappedConfirmButton() {
+        if filePathPrepare() == true {
+            savePhoto()
+        }
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func filePathPrepare() -> Bool {
+        let fileManage = FileManager()
+        var isDir: ObjCBool = false
+        let isExists = fileManage.fileExists(atPath: PATH_PHOTO_IMAGE, isDirectory: &isDir)
+        if isExists == false {
+            do {
+                try fileManage.createDirectory(at: URL.init(fileURLWithPath: PATH_PHOTO_IMAGE), withIntermediateDirectories: true, attributes: nil)
+                return true
+            } catch let error {
+                print(error)
+                return false
+            }
+        }
+        return true
+    }
+    
+    func savePhoto() {
+        DispatchQueue.global().async {
+            let skuItemArray = NSArray(array: ZJASKUDataCenter.sharedInstance.skuItemArray)
+            for item in skuItemArray {
+                let item: ZJASKUItemModel = item as! ZJASKUItemModel
+                let image = item.photoImage?.compress()
+                let imageData: Data = UIImageJPEGRepresentation(image!, 1)!
+                let now = NSDate()
+                let timeInterval:TimeInterval = now.timeIntervalSince1970
+                let timeStamp = Int(timeInterval)
+                let timeStr: String = String(timeStamp) + ".png"
+                let filePath = PATH_PHOTO_IMAGE.appending(timeStr)
+                do {
+                    try imageData.write(to: URL(fileURLWithPath: filePath), options: .atomic)
+                } catch let error {
+                    print(error)
+                }
+                
+                let model: ZJAClothesModel = ZJAClothesModel()
+                model.category = item.category
+                model.photoName = timeStr
+                let isSuccess: Bool =  model.insert()
+                if isSuccess == false {
+                    print("保存到数据库失败\n")
+                }
+            }
+        }
     }
 }
 

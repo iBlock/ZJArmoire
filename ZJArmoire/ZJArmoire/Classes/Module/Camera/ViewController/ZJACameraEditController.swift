@@ -12,7 +12,8 @@ class ZJACameraEditController: UIViewController {
     
     typealias ConfirmPhotoCallback = () -> ()
     var previewImage:UIImage?
-    var typeName: String?
+//    var typeName: String?
+    var type: NSInteger?
     var isPushAddSKUController:Bool = true
     
     var confirmPhotoBlock: ConfirmPhotoCallback?
@@ -95,6 +96,7 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     func didTappedConfirmButton() {
         let skuDataCenter = ZJASKUDataCenter.sharedInstance
         let skuModel = ZJASKUItemModel()
+//        let image = previewImage?.compress()
         skuModel.photoImage = previewImage
         
         /*
@@ -103,26 +105,29 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
         let length: UInt = UInt(imageData!.count)
         let length2 = (previewImage?.cgImage)!.width * (previewImage?.cgImage)!.bytesPerRow
         
-        let image = previewImage?.compressImageSize()
-        let imageData2 = UIImageJPEGRepresentation(image!, 1)
-        let length3 = (image?.cgImage)!.width * (image?.cgImage)!.bytesPerRow
-        
         let image1 = previewImage?.compress()
-        let imageData3 = UIImageJPEGRepresentation(image1!, 1)
+        let imageData3: Data = UIImageJPEGRepresentation(image1!, 1)!
         let length4 = (image1?.cgImage)!.width * (image1?.cgImage)!.bytesPerRow
         
         var paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        var documentsDirectory = paths[0] as! String
+        var documentsDirectory = paths[0] 
         var filePath = documentsDirectory.appending("/1.png")
         var filePath2 = documentsDirectory.appending("/2.png")
         var filePath3 = documentsDirectory.appending("/3.png")
         
-        (imageData as! NSData).write(toFile: filePath, atomically: true)
-        (imageData2 as! NSData).write(toFile: filePath2, atomically: true)
-        (imageData3 as! NSData).write(toFile: filePath3, atomically: true)
+//        (imageData as! NSData).write(toFile: filePath, atomically: true)
+//        (imageData2 as! NSData).write(toFile: filePath2, atomically: true)
+        
+//        (imageData3 as NSData).write(toFile: filePath3, atomically: true)
+        do {
+            try imageData?.write(to: URL(fileURLWithPath: filePath), options: .atomic)
+            try imageData3.write(to: URL(fileURLWithPath: filePath3), options: .atomic)
+        } catch let error {
+            print(error)
+        }
         */
         
-        skuModel.category = typeName
+        skuModel.category = type
         skuDataCenter.addSKUItem(model: skuModel)
         
         confirmPhotoBlock?()

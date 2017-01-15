@@ -255,7 +255,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
             headerView.addGestureRecognizer(panGester)
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
-            headerView.configCell(type: (currentSKUItemModel?.category)!)
+            headerView.configCell(type: (CONFIG_YIGUI_TYPENAMES[(currentSKUItemModel?.category)!]))
         default: break
         }
     }
@@ -294,7 +294,7 @@ extension ZJASKUAddTableView: UITableViewDataSource {
             (cell as! ZJASKUTypeViewCell).clickTypeBtnBlock =
             {[weak self](indexPath) in
                 let indexSet = NSIndexSet(index: 1)
-                self?.currentSKUItemModel?.category = (CONFIG_YIGUI_TYPENAMES as NSArray).object(at: indexPath.row) as? String
+                self?.currentSKUItemModel?.category = indexPath.row
                 self?.isClickTypeArrowButton = !(self?.isClickTypeArrowButton)!
                 self?.reloadSections(indexSet as IndexSet, with: .automatic)
             }

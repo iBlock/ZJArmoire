@@ -24,7 +24,7 @@ class ZJATypeListController: UIViewController {
     }
     
     private func prepareUI() {
-        title = self.typeTitle(type: yiguiType)
+        title = CONFIG_YIGUI_TYPENAMES[yiguiType]//self.typeTitle(type: yiguiType)
         navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_Add", highlightedImage: "Global_Navi_Add", target: self, action: #selector(didTappedAddButton(sender:)))
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         let errorView = view.loadErrorView()
@@ -33,24 +33,24 @@ class ZJATypeListController: UIViewController {
         }
     }
 
-    private func typeTitle(type:NSInteger) -> String {
-        switch type {
-        case 0:
-            return "上装"
-        case 1:
-            return "下装"
-        case 2:
-            return "鞋子"
-        case 3:
-            return "包包"
-        case 4:
-            return "配饰"
-        case 5:
-            return "内衣"
-        default:
-            return "全部"
-        }
-    }
+//    private func typeTitle(type:NSInteger) -> String {
+//        switch type {
+//        case 0:
+//            return "上装"
+//        case 1:
+//            return "下装"
+//        case 2:
+//            return "鞋子"
+//        case 3:
+//            return "包包"
+//        case 4:
+//            return "配饰"
+//        case 5:
+//            return "内衣"
+//        default:
+//            return "全部"
+//        }
+//    }
     
     // MARK: - Event and Respone
     
@@ -60,7 +60,7 @@ class ZJATypeListController: UIViewController {
             switch type {
             case .takeImage:
                 let cameraController = ZJACameraController()
-                cameraController.typeName = self?.typeTitle(type: (self?.yiguiType)!)
+                cameraController.yiguiType = self?.yiguiType
 //                self?.navigationController?.present(cameraController, animated: true, completion: nil)
                 self?.navigationController?.pushViewController(cameraController, animated: true)
             case .selectorImage: break

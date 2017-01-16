@@ -134,27 +134,62 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
             let skuItemArray = NSArray(array: ZJASKUDataCenter.sharedInstance.skuItemArray)
             for item in skuItemArray {
                 let item: ZJASKUItemModel = item as! ZJASKUItemModel
-                let image = item.photoImage?.compress()
-                let imageData: Data = UIImageJPEGRepresentation(image!, 1)!
                 let now = NSDate()
                 let timeInterval:TimeInterval = now.timeIntervalSince1970
                 let timeStamp = Int(timeInterval)
-                let timeStr: String = String(timeStamp) + ".png"
-                let filePath = PATH_PHOTO_IMAGE.appending(timeStr)
-                do {
-                    try imageData.write(to: URL(fileURLWithPath: filePath), options: .atomic)
-                } catch let error {
-                    print(error)
-                }
                 
-                let model: ZJAClothesModel = ZJAClothesModel()
-                model.category = item.category
-                model.photoName = timeStr
-                let isSuccess: Bool =  model.insert()
-                if isSuccess == false {
-                    print("保存到数据库失败\n")
-                }
+                self.saveClothesToDatabase(item: item, timeStamp: timeStamp)
+                self.saveTagsToDatabase(item: item, timeStamp: timeStamp)
             }
+        }
+    }
+    
+    func saveClothesToDatabase(item: ZJASKUItemModel, timeStamp: Int) {
+        let image = item.photoImage
+        let imageData: Data = UIImageJPEGRepresentation(image!, 1)!
+        let random = String(timeStamp) + String(arc4random())
+        let timeStr: String = random + ".png"
+        let filePath = PATH_PHOTO_IMAGE.appending(timeStr)
+        do {
+            try imageData.write(to: URL(fileURLWithPath: filePath), options: .atomic)
+            let model: ZJAClothesModel = ZJAClothesModel()
+            model.category = item.category
+            model.photoName = timeStr
+            model.uuid = random
+            if let tagList = item.tagList {
+                model.tagList = (tagList as! Array<String>).joined(separator: ",")
+            }
+            let isSuccess: Bool =  model.insert()
+            if isSuccess == false {
+                print("保存衣服到数据库失败\n")
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func saveTagsToDatabase(item: ZJASKUItemModel, timeStamp: Int) {
+        if let tagList = item.tagList {
+            for tag in tagList {
+                let tagName: String = tag as! String
+                let tagModel: ZJATagsModel = ZJATagsModel()
+                tagModel.tagName = tagName
+                let isSuccess = tagModel.insert()
+                if isSuccess == false {
+                    print("保存标签到数据库失败\n")
+                }
+                saveClothesAndTagToDatabase(tagName: tagName, timeStamp: timeStamp)
+            }
+        }
+    }
+    
+    func saveClothesAndTagToDatabase(tagName: String, timeStamp: Int) {
+        let clothes_tag_model = ZJAClothesTagTable()
+        clothes_tag_model.clothes_id = String(timeStamp)
+        clothes_tag_model.tag_id = tagName
+        let isSuccess =  clothes_tag_model.insert()
+        if isSuccess == false {
+            print("保存衣服标签关联表失败\n")
         }
     }
 }

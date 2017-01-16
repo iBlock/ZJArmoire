@@ -187,7 +187,8 @@ extension ZJACameraController:ZJACameraManagerProtocol {
     func cameraTakePhoneResult(manager: ZJACameraManager) {
         let takeImage = manager.takePhoneImage
         let cameraEditController = ZJACameraEditController()
-        cameraEditController.previewImage = takeImage
+        let image = takeImage?.compress()
+        cameraEditController.previewImage = image
         cameraEditController.type = self.yiguiType
         cameraEditController.confirmPhotoBlock = {[weak self] () in
             self?.addPhotoBlock?()

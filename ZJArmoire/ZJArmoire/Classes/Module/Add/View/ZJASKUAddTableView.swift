@@ -100,8 +100,10 @@ class ZJASKUAddTableView: UITableView {
         })
 
         tagView.addSKUTag({ [weak self](tagNameList) in
-            self?.reloadData()
-            self?.currentSKUItemModel?.tagList = tagNameList
+            DispatchQueue.main.async {
+                self?.reloadData()
+                self?.currentSKUItemModel?.tagList = tagNameList!
+            }
         })
         
         tagView.didUpdatedTagListViewFrame({ [weak self](frame) in
@@ -110,6 +112,10 @@ class ZJASKUAddTableView: UITableView {
         
         return tagView
     }()
+    
+    func test() {
+        
+    }
     
     private lazy var tagTitleView:UILabel = {
         let tagLabel:UILabel = UILabel()

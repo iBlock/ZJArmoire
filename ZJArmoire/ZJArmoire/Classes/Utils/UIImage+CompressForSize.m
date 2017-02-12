@@ -94,4 +94,78 @@
     return scaledImage;
 }
 
+//把指定的颜色给变成透明的，方法如下：
++ (UIImage*) imageToTransparent:(UIImage*) image {
+    // 分配内存
+    const int imageWidth = image.size.width;
+    const int imageHeight = image.size.height;
+    size_t bytesPerRow = imageWidth * 4;
+    uint32_t* rgbImageBuf = (uint32_t*)malloc(bytesPerRow * imageHeight);
+    // 创建context
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(rgbImageBuf, imageWidth, imageHeight, 8, bytesPerRow, colorSpace,
+                                                 kCGBitmapByteOrder32Little | kCGImageAlphaNoneSkipLast);
+    CGContextDrawImage(context, CGRectMake(0, 0, imageWidth, imageHeight), image.CGImage);
+    // 遍历像素
+    int pixelNum = imageWidth * imageHeight;
+    uint32_t* pCurPtr = rgbImageBuf;
+    for (int i = 0; i < pixelNum; i++, pCurPtr++) {
+        if ((*pCurPtr & 0xFFFFFF00) == 0xffffff00) {
+            uint8_t* ptr = (uint8_t*)pCurPtr;
+            ptr[0] = 0;
+        }
+    }
+    // 将内存转成image
+    CGDataProviderRef dataProvider =CGDataProviderCreateWithData(NULL, rgbImageBuf, bytesPerRow * imageHeight, ProviderReleaseData);
+    
+    CGImageRef imageRef = CGImageCreate(imageWidth, imageHeight,8, 32, bytesPerRow, colorSpace,
+                                        kCGImageAlphaLast |kCGBitmapByteOrder32Little, dataProvider,
+                                        NULL, true,kCGRenderingIntentDefault);
+    CGDataProviderRelease(dataProvider);
+    
+    UIImage* resultUIImage = [UIImage imageWithCGImage:imageRef];
+    // 释放
+    CGImageRelease(imageRef);
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    return resultUIImage;
+}
+/** 颜色变化 */
+void ProviderReleaseData (void *info, const void *data, size_t size)
+{
+    free((void*)data);
+}
+
+- (void)requetWeather {
+    NSString *appcode = @"你自己的AppCode";
+    NSString *host = @"http,https://ali-weather.showapi.com";
+    NSString *path = @"/area-to-weather";
+    NSString *method = @"GET";
+    NSString *querys = @"?area=%E4%B8%BD%E6%B1%9F&areaid=101291401&need3HourForcast=\
+    0&needAlarm=0&needHourData=0&needIndex=0&needMoreDay=0";
+    NSString *url = [NSString stringWithFormat:@"%@%@%@",  host,  path , querys];
+    NSString *bodys = @"";
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest
+                                    requestWithURL:[NSURL URLWithString: url]
+                                    cachePolicy:1  timeoutInterval:  5];
+    request.HTTPMethod  =  method;
+    [request addValue:  [NSString  stringWithFormat:@"APPCODE %@" ,  appcode]
+   forHTTPHeaderField:  @"Authorization"];
+    NSURLSession *requestSession = [NSURLSession sessionWithConfiguration:
+                                    [NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task =
+    [requestSession dataTaskWithRequest:request
+                      completionHandler:^(NSData * _Nullable body , NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                          NSLog(@"Response object: %@" , response);
+                          NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
+                          //打印应答中的body
+                          NSLog(@"Response body: %@" , bodyString);
+                      }];
+    
+    [task resume];
+}
+
+
+
 @end

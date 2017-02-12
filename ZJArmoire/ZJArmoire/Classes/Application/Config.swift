@@ -25,3 +25,5 @@ let CONFIG_YIGUI_TYPENAMES = ["上装","下装","鞋子","包包","配饰","内�
 
 let PATH_DATABASE_FILE = NSHomeDirectory() + "/Documents/ZJADatabase.sqlite3"
 let PATH_PHOTO_IMAGE = NSHomeDirectory() + "/Documents/Photo/"
+
+let KEY_USERDEFAULT_TYPE_COUNT = "YiguiCategoriesTypeCount"

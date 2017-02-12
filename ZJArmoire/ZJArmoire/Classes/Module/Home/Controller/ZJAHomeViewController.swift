@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ZJAHomeViewController: UIViewController {
+class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -24,19 +24,11 @@ class ZJAHomeViewController: UIViewController {
         tabBarController?.navigationItem.title = "今天 · 北京";
     }
     
+    func didTappedButton(sender: UIButton) {
+        navigationController?.pushViewController(ZJATodayDapeiController(), animated: true)
+    }
+    
     private func prepareUI() {
-//        title = "今天 · 北京"
-
-//        navigationItem.title = "今天 · 北京"
-//        let titleLabel = UILabel()
-//        titleLabel.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 44)
-//        titleLabel.textAlignment = .center
-//        titleLabel.textColor = UIColor.white
-//        titleLabel.backgroundColor = UIColor.clear
-//        titleLabel.font = UIFont.systemFont(ofSize: 17)
-//        titleLabel.text = "今天 · 北京"
-//        
-//        navigationItem.titleView = titleLabel
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(homeTableView)
     }
@@ -49,13 +41,9 @@ class ZJAHomeViewController: UIViewController {
     
     // MARK: - Getter and Setter
     
-    private lazy var homeCollectionView:UICollectionView = {
-        let collectionView = UICollectionView(frame: self.view.bounds)
-        return collectionView
-    }()
-    
     private lazy var homeTableView:ZJAHomeTableView = {
-        let homeTable = ZJAHomeTableView(frame: self.view.bounds, style: .plain)
+        let homeTable: ZJAHomeTableView = ZJAHomeTableView(frame: self.view.bounds, style: .plain)
+        homeTable.tableDelegate = self
         return homeTable
     }()
 

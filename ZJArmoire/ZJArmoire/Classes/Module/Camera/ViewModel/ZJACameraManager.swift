@@ -51,6 +51,7 @@ class ZJACameraManager: NSObject {
     
     // MARK: - Public Method
     
+    
     func initalSession(preview:UIView) {
         self.session = AVCaptureSession()
         //做异常处理

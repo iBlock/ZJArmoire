@@ -20,9 +20,10 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configCell(image: String, title: String) {
+    public func configCell(image: String, title: String, typeCount: String) {
         typeImageView.image = UIImage(named: image)
         typeLabel.text = title
+        typeCountLabel.text = typeCount
     }
     
     private func prepareUI() {
@@ -90,7 +91,6 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
     private lazy var typeCountLabel:UILabel = {
         var countLabel = UILabel()
         countLabel.textColor = COLOR_TEXT_LABEL
-        countLabel.text = "3"
         countLabel.textAlignment = .right
         return countLabel
     }()

@@ -139,7 +139,6 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
                 let timeStamp = Int(timeInterval)
                 
                 self.saveClothesToDatabase(item: item, timeStamp: timeStamp)
-                self.saveTagsToDatabase(item: item, timeStamp: timeStamp)
             }
         }
     }
@@ -152,7 +151,7 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
         let filePath = PATH_PHOTO_IMAGE.appending(timeStr)
         do {
             try imageData.write(to: URL(fileURLWithPath: filePath), options: .atomic)
-            let model: ZJAClothesModel = ZJAClothesModel()
+            let model: ZJATableClothes = ZJATableClothes()
             model.category = item.category
             model.photoName = timeStr
             model.uuid = random
@@ -162,30 +161,32 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
             let isSuccess: Bool =  model.insert()
             if isSuccess == false {
                 print("保存衣服到数据库失败\n")
+            } else {
+                self.saveTagsToDatabase(item: item, clothesName: random)
             }
         } catch let error {
             print(error)
         }
     }
     
-    func saveTagsToDatabase(item: ZJASKUItemModel, timeStamp: Int) {
+    func saveTagsToDatabase(item: ZJASKUItemModel, clothesName: String) {
         if let tagList = item.tagList {
             for tag in tagList {
                 let tagName: String = tag as! String
-                let tagModel: ZJATagsModel = ZJATagsModel()
+                let tagModel: ZJATableTags = ZJATableTags()
                 tagModel.tagName = tagName
                 let isSuccess = tagModel.insert()
                 if isSuccess == false {
                     print("保存标签到数据库失败\n")
                 }
-                saveClothesAndTagToDatabase(tagName: tagName, timeStamp: timeStamp)
+                saveClothesAndTagToDatabase(tagName: tagName, clothesName: clothesName)
             }
         }
     }
     
-    func saveClothesAndTagToDatabase(tagName: String, timeStamp: Int) {
-        let clothes_tag_model = ZJAClothesTagTable()
-        clothes_tag_model.clothes_id = String(timeStamp)
+    func saveClothesAndTagToDatabase(tagName: String, clothesName: String) {
+        let clothes_tag_model = ZJATableClothes_Tag()
+        clothes_tag_model.clothes_id = clothesName
         clothes_tag_model.tag_id = tagName
         let isSuccess =  clothes_tag_model.insert()
         if isSuccess == false {

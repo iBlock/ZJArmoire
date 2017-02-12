@@ -10,33 +10,43 @@ import UIKit
 
 class ZJATypeListController: UIViewController {
     
+    var countDic: NSMutableDictionary!
     var yiguiType:NSInteger!
     var errorView: ZJAErrorView?
+    let userDefault = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+        setupViewConstraints()
         
-        let list = ZJAClothesModel().fetchAllClothes(yiguiType)
+        let list = ZJATableClothes().fetchAllClothes(yiguiType)
+        if let countList = userDefault.object(forKey: KEY_USERDEFAULT_TYPE_COUNT) {
+            countDic = NSMutableDictionary(dictionary: countList as! NSDictionary)
+        } else {
+            countDic = NSMutableDictionary()
+        }
+        
         if list?.count == 0 {
             self.errorView = view.loadErrorView()
             self.errorView?.errorButtonClick = { [weak self]() -> () in
                 self?.didTappedAddButton(sender: nil)
             }
         } else {
-            typeListCollectionView.clothesModelList = list!
-            typeListCollectionView.reloadData()
+            countDic.setValue(String(list!.count), forKey: String(yiguiType))
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let list = ZJAClothesModel().fetchAllClothes(yiguiType) {
+        if let list = ZJATableClothes().fetchAllClothes(yiguiType) {
             if (errorView != nil) && list.count > 0{
                 errorView?.removeFromSuperview()
-                typeListCollectionView.clothesModelList = list
-                typeListCollectionView.reloadData()
             }
+            countDic.setValue(String(list.count), forKey: String(yiguiType))
+            userDefault.set(countDic, forKey: KEY_USERDEFAULT_TYPE_COUNT)
+            typeListCollectionView.clothesModelList = list
+            typeListCollectionView.reloadData()
         }
     }
 
@@ -80,5 +90,4 @@ class ZJATypeListController: UIViewController {
         let collectionView: ZJATypeListCollectionView = ZJATypeListCollectionView(frame: self.view.bounds)
         return collectionView
     }()
-
 }

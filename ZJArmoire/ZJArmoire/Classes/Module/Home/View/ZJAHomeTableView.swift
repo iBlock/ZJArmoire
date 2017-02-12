@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol ZJAHomeTableViewDelegate: NSObjectProtocol {
+    func didTappedButton(sender: UIButton)
+}
+
 class ZJAHomeTableView: UITableView {
+    
+    let cellIdentifier: String = "ZJAHomeTableViewCell"
+    let image1: UIImage? = UIImage(contentsOfFile: PATH_PHOTO_IMAGE+"1484587787335928433.png")
+    var modelList: NSArray!
+    weak var tableDelegate: ZJAHomeTableViewDelegate?
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -18,6 +27,11 @@ class ZJAHomeTableView: UITableView {
         backgroundColor = COLOR_MAIN_BACKGROUND
         let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:174))
         tableHeaderView = ZJAHomeTableHeaderView(frame: frame)
+        register(ZJAHomeTuiJianCell.self, forCellReuseIdentifier: cellIdentifier)
+        
+        modelList =
+            [["title":"推荐搭配", "btn_title":"| 详情", "image_list":[image1,image1,image1]],
+             ["title":"历史搭配", "btn_title":"| 更多", "image_list":[image1,image1,image1]]]
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,13 +51,14 @@ extension ZJAHomeTableView: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "ZJAHomeTuiJianIdentifier"
-        var tuiJianCell:ZJAHomeTuiJianCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJAHomeTuiJianCell!
-        if (tuiJianCell == nil) {
-            tuiJianCell = ZJAHomeTuiJianCell(style: .default, reuseIdentifier: cellIdentifier)
-        }
-        
+        let tuiJianCell:ZJAHomeTuiJianCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJAHomeTuiJianCell!
+        tuiJianCell.detailButton.addTarget(self, action: #selector(didTappedDetailButton(sender:)), for: .touchUpInside)
+        tuiJianCell.configCell(paras: modelList[indexPath.section] as! NSDictionary)
         return tuiJianCell
+    }
+    
+    func didTappedDetailButton(sender: UIButton) {
+        self.tableDelegate?.didTappedButton(sender: sender)
     }
 }
 

@@ -11,5 +11,6 @@
 @interface UIImage (CompressForSize)
 
 - (UIImage *)compressImage;
++ (UIImage*) imageToTransparent:(UIImage*) image;
 
 @end

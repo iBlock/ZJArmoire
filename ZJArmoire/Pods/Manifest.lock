@@ -11,6 +11,7 @@ PODS:
   - Kingfisher (3.1.3)
   - RxSwift (3.0.1)
   - SnapKit (3.0.1)
+  - TTRangeSlider (1.0.5)
 
 DEPENDENCIES:
   - Alamofire (= 4.0.1)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - Kingfisher (= 3.1.3)
   - RxSwift (= 3.0.1)
   - SnapKit (= 3.0.1)
+  - TTRangeSlider (= 1.0.5)
 
 EXTERNAL SOURCES:
   DJDebug:
@@ -28,7 +30,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DJDebug:
-    :revision: '369832'
+    :revision: '373027'
     :svn: http://svn.djcorp.cn:8088/dianshangwuxian/trunk/mobile/jzt/ios/DJComponents/DJDebug
 
 SPEC CHECKSUMS:
@@ -41,7 +43,8 @@ SPEC CHECKSUMS:
   Kingfisher: 007f5851c18c81e7cc106c9cbac1bafea1cce5dc
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
+  TTRangeSlider: 2f2ce4a33b32bb323c6575b9f5161c4664459c58
 
-PODFILE CHECKSUM: d67409d8975e6eaa0c4a26b97c268041547afa3d
+PODFILE CHECKSUM: 5034c59637fcee88c9f3683fb1c77473e2324ed3
 
 COCOAPODS: 1.2.0.beta.1

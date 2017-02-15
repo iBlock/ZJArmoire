@@ -24,7 +24,7 @@ class ZJATableClothes_Tag: NSObject {
     func initTable() {
         do {
             db = try Connection(PATH_DATABASE_FILE)
-            try db.run(table_clothes_tag.create(block: { (t) in
+            try db.run(table_clothes_tag.create(ifNotExists: true, block: { (t) in
                 t.column(t_yf_tag_id, primaryKey: true)
                 t.column(t_yf_tag_clothes_id)
                 t.column(t_yf_tag_tag_id)
@@ -32,6 +32,7 @@ class ZJATableClothes_Tag: NSObject {
             
             try db.run(table_clothes_tag.createIndex([t_yf_tag_clothes_id,t_yf_tag_tag_id], unique: true, ifNotExists: true))
         } catch {
+            print("创建衣服和标签关联表失败")
             print(error)
         }
     }

@@ -1,45 +1,37 @@
 //
-//  ZJAAddSKUController.swift
+//  ZJAEditSkuController.swift
 //  ZJArmoire
 //
-//  Created by iBlock on 2016/11/22.
-//  Copyright © 2016年 iBlock. All rights reserved.
+//  Created by iBlock on 2017/2/15.
+//  Copyright © 2017年 iBlock. All rights reserved.
 //
 
 import UIKit
-import RxSwift
 
-class ZJAAddSKUController: UIViewController {
-    
+class ZJAEditSkuController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
     }
-    
-    deinit {
-        ZJASKUDataCenter.sharedInstance.removeAllItem()
-        print("%s已释放", NSStringFromClass(self.classForCoder))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        self.skuAddTableView.reloadData()
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
+
     override func viewDidLayoutSubviews() {
         setUpViewConstraints()
     }
     
     private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
-        title = "添加单品"
+        title = "编辑单品"
         view.addSubview(skuAddTableView)
         view.addSubview(confirmButton)
+    }
+    
+    func didTappedConfirmButton() {
+        
     }
     
     func setUpViewConstraints() {
@@ -57,22 +49,11 @@ class ZJAAddSKUController: UIViewController {
     }
     
     public lazy var skuAddTableView:ZJASKUAddTableView = {
-        let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
+        let clothesTableView:ZJASkuEditTableView = ZJASkuEditTableView(frame: self.view.bounds, style: .plain)
         clothesTableView.delaysContentTouches = false
-        clothesTableView.skuDelegate = self
         return clothesTableView
     }()
     
-    // MARK: - Debug
-    public func DJDebugViewController() -> ZJAAddSKUController {
-        let skuDataCenter = ZJASKUDataCenter.sharedInstance
-        let skuModel = ZJASKUItemModel()
-        skuModel.photoImage = UIImage(named:"test")
-        skuModel.category = 0
-        skuDataCenter.addSKUItem(model: skuModel)
-        return ZJAAddSKUController()
-    }
-
     private lazy var confirmButton:UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         button.setTitle("确认", for: .normal)

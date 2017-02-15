@@ -25,7 +25,7 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     }
     
     func didTappedButton(sender: UIButton) {
-        navigationController?.pushViewController(ZJATodayDapeiController(), animated: true)
+        navigationController?.pushViewController(ZJAAddDapeiController(), animated: true)
     }
     
     private func prepareUI() {

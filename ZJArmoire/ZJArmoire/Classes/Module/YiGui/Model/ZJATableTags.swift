@@ -22,7 +22,7 @@ class ZJATableTags: NSObject {
     func initTable() {
         do {
             db = try Connection(PATH_DATABASE_FILE)
-            try db.run(table_tag.create(ifNotExists: false, block: { (t) in
+            try db.run(table_tag.create(ifNotExists: true, block: { (t) in
                 t.column(t_tag_id, primaryKey: true)
                 t.column(t_tag_name, unique: true)
             }))

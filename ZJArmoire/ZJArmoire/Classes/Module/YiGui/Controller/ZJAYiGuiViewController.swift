@@ -24,7 +24,7 @@ class ZJAYiGuiViewController: UIViewController {
         
         let userDefault = UserDefaults.standard
         if let countList = userDefault.object(forKey: KEY_USERDEFAULT_TYPE_COUNT) {
-            yiGuiTypeCollectionView.typeCountList = countList as! NSDictionary
+            yiGuiTypeCollectionView.typeCountList = countList as? NSDictionary
             yiGuiTypeCollectionView.reloadData()
         }
     }

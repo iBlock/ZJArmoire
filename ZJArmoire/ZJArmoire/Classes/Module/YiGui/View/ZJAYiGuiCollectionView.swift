@@ -15,7 +15,7 @@ protocol ZJAYiGuiTypeCellDelegate:NSObjectProtocol {
 class ZJAYiGuiCollectionView: UICollectionView {
     
     let categoryIdentifier = "YiguiCategoriesCellItem"
-    var typeCountList:NSDictionary!
+    var typeCountList:NSDictionary?
     weak var cellDelegate:ZJAYiGuiTypeCellDelegate?
     
     init(frame: CGRect) {
@@ -59,7 +59,7 @@ extension ZJAYiGuiCollectionView: UICollectionViewDelegate,UICollectionViewDataS
         let imageName = typeImageList.object(at: indexPath.row) as! String
         let imageTitle = typeNameList.object(at: indexPath.row) as! String
         var typeCont: String = "0"
-        if let count = typeCountList.object(forKey: String(indexPath.row)) {
+        if let count = typeCountList?.object(forKey: String(indexPath.row)) {
             typeCont = count as! String
         }
         collectionView.configCell(image:imageName, title:imageTitle, typeCount: typeCont)

@@ -11,7 +11,7 @@ import Foundation
 class ZJATypeListCollectionView: UICollectionView {
     
     let categoryIdentifier = "YiGuiTypeCellItem"
-    var clothesModelList: Array<UIImage> = []
+    var clothesModelList: Array<ZJAClothesModel> = []
     
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
@@ -43,7 +43,7 @@ extension ZJATypeListCollectionView: UICollectionViewDelegate,UICollectionViewDa
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionView:ZJATypelistCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath) as! ZJATypelistCollectionCell
-        collectionView.configCell(image: clothesModelList[indexPath.row])
+        collectionView.configCell(image: clothesModelList[indexPath.row].clothesImg)
         return collectionView
     }
     
@@ -53,6 +53,8 @@ extension ZJATypeListCollectionView: UICollectionViewDelegate,UICollectionViewDa
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath)
+        let editVC = ZJAEditSkuController()
+        ZJATabBarController.sharedInstance.navigationController?.pushViewController(editVC, animated: true)
     }
     
 }

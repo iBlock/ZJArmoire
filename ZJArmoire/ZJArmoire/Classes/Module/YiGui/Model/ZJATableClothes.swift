@@ -31,7 +31,7 @@ class ZJATableClothes: NSObject {
     func initTable() {
         do{
             db = try Connection(PATH_DATABASE_FILE)
-            try db.run(table_clothes.create(ifNotExists: false, block: { (t) in
+            try db.run(table_clothes.create(ifNotExists: true, block: { (t) in
                 t.column(t_clothes_id, primaryKey: true)
                 t.column(t_clothes_uuid, unique: true)
                 t.column(t_clothes_type)
@@ -40,7 +40,10 @@ class ZJATableClothes: NSObject {
                 t.column(t_clothes_day_air)
                 t.column(t_clothes_night_air)
             }))
-        } catch { print(error) }
+        } catch {
+            print("创建衣服表失败")
+            print(error)
+        }
     }
     
     //插入数据
@@ -64,20 +67,26 @@ class ZJATableClothes: NSObject {
     }
     
     //获取指定类型的衣服
-    func fetchAllClothes(_ type: NSInteger) -> [UIImage]? {
-        var allClothes = [UIImage]()
+    func fetchAllClothes(_ type: NSInteger) -> [ZJAClothesModel]? {
+        var allClothes = [ZJAClothesModel]()
         //指定查询条件
         let query = table_clothes.filter(t_clothes_type == Int64(type))
         do {
             //获取数据库连接
             db = try Connection(PATH_DATABASE_FILE)
             for clothes in try db.prepare(query) {
+                let model = ZJAClothesModel()
                 let imagePath = PATH_PHOTO_IMAGE + clothes[t_clothes_photo_name]
+                model.type = clothes[t_clothes_type]
+                model.uuid = clothes[t_clothes_uuid]
+                model.tags = clothes[t_clothes_tags]
                 if let image = UIImage(contentsOfFile: imagePath) {
-                    allClothes.append(image)
+                    model.clothesImg = image
                 } else {
+                    model.clothesImg = UIImage()
                     print("%s图片找不到了",clothes[t_clothes_photo_name])
                 }
+                allClothes.append(model)
             }
         } catch {
             print("创建衣服表失败")

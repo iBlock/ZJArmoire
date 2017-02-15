@@ -29,9 +29,23 @@ class ZJAHomeTableView: UITableView {
         tableHeaderView = ZJAHomeTableHeaderView(frame: frame)
         register(ZJAHomeTuiJianCell.self, forCellReuseIdentifier: cellIdentifier)
         
+        prepareCellModel()
+        
         modelList =
-            [["title":"推荐搭配", "btn_title":"| 详情", "image_list":[image1,image1,image1]],
-             ["title":"历史搭配", "btn_title":"| 更多", "image_list":[image1,image1,image1]]]
+            [["title":"个性搭配", "btn_title":"| 详情", "image_list":[image1,image1,image1]],
+             ["title":"推荐搭配", "btn_title":"| 详情", "image_list":[image1,image1,image1]]]
+    }
+    
+    func prepareCellModel() {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current // 设置时区
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let stringDate = dateFormatter.string(from: currentDate)
+        let dapeiId = ZJATableDapei().fetchPrepareDapeiId(dapeiDate:stringDate)
+        if dapeiId != -1 {
+            
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

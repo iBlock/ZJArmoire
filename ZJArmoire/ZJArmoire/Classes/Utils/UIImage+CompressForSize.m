@@ -136,36 +136,4 @@ void ProviderReleaseData (void *info, const void *data, size_t size)
     free((void*)data);
 }
 
-- (void)requetWeather {
-    NSString *appcode = @"你自己的AppCode";
-    NSString *host = @"http,https://ali-weather.showapi.com";
-    NSString *path = @"/area-to-weather";
-    NSString *method = @"GET";
-    NSString *querys = @"?area=%E4%B8%BD%E6%B1%9F&areaid=101291401&need3HourForcast=\
-    0&needAlarm=0&needHourData=0&needIndex=0&needMoreDay=0";
-    NSString *url = [NSString stringWithFormat:@"%@%@%@",  host,  path , querys];
-    NSString *bodys = @"";
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest
-                                    requestWithURL:[NSURL URLWithString: url]
-                                    cachePolicy:1  timeoutInterval:  5];
-    request.HTTPMethod  =  method;
-    [request addValue:  [NSString  stringWithFormat:@"APPCODE %@" ,  appcode]
-   forHTTPHeaderField:  @"Authorization"];
-    NSURLSession *requestSession = [NSURLSession sessionWithConfiguration:
-                                    [NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *task =
-    [requestSession dataTaskWithRequest:request
-                      completionHandler:^(NSData * _Nullable body , NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                          NSLog(@"Response object: %@" , response);
-                          NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
-                          //打印应答中的body
-                          NSLog(@"Response body: %@" , bodyString);
-                      }];
-    
-    [task resume];
-}
-
-
-
 @end

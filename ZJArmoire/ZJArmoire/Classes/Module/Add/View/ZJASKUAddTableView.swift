@@ -261,7 +261,11 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
             headerView.addGestureRecognizer(panGester)
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
-            headerView.configCell(type: (CONFIG_YIGUI_TYPENAMES[(currentSKUItemModel?.category)!]))
+            if let category = currentSKUItemModel?.category {
+                headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[category])
+            } else {
+                headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[0])
+            }
         default: break
         }
     }

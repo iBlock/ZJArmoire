@@ -33,7 +33,22 @@ class ZJAEditSkuController: UIViewController {
     }
     
     func didTappedConfirmButton() {
-        
+        if confirmButton.titleLabel?.text == "保存" {
+            SVProgressHUD.show()
+            DispatchQueue.global().async {
+                sleep(1)
+                DispatchQueue.main.async {
+                    SVProgressHUD.showSuccess(withStatus: "修改成功")
+                    self.confirmButton.setTitle("修改", for: .normal)
+                    self.skuAddTableView.isEditSku = false
+                    self.skuAddTableView.reloadData()
+                }
+            }
+        } else {
+            confirmButton.setTitle("保存", for: .normal)
+            skuAddTableView.isEditSku = true
+            skuAddTableView.reloadData()
+        }
     }
     
     func setUpViewConstraints() {
@@ -50,7 +65,7 @@ class ZJAEditSkuController: UIViewController {
         }
     }
     
-    public lazy var skuAddTableView: ZJASKUAddTableView = {
+    public lazy var skuAddTableView: ZJASkuEditTableView = {
         let clothesTableView:ZJASkuEditTableView = ZJASkuEditTableView(frame: self.view.bounds, style: .plain, model: self.clothesModel)
         clothesTableView.delaysContentTouches = false
         return clothesTableView
@@ -58,7 +73,7 @@ class ZJAEditSkuController: UIViewController {
     
     private lazy var confirmButton:UIButton = {
         let button = UIButton(type: UIButtonType.custom)
-        button.setTitle("确认", for: .normal)
+        button.setTitle("修改", for: .normal)
         let image:UIImage! = UIImage(named: "Global_Button")
         let imageInsets = UIEdgeInsetsMake(0, image.size.width/2-1, 0, image.size.height/2-1)
         let imageSel:UIImage! = UIImage(named: "Global_Button_Sel")

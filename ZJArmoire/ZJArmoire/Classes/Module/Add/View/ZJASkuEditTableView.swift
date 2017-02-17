@@ -66,6 +66,9 @@ class ZJASkuEditTableView: ZJASKUAddTableView {
     }
     
     override func fetchTagListViewHeight() -> CGFloat {
+        if isEditSku == true {
+            return tagListFrame.size.height
+        }
         if let list = currentSKUItemModel?.tagList {
             if list.count == 0 {
                 return 0

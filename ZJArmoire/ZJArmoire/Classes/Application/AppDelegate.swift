@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Life Cycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+        globalConfig()
         setupRootViewController()
         
         return true
@@ -47,6 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let keyboardManager = IQKeyboardManager.sharedManager()
         keyboardManager.toolbarDoneBarButtonItemText = "确认"
         keyboardManager.enable = true
+    }
+    
+    private func globalConfig() {
+        SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.setMinimumDismissTimeInterval(1)
     }
 }
 

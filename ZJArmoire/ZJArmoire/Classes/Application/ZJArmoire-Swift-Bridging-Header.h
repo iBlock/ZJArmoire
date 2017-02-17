@@ -12,6 +12,7 @@
 #import "AppInclude.h"
 #import "DJDebugHeader.h"
 #import "SYTagListView.h"
+#import "SVProgressHUD.h"
 #import "UIImage+CompressForSize.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

@@ -54,6 +54,8 @@ extension ZJATypeListCollectionView: UICollectionViewDelegate,UICollectionViewDa
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath)
         let editVC = ZJAEditSkuController()
+        let model: ZJAClothesModel = clothesModelList[indexPath.row]
+        editVC.clothesModel = model
         ZJATabBarController.sharedInstance.navigationController?.pushViewController(editVC, animated: true)
     }
     

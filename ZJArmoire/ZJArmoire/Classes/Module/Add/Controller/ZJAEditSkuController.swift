@@ -9,6 +9,8 @@
 import UIKit
 
 class ZJAEditSkuController: UIViewController {
+    
+    var clothesModel: ZJAClothesModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class ZJAEditSkuController: UIViewController {
     
     private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
-        title = "编辑单品"
+        title = "单品详情"
         view.addSubview(skuAddTableView)
         view.addSubview(confirmButton)
     }
@@ -48,8 +50,8 @@ class ZJAEditSkuController: UIViewController {
         }
     }
     
-    public lazy var skuAddTableView:ZJASKUAddTableView = {
-        let clothesTableView:ZJASkuEditTableView = ZJASkuEditTableView(frame: self.view.bounds, style: .plain)
+    public lazy var skuAddTableView: ZJASKUAddTableView = {
+        let clothesTableView:ZJASkuEditTableView = ZJASkuEditTableView(frame: self.view.bounds, style: .plain, model: self.clothesModel)
         clothesTableView.delaysContentTouches = false
         return clothesTableView
     }()

@@ -26,4 +26,9 @@ let CONFIG_YIGUI_TYPENAMES = ["上装","下装","鞋子","包包","配饰","内�
 let PATH_DATABASE_FILE = NSHomeDirectory() + "/Documents/ZJADatabase.sqlite3"
 let PATH_PHOTO_IMAGE = NSHomeDirectory() + "/Documents/Photo/"
 
+//本地存储KEY
 let KEY_USERDEFAULT_TYPE_COUNT = "YiguiCategoriesTypeCount"
+
+//通知事件KEY
+//添加完成衣服后的通知事件KEY
+let KEY_NOTIFICATION_ADD_SKU = "KEY_NOTIFICATION_ADD_SKU"

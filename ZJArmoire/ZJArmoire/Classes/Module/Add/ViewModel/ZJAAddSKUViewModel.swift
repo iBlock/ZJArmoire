@@ -52,6 +52,8 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
                 
                 self.saveClothesToDatabase(item: item, timeStamp: timeStamp)
             }
+            //添加衣服后发送完成通知
+            NotificationCenter.default.post(name: Notification.Name(KEY_NOTIFICATION_ADD_SKU), object: nil)
         }
     }
     

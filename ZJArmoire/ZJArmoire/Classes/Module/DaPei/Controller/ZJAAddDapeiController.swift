@@ -22,9 +22,9 @@ class ZJAAddDapeiController: UIViewController {
     func prepareUI() {
         title = "新建搭配"
         self.view.backgroundColor = UIColor.white
-        let clothesList = ZJATableClothes().fetchAllClothes(0)
-        let view = ZJAPhotoJointView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH/2, height: 200), photoList: clothesList)
-        self.view.addSubview(view)
+//        let clothesList = ZJATableClothes().fetchAllClothes(0)
+//        let view = ZJAPhotoJointView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH/2, height: 200), photoList: clothesList)
+//        self.view.addSubview(view)
     }
 
 }

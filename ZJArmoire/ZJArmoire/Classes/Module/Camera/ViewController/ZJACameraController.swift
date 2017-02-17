@@ -56,9 +56,6 @@ class ZJACameraController: UIViewController {
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
         
-//        if typeName == nil {
-//            typeName = "上装"
-//        }
         if yiguiType == nil {
             yiguiType = 0
         }

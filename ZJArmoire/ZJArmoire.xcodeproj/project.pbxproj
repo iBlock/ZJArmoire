@@ -76,6 +76,7 @@
 		CCC96DBC1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC96DBB1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift */; };
 		CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC96DBD1DB4943A00465131 /* ZJAYiGuiTypeCell.swift */; };
 		CCDB8CA31E2C684400DC768B /* ZJATableTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDB8CA21E2C684400DC768B /* ZJATableTags.swift */; };
+		CCF65EF01E558291006F2F93 /* ZJAEditSkuPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF65EEF1E558290006F2F93 /* ZJAEditSkuPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +192,7 @@
 		CCC96DBB1DB3BA3D00465131 /* ZJAHomeTuiJianCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeTuiJianCell.swift; sourceTree = "<group>"; };
 		CCC96DBD1DB4943A00465131 /* ZJAYiGuiTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAYiGuiTypeCell.swift; sourceTree = "<group>"; };
 		CCDB8CA21E2C684400DC768B /* ZJATableTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATableTags.swift; sourceTree = "<group>"; };
+		CCF65EEF1E558290006F2F93 /* ZJAEditSkuPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAEditSkuPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -687,17 +689,26 @@
 		CCC82FDD1DBA48B3009DFD21 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CCF65EEE1E558229006F2F93 /* TableViewCell */,
 				375E30FD1DF0471700FAF03D /* HeaderAndFooter */,
-				37BF233D1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift */,
 				37BF232C1DED820500666B52 /* ZJASKUAddTableView.swift */,
+				CC13E64D1E54316F00F86BC7 /* ZJASkuEditTableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CCF65EEE1E558229006F2F93 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CCF65EEF1E558290006F2F93 /* ZJAEditSkuPhotoCell.swift */,
+				37BF233D1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift */,
 				37BF23361DEDA4F700666B52 /* ZJASKUAddCell.swift */,
 				37BF23451DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift */,
 				37BF23471DF0005900666B52 /* ZJASKUTypeViewCell.swift */,
 				37BF23491DF002B700666B52 /* ZJASKUTypeCollectionCell.swift */,
 				CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */,
-				CC13E64D1E54316F00F86BC7 /* ZJASkuEditTableView.swift */,
 			);
-			path = View;
+			name = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -879,6 +890,7 @@
 				37D68EFB1DB7301400EFC185 /* ZJACameraEditActionView.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
 				CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */,
+				CCF65EF01E558291006F2F93 /* ZJAEditSkuPhotoCell.swift in Sources */,
 				37D68EFE1DB796F000EFC185 /* ZJACameraManager.swift in Sources */,
 				CC303CA51DF50DFE00B262A7 /* ZJATextField.m in Sources */,
 				CC2EA8491E505B2300C62F1E /* ZJATableDapei.swift in Sources */,

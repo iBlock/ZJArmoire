@@ -21,7 +21,6 @@ class ZJASKUAddPhotoCell: UICollectionViewCell {
     }
     
     public func configCell(image: UIImage, isEdit: Bool) {
-//        photoImageView.image = image
         photoImageView.setImage(image, for: .normal)
         deleteButton.isHidden = !isEdit
     }

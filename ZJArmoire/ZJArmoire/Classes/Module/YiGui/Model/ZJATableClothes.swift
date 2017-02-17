@@ -67,33 +67,36 @@ class ZJATableClothes: NSObject {
     }
     
     //获取指定类型的衣服
-    func fetchAllClothes(_ type: NSInteger) -> [ZJAClothesModel]? {
-        var allClothes = [ZJAClothesModel]()
-        //指定查询条件
-        let query = table_clothes.filter(t_clothes_type == Int64(type))
-        do {
-            //获取数据库连接
-            db = try Connection(PATH_DATABASE_FILE)
-            for clothes in try db.prepare(query) {
-                let model = ZJAClothesModel()
-                let imagePath = PATH_PHOTO_IMAGE + clothes[t_clothes_photo_name]
-                model.type = clothes[t_clothes_type]
-                model.uuid = clothes[t_clothes_uuid]
-                model.tags = clothes[t_clothes_tags]
-                if let image = UIImage(contentsOfFile: imagePath) {
-                    model.clothesImg = image
-                } else {
-                    model.clothesImg = UIImage()
-                    print("%s图片找不到了",clothes[t_clothes_photo_name])
+    func fetchAllClothes(_ type: NSInteger, block:@escaping (([ZJAClothesModel])->Void)) {
+        DispatchQueue.global().async {
+            var allClothes = [ZJAClothesModel]()
+            //指定查询条件
+            let query = self.table_clothes.filter(self.t_clothes_type == Int64(type))
+            do {
+                //获取数据库连接
+                self.db = try Connection(PATH_DATABASE_FILE)
+                for clothes in try self.db.prepare(query) {
+                    let model = ZJAClothesModel()
+                    let imagePath = PATH_PHOTO_IMAGE + clothes[self.t_clothes_photo_name]
+                    model.type = clothes[self.t_clothes_type]
+                    model.uuid = clothes[self.t_clothes_uuid]
+                    model.tags = clothes[self.t_clothes_tags]
+                    if let image = UIImage(contentsOfFile: imagePath) {
+                        model.clothesImg = image
+                    } else {
+                        model.clothesImg = UIImage()
+                        print("%s图片找不到了",clothes[self.t_clothes_photo_name])
+                    }
+                    allClothes.append(model)
                 }
-                allClothes.append(model)
+            } catch {
+                print("创建衣服表失败")
+                print(error)
             }
-        } catch {
-            print("创建衣服表失败")
-            print(error)
+            DispatchQueue.main.async {
+                block(allClothes)
+            }
         }
-        
-        return allClothes
     }
     
 }

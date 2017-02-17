@@ -31,6 +31,7 @@ class ZJASKUAddTableView: UITableView {
         super.init(frame: frame, style: style)
         
         prepareUI()
+        prepareOverriteData()
         setUpViewConstraints()
     }
     
@@ -85,8 +86,16 @@ class ZJASKUAddTableView: UITableView {
         tagView.resetItemsFrame()
         
         let lineView = UIView()
-        lineView.backgroundColor = COLOR_TABLE_LINE
+        lineView.backgroundColor = COLOR_BORDER_LINE
         tagView.addSubview(lineView)
+
+        let bottomLineView = UIView()
+        bottomLineView.backgroundColor = COLOR_BORDER_LINE
+        tagView.addSubview(bottomLineView)
+        bottomLineView.snp.makeConstraints({ (make) in
+            make.left.right.bottom.equalTo(0)
+            make.height.equalTo(0.5)
+        })
         
         self.tagTitleView.snp.makeConstraints { (make) in
             make.left.equalTo(15)
@@ -95,7 +104,7 @@ class ZJASKUAddTableView: UITableView {
         }
         
         lineView.snp.makeConstraints({ (make) in
-            make.left.right.bottom.equalTo(0)
+            make.left.right.top.equalTo(0)
             make.height.equalTo(0.5)
         })
 
@@ -113,10 +122,6 @@ class ZJASKUAddTableView: UITableView {
         return tagView
     }()
     
-    func test() {
-        
-    }
-    
     private lazy var tagTitleView:UILabel = {
         let tagLabel:UILabel = UILabel()
         tagLabel.text = "标签"
@@ -131,10 +136,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
-            (headerView as! ZJASKUAddPhotoHeaderView).editButton.addTarget(self, action: #selector(didTappedEditButton(sender:)), for: .touchUpInside)
-            return headerView
-            
+            return self.customAddPhotoCellHeader(tableView: tableView)
         case 1:
             let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
                 ZJASKUTypeViewCellIdentifier)
@@ -149,35 +151,14 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         switch section {
         case 0:
-            let footerView = UIView()
-            footerView.backgroundColor = UIColor.white
-            let lineView = UIView()
-            lineView.backgroundColor = COLOR_TABLE_LINE
-            footerView.addSubview(lineView)
-            
-            lineView.snp.makeConstraints({ (make) in
-                make.left.equalTo(15)
-                make.bottom.right.equalTo(0)
-                make.height.equalTo(0.5)
-            })
-            
-            return footerView
+            return self.customAddPhotoCellFooterView(tableView: tableView)
         case 1:
             let footerView = UIView()
             let topLineView = UIView()
             topLineView.backgroundColor = COLOR_BORDER_LINE
-            let bottomLineView = UIView()
-            bottomLineView.backgroundColor = COLOR_TABLE_LINE
             footerView.addSubview(topLineView)
-            footerView.addSubview(bottomLineView)
-            
             topLineView.snp.makeConstraints({ (make) in
                 make.left.right.top.equalTo(0)
-                make.height.equalTo(0.5)
-            })
-            
-            bottomLineView.snp.makeConstraints({ (make) in
-                make.left.right.bottom.equalTo(0)
                 make.height.equalTo(0.5)
             })
             
@@ -190,11 +171,11 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
-            return 40
+            return self.fetchAddPhotoCellHeaderHeight()
         case 1:
             return 40
         case 2:
-            return tagListFrame.size.height
+            return self.fetchTagListViewHeight()
         default:
             return 0
         }
@@ -203,7 +184,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch section {
         case 0:
-            return 15
+            return self.fetchAddPhotoCellFooterHeight()
         case 1:
             return 15
         default:
@@ -214,13 +195,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
-            let itemHeight = cell.getCollectionItemHeight()
-            if skuItemArray.count > 2 {
-                return itemHeight*2+15
-            } else {
-                return itemHeight
-            }
+            return self.fetchAddPhotoCellHeight(tableView: tableView)
         case 1:
             if isClickTypeArrowButton == true {
                 let cell:ZJASKUTypeViewCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier) as! ZJASKUTypeViewCell
@@ -234,16 +209,12 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        var cell:UITableViewCell?;
         switch indexPath.section {
         case 0:
-            (cell as! ZJASKUAddCell).configCell()
+            self.configPhotoCell(cell: cell)
         case 1: break
         case 2: break
-//            (cell as! ZJASKUTagViewCell).configTagCell(tagList: currentSKUItemModel?.tagList)
-//            (cell as! ZJASKUTagViewCell).tagView.tagsArr = currentSKUItemModel?.tagList
         default: break
-            
         }
     }
     
@@ -257,6 +228,11 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             }
         case 1:
             let headerView = view as! ZJASKUTypeHeaderView
+            if isCanEditSku() == false {
+                headerView.arrowButton.isHidden = true
+            } else {
+                headerView.arrowButton.isHidden = false
+            }
             headerView.arrowButton.addTarget(self, action: #selector(didTappendArrowButton(sender:)), for: .touchUpInside)
             let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
             headerView.addGestureRecognizer(panGester)
@@ -265,6 +241,12 @@ extension ZJASKUAddTableView: UITableViewDelegate {
                 headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[category])
             } else {
                 headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[0])
+            }
+        case 2:
+            if isCanEditSku() == true {
+                tagListHeaderView.isUserInteractionEnabled = true
+            } else {
+                tagListHeaderView.isUserInteractionEnabled = false
             }
         default: break
         }
@@ -289,16 +271,7 @@ extension ZJASKUAddTableView: UITableViewDataSource {
         var cell:UITableViewCell?;
         switch indexPath.section {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
-            (cell as! ZJASKUAddCell).clickIndexBlock = {[weak self] (itemModel:ZJASKUItemModel) in
-                self?.currentSKUItemModel = itemModel
-                self?.tagListHeaderView.reset(withTags: itemModel.tagList)
-                let indexSet = NSIndexSet(index: 1)
-                self?.reloadSections(indexSet as IndexSet, with: .automatic)
-            }
-            (cell as! ZJASKUAddCell).clickAddButtonblock = {[weak self] in
-                self?.skuDelegate?.didTappedAddPhotoButton()
-            }
+            cell = self.customAddPhotoCell(tableView: tableView)
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: ZJASKUTypeViewCellIdentifier)
             (cell as! ZJASKUTypeViewCell).clickTypeBtnBlock =
@@ -320,6 +293,9 @@ extension ZJASKUAddTableView: UITableViewDataSource {
 extension ZJASKUAddTableView {
     
     @objc func didTappendArrowButton(sender:UIButton) {
+        if self.isCanEditSku() == false {
+            return
+        }
         isClickTypeArrowButton = !isClickTypeArrowButton
         let index = NSIndexSet(index: 1)
         self.beginUpdates()
@@ -338,4 +314,77 @@ extension ZJASKUAddTableView {
         reloadSections(index as IndexSet, with: .none)
     }
     
+}
+
+// MARK: - Overrite Method
+extension ZJASKUAddTableView {
+    
+    func prepareOverriteData() {
+        
+    }
+    
+    func configPhotoCell(cell: UITableViewCell) {
+        (cell as! ZJASKUAddCell).configCell()
+    }
+    
+    func fetchAddPhotoCellHeaderHeight() -> CGFloat {
+        return 40
+    }
+    
+    func fetchTagListViewHeight() -> CGFloat {
+        return tagListFrame.size.height
+    }
+    
+    func fetchAddPhotoCellHeight(tableView: UITableView) -> CGFloat {
+        let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
+        let itemHeight = cell.getCollectionItemHeight()
+        if skuItemArray.count > 2 {
+            return itemHeight*2+15
+        } else {
+            return itemHeight
+        }
+    }
+    
+    func fetchAddPhotoCellFooterHeight() -> CGFloat {
+        return 15
+    }
+    
+    func customAddPhotoCellHeader(tableView: UITableView) -> UIView {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
+        (headerView as! ZJASKUAddPhotoHeaderView).editButton.addTarget(self, action: #selector(didTappedEditButton(sender:)), for: .touchUpInside)
+        return headerView!
+    }
+    
+    func customAddPhotoCellFooterView(tableView: UITableView) -> UIView {
+        let footerView = UIView()
+        footerView.backgroundColor = UIColor.white
+        let lineView = UIView()
+        lineView.backgroundColor = COLOR_TABLE_LINE
+        footerView.addSubview(lineView)
+        
+        lineView.snp.makeConstraints({ (make) in
+            make.left.equalTo(15)
+            make.bottom.right.equalTo(0)
+            make.height.equalTo(0.5)
+        })
+        return footerView
+    }
+    
+    func customAddPhotoCell(tableView: UITableView) -> UITableViewCell {
+        let cell:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
+        (cell as! ZJASKUAddCell).clickIndexBlock = {[weak self] (itemModel:ZJASKUItemModel) in
+            self?.currentSKUItemModel = itemModel
+            self?.tagListHeaderView.reset(withTags: itemModel.tagList)
+            let indexSet = NSIndexSet(index: 1)
+            self?.reloadSections(indexSet as IndexSet, with: .automatic)
+        }
+        (cell as! ZJASKUAddCell).clickAddButtonblock = {[weak self] in
+            self?.skuDelegate?.didTappedAddPhotoButton()
+        }
+        return cell!
+    }
+    
+    func isCanEditSku() -> Bool {
+        return true
+    }
 }

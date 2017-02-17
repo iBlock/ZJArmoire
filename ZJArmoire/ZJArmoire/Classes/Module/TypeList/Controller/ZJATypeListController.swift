@@ -4,7 +4,7 @@
 //
 //  Created by iBlock on 16/10/21.
 //  Copyright © 2016年 iBlock. All rights reserved.
-//
+//  单个类别衣服列表
 
 import UIKit
 
@@ -14,35 +14,48 @@ class ZJATypeListController: UIViewController {
     var yiguiType:NSInteger!
     var errorView: ZJAErrorView?
     let userDefault = UserDefaults.standard
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+        prepareData()
         setupViewConstraints()
+        loadClothesInDatabase()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let list = ZJATableClothes().fetchAllClothes(yiguiType)
+    }
+    
+    func loadClothesInDatabase() {
+        ZJATableClothes().fetchAllClothes(yiguiType) { [weak self] (list) in
+            self?.prepareTypeListData(list: list)
+        }
+    }
+    
+    func prepareData() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadClothesInDatabase), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_ADD_SKU), object: nil)
+    }
+    
+    func prepareTypeListData(list: Array<ZJAClothesModel>) {
+        loadingView.stopAnimating()
         if let countList = userDefault.object(forKey: KEY_USERDEFAULT_TYPE_COUNT) {
             countDic = NSMutableDictionary(dictionary: countList as! NSDictionary)
         } else {
             countDic = NSMutableDictionary()
         }
-        
-        if list?.count == 0 {
-            self.errorView = view.loadErrorView()
-            self.errorView?.errorButtonClick = { [weak self]() -> () in
+        if list.count == 0 {
+            errorView = view.loadErrorView()
+            errorView?.errorButtonClick = { [weak self]() -> () in
                 self?.didTappedAddButton(sender: nil)
             }
         } else {
-            countDic.setValue(String(list!.count), forKey: String(yiguiType))
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let list = ZJATableClothes().fetchAllClothes(yiguiType) {
-            if (errorView != nil) && list.count > 0{
-                errorView?.removeFromSuperview()
-            }
+            errorView?.removeFromSuperview()
             countDic.setValue(String(list.count), forKey: String(yiguiType))
             userDefault.set(countDic, forKey: KEY_USERDEFAULT_TYPE_COUNT)
             typeListCollectionView.clothesModelList = list
@@ -60,11 +73,17 @@ class ZJATypeListController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_Add", highlightedImage: "Global_Navi_Add", target: self, action: #selector(didTappedAddButton(sender:)))
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(typeListCollectionView)
+        view.addSubview(loadingView)
     }
     
     private func setupViewConstraints() {
         typeListCollectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.size.equalTo(CGSize(width: 100, height: 100))
         }
     }
     
@@ -89,5 +108,10 @@ class ZJATypeListController: UIViewController {
     private lazy var typeListCollectionView: ZJATypeListCollectionView = {
         let collectionView: ZJATypeListCollectionView = ZJATypeListCollectionView(frame: self.view.bounds)
         return collectionView
+    }()
+    
+    private lazy var loadingView: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        return activity
     }()
 }

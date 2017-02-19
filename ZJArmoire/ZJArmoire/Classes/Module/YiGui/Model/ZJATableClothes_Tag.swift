@@ -17,7 +17,7 @@ class ZJATableClothes_Tag: NSObject {
     
     //衣服和标签的关联表
     private let table_clothes_tag = Table("Table_Clothes_Tag")
-    private let t_yf_tag_id = Expression<Int64>("id")
+    private let t_yf_tag_id = Expression<Int>("id")
     private let t_yf_tag_clothes_id = Expression<String>("clothes_id")
     private let t_yf_tag_tag_id = Expression<String>("tag_id")
     

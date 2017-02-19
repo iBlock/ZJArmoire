@@ -10,7 +10,7 @@ import UIKit
 
 class ZJASKUItemModel: NSObject {
     var photoImage:UIImage?
-    var category:NSInteger?
-    var tagList:Array<Any>?
-    var isSelecter:Bool?
+    var category:Int!
+    var tagList:Array<String>?
+    var isSelecter:Bool!
 }

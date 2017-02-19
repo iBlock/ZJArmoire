@@ -38,6 +38,7 @@
 		CC2EA84B1E505B4200C62F1E /* ZJATableDapei_Clothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2EA84A1E505B4200C62F1E /* ZJATableDapei_Clothes.swift */; };
 		CC2EA84D1E52B27700C62F1E /* ZJAClothesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2EA84C1E52B27700C62F1E /* ZJAClothesModel.swift */; };
 		CC303CA51DF50DFE00B262A7 /* ZJATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CC303CA41DF50DFE00B262A7 /* ZJATextField.m */; };
+		CC457FEC1E59C28F001189CA /* ZJADapeiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC457FEB1E59C28F001189CA /* ZJADapeiModel.swift */; };
 		CC56432B1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */; };
 		CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */; };
 		CC5CFEE41E2B35AA00B9EBE6 /* ZJATableClothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5CFEE31E2B35AA00B9EBE6 /* ZJATableClothes.swift */; };
@@ -149,6 +150,7 @@
 		CC2EA84C1E52B27700C62F1E /* ZJAClothesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAClothesModel.swift; sourceTree = "<group>"; };
 		CC303CA31DF50DFE00B262A7 /* ZJATextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJATextField.h; sourceTree = "<group>"; };
 		CC303CA41DF50DFE00B262A7 /* ZJATextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJATextField.m; sourceTree = "<group>"; };
+		CC457FEB1E59C28F001189CA /* ZJADapeiModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADapeiModel.swift; sourceTree = "<group>"; };
 		CC56432A1DF06EE300FEC5A8 /* ZJASKUTagViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASKUTagViewCell.swift; sourceTree = "<group>"; };
 		CC56432C1DF0846C00FEC5A8 /* SYTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYTagListView.h; sourceTree = "<group>"; };
 		CC56432D1DF0846C00FEC5A8 /* SYTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYTagListView.m; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				CC2EA8481E505B2300C62F1E /* ZJATableDapei.swift */,
 				CC2EA84A1E505B4200C62F1E /* ZJATableDapei_Clothes.swift */,
 				CC2EA84C1E52B27700C62F1E /* ZJAClothesModel.swift */,
+				CC457FEB1E59C28F001189CA /* ZJADapeiModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -903,6 +906,7 @@
 				37BF23371DEDA4F700666B52 /* ZJASKUAddCell.swift in Sources */,
 				CC26033B1DA4131B0090F916 /* HttpUtil.m in Sources */,
 				CC5CFEE61E2B39CD00B9EBE6 /* ZJASQLiteManager.swift in Sources */,
+				CC457FEC1E59C28F001189CA /* ZJADapeiModel.swift in Sources */,
 				37D68EF91DB72FC800EFC185 /* ZJACameraEditController.swift in Sources */,
 				CCBFCCEE1DA37F3300D80C78 /* ZJADaPeiController.swift in Sources */,
 				CCBFCCE01D9E33BD00D80C78 /* ZJAYiGuiViewController.swift in Sources */,

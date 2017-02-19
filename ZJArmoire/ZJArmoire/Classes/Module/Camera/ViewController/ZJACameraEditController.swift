@@ -13,7 +13,7 @@ class ZJACameraEditController: UIViewController {
     typealias ConfirmPhotoCallback = () -> ()
     var previewImage:UIImage?
 //    var typeName: String?
-    var type: NSInteger?
+    var type: Int?
     var isPushAddSKUController:Bool = true
     
     var confirmPhotoBlock: ConfirmPhotoCallback?

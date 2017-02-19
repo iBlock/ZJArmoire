@@ -11,7 +11,7 @@ import UIKit
 class ZJATypeListController: UIViewController {
     
     var countDic: NSMutableDictionary!
-    var yiguiType:NSInteger!
+    var yiguiType:Int!
     var errorView: ZJAErrorView?
     let userDefault = UserDefaults.standard
     
@@ -39,7 +39,7 @@ class ZJATypeListController: UIViewController {
     }
     
     func prepareData() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadClothesInDatabase), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_ADD_SKU), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadClothesInDatabase), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_REFRESH_SKU), object: nil)
     }
     
     func prepareTypeListData(list: Array<ZJAClothesModel>) {
@@ -56,11 +56,11 @@ class ZJATypeListController: UIViewController {
             }
         } else {
             errorView?.removeFromSuperview()
-            countDic.setValue(String(list.count), forKey: String(yiguiType))
-            userDefault.set(countDic, forKey: KEY_USERDEFAULT_TYPE_COUNT)
-            typeListCollectionView.clothesModelList = list
-            typeListCollectionView.reloadData()
         }
+        countDic.setValue(String(list.count), forKey: String(yiguiType))
+        userDefault.set(countDic, forKey: KEY_USERDEFAULT_TYPE_COUNT)
+        typeListCollectionView.clothesModelList = list
+        typeListCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

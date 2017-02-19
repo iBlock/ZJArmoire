@@ -111,7 +111,7 @@ class ZJASKUAddTableView: UITableView {
         tagView.addSKUTag({ [weak self](tagNameList) in
             DispatchQueue.main.async {
                 self?.reloadData()
-                self?.currentSKUItemModel?.tagList = tagNameList!
+                self?.currentSKUItemModel?.tagList = tagNameList as? Array<String>
             }
         })
         
@@ -238,7 +238,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             headerView.addGestureRecognizer(panGester)
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
             if let category = currentSKUItemModel?.category {
-                headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[category])
+                headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[Int(category)])
             } else {
                 headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[0])
             }

@@ -11,6 +11,22 @@ import Foundation
 class ZJAClothesModel: NSObject {
     var clothesImg: UIImage!
     var uuid: String!
-    var type: Int64!
+    var type: Int!
     var tags: String?
+    var day_air: Int?
+    var night_air: Int?
+    
+    override init() {
+        super.init()
+    }
+    
+    init(skuModel: ZJASKUItemModel) {
+        super.init()
+        clothesImg = skuModel.photoImage
+        type = skuModel.category
+        tags = skuModel.tagList?.joined(separator: ",")
+        if tags?.characters.count == 0 {
+            tags = nil
+        }
+    }
 }

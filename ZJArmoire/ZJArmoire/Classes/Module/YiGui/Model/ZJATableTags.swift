@@ -16,7 +16,7 @@ class ZJATableTags: NSObject {
     
     //标签表
     private let table_tag = Table("Table_Tag_List")
-    private let t_tag_id = Expression<Int64>("id")
+    private let t_tag_id = Expression<Int>("id")
     private let t_tag_name = Expression<String>("tag_name")
     
     func initTable() {

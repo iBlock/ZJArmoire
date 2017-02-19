@@ -53,7 +53,7 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
                 self.saveClothesToDatabase(item: item, timeStamp: timeStamp)
             }
             //添加衣服后发送完成通知
-            NotificationCenter.default.post(name: Notification.Name(KEY_NOTIFICATION_ADD_SKU), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(KEY_NOTIFICATION_REFRESH_SKU), object: nil)
         }
     }
     
@@ -70,7 +70,11 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
             model.photoName = timeStr
             model.uuid = random
             if let tagList = item.tagList {
-                model.tagList = (tagList as! Array<String>).joined(separator: ",")
+                if tagList.count > 0 {
+                    model.tagList = tagList.joined(separator: ",")
+                } else {
+                    model.tagList = nil
+                }
             }
             let isSuccess: Bool =  model.insert()
             if isSuccess == false {
@@ -86,7 +90,7 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
     func saveTagsToDatabase(item: ZJASKUItemModel, clothesName: String) {
         if let tagList = item.tagList {
             for tag in tagList {
-                let tagName: String = tag as! String
+                let tagName: String = tag
                 let tagModel: ZJATableTags = ZJATableTags()
                 tagModel.tagName = tagName
                 let isSuccess = tagModel.insert()

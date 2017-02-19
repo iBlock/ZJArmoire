@@ -14,19 +14,19 @@ class ZJATableDapei: NSObject {
     var db: Connection!
     var clothesIdList: Array<String>!
     var dapei_date: String?
-    var day_temperature: Int64?
-    var night_temperature: Int64?
+    var day_temperature: Int?
+    var night_temperature: Int?
     
     //搭配记录表
     private let table_dapei = Table("Table_DaPei_List")
-    private let t_dapei_id = Expression<Int64>("id")
+    private let t_dapei_id = Expression<Int>("id")
     private let t_dapei_date = Expression<String?>("day_timer")
-    private let t_dapei_day_air = Expression<Int64?>("day_air_temperature")
-    private let t_dapei_night_air = Expression<Int64?>("night_air_temperature")
+    private let t_dapei_day_air = Expression<Int?>("day_air_temperature")
+    private let t_dapei_night_air = Expression<Int?>("night_air_temperature")
     //搭配次数
-    private let t_dapei_count = Expression<Int64>("dapei_count")
+    private let t_dapei_count = Expression<Int>("dapei_count")
     //dapei_state搭配状态，0：创建搭配 1：已使用搭配
-    private let t_dapei_state = Expression<Int64>("dapei_state")
+    private let t_dapei_state = Expression<Int>("dapei_state")
 //    private let t_prepare_dapei_date = Expression<String>("prepare_dapei_date")
     
     func initTable() {
@@ -62,7 +62,7 @@ class ZJATableDapei: NSObject {
     }
     
     /** 根据时间查询预先搭配好的记录 */
-    func fetchPrepareDapeiId(dapeiDate: String) -> Int64 {
+    func fetchPrepareDapeiId(dapeiDate: String) -> Int {
         let query = table_dapei.filter(t_dapei_date == dapeiDate && t_dapei_state == 0)
         do {
             //获取数据库连接
@@ -77,10 +77,34 @@ class ZJATableDapei: NSObject {
         return -1
     }
     
-    func fetchDapei(dayTemp: Int64, nightTemp: Int64) -> Int64 {
-        var dayAirList: Array<Int64> = Array()
+    func fetchAllDapei(block:@escaping (([ZJADapeiModel])->Void)) {
+        DispatchQueue.global().async {
+            var dapeiList = [ZJADapeiModel]()
+            do {
+                self.db = try Connection(PATH_DATABASE_FILE)
+                for dapei in try self.db.prepare(self.table_dapei) {
+                    let model = ZJADapeiModel()
+                    model.dapei_time = dapei[self.t_dapei_date]
+                    model.day_temp = dapei[self.t_dapei_day_air]
+                    model.night_temp = dapei[self.t_dapei_night_air]
+                    let dpID = dapei[self.t_dapei_id]
+                    model.clothesList = ZJATableDapei_Clothes().fetchDapeiDetail(dpID)
+                    dapeiList.append(model)
+                }
+            } catch {
+                print("获取搭配列表失败。")
+                print(error)
+            }
+            DispatchQueue.main.async {
+                block(dapeiList)
+            }
+        }
+    }
+    
+    func fetchDapei(dayTemp: Int, nightTemp: Int) -> Int {
+        var dayAirList: Array<Int> = Array()
         dayAirList.append(dayTemp)
-        var nightAirList: Array<Int64> = Array()
+        var nightAirList: Array<Int> = Array()
         nightAirList.append(nightTemp)
         for i in 1 ..< 4 {
             dayAirList.append(dayTemp-i)

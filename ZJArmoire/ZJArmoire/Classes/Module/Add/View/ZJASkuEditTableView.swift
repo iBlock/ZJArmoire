@@ -13,20 +13,24 @@ class ZJASkuEditTableView: ZJASKUAddTableView {
     var clothesModel: ZJAClothesModel!
     var isEditSku: Bool = false
     
+    let editPhotoCellIdentifier = "ZJASkuEditTableViewCell"
+    
     init(frame: CGRect, style: UITableViewStyle, model: ZJAClothesModel) {
         super.init(frame: frame, style: style)
         clothesModel = model
         currentSKUItemModel = ZJASKUItemModel()
-        currentSKUItemModel?.category = NSInteger(clothesModel.type)
+        currentSKUItemModel?.category = clothesModel.type
         currentSKUItemModel?.photoImage = clothesModel.clothesImg
         currentSKUItemModel?.tagList = clothesModel.tags?.components(separatedBy: ",")
+    }
+    
+    public func updateClothes() {
+        clothesModel.type = currentSKUItemModel?.category
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    let editPhotoCellIdentifier = "ZJASkuEditTableViewCell"
 
     override func fetchAddPhotoCellHeaderHeight() -> CGFloat {
         return 0

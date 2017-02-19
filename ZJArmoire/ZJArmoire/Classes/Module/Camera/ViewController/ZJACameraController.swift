@@ -16,7 +16,7 @@ class ZJACameraController: UIViewController {
     var avCaptureSesstion: AVCaptureSession?
     var addPhotoBlock: ConfirmPhotoCallback?
 //    var typeName: String?
-    var yiguiType:NSInteger?
+    var yiguiType:Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()

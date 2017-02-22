@@ -13,6 +13,7 @@ PODS:
   - SnapKit (3.0.1)
   - SVProgressHUD (2.1.2)
   - TTRangeSlider (1.0.5)
+  - TZImagePickerController (1.7.8)
 
 DEPENDENCIES:
   - Alamofire (= 4.0.1)
@@ -25,15 +26,21 @@ DEPENDENCIES:
   - SnapKit (= 3.0.1)
   - SVProgressHUD (= 2.1.2)
   - TTRangeSlider (= 1.0.5)
+  - TZImagePickerController (from `https://github.com/iBlock/TZImagePickerController.git`)
 
 EXTERNAL SOURCES:
   DJDebug:
     :svn: http://svn.djcorp.cn:8088/dianshangwuxian/trunk/mobile/jzt/ios/DJComponents/DJDebug
+  TZImagePickerController:
+    :git: https://github.com/iBlock/TZImagePickerController.git
 
 CHECKOUT OPTIONS:
   DJDebug:
-    :revision: '374851'
+    :revision: '375816'
     :svn: http://svn.djcorp.cn:8088/dianshangwuxian/trunk/mobile/jzt/ios/DJComponents/DJDebug
+  TZImagePickerController:
+    :commit: 7da50c4b736db6d5b2b8e5db4de620ab0c10e5c5
+    :git: https://github.com/iBlock/TZImagePickerController.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -47,7 +54,8 @@ SPEC CHECKSUMS:
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   TTRangeSlider: 2f2ce4a33b32bb323c6575b9f5161c4664459c58
+  TZImagePickerController: 87a138ae5d585225aaa6c8abe2cface0f0ad19dd
 
-PODFILE CHECKSUM: 8bb6e64a56dbb1317973a1b452d14de26ec95fe2
+PODFILE CHECKSUM: 10c5f2a133e1145fa09bc37d4b2a3c895f1f19e4
 
 COCOAPODS: 1.2.0.beta.1

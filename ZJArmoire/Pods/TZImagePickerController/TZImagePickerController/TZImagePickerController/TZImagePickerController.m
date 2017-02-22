@@ -14,6 +14,8 @@
 #import "UIView+Layout.h"
 #import "TZImageManager.h"
 
+#define ColorOfHex(value) [UIColor colorWithRed:((value&0xFF0000)>>16)/255.0 green:((value&0xFF00)>>8)/255.0 blue:(value&0xFF)/255.0 alpha:1.0]
+
 @interface TZImagePickerController () {
     NSTimer *_timer;
     UILabel *_tipLabel;
@@ -576,7 +578,8 @@
             }
 
             _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, top, self.view.tz_width, tableViewHeight) style:UITableViewStylePlain];
-            _tableView.rowHeight = 70;
+            _tableView.rowHeight = 50;
+            _tableView.estimatedRowHeight = 50;
             _tableView.tableFooterView = [[UIView alloc] init];
             _tableView.dataSource = self;
             _tableView.delegate = self;
@@ -614,6 +617,41 @@
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor whiteColor];
+    UIView *topLine = [[UIView alloc] init];
+    topLine.backgroundColor = ColorOfHex(0xd6d6d6);
+    UIView *bottomLine = [[UIView alloc] init];
+    bottomLine.backgroundColor = ColorOfHex(0xd6d6d6);
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.textColor = [UIColor grayColor];
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    [headerView addSubview:topLine];
+    [headerView addSubview:titleLabel];
+    [headerView addSubview:bottomLine];
+    
+    topLine.frame = CGRectMake(0, 0, self.view.tz_width, 0.5);
+    bottomLine.frame = CGRectMake(0, 39.5, self.view.tz_width, 0.5);
+    titleLabel.frame = CGRectMake(10, (40-15)/2, 200, 15);
+    
+    if (section == 0) {
+        titleLabel.text = @"我的衣柜";
+    } else if (section == 1) {
+        titleLabel.text = @"系统相册";
+    }
+    return headerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
+    return 40;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

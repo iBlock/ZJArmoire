@@ -279,7 +279,7 @@
 /// For fitting iOS6
 - (void)layoutSubviews {
     if (iOS7Later) [super layoutSubviews];
-    _selectedCountButton.frame = CGRectMake(self.tz_width - 24 - 30, 23, 24, 24);
+    _selectedCountButton.frame = CGRectMake(self.tz_width - 24 - 30, (50-24)/2, 24, 24);
 }
 
 - (void)layoutSublayersOfLayer:(CALayer *)layer {
@@ -293,7 +293,7 @@
         UIImageView *posterImageView = [[UIImageView alloc] init];
         posterImageView.contentMode = UIViewContentModeScaleAspectFill;
         posterImageView.clipsToBounds = YES;
-        posterImageView.frame = CGRectMake(0, 0, 70, 70);
+        posterImageView.frame = CGRectMake(0, 0, 50, 50);
         [self.contentView addSubview:posterImageView];
         _posterImageView = posterImageView;
     }
@@ -304,7 +304,7 @@
     if (_titleLabel == nil) {
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.font = [UIFont boldSystemFontOfSize:17];
-        titleLabel.frame = CGRectMake(80, 0, self.tz_width - 80 - 50, self.tz_height);
+        titleLabel.frame = CGRectMake(60, (50-15)/2, self.tz_width - 80 - 50, 15);
         titleLabel.textColor = [UIColor blackColor];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:titleLabel];

@@ -96,10 +96,10 @@ static CGFloat TZScreenScale;
 #pragma mark - Get Album
 
 /// 生成自定义Album对象
-- (void)getCustomAlbum:(NSArray *)imageList
-            completion:(void (^)(TZAlbumModel *))completion {
-    TZAlbumModel *albumModel = [self modelWithResult:imageList name:@"我的衣柜"];
-    if (completion) completion(albumModel);
+- (TZAlbumModel *)getCustomAlbumWithName:(NSString *)name
+                               imageList:(NSArray *)imageList{
+    TZAlbumModel *albumModel = [self modelWithResult:imageList name:name];
+    return albumModel;
 }
 
 /// Get Album 获得相册/相册数组

@@ -32,7 +32,7 @@
 /// 默认4列, TZPhotoPickerController中的照片collectionView
 @property (nonatomic, assign) NSInteger columnNumber;
 
-@property (nonatomic, strong) NSArray *customImageList;
+@property (nonatomic, strong) NSArray<TZAlbumModel *> *customAlbumList;
 
 @end
 
@@ -116,8 +116,10 @@
     [self hideProgressHUD];
 }
 
-- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount AlbumModel:(NSArray *)photoList delegate:(id<TZImagePickerControllerDelegate>)delegate {
-    self.customImageList = photoList;
+- (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
+                            AlbumModel:(NSArray<TZAlbumModel *> *)albumList
+                              delegate:(id<TZImagePickerControllerDelegate>)delegate {
+    self.customAlbumList = albumList;
     return [self initWithMaxImagesCount:maxImagesCount columnNumber:4 delegate:delegate pushPhotoPickerVc:YES];
 }
 
@@ -133,6 +135,7 @@
     _pushPhotoPickerVc = pushPhotoPickerVc;
     TZAlbumPickerController *albumPickerVc = [[TZAlbumPickerController alloc] init];
     albumPickerVc.columnNumber = columnNumber;
+    albumPickerVc.customAlbumArr = _customAlbumList.mutableCopy;
     self = [super initWithRootViewController:albumPickerVc];
     if (self) {
         self.maxImagesCount = maxImagesCount > 0 ? maxImagesCount : 9; // Default is 9 / 默认最大可选9张图片
@@ -277,12 +280,10 @@
         photoPickerVc.isFirstAppear = YES;
         photoPickerVc.columnNumber = self.columnNumber;
         
-        if (self.customImageList) {
-            [[TZImageManager manager] getCustomAlbum:self.customImageList completion:^(TZAlbumModel *model) {
-                photoPickerVc.model = model;
-                [self pushViewController:photoPickerVc animated:YES];
-                _didPushPhotoPickerVc = YES;
-            }];
+        if (self.customAlbumList) {
+            photoPickerVc.model = _customAlbumList[0];
+            [self pushViewController:photoPickerVc animated:YES];
+            _didPushPhotoPickerVc = YES;
         } else {
             [[TZImageManager manager] getCameraRollAlbum:self.allowPickingVideo allowPickingImage:self.allowPickingImage completion:^(TZAlbumModel *model) {
                 photoPickerVc.model = model;
@@ -515,6 +516,7 @@
     UITableView *_tableView;
 }
 @property (nonatomic, strong) NSMutableArray *albumArr;
+
 @end
 
 @implementation TZAlbumPickerController
@@ -534,8 +536,11 @@
     [super viewWillAppear:animated];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
     [imagePickerVc hideProgressHUD];
-    if (_albumArr) {
+    if (_albumArr || _customAlbumArr) {
         for (TZAlbumModel *albumModel in _albumArr) {
+            albumModel.selectedModels = imagePickerVc.selectedModels;
+        }
+        for (TZAlbumModel *albumModel in _customAlbumArr) {
             albumModel.selectedModels = imagePickerVc.selectedModels;
         }
         [_tableView reloadData];
@@ -586,14 +591,27 @@
 #pragma mark - UITableViewDataSource && Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _albumArr.count;
+    if (section == 0) {
+        return _customAlbumArr.count;
+    } else if (section == 1) {
+        return _albumArr.count;
+    }
+    return 0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TZAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TZAlbumCell"];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
     cell.selectedCountButton.backgroundColor = imagePickerVc.oKButtonTitleColorNormal;
-    cell.model = _albumArr[indexPath.row];
+    if (indexPath.section == 0) {
+        cell.model = _customAlbumArr[indexPath.row];
+    } else if (indexPath.section == 1) {
+        cell.model = _albumArr[indexPath.row];
+    }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -601,11 +619,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TZPhotoPickerController *photoPickerVc = [[TZPhotoPickerController alloc] init];
     photoPickerVc.columnNumber = self.columnNumber;
-    TZAlbumModel *model = _albumArr[indexPath.row];
+    TZAlbumModel *model; // = _albumArr[indexPath.row];
+    if (indexPath.section == 0) {
+        model = _customAlbumArr[indexPath.row];
+    } else if (indexPath.section == 1) {
+        model = _albumArr[indexPath.row];
+    }
     photoPickerVc.model = model;
     __weak typeof(self) weakSelf = self;
     [photoPickerVc setBackButtonClickHandle:^(TZAlbumModel *model) {
-        [weakSelf.albumArr replaceObjectAtIndex:indexPath.row withObject:model];
+        if (indexPath.section == 0) {
+            [weakSelf.customAlbumArr replaceObjectAtIndex:indexPath.row withObject:model];
+        } else if (indexPath.section == 1) {
+            [weakSelf.albumArr replaceObjectAtIndex:indexPath.row withObject:model];
+        }
     }];
     [self.navigationController pushViewController:photoPickerVc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

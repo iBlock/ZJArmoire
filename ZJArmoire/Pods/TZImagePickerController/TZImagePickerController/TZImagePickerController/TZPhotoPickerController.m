@@ -390,7 +390,7 @@ static CGSize AssetGridThumbnailSize;
     if (!tzImagePickerVc.allowPreview) {
         cell.selectPhotoButton.frame = cell.bounds;
     }
-    
+
     __weak typeof(cell) weakCell = cell;
     __weak typeof(self) weakSelf = self;
     __weak typeof(_numberImageView.layer) weakLayer = _numberImageView.layer;

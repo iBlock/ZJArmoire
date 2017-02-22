@@ -46,8 +46,8 @@
 - (void)getAllAlbums:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TZAlbumModel *> *models))completion;
 
 /// 获取自定义生成的Album对象
-- (void)getCustomAlbum:(NSArray *)imageList
-            completion:(void (^)(TZAlbumModel *))completion;
+- (TZAlbumModel *)getCustomAlbumWithName:(NSString *)name
+                               imageList:(NSArray *)imageList;
 
 /// Get Assets 获得Asset数组
 - (void)getAssetsFromFetchResult:(id)result allowPickingVideo:(BOOL)allowPickingVideo allowPickingImage:(BOOL)allowPickingImage completion:(void (^)(NSArray<TZAssetModel *> *models))completion;

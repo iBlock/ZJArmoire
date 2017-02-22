@@ -11,6 +11,8 @@ pod 'IQKeyboardManagerSwift', '4.0.7'
 pod 'TTRangeSlider', '1.0.5'
 pod 'SVProgressHUD', '2.1.2'
 
+pod 'TZImagePickerController', :git => "https://github.com/iBlock/TZImagePickerController.git"
+
 #只在 DEBUG 模式下使用
 pod 'DJDebug', :svn => "http://svn.djcorp.cn:8088/dianshangwuxian/trunk/mobile/jzt/ios/DJComponents/DJDebug", :configurations => ['Debug']
 pod 'FLEX','2.1.1',:configurations => ['Debug']

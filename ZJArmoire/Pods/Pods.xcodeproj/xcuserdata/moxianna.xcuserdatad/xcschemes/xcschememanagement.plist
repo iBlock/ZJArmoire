@@ -69,10 +69,35 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TZImagePickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0FC1A64D1FBD420901A4235811F5EB16</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18F4E85ACB7DFC4793ADE37B9AE7F96A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1ABC144D0855C93E9C57E484BEAC4A1F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3FCE57514D48346588FE469EB3F6F135</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47890C8404D53E4D3B1191229647611C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57165876DAD144411E56D327130F1EBB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6F12E6B3FD25A7A4DC68E2AF6422E1C4</key>
+		<key>85DDBD15DCCFF7E9C181ABBEB0E490AC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +127,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B74C95856D04D9345E802DBEC4B4E100</key>
+		<key>BAB9B4B2B851D079A0FCA5E250A3F360</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -123,16 +143,6 @@
 			<true/>
 		</dict>
 		<key>DF214DBDD55368FFADD476E14CFD5006</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F5D8FD32CB06AC6A4CC14B534D671373</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F71C2D85AFB40023B466913E03271D7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

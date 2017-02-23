@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: SCREEN_BOUNDS)
         window?.backgroundColor = UIColor.white
         window?.rootViewController = ZJANavigationController(rootViewController: ZJATabBarController.sharedInstance)
-//        window?.rootViewController = ZJATabBarController()
         window?.makeKeyAndVisible()
         let debugConfig = DJDebugConfig()
         DJDebug.initWith(debugConfig)

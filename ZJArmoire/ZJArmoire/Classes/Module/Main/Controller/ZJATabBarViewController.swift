@@ -35,7 +35,7 @@ class ZJATabBarController: UITabBarController {
         childViewController.tabBarItem.title = title
         childViewController.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -4)
         childViewController.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 12)], for: UIControlState.normal)
-        childViewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.colorWithHexString(hex: "00bb9c")], for: UIControlState.highlighted)
+//        childViewController.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName : UIColor.colorWithHexString(hex: "00bb9c")], for: UIControlState.highlighted)
         childViewController.tabBarItem.image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
         childViewController.tabBarItem.selectedImage = UIImage(named: selectedImageName)?.withRenderingMode(.alwaysOriginal)
     }

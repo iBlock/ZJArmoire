@@ -13,6 +13,7 @@ class ZJAAddDapeiController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+        setUpViewConstraints()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,10 +22,24 @@ class ZJAAddDapeiController: UIViewController {
     
     func prepareUI() {
         title = "新建搭配"
-        self.view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.white
+        view.addSubview(addCollectionView)
 //        let clothesList = ZJATableClothes().fetchAllClothes(0)
 //        let view = ZJAPhotoJointView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH/2, height: 200), photoList: clothesList)
 //        self.view.addSubview(view)
     }
+    
+    func setUpViewConstraints() {
+        addCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalTo(UIEdgeInsets.zero)
+        }
+    }
+    
+    private lazy var addCollectionView: ZJAAddDapeiCollectionView = {
+        let collectionView = ZJAAddDapeiCollectionView(frame: CGRect.zero)
+        collectionView.selectedAssets = []
+        collectionView.selectedPhotos = []
+        return collectionView
+    }()
 
 }

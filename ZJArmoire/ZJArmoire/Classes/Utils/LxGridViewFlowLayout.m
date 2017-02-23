@@ -181,7 +181,10 @@ CG_INLINE CGPoint CGPointOffset(CGPoint point, CGFloat dx, CGFloat dy)
             }
 
             _movingItemIndexPath = [self.collectionView indexPathForItemAtPoint:[longPress locationInView:self.collectionView]];
-            if ([self.dataSource respondsToSelector:@selector(collectionView:canMoveItemAtIndexPath:)] && [self.dataSource collectionView:self.collectionView canMoveItemAtIndexPath:_movingItemIndexPath] == NO) {
+            if (_movingItemIndexPath == nil) {
+                return;
+            }
+            if ([self.dataSource respondsToSelector:@selector(collectionView:canMoveLXItemAtIndex:)] && [self.dataSource collectionView:self.collectionView canMoveLXItemAtIndex:_movingItemIndexPath] == NO) {
                 _movingItemIndexPath = nil;
                 return;
             }

@@ -30,7 +30,7 @@
     didMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 
 - (BOOL)collectionView:(UICollectionView *)collectionView
-canMoveItemAtIndexPath:(NSIndexPath *)indexPath;
+  canMoveLXItemAtIndex:(NSIndexPath *)indexPath;
 - (BOOL)collectionView:(UICollectionView *)collectionView
        itemAtIndexPath:(NSIndexPath *)sourceIndexPath
     canMoveToIndexPath:(NSIndexPath *)destinationIndexPath;

@@ -56,7 +56,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        let cell: ZJASelectedPhotoCell = tableView.dequeueReusableCell(withIdentifier: selectedPhotoCellIdentifier) as! ZJASelectedPhotoCell
     }
 }
 

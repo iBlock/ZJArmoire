@@ -98,7 +98,8 @@ extension ZJASelectedPhotoCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     //MARK: - LxGridViewDataSource
-    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+
+    func collectionView(_ collectionView: UICollectionView!, canMoveLXItemAtIndex indexPath: IndexPath!) -> Bool {
         return indexPath.item < selectedPhotos.count
     }
     
@@ -121,13 +122,15 @@ extension ZJASelectedPhotoCell: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension ZJASelectedPhotoCell {
     func deleteBtnClick(sender: UIButton) {
-        selectedPhotos.remove(at: sender.tag)
-        selectedAssets.remove(at: sender.tag)
+        selectedPhotos.removeObject(at: sender.tag)
+        selectedAssets.removeObject(at: sender.tag)
         self.photoCollectionView.performBatchUpdates({
             let indexPath = NSIndexPath(item: sender.tag, section: 0)
             self.photoCollectionView.deleteItems(at: [indexPath as IndexPath])
         }) { (finish: Bool) in
             self.photoCollectionView.reloadData()
+            let height = self.photoCollectionView.getCollectionViewHeight()
+            self.delegate?.selectedPhotoCallback(selectedPhotos: self.selectedPhotos, photoCollectionViewHeight: height)
         }
     }
     

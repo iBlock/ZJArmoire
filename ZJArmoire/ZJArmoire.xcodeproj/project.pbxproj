@@ -51,6 +51,9 @@
 		CC8A55D61E5D9C9400F6AFDB /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */; };
 		CC8A55D91E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55D81E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m */; };
 		CC8A55DB1E5D9E6E00F6AFDB /* ZJAAddDapeiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55DA1E5D9E6E00F6AFDB /* ZJAAddDapeiCollectionView.swift */; };
+		CC8A55E01E5E87D500F6AFDB /* ZJAAddDapeiHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55DF1E5E87D500F6AFDB /* ZJAAddDapeiHeaderView.swift */; };
+		CC8A55E21E5E891900F6AFDB /* ZJANewDapeiTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55E11E5E891900F6AFDB /* ZJANewDapeiTableView.swift */; };
+		CC8A55E51E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55E41E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift */; };
 		CCA44ECF1E01136E0070FDB2 /* UIImage+CompressForSize.m in Sources */ = {isa = PBXBuildFile; fileRef = CCA44ECE1E01136E0070FDB2 /* UIImage+CompressForSize.m */; };
 		CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA7268D1DBA49AF0099BC98 /* ZJATypeListController.swift */; };
 		CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA7268F1DBA52AE0099BC98 /* UIBarButtonItemExtension.swift */; };
@@ -167,11 +170,14 @@
 		CC73E8F81D9D1AEE00C283D2 /* ZJArmoireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZJArmoireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJArmoireTests.swift; sourceTree = "<group>"; };
 		CC73E8FE1D9D1AEE00C283D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC8A55D41E5D9C9400F6AFDB /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
-		CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxGridViewFlowLayout.m; sourceTree = "<group>"; };
-		CC8A55D71E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAPreviewPhotoCell.h; sourceTree = "<group>"; };
-		CC8A55D81E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAPreviewPhotoCell.m; sourceTree = "<group>"; };
+		CC8A55D41E5D9C9400F6AFDB /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LxGridViewFlowLayout.h; path = ../../../Utils/LxGridViewFlowLayout.h; sourceTree = "<group>"; };
+		CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LxGridViewFlowLayout.m; path = ../../../Utils/LxGridViewFlowLayout.m; sourceTree = "<group>"; };
+		CC8A55D71E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZJAPreviewPhotoCell.h; path = ../../../Utils/ZJAPreviewPhotoCell.h; sourceTree = "<group>"; };
+		CC8A55D81E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZJAPreviewPhotoCell.m; path = ../../../Utils/ZJAPreviewPhotoCell.m; sourceTree = "<group>"; };
 		CC8A55DA1E5D9E6E00F6AFDB /* ZJAAddDapeiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddDapeiCollectionView.swift; sourceTree = "<group>"; };
+		CC8A55DF1E5E87D500F6AFDB /* ZJAAddDapeiHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddDapeiHeaderView.swift; sourceTree = "<group>"; };
+		CC8A55E11E5E891900F6AFDB /* ZJANewDapeiTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJANewDapeiTableView.swift; sourceTree = "<group>"; };
+		CC8A55E41E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASelectedPhotoCell.swift; sourceTree = "<group>"; };
 		CCA44ECD1E01136E0070FDB2 /* UIImage+CompressForSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CompressForSize.h"; sourceTree = "<group>"; };
 		CCA44ECE1E01136E0070FDB2 /* UIImage+CompressForSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CompressForSize.m"; sourceTree = "<group>"; };
 		CCA7268D1DBA49AF0099BC98 /* ZJATypeListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATypeListController.swift; sourceTree = "<group>"; };
@@ -415,6 +421,17 @@
 			path = ZJArmoireTests;
 			sourceTree = "<group>";
 		};
+		CC8A55E31E5E8AFE00F6AFDB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CC8A55DF1E5E87D500F6AFDB /* ZJAAddDapeiHeaderView.swift */,
+				CC8A55D71E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.h */,
+				CC8A55D81E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m */,
+				CC8A55E41E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		CCA7268A1DBA49960099BC98 /* TypeList */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,10 +553,6 @@
 				CC303CA41DF50DFE00B262A7 /* ZJATextField.m */,
 				CCA44ECD1E01136E0070FDB2 /* UIImage+CompressForSize.h */,
 				CCA44ECE1E01136E0070FDB2 /* UIImage+CompressForSize.m */,
-				CC8A55D41E5D9C9400F6AFDB /* LxGridViewFlowLayout.h */,
-				CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */,
-				CC8A55D71E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.h */,
-				CC8A55D81E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -627,8 +640,12 @@
 		CCBFCCE51DA37E5C00D80C78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CC8A55E31E5E8AFE00F6AFDB /* Cell */,
 				CC13E6511E54533F00F86BC7 /* ZJAPhotoJointView.swift */,
 				CC8A55DA1E5D9E6E00F6AFDB /* ZJAAddDapeiCollectionView.swift */,
+				CC8A55D41E5D9C9400F6AFDB /* LxGridViewFlowLayout.h */,
+				CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */,
+				CC8A55E11E5E891900F6AFDB /* ZJANewDapeiTableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -886,6 +903,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8A55E51E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift in Sources */,
 				CC8A55D91E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m in Sources */,
 				CC2EA84D1E52B27700C62F1E /* ZJAClothesModel.swift in Sources */,
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
@@ -904,6 +922,7 @@
 				CC5CFEE41E2B35AA00B9EBE6 /* ZJATableClothes.swift in Sources */,
 				CCC6CFD11E2DCD6600D35BC3 /* ZJATodayDapeiSelectorView.swift in Sources */,
 				CCC6CF821E2D18C900D35BC3 /* ZJATypeListCollectionView.swift in Sources */,
+				CC8A55E21E5E891900F6AFDB /* ZJANewDapeiTableView.swift in Sources */,
 				37D68EFB1DB7301400EFC185 /* ZJACameraEditActionView.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
 				CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */,
@@ -933,6 +952,7 @@
 				CCC6CF841E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift in Sources */,
 				CC8A55D61E5D9C9400F6AFDB /* LxGridViewFlowLayout.m in Sources */,
 				CCA726981DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift in Sources */,
+				CC8A55E01E5E87D500F6AFDB /* ZJAAddDapeiHeaderView.swift in Sources */,
 				CCBFCCD91D9E297F00D80C78 /* ZJAHomeViewController.swift in Sources */,
 				CCA726901DBA52AE0099BC98 /* UIBarButtonItemExtension.swift in Sources */,
 				CCDB8CA31E2C684400DC768B /* ZJATableTags.swift in Sources */,

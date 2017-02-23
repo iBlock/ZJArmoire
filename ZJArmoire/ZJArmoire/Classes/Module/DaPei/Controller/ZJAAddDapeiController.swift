@@ -23,23 +23,20 @@ class ZJAAddDapeiController: UIViewController {
     func prepareUI() {
         title = "新建搭配"
         view.backgroundColor = UIColor.white
-        view.addSubview(addCollectionView)
+        view.addSubview(dapeiTableView)
 //        let clothesList = ZJATableClothes().fetchAllClothes(0)
 //        let view = ZJAPhotoJointView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH/2, height: 200), photoList: clothesList)
 //        self.view.addSubview(view)
     }
     
     func setUpViewConstraints() {
-        addCollectionView.snp.makeConstraints { (make) in
+        dapeiTableView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets.zero)
         }
     }
     
-    private lazy var addCollectionView: ZJAAddDapeiCollectionView = {
-        let collectionView = ZJAAddDapeiCollectionView(frame: CGRect.zero)
-        collectionView.selectedAssets = []
-        collectionView.selectedPhotos = []
-        return collectionView
+    private lazy var dapeiTableView: ZJANewDapeiTableView = {
+        let tableView = ZJANewDapeiTableView(frame: CGRect.zero, style: .plain)
+        return tableView
     }()
-
 }

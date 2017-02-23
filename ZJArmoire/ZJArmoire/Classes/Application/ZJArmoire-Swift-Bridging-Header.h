@@ -16,7 +16,10 @@
 #import "UIView+Layout.h"
 #import "ZJAPreviewPhotoCell.h"
 #import "TZAssetModel.h"
+#import "TZImageManager.h"
 #import "LxGridViewFlowLayout.h"
+#import "TZImagePickerController.h"
+#import "TZPhotoPickerController.h"
 #import "UIImage+CompressForSize.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

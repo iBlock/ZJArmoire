@@ -48,11 +48,17 @@ class ZJASelectedPhotoCell: UITableViewCell {
     
     func prepareUI() {
         contentView.addSubview(photoCollectionView)
+        contentView.addSubview(bottomLine)
     }
     
     func setupViewConstraints() {
         photoCollectionView.snp.makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsets.zero)
+        }
+        
+        bottomLine.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(0)
+            make.height.equalTo(0.5)
         }
     }
     
@@ -62,6 +68,12 @@ class ZJASelectedPhotoCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
+    }()
+    
+    private lazy var bottomLine: UIView = {
+        let line = UIView()
+        line.backgroundColor = COLOR_TABLE_LINE
+        return line
     }()
 
 }
@@ -128,10 +140,14 @@ extension ZJASelectedPhotoCell {
             let indexPath = NSIndexPath(item: sender.tag, section: 0)
             self.photoCollectionView.deleteItems(at: [indexPath as IndexPath])
         }) { (finish: Bool) in
-            self.photoCollectionView.reloadData()
-            let height = self.photoCollectionView.getCollectionViewHeight()
-            self.delegate?.selectedPhotoCallback(selectedPhotos: self.selectedPhotos, photoCollectionViewHeight: height)
+            self.reloadPhotoCollectionView()
         }
+    }
+    
+    func reloadPhotoCollectionView() {
+        self.photoCollectionView.reloadData()
+        let height = self.photoCollectionView.getCollectionViewHeight()
+        self.delegate?.selectedPhotoCallback(selectedPhotos: self.selectedPhotos, photoCollectionViewHeight: height)
     }
     
     func pushImagePickerController() {

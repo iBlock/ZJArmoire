@@ -69,65 +69,18 @@ class ZJASKUAddTableView: UITableView {
         return dataCenter.skuItemArray
     }()
     
-    lazy var tagListHeaderView:SYTagListView = {
-        let tagView:SYTagListView = SYTagListView(frame: self.tagListFrame, andTags: [], isCanEdit: true)
-        tagView.backgroundColor = UIColor.white
-        tagView.addSubview(self.tagTitleView)
-        tagView.tagBackgroundColor = COLOR_MAIN_APP
-        tagView.tagTextColor = UIColor.white
-        tagView.tagCornerRadius = 10.0
-        tagView.contentInsets = UIEdgeInsetsMake(10, 10, 5, 20)
-        tagView.autoItemHeightWithFontSize = false
-        tagView.tagBorderWidth = 0.5
-        tagView.tagBoarderColor = COLOR_MAIN_APP
-        tagView.selectTagBoarderColor = UIColor.black
-        tagView.itemHeight = 20
-        tagView.oneItemSpacing = 56
-        tagView.resetItemsFrame()
-        
-        let lineView = UIView()
-        lineView.backgroundColor = COLOR_BORDER_LINE
-        tagView.addSubview(lineView)
-
-        let bottomLineView = UIView()
-        bottomLineView.backgroundColor = COLOR_BORDER_LINE
-        tagView.addSubview(bottomLineView)
-        bottomLineView.snp.makeConstraints({ (make) in
-            make.left.right.bottom.equalTo(0)
-            make.height.equalTo(0.5)
-        })
-        
-        self.tagTitleView.snp.makeConstraints { (make) in
-            make.left.equalTo(15)
-            make.top.equalTo(0)
-            make.size.equalTo(CGSize(width:40, height:40))
-        }
-        
-        lineView.snp.makeConstraints({ (make) in
-            make.left.right.top.equalTo(0)
-            make.height.equalTo(0.5)
-        })
-
+    lazy var tagListHeaderView:ZJATaglistHeaderView = {
+        let tagView: ZJATaglistHeaderView = ZJATaglistHeaderView(frame: self.tagListFrame)
         tagView.addSKUTag({ [weak self](tagNameList) in
             DispatchQueue.main.async {
                 self?.reloadData()
                 self?.currentSKUItemModel?.tagList = tagNameList as? Array<String>
             }
         })
-        
         tagView.didUpdatedTagListViewFrame({ [weak self](frame) in
             self?.tagListFrame = frame
         })
-        
         return tagView
-    }()
-    
-    private lazy var tagTitleView:UILabel = {
-        let tagLabel:UILabel = UILabel()
-        tagLabel.text = "标签"
-        tagLabel.font = UIFont.systemFont(ofSize: 15)
-        tagLabel.textColor = COLOR_TEXT_LABEL
-        return tagLabel
     }()
 }
 

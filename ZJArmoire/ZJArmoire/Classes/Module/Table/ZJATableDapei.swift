@@ -16,6 +16,7 @@ class ZJATableDapei: NSObject {
     var dapei_date: String?
     var day_temperature: Int?
     var night_temperature: Int?
+    var dapei_taglist: Array<String>?
     
     //搭配记录表
     private let table_dapei = Table("Table_DaPei_List")
@@ -23,7 +24,12 @@ class ZJATableDapei: NSObject {
     private let t_dapei_date = Expression<String?>("day_timer")
     private let t_dapei_day_air = Expression<Int?>("day_air_temperature")
     private let t_dapei_night_air = Expression<Int?>("night_air_temperature")
-    //搭配次数
+    private let t_dapei_taglist = Expression<String?>("dapei_taglist")
+    ///搭配衣服ID列表，格式: 372382332837,82382938283
+    private let t_dapei_clotheslist = Expression<String>("dapei_clotheslist")
+    ///历史搭配温度记录，格式：10-23:9-18
+    private let t_dapei_history_air = Expression<String>("history_air")
+    //使用搭配次数
     private let t_dapei_count = Expression<Int>("dapei_count")
     //dapei_state搭配状态，0：创建搭配 1：已使用搭配
     private let t_dapei_state = Expression<Int>("dapei_state")
@@ -39,6 +45,8 @@ class ZJATableDapei: NSObject {
                 t.column(t_dapei_count, defaultValue: 0)
                 t.column(t_dapei_day_air)
                 t.column(t_dapei_night_air)
+                t.column(t_dapei_taglist)
+                t.column(t_dapei_history_air, defaultValue: "")
             }))
         } catch {
             print("创建搭配记录表失败")
@@ -47,9 +55,16 @@ class ZJATableDapei: NSObject {
     }
     
     func insert() -> Bool {
+        var dpTaglistStr: String?
+        if let dpTaglist = dapei_taglist {
+            dpTaglistStr = dpTaglist.joined(separator: ",")
+        }
+        let clothesIdStr = clothesIdList.joined(separator: ",")
         let insert = table_dapei.insert(t_dapei_date <- dapei_date,
+                                        t_dapei_clotheslist <- clothesIdStr,
                                         t_dapei_day_air <- day_temperature,
-                                        t_dapei_night_air <- night_temperature)
+                                        t_dapei_night_air <- night_temperature,
+                                        t_dapei_taglist <- dpTaglistStr)
         do {
             db = try Connection(PATH_DATABASE_FILE)
             try db.run(insert)
@@ -89,6 +104,7 @@ class ZJATableDapei: NSObject {
                     model.night_temp = dapei[self.t_dapei_night_air]
                     let dpID = dapei[self.t_dapei_id]
                     model.clothesList = ZJATableDapei_Clothes().fetchDapeiDetail(dpID)
+                    model.history_air = dapei[self.t_dapei_history_air]
                     dapeiList.append(model)
                 }
             } catch {

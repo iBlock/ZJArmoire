@@ -13,4 +13,5 @@ class ZJADapeiModel: NSObject {
     var day_temp: Int?
     var night_temp: Int?
     var clothesList: Array<ZJAClothesModel>!
+    var history_air: String!
 }

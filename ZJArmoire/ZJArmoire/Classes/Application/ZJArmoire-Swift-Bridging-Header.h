@@ -16,6 +16,7 @@
 #import "UIView+Layout.h"
 #import "ZJAPreviewPhotoCell.h"
 #import "TZAssetModel.h"
+#import "TTRangeSlider.h"
 #import "TZImageManager.h"
 #import "LxGridViewFlowLayout.h"
 #import "TZImagePickerController.h"

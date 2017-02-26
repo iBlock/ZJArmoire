@@ -156,7 +156,7 @@ class ZJATableClothes: NSObject {
                 print("创建衣服表失败")
                 print(error)
             }
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 block(allClothes)
             }
         }

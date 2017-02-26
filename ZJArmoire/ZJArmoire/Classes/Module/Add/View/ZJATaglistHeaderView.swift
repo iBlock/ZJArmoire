@@ -9,6 +9,8 @@
 import UIKit
 
 class ZJATaglistHeaderView: SYTagListView {
+    
+    var topLine: UIView!
 
     override init(frame: CGRect) {
         super.init(frame: frame, andTags: [], isCanEdit: true)
@@ -34,9 +36,9 @@ class ZJATaglistHeaderView: SYTagListView {
         oneItemSpacing = 56
         resetItemsFrame()
         
-        let lineView = UIView()
-        lineView.backgroundColor = COLOR_BORDER_LINE
-        addSubview(lineView)
+        topLine = UIView()
+        topLine.backgroundColor = COLOR_BORDER_LINE
+        addSubview(topLine)
         
         let bottomLineView = UIView()
         bottomLineView.backgroundColor = COLOR_BORDER_LINE
@@ -52,12 +54,10 @@ class ZJATaglistHeaderView: SYTagListView {
             make.size.equalTo(CGSize(width:40, height:40))
         }
         
-        lineView.snp.makeConstraints({ (make) in
+        topLine.snp.makeConstraints({ (make) in
             make.left.right.top.equalTo(0)
             make.height.equalTo(0.5)
         })
-        
-        
     }
     
     private lazy var tagTitleView:UILabel = {

@@ -12,13 +12,13 @@ import SQLite
 class ZJATableDapei_Clothes: NSObject {
     var db: Connection!
     var clothes_id: String!
-    var dapei_id: Int!
+    var dapei_id: String!
     
     //衣服和搭配记录的关联表
     private let table_dapei_clothes = Table("Table_Clothes_Dapei")
     private let t_yf_dp_id = Expression<Int>("id")
     private let t_yf_dp_yf_id = Expression<String>("clothes_id")
-    private let t_yf_dp_dp_id = Expression<Int>("dapei_id")
+    private let t_yf_dp_dp_id = Expression<String>("dapei_id")
     
     func initTable() {
         do {
@@ -69,7 +69,7 @@ class ZJATableDapei_Clothes: NSObject {
         return dapeiClothesList
     }
     
-    func fetchDapeiDetail(_ dapeiID: Int) -> [ZJAClothesModel] {
+    func fetchDapeiDetail(_ dapeiID: String) -> [ZJAClothesModel] {
         let sql = table_dapei_clothes.filter(t_yf_dp_dp_id == dapeiID)
         var dapeiClothesList = [ZJAClothesModel]()
         do {

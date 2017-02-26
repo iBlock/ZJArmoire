@@ -9,6 +9,7 @@
 import UIKit
 
 class ZJADapeiModel: NSObject {
+    var dapei_id: String!
     var dapei_time: String?
     var day_temp: Int?
     var night_temp: Int?

@@ -16,6 +16,8 @@ class ZJADaPeiController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareUI()
+        setupViewConstraints()
         
         SVProgressHUD.show()
         ZJATableDapei().fetchAllDapei { [weak self] (dapeiList) in
@@ -26,11 +28,18 @@ class ZJADaPeiController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.navigationItem.title = "搭配";
+        tabBarController?.navigationItem.title = "搭配列表";
     }
     
     func prepareUI() {
-        
+        view.backgroundColor = COLOR_MAIN_BACKGROUND
+        view.addSubview(dapeiCollectionView)
+    }
+    
+    func setupViewConstraints() {
+        dapeiCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     func prepareDapeiListData(dpList: [ZJADapeiModel]) {
@@ -51,6 +60,8 @@ class ZJADaPeiController: UIViewController {
             }
         } else {
             errorView?.removeFromSuperview()
+            dapeiCollectionView.dapeiModel = dpList
+            dapeiCollectionView.reloadData()
         }
     }
     
@@ -76,4 +87,8 @@ class ZJADaPeiController: UIViewController {
         return albumModels
     }
     
+    private lazy var dapeiCollectionView: ZJADapeiListCollectionView = {
+        let collectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
+        return collectionView
+    }()
 }

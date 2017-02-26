@@ -34,7 +34,7 @@ class ZJAAddDapeiController: UIViewController {
     
     func setUpViewConstraints() {
         dapeiTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsets.zero)
+            make.left.right.top.equalTo(0)
             make.bottom.equalTo(confirmButton.snp.top).offset(-10)
         }
         

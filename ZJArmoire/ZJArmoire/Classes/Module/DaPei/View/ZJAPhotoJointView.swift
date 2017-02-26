@@ -10,9 +10,11 @@ import UIKit
 
 class ZJAPhotoJointView: UIImageView {
     
-    init(frame: CGRect, photoList: Array<ZJAClothesModel>!) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        
+    }
+    
+    func configPhotoView(photoList: [ZJAClothesModel]) {
         UIGraphicsBeginImageContext(frame.size)
         for i in 0..<3 {
             var leftHeight = frame.height
@@ -44,7 +46,10 @@ class ZJAPhotoJointView: UIImageView {
             let size = CGSize(width: with, height: leftHeight)
             photoImage.draw(in: CGRect(origin: point, size: size))
         }
-        image = UIGraphicsGetImageFromCurrentImageContext()
+        let newImg = UIGraphicsGetImageFromCurrentImageContext()
+        DispatchQueue.main.async {
+            self.image = newImg
+        }
         UIGraphicsEndImageContext();
     }
     

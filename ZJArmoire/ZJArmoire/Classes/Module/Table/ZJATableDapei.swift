@@ -20,7 +20,7 @@ class ZJATableDapei: NSObject {
     
     //搭配记录表
     private let table_dapei = Table("Table_DaPei_List")
-    private let t_dapei_id = Expression<Int>("id")
+    private let t_dapei_id = Expression<String>("id")
     private let t_dapei_date = Expression<String>("day_timer")
     private let t_dapei_day_air = Expression<Int?>("day_air_temperature")
     private let t_dapei_night_air = Expression<Int?>("night_air_temperature")
@@ -61,7 +61,9 @@ class ZJATableDapei: NSObject {
             dpTaglistStr = dpTaglist.joined(separator: ",")
         }
         let clothesIdStr = clothesIdList.joined(separator: ",")
-        let insert = table_dapei.insert(t_dapei_date <- dapei_date,
+        let uuid = String.generateUUID()
+        let insert = table_dapei.insert(t_dapei_id <- uuid,
+                                        t_dapei_date <- dapei_date,
                                         t_dapei_clotheslist <- clothesIdStr,
                                         t_dapei_day_air <- day_temperature,
                                         t_dapei_night_air <- night_temperature,
@@ -69,7 +71,7 @@ class ZJATableDapei: NSObject {
         do {
             db = try Connection(PATH_DATABASE_FILE)
             try self.db.run(insert)
-            _ = syncDapei_ClothesTable()
+            _ = syncDapei_ClothesTable(dapeiID: uuid)
             return true
         } catch {
             print("插入搭配记录表失败")
@@ -79,7 +81,7 @@ class ZJATableDapei: NSObject {
     }
     
     /** 根据时间查询预先搭配好的记录 */
-    func fetchPrepareDapeiId(dapeiDate: String) -> Int {
+    func fetchPrepareDapeiId(dapeiDate: String) -> String? {
         let query = table_dapei.filter(t_dapei_date == dapeiDate)
         do {
             //获取数据库连接
@@ -91,7 +93,7 @@ class ZJATableDapei: NSObject {
             print("获取预先搭配记录失败")
             print(error)
         }
-        return -1
+        return nil
     }
     
     func fetchAllDapei(block:@escaping (([ZJADapeiModel])->Void)) {
@@ -101,6 +103,7 @@ class ZJATableDapei: NSObject {
                 self.db = try Connection(PATH_DATABASE_FILE)
                 for dapei in try self.db.prepare(self.table_dapei) {
                     let model = ZJADapeiModel()
+                    model.dapei_id = dapei[self.t_dapei_id]
                     model.dapei_time = dapei[self.t_dapei_date]
                     model.day_temp = dapei[self.t_dapei_day_air]
                     model.night_temp = dapei[self.t_dapei_night_air]
@@ -121,7 +124,7 @@ class ZJATableDapei: NSObject {
         }
     }
     
-    func fetchDapei(dayTemp: Int, nightTemp: Int) -> Int {
+    func fetchDapei(dayTemp: Int, nightTemp: Int) -> String? {
         var dayAirList: Array<Int> = Array()
         dayAirList.append(dayTemp)
         var nightAirList: Array<Int> = Array()
@@ -144,15 +147,16 @@ class ZJATableDapei: NSObject {
             print("根据早晚温度获取搭配记录失败")
             print(error)
         }
-        return -1
+        return nil
     }
     
 }
 
 extension ZJATableDapei {
     /// 同步搭配与衣服的关联表
-    func syncDapei_ClothesTable() -> Bool {
+    func syncDapei_ClothesTable(dapeiID: String) -> Bool {
         let table = ZJATableDapei_Clothes()
+        table.dapei_id = dapeiID
         let isSuccess = table.insert(clothesIdList: clothesIdList)
         return isSuccess
     }

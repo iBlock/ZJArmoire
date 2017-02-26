@@ -25,6 +25,7 @@ class ZJATemperatueCell: UITableViewCell {
         contentView.addSubview(coldIcon)
         contentView.addSubview(rangeSlider)
         contentView.addSubview(holdIcon)
+        contentView.addSubview(topLine)
         contentView.addSubview(bottomLine)
     }
     
@@ -58,6 +59,11 @@ class ZJATemperatueCell: UITableViewCell {
             make.top.equalTo(titleView.snp.bottom).offset(0)
 //            make.centerY.equalToSuperview()
             make.right.equalTo(holdIcon.snp.left).offset(0)
+        }
+        
+        topLine.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(0)
+            make.height.equalTo(0.5)
         }
         
         bottomLine.snp.makeConstraints { (make) in
@@ -104,9 +110,15 @@ class ZJATemperatueCell: UITableViewCell {
         return label
     }()
     
-    private lazy var bottomLine: UIView = {
+    private lazy var topLine: UIView = {
         let line = UIView()
         line.backgroundColor = COLOR_TABLE_LINE
+        return line
+    }()
+    
+    private lazy var bottomLine: UIView = {
+        let line = UIView()
+        line.backgroundColor = COLOR_BORDER_LINE
         return line
     }()
     

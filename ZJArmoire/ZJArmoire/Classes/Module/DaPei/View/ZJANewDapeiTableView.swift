@@ -47,6 +47,7 @@ class ZJANewDapeiTableView: UITableView {
     
     lazy var tagListHeaderView:ZJATaglistHeaderView = {
         let tagView: ZJATaglistHeaderView = ZJATaglistHeaderView(frame: self.tagListFrame)
+        tagView.topLine.isHidden = true
         tagView.addSKUTag({ [weak self](tagNameList) in
             DispatchQueue.main.async {
                 self?.reloadData()
@@ -65,7 +66,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
                    numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
-        } else if section == 1 {
+        } else if section == 2 {
             return 0
         }
         return 1
@@ -75,7 +76,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
                    heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 50
-        } else if section == 1 {
+        } else if section == 2 {
             return tagListFrame.size.height
         }
         return 0
@@ -97,7 +98,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
                           heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return photoCollectionViewHeight
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             return 80
         }
         
@@ -111,7 +112,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             cell.albumModels = albumModels
             return cell
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1 {
             let cell: ZJATemperatueCell = tableView.dequeueReusableCell(withIdentifier: temperatueCellIdentifier) as! ZJATemperatueCell
             cell.tempblock = { [weak self](dayTemp, nightTemp) in
                 self?.dapeiModel.day_temp = dayTemp
@@ -161,7 +162,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
             })
             
             return headerView
-        } else if section == 1 {
+        } else if section == 2 {
             return tagListHeaderView
         }
         

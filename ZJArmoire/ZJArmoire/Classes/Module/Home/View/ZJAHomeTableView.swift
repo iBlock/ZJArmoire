@@ -43,7 +43,7 @@ class ZJAHomeTableView: UITableView {
         dateFormatter.dateFormat = "yyyyMMdd"
         let stringDate = dateFormatter.string(from: currentDate)
         let dapeiId = ZJATableDapei().fetchPrepareDapeiId(dapeiDate:stringDate)
-        if dapeiId != -1 {
+        if dapeiId != nil {
             
         }
     }

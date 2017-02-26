@@ -9,6 +9,9 @@
 import UIKit
 
 class ZJATemperatueCell: UITableViewCell {
+    
+    typealias TemperatueCallback = (Int, Int) -> Void
+    var tempblock: TemperatueCallback?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -63,11 +66,13 @@ class ZJATemperatueCell: UITableViewCell {
         }
     }
     
-    private lazy var rangeSlider: TTRangeSlider = {
+    public lazy var rangeSlider: TTRangeSlider = {
         let slider = TTRangeSlider()
         slider.delegate = self
         slider.minValue = -10
         slider.maxValue = 40
+        slider.selectedMinimum = -10
+        slider.selectedMaximum = 40
         slider.handleColor = UIColor.darkGray
         return slider
     }()
@@ -124,5 +129,6 @@ extension ZJATemperatueCell: TTRangeSliderDelegate {
                      didChangeSelectedMinimumValue selectedMinimum: Float,
                      andMaximumValue selectedMaximum: Float) {
         temperatueLabel.text = String(Int(selectedMinimum)) + "度 ~ " + String(Int(selectedMaximum)) + "度"
+        tempblock?(Int(selectedMinimum),Int(selectedMaximum))
     }
 }

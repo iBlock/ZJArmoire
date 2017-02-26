@@ -13,7 +13,7 @@ class ZJATableDapei: NSObject {
     
     var db: Connection!
     var clothesIdList: Array<String>!
-    var dapei_date: String?
+    var dapei_date: String!
     var day_temperature: Int?
     var night_temperature: Int?
     var dapei_taglist: Array<String>?
@@ -21,7 +21,7 @@ class ZJATableDapei: NSObject {
     //搭配记录表
     private let table_dapei = Table("Table_DaPei_List")
     private let t_dapei_id = Expression<Int>("id")
-    private let t_dapei_date = Expression<String?>("day_timer")
+    private let t_dapei_date = Expression<String>("day_timer")
     private let t_dapei_day_air = Expression<Int?>("day_air_temperature")
     private let t_dapei_night_air = Expression<Int?>("night_air_temperature")
     private let t_dapei_taglist = Expression<String?>("dapei_taglist")
@@ -30,9 +30,9 @@ class ZJATableDapei: NSObject {
     ///历史搭配温度记录，格式：10-23:9-18
     private let t_dapei_history_air = Expression<String>("history_air")
     //使用搭配次数
-    private let t_dapei_count = Expression<Int>("dapei_count")
+//    private let t_dapei_count = Expression<Int>("dapei_count")
     //dapei_state搭配状态，0：创建搭配 1：已使用搭配
-    private let t_dapei_state = Expression<Int>("dapei_state")
+//    private let t_dapei_state = Expression<Int>("dapei_state")
 //    private let t_prepare_dapei_date = Expression<String>("prepare_dapei_date")
     
     func initTable() {
@@ -41,11 +41,12 @@ class ZJATableDapei: NSObject {
             try db.run(table_dapei.create(ifNotExists: true, block: { (t) in
                 t.column(t_dapei_id, primaryKey: true)
                 t.column(t_dapei_date)
-                t.column(t_dapei_state, defaultValue: 0)
-                t.column(t_dapei_count, defaultValue: 0)
+//                t.column(t_dapei_state, defaultValue: 0)
+//                t.column(t_dapei_count, defaultValue: 0)
                 t.column(t_dapei_day_air)
                 t.column(t_dapei_night_air)
                 t.column(t_dapei_taglist)
+                t.column(t_dapei_clotheslist)
                 t.column(t_dapei_history_air, defaultValue: "")
             }))
         } catch {
@@ -67,7 +68,8 @@ class ZJATableDapei: NSObject {
                                         t_dapei_taglist <- dpTaglistStr)
         do {
             db = try Connection(PATH_DATABASE_FILE)
-            try db.run(insert)
+            try self.db.run(insert)
+            _ = syncDapei_ClothesTable()
             return true
         } catch {
             print("插入搭配记录表失败")
@@ -78,7 +80,7 @@ class ZJATableDapei: NSObject {
     
     /** 根据时间查询预先搭配好的记录 */
     func fetchPrepareDapeiId(dapeiDate: String) -> Int {
-        let query = table_dapei.filter(t_dapei_date == dapeiDate && t_dapei_state == 0)
+        let query = table_dapei.filter(t_dapei_date == dapeiDate)
         do {
             //获取数据库连接
             db = try Connection(PATH_DATABASE_FILE)
@@ -102,8 +104,10 @@ class ZJATableDapei: NSObject {
                     model.dapei_time = dapei[self.t_dapei_date]
                     model.day_temp = dapei[self.t_dapei_day_air]
                     model.night_temp = dapei[self.t_dapei_night_air]
-                    let dpID = dapei[self.t_dapei_id]
-                    model.clothesList = ZJATableDapei_Clothes().fetchDapeiDetail(dpID)
+                    let taglistStr = dapei[self.t_dapei_taglist]
+                    model.taglist = taglistStr?.components(separatedBy: ",")
+                    let clothesList = dapei[self.t_dapei_clotheslist]
+                    model.clothesList = ZJATableDapei_Clothes().fetchDapeiDetail(clothesIdList: clothesList.components(separatedBy: ","))
                     model.history_air = dapei[self.t_dapei_history_air]
                     dapeiList.append(model)
                 }
@@ -143,4 +147,13 @@ class ZJATableDapei: NSObject {
         return -1
     }
     
+}
+
+extension ZJATableDapei {
+    /// 同步搭配与衣服的关联表
+    func syncDapei_ClothesTable() -> Bool {
+        let table = ZJATableDapei_Clothes()
+        let isSuccess = table.insert(clothesIdList: clothesIdList)
+        return isSuccess
+    }
 }

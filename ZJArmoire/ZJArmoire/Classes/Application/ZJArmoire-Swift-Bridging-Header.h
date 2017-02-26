@@ -13,7 +13,6 @@
 #import "DJDebugHeader.h"
 #import "SYTagListView.h"
 #import "SVProgressHUD.h"
-#import "UIView+Layout.h"
 #import "ZJAPreviewPhotoCell.h"
 #import "TZAssetModel.h"
 #import "TTRangeSlider.h"
@@ -21,6 +20,9 @@
 #import "LxGridViewFlowLayout.h"
 #import "TZImagePickerController.h"
 #import "TZPhotoPickerController.h"
+
+#import "UIView+Layout.h"
+#import "UIImage+Utils.h"
 #import "UIImage+CompressForSize.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

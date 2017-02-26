@@ -11,7 +11,7 @@
 		0008D469083433493D316D48DC5C8CCE /* DJDebugURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FE9B40A9D7ABFA58C7049E74C7FE075 /* DJDebugURLProtocol.h */; };
 		005340E8D0A6E45303722CC5C7E87374 /* TakeLast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83C5FA1A73A940F6EA6AACE94A45A18 /* TakeLast.swift */; };
 		0129BB7D2C833EF34E188BD6F103C7A0 /* FLEXHierarchyTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EEA96A3A1E4EA08F952243B013A116F /* FLEXHierarchyTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		01FA541C542D0FB21393665C4E72433F /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031559F8F23400C67DFC26F0AD1183A0 /* TZAssetModel.m */; };
+		01C9F21293C1B0FD1F4E28B2F17D8EA7 /* TZGifPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 12EDC28D373F70EB13C8588B76FE9180 /* TZGifPhotoPreviewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0233D25CCD12120E46287D44A11BAA89 /* SkipUntil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F31601B99C06D8DFE36C98D0C5837 /* SkipUntil.swift */; };
 		0257AABD00488FB6B9F8CBE5C4CCBC4F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0120A16795C599A85D558197566A6501 /* QuartzCore.framework */; };
 		02729AE6775892F582311B9469C98FAD /* FLEXClassExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A65DFB44CA965CEE4273584856BF424C /* FLEXClassExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -22,13 +22,13 @@
 		0550A954C405AF985F03AF6B306BC30F /* CombineLatest+arity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30FDC9BF8AFFC06256721284B6EAFEA /* CombineLatest+arity.swift */; };
 		055F09BDACE73FB2FF6A3533176E4FDF /* FLEXFileBrowserFileOperationController.h in Headers */ = {isa = PBXBuildFile; fileRef = AF5EE14A69C3155309AFB0D9A603A2B8 /* FLEXFileBrowserFileOperationController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		05B78246D678FD52370954A75419FBB9 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608435D995C892747704984E47BE1F52 /* ConstraintMakerExtendable.swift */; };
-		06944D022BF12598D35151B0817FE92A /* TZAssetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C6132E8A429FD4886D2704E6B54B9AF /* TZAssetCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0737E927DA048ABEE714FA06AAB25223 /* FLEXInstancesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9846D8856338733955CA214DB2CCF4B /* FLEXInstancesTableViewController.m */; };
 		073F9E45B4400B2FC00915B9F879340E /* FLEXViewControllerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0182CEE9800DE4EFA7F7B96A2C15D189 /* FLEXViewControllerExplorerViewController.m */; };
 		07E910A3A68B079871AED8F8549DA796 /* FLEXArgumentInputViewFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F8C1DF5DD63B472139E17EE6A66AEEA7 /* FLEXArgumentInputViewFactory.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		083B2B069495CC9E79C5AF0449B8BAEF /* NopDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA30C39A167389C896E21D6CE9786D8F /* NopDisposable.swift */; };
 		087BF0DEC5FFD18B0A39E9BA5C6C3CC1 /* FLEXRuntimeUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B864B9E96669C8AE4DDF4B202493856 /* FLEXRuntimeUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		08F70BDD45F0B73F1AD27507808FEC3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
+		0949BD07FF2E1041D249BBD691DD3743 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3201D3B47AA3953C32F45B1536C7DD /* TZPhotoPickerController.m */; };
 		0957E46508B8E0DE80385ED7AB6ABCE7 /* DJDebugAPIAlarmInfoPage.m in Sources */ = {isa = PBXBuildFile; fileRef = A25BF9348C9911E73BEC71B4ADFA3207 /* DJDebugAPIAlarmInfoPage.m */; };
 		0A80963819D99231908485A9FF48F91D /* IASKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F7397D7933E085E7EC35D724C9A2 /* IASKTextView.m */; };
 		0A9000C0B494B7EB8F775B141D537CFB /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C1AF45D7937B1E7CDFE500EC1F8D72 /* ConstraintItem.swift */; };
@@ -46,7 +46,6 @@
 		0E046302036DE89C3B2763CEF29D6E71 /* ShareReplay1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75407F541A1C82BE2AEAF477C395B2 /* ShareReplay1.swift */; };
 		0E67C0EEC8E0E03AFA110EE4B2E9D23D /* FLEXLibrariesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 53D7BBC52CB5A8F77DBEAE4F17B3D5DF /* FLEXLibrariesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0F2CB8BE5C00ACD7F892881ADA1880CE /* DJDebugSettingsBaseViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CE757090F79AF1EDF05D72177F9BEAB3 /* DJDebugSettingsBaseViewController.h */; };
-		1052CBC92A9F96818C4A90728CD5FC27 /* TZPhotoPreviewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A638E85DE9570E64615A5F156CCDE1C3 /* TZPhotoPreviewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7466747D62646D656BDC26AFD77AE4C /* Timeline.swift */; };
 		123D28717B28730D7DDD56E56B646294 /* IQUITextFieldView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2584E2BD55837C9E71472C0F06D7AC2E /* IQUITextFieldView+Additions.swift */; };
 		1243335956664702BC069EB43A182A50 /* FLEXImageExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE41ABF5F8754B4F327667D24658D3F1 /* FLEXImageExplorerViewController.m */; };
@@ -55,7 +54,6 @@
 		139348A92CC4112FD4626ABCDA4E13F5 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C139BF17172108B41FC0CA43AA16CD4 /* IASKAppSettingsViewController.m */; };
 		13AA2E594CFB109D9849F8C78D3A0CEA /* FLEXSystemLogMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = B462267B9CDFC0A81A2757BD242E44B3 /* FLEXSystemLogMessage.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		14BCCBFC8BCA882E5AD4AD4E4B1BE988 /* IASKTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 33719A17A20F03A8DC1497FEA41E9761 /* IASKTextViewCell.m */; };
-		153E1835A7A8B8305C8B42C207A278FD /* NSData+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E6D77A5778D0C5A2B486D4529A578C8 /* NSData+Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		160D1A25BA128694E760E960C8A68D2F /* DisposeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F798B068333063C78E76E30EAB426E34 /* DisposeBase.swift */; };
 		165AD1B6BC7B561D07F9FD01D89BD01E /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231D988F64C90022F82E54A3F6EFEEE2 /* ConstraintLayoutSupport.swift */; };
 		17142C77DB9AD61D0B86DE34BFF066E0 /* FLEXToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 792FE3847F28EB27D35976D60891B6BB /* FLEXToolbarItem.m */; };
@@ -63,10 +61,10 @@
 		17666B50937FD3802DF6A9C28CD2D0BB /* DJDebugCustomSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0207098F8358F1A5B46791A7514181A9 /* DJDebugCustomSettingViewController.m */; };
 		1766FCB3F7861CAF1B6166939CC78E6C /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C931AF8C3671E9FD4A08E07BD2167B2 /* Disposables.swift */; };
 		179523942E7D1E3EB210EF05E2C7AE79 /* Kingfisher.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B380AD4693B5542F99234CD6C6F8CEB /* Kingfisher.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		17AAECE7923610F0599108DE89227978 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C886819E7AC93FFD2645C7DD830E1101 /* NSBundle+TZImagePicker.m */; };
 		18410ADF032DD73750933DB16460CBD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		184F9D31541A558E08395FED333B4961 /* FLEXFileBrowserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86DBF0E906B92B9EAC31309BE49FC04A /* FLEXFileBrowserTableViewController.m */; };
 		186CB9F2A1B5DC01466DFE89F820F743 /* Skip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605EB76CBF3E28117E814AF422708F1A /* Skip.swift */; };
+		18F417413F61A60F662CAE42ADD382EA /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC79A3521ECB4E829780899AAEFD182 /* TZImageCropManager.m */; };
 		1A0D743774654C9204D245EE05965AF6 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B367CFFBE502D72711A694272362F0D4 /* Resource.swift */; };
 		1A7B57B517F5722DE36558F15DB61AC1 /* FLEX.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C7E1C94688D8FF0D2A37936D192F52 /* FLEX.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1AD51E671982720BF29386B3BC0E5916 /* IASKTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B48692B8C5071B224CD65202F5AFEF /* IASKTextField.m */; };
@@ -77,11 +75,13 @@
 		1C0BDE11F831D8F6C7954793BA93563B /* TailRecursiveSink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E9FCF53DE34237D414D789DC781352 /* TailRecursiveSink.swift */; };
 		1C857DF4975D4B560C3961575E4BA339 /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FADDB28E53374692AC9545DFD35A6F /* FLEXHeapEnumerator.m */; };
 		1C8F85A1033B5AE0FE8126CE2E937E9F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76ACC0CCC3D690021ACE2C56582612B1 /* CoreGraphics.framework */; };
+		1CA6C5A7DC6C08641DB3D61BDA355751 /* NSBundle+TZImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 716AFF4328E6E97C046F2EE8B15354E9 /* NSBundle+TZImagePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CACAD21A1EE68FED1BA28CA8C4522D4 /* AsyncLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ABADFC23EC4F0A9F654308BE1A4E2 /* AsyncLock.swift */; };
 		1CCBD47E3FD606825A52600D045023DA /* DJDebugViewControllers.h in Headers */ = {isa = PBXBuildFile; fileRef = 62F1BD104EDD78C449319681C110CFBB /* DJDebugViewControllers.h */; };
 		1D8AED050B93473340A30CCCEC4DC7E8 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD6EF1F73AA71305C502FBBDA5461F /* Switch.swift */; };
 		1E6010A0CD83E3F2191197A096CD150B /* FLEXMethodCallingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A84A54C24B2135E2CD8BFD01E04EDB /* FLEXMethodCallingViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1E65F89C07F16FFF3552A87259D93A80 /* DJDebugPageJumpRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 28748918004B48236B9948381A5BD4F3 /* DJDebugPageJumpRecord.h */; };
+		1E8513465826C8C67DA99F147454D30F /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A83113BF49AAA7B76193E4C23339593D /* TZAssetCell.m */; };
 		1EED58E5ED4E5840E669AC7135BD7459 /* FLEXObjectExplorerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A6CBB62C3B9C692DD9D61F16704C94 /* FLEXObjectExplorerFactory.m */; };
 		1F2EBAEFC4B405E9DF8EC8179DE5EAFC /* DJDebugCustomSettingViewController.h in Copy DJDebugBasic Public Headers */ = {isa = PBXBuildFile; fileRef = EB126F97EDA6E40C69815AA893879025 /* DJDebugCustomSettingViewController.h */; };
 		1F5176DCB9420BDF8ED7434174405DB3 /* Zip+arity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69569558CF4A8DCC22D9AF2F24444942 /* Zip+arity.swift */; };
@@ -112,6 +112,7 @@
 		2960CFE6FD4730620023D11E64E8F934 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C25B7D05197A7E3B0035A556435277 /* ConstraintRelation.swift */; };
 		299E916CD0835DA67FA46EC7E7A2D8B9 /* SchedulerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F66D5827C488F8D59B3D019ACDC84A9 /* SchedulerType.swift */; };
 		29F38CA944BF3AB8833F6F4B1CF497AA /* FLEXSetExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 310F22A0A0E33E1EE50BEEA061DDDA90 /* FLEXSetExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2AF88479E909D5FD18D26D36CF657EB1 /* TZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6DEFCBCC7A1C41635EF06B6CC2C78C /* TZProgressView.m */; };
 		2B07C617FA6A0DCCEEE523FA5A21985C /* Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4463A599CC11708AB5926DA2AC55FF /* Throttle.swift */; };
 		2BA7D9B4FE3B8DDACDE2A8731B594E40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		2BBD875EFF4184B939D6051E7E1A89B8 /* FLEXNetworkTransactionDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6104411A8E670F1581F19D7BA2CBDA2C /* FLEXNetworkTransactionDetailTableViewController.m */; };
@@ -122,7 +123,6 @@
 		2EBD7B6D6EEBAD72870AECB44D1E3AE2 /* IQBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51EFAD461ACD377361C6A97B272D6709 /* IQBarButtonItem.swift */; };
 		2F5A5C7AC98FD014FE483F8839C409EE /* CacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B86BB8789CD853A7CD7A0801B230A6F /* CacheSerializer.swift */; };
 		2F90832FEB5CD1026B1F3A0242B99F79 /* FLEXNetworkTransactionDetailTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = A668ED839E24F6B859D750DE3F9BBE00 /* FLEXNetworkTransactionDetailTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2F95D24E5B83BE0D363033AD1B2CD593 /* TZImagePickerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CA222D45194C8CF774C10B0DCDA5E21 /* TZImagePickerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		304446F4738C4B873099F91B8F1479A2 /* DJDebugConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C13A3AC3C8CCE4AEBB9F906EB1C5AFFA /* DJDebugConfig.m */; };
 		306F2C20133DA7787F1A4271FC2810C0 /* ImmediateSchedulerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9F6AC864683D0410FA66C19FDFAB37 /* ImmediateSchedulerType.swift */; };
 		3081D8AEC0A6D5440AA5374CDB305F0D /* Pods-ZJArmoire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 736A9B5CF4B2A056E815E9B2D21EA8CA /* Pods-ZJArmoire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -148,6 +148,7 @@
 		3BCAFD66AFF07967011CE05E141B31AD /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E459141ED57F6297AD55E28B212FE9 /* ConstraintAttributes.swift */; };
 		3C07CD115E9C96643ACF2BDD154F93B4 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9413A2C94FE114529B9D9B3C279424 /* ConstraintConstantTarget.swift */; };
 		3C7C1012F2873E6EA14E0DBC9D56858E /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC54B2D71CBAF8611A1FBAFA4A1CD4BF /* Timer.swift */; };
+		3D956820ED5C6E2511AA8DD66DF09870 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B632363F120875A647B6E450DB75E37 /* TZPhotoPreviewController.m */; };
 		3E1D52318F691D53142EF232CA98042F /* ImageTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6E765CF92F9A8DDE2CD0E8CA5A814 /* ImageTransition.swift */; };
 		3F4B5E6E42795421F08BB86F157B9030 /* DJDebugClearCacheTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E6834ECB040B547D405337CB4A243FF /* DJDebugClearCacheTool.h */; };
 		3F857A1B5D783E13A17FA47ABCAA53B0 /* FLEXNetworkRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E860005AB97C685838CE73BF31F9A1 /* FLEXNetworkRecorder.m */; };
@@ -174,7 +175,6 @@
 		4715966854380C387779FCBAAFB4B67D /* ShareReplay1WhileConnected.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375EA48064B51F9BEB86355EE45BF4F /* ShareReplay1WhileConnected.swift */; };
 		4738324FD1F0C69F589682838D55FDA8 /* DJDebugClassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 060FA84B4942F5F98E7F855640551A92 /* DJDebugClassInfo.h */; };
 		4740072FE53022F7DB6C2070A69D54FC /* IASKSpecifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B3D6C5B480E5CB55B10B8E70A9A25D7 /* IASKSpecifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		480DA94A0A336CAE9E27C7997F91D026 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23310E1B3F5A271DF19C3AA998B0D820 /* TZAssetCell.m */; };
 		4841CA2D32E93334F24BBE0FA5489AB0 /* Observable+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961441191BB925F45D2F2E1666872FC4 /* Observable+Time.swift */; };
 		48F644E2054CE6D981DA9586F76197F6 /* IASKSettingsStoreUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A3FE1FB6580F0685EC01D672DAEFFB /* IASKSettingsStoreUserDefaults.m */; };
 		49F2892208780B4FABBBD2DDE4BE357C /* IASKSettingsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7B4CFCE47E0CF9C03191977C4E752 /* IASKSettingsStore.m */; };
@@ -186,20 +186,17 @@
 		4D04C56B72F5E7BB49A5B610FB180F9F /* RetryWhen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F35936FC42E2280C0987D29933A4D4 /* RetryWhen.swift */; };
 		4D7EFDC139646F66D8F6FB579D9D3C7E /* HistoricalScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C74BFF46881956A9864FDCFFD6CCBDC /* HistoricalScheduler.swift */; };
 		4D877E3C2169E1C23C4FAD9EB36527B7 /* FLEXDefaultEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CF1D630063AFED84D281B5020080EC /* FLEXDefaultEditorViewController.m */; };
-		4D96154E13EE43E924C3139E0658EAE3 /* TZAssetModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D29ADFC8BDD33814CB8449B159400F7F /* TZAssetModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E3AD0F65C1FB9EFFE17E88F18FD93DD /* IASKPSSliderSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1378B21D64BE3A0697612A2FDC0AE08 /* IASKPSSliderSpecifierViewCell.m */; };
-		4E85BCAED4AA698026BAAEF6FF0F400A /* TZGifPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F167BFE7ECA9FC03740FDFE7783F81B /* TZGifPhotoPreviewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		517CA8EC6AE6989C8A9BC252E870B395 /* TZImageCropManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BAB22A3668BAFF175865281D1ABDF2 /* TZImageCropManager.m */; };
 		5189064DD50A87DF6524303686261198 /* DJDebugApiDetailPage.h in Copy DJDebugAPIAlarm Public Headers */ = {isa = PBXBuildFile; fileRef = 132C066BFA4F5193E840B6284337BFB7 /* DJDebugApiDetailPage.h */; };
 		51B04CCC2406E8C185D27557A241C83F /* InAppSettingsKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B75F63ABD859501847553AD26945B4D1 /* InAppSettingsKit.bundle */; };
 		51F03981824DFDFA48E7CDB9AB6C3C96 /* ScheduledDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFFFB9E5D434CCE53BDDD1C5B368FFD /* ScheduledDisposable.swift */; };
 		5353EB4F21743D2EA01639ECC5FB9443 /* FLEXNetworkTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 047FFCC52F1CF2945C87DC588810A513 /* FLEXNetworkTransaction.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D913118A8A585AD26FA8E1FCBA1C78 /* Request.swift */; };
 		542ECCCFC91F7A7119FEF23F870A4230 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5A530864DC8B7D292FCA9D2C741A2 /* Box.swift */; };
-		547F994CD447A4BEEBAA006702148AC7 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A0419EA58FADAAE14178AAA45AA498F9 /* TZImageManager.m */; };
 		55AF429E0FCEC9F36F9C8CD9548717A1 /* FLEXDefaultsExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 329DCDFEA543DC82793C314E27FBFA66 /* FLEXDefaultsExplorerViewController.m */; };
 		55F67259A7FC173883B79268D77CBD99 /* CompositeDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66929AC97A2E4A3446E14F4E2FD61120 /* CompositeDisposable.swift */; };
-		55F89CB073AA828B412A60B1A8714D43 /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC313426F6B518A77136FDF672D082C /* TZGifPhotoPreviewController.m */; };
+		561351EE5A9275B7C7D21583556A2C03 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 856F4896FAC1C2094D6918E33D55F862 /* NSBundle+TZImagePicker.m */; };
+		5650E42B83E5CD0250C603B24D8F2EE9 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 769261CA2033E40401C17FFD7DE4A648 /* UIImage+Utils.m */; };
 		567A848C72535DB31F495BBA9A5D072D /* DJDebugURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8246D932907ABDE9D5684F94FE937665 /* DJDebugURLProtocol.m */; };
 		569DECDE1680E819FAC2AB4196273ACB /* FLEXDefaultEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D8AE737A2EA935704197B8A4F3C2E20 /* FLEXDefaultEditorViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		56A3E82290A6858388CB981151E091A5 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76C9CB6796CB9B776910ACD2BFED069 /* Filter.swift */; };
@@ -213,6 +210,7 @@
 		594AF68E49477FBB472E2A1049874A5E /* DJDebugHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = FD6744F70D7B1A0EADFBC38CB790E62E /* DJDebugHeader.h */; };
 		59A6E40AEB48620B5012BAF4C62D22DC /* IASKTextViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D4E10B980D88EFD9FCDBC0070B5DB34 /* IASKTextViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5A4439E8BD0D7022B6E32453DAE7AF3A /* DJDebugAPIAlarmInfoPage.h in Headers */ = {isa = PBXBuildFile; fileRef = EA435B70CBEB037E820ABCB7E5AF09A0 /* DJDebugAPIAlarmInfoPage.h */; };
+		5A68E30B3AC20DE49B073891BBD02C74 /* TZImagePickerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8F570C075263A6DD5983BC04244666 /* TZImagePickerController-dummy.m */; };
 		5AFCB1A6E10A70D26AF03AE9B2D53C22 /* FLEXArgumentInputViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A78F31720329846BC297957EEA9F138 /* FLEXArgumentInputViewFactory.m */; };
 		5B981698211292E1F92A21CC9F182675 /* IQKeyboardManagerSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F76EF2DCB13E6D6B19B5812FFA17591D /* IQKeyboardManagerSwift-dummy.m */; };
 		5BFB15F3BF3BBF22D4475CC5AE99B35D /* FLEXClassesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 45B22FF90AD65B041A01CEBFB677B9E6 /* FLEXClassesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -226,13 +224,14 @@
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DEC7E29739D52F88A4566280CB4BFC /* DispatchQueue+Alamofire.swift */; };
 		61E3CCD0C6E76A37829F8F13363B1816 /* Bag+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6B5DB96D66DC1B50CD9A401968057C /* Bag+Rx.swift */; };
 		6271534BA5FD709230F2BFE7206CE78B /* Generate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54AD8C337CCB8476393798F59EBA9FF /* Generate.swift */; };
+		62AD3C04257B9696F4B2082DD47410E0 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2E671D1505748E09C995267F7BA0 /* TZPhotoPreviewCell.m */; };
 		62B41000477D0A13ADD1194099A732E1 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8541FD8A7E2768821B4F6E5850F3AB8E /* ConstraintMakerEditable.swift */; };
 		62DAF3AE7F469D2B1D27CD337842325B /* IASKTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 188CA7D21CE13C1E708DFF5F6B66AE77 /* IASKTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62E83EFCAF8C901DF382FEE6AB3D6B65 /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 124C703A69BC7BE80452581C8AE54D12 /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B886876F5C2DA84DEA4DEBECF5C821C /* ServerTrustPolicy.swift */; };
 		64206E357FCC5AD37E7E807B83D512B3 /* ElementAt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CED13B9CDC9882F5AB98A35BF8F19A /* ElementAt.swift */; };
 		643CAD1E678DE688354C6219115DFD6C /* FLEXArgumentInputNotSupportedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 67256680B3C6B77836769655A3796980 /* FLEXArgumentInputNotSupportedView.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6472F8E1B6740A303C1FC0A08AA50166 /* TZPhotoPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 610B6CD4BE38E5248B60F973E0B4D2D7 /* TZPhotoPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A6365B9EE9FEE8F26B9CE630F3F04D /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29131C41DC6096C8E92B80FB67655EAC /* TZImageManager.m */; };
 		65F67ED25C2723DBBD463FD2B1EB71F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		66140D9E07108FD80E9DEA01FB2FE645 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23957DA20121DA31192070554BB3910 /* Indicator.swift */; };
 		66B571BC56833DA726F4BA60934D2525 /* HistoricalSchedulerTimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B19A739ABC73133DE1064ADFE52BCC /* HistoricalSchedulerTimeConverter.swift */; };
@@ -256,8 +255,8 @@
 		6ED380476DDFEB45285722593A99C738 /* CombineLatest+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B7472914962D92E4A6408DABA8B166 /* CombineLatest+Collection.swift */; };
 		6F1F785D224A19390C0618E79782DB88 /* FLEXImageExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ACC7CA5E8E262A5CF037BDFED190DF1 /* FLEXImageExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		6F33312A73729DDCE43D1A432F44A982 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD67B0F823F0A54DC44349A379CF4B /* Window.swift */; };
-		700A5107A4481DA896F92160F996F4A8 /* TZImageCropManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E884CB366FDF301C497E4A8228DE0BDF /* TZImageCropManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		704AB6216480E76EC25C0D45DA1F685C /* FLEXArgumentInputTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = B15E15EA170C159E971FC90EA3AA8E26 /* FLEXArgumentInputTextView.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7061C6E7D191418E35949D9065CAEE5F /* TZImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EBF67048C62AC7820CC907E81FEAD6D1 /* TZImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70D48CF9847F3235DD2D77B6BD8C6440 /* IASKMultipleValueSelection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FC2E31608C40275396C9D32E1228513 /* IASKMultipleValueSelection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		71773483C3E39781F6DE8859019B7894 /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = D455384C3B77EFF3B211EE2670E68C30 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		71C5725483D516740465265BE9A6A208 /* SynchronizedDisposeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E88375576A7D74F0B56A15A4EE0C0 /* SynchronizedDisposeType.swift */; };
@@ -266,7 +265,6 @@
 		7380D60844C17745C1223E69278D8A79 /* FLEXClassesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E476C2C769316AD18DF2C7B7AD8957 /* FLEXClassesTableViewController.m */; };
 		73EEF1CCC9F48F4DDD5480ECC041AC01 /* DJDebugClassInfo.h in Copy DJDebugJumpRecord Public Headers */ = {isa = PBXBuildFile; fileRef = 060FA84B4942F5F98E7F855640551A92 /* DJDebugClassInfo.h */; };
 		74074D3619D1308AFCC47F0CC8536CA8 /* DJDebug.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D53F0DC811FF82E1F91F5CC014CF06CA /* DJDebug.bundle */; };
-		740BCC5575FBF6BB3D72B7B722092959 /* TZProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EBD699CA2F414ABDA09C0BEB106AE3 /* TZProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7437B63C4FF6F85D677DC96E4CD14573 /* FLEXInstancesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 41E24D641CF842FD08C1DBEACFEB1A18 /* FLEXInstancesTableViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		74C3A241C86B725F647161B316E7B9D5 /* AnonymousInvocable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60743C51D1D3CFBB65B52CC1A55F6465 /* AnonymousInvocable.swift */; };
 		74DC37188484CA2CE22B745972FCC181 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD9BEA9C198B03B1545E617A40F2FAB /* SVIndefiniteAnimatedView.m */; };
@@ -275,10 +273,12 @@
 		775B87BDA41F8A581D34B7B5DF51AC22 /* Kingfisher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B18F24EC1E5284B787934ABA3E4E1F32 /* Kingfisher-dummy.m */; };
 		7861646BBF492EF464C29B3638F70F5A /* IASKSettingsStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 94EB9B95B9CD4D69676C74A39FD9AAF2 /* IASKSettingsStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		78AC4C9DCA97230B9E47608023D97D6E /* DJDebug-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A85012C3AD6B092843673B8913410CE /* DJDebug-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7AC72E4860A274193FC0C70365CC8980 /* TZProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = 475D9F1467F9D56F7661C68E49020212 /* TZProgressView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7AD9B3E7CB95D207B0B880FEE1067A26 /* SchedulerServices+Emulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D847A18503CA9ADF51828559474794 /* SchedulerServices+Emulation.swift */; };
 		7AE8A44FC08189FA2A1B0A88B5F6F1FF /* FLEXArrayExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE9A3542AF5CCBF10926594A31AC858 /* FLEXArrayExplorerViewController.m */; };
 		7B386C41488319B01AA88FC060E24177 /* ObserveOnSerialDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BF3B279CBEECAAC4FF54D09C2D9741 /* ObserveOnSerialDispatchQueue.swift */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70886E760A3505E711BBEE9438BA22F3 /* SessionDelegate.swift */; };
+		7C737D0073EF8DD1D8DA9EED30A44FA0 /* TZImageCropManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B615FA8FFE3ACACA75CA8D706AF2DE56 /* TZImageCropManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C7EFE963813DA707D4858388FD89FA6 /* LockOwnerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7876069DC491BCC38B9F8F1646EFFF4D /* LockOwnerType.swift */; };
 		7CCF8A451663F39CC166D841C03C4FB2 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84A44D77F66BE993F3471D5F60BA0D1 /* String+MD5.swift */; };
 		7D83666E7CCB904D20CFB028DCA7578D /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A698194D798B26F65E33487DF38E0AE /* Empty.swift */; };
@@ -304,16 +304,16 @@
 		8BD3471AEEEBF407AF31DF119017BF32 /* FLEXNetworkHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EBFC41C364F486B971CBA1D7D134C7 /* FLEXNetworkHistoryTableViewController.m */; };
 		8C47F443982292B9BD532B4A6764CC19 /* FLEXArgumentInputSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 57BF76FAD4001C4788F0CC18EF2EB59F /* FLEXArgumentInputSwitchView.m */; };
 		8CA6FFF27073EC98E1A34427DD5BD672 /* FLEX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 08DDB81811BA52C6C7944F9F2D5786C0 /* FLEX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D6DEF700C323AEEFAAA434170EDC3C5 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B33B584FF9A7720AF28F0B0E3A80B145 /* TZVideoPlayerController.m */; };
 		8D80355CD9466800B0C270404FA55A9A /* DJDebugSettingsBaseViewController.h in Copy DJDebugBasic Public Headers */ = {isa = PBXBuildFile; fileRef = CE757090F79AF1EDF05D72177F9BEAB3 /* DJDebugSettingsBaseViewController.h */; };
 		8EAC6F569E80FE57173C1C35EC22F261 /* Observable+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E646C46C8DAB65CAF177C9495CCED755 /* Observable+Creation.swift */; };
 		8F5F67E2A627E9BE6D4E7D0B6C12F816 /* SubscribeOn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2FC9591C5923A936F12DC9B27DBD5D /* SubscribeOn.swift */; };
 		9025B4B94D60D88EFF97BC8A95E81D30 /* JRSwizzle-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 866810A863207DB33742E2272B171983 /* JRSwizzle-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		902A773CC337341094DB28CA3959E7DD /* TZPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FBDE16B8D3C6BF4B14F9ACDE461E7981 /* TZPhotoPreviewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9040F859892E50142B3AA4C30E0BFB85 /* DJDebugApiDetailPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D6AA269EFE90510C8459B17AD7465D4F /* DJDebugApiDetailPage.m */; };
 		9055AD0C881587CF665C70CAF908F41C /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DDBA90A2AD6551C1BD96432220D43B /* ConstraintInsets.swift */; };
-		918A9269DDB7872A0B53541DC042DCB4 /* NSBundle+TZImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = D695F1DCCF8852E07FFC3140BC241E86 /* NSBundle+TZImagePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		92136C6584624998D5005F46C70A628B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBA9FB7D11B44471284D367FD7FABEF /* CFNetwork.framework */; };
 		92143F96346FFA31B7E9AAC5CF4564EA /* FLEXObjectExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CC30BE0AAF81F5CBDFACF9E11F66BA /* FLEXObjectExplorerViewController.m */; };
+		929A967F60F6E5213BCF0C1C635E4E37 /* TZAssetModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CBAC29FA301613F9921B6EA076FCDC6B /* TZAssetModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		930361BBD5DD01B4C607EA90C788F09C /* NSObject+DJDebugModel.h in Copy DJDebugJumpRecord Public Headers */ = {isa = PBXBuildFile; fileRef = 2F1D79D08FF7F379D48D733CB6E1D932 /* NSObject+DJDebugModel.h */; };
 		943EF36818CD3F8CA3617CC53175FCD4 /* SingleAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297A9789A514631EDCCDD062E295D37 /* SingleAsync.swift */; };
 		94720D5366F44B799B7324AC300F54BA /* pt-PT.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 718E36D8B1743B8EF570DFCF39F80CA1 /* pt-PT.lproj */; };
@@ -329,8 +329,8 @@
 		993FBC0D0F354A65ED98FA0E335C3F74 /* FLEXHierarchyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11393D03E6CE8A02C5F25F50BCBFF3C4 /* FLEXHierarchyTableViewCell.m */; };
 		99D511E90361CFB566F49A75E9447C0C /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = A8D48DC2B7D1F73DAA43F07B1BF94756 /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99E2D03C8E243D646DCE6FBCFB793F13 /* UILayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B3BC631585322A2C4049628BB80AA /* UILayoutGuide+Extensions.swift */; };
+		9A66C92F05E424CB9796043BCE60ECA7 /* TZPhotoPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = D80688B22887B186337646AC8C3E6B30 /* TZPhotoPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9AE10CD6E93B4174E48FD0D7551A1528 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5570704E1C8EB69849CD98AD589588A /* ConstraintPriorityTarget.swift */; };
-		9AEF794FE8487D8CDAAA09BCC79AC1C8 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB43520A64F43EA080B6F162DCEE025A /* TZPhotoPickerController.m */; };
 		9B302AF332A9491956DF120BFA78E270 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E4F38F491590E96451AF7CE431249 /* Debugging.swift */; };
 		9B344A472F229F111797F2AAD3BDDE9A /* Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126DFFE1A0A15979290F6D52672C92B4 /* Rx.swift */; };
 		9B5B3FB70B374A78E673C5E50797D535 /* DJDebugCustomSettingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EB126F97EDA6E40C69815AA893879025 /* DJDebugCustomSettingViewController.h */; };
@@ -351,7 +351,6 @@
 		9FAF9CD41A4255EBEAF231BE426AB61C /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE510C652A8EEB8A1E0321096169FEC /* ConstraintView.swift */; };
 		A04BFC558D69E7DBB68023C80A9CFE4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		A0B456BBA2F0DD0103FC2A4D88041498 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 22B3C2050A047183667E40565D9A51A6 /* de.lproj */; };
-		A193B6FA8A4E8ECE55D68FCB87DA150E /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DEDFBE6E194D0DE647778D1EC1B0E4 /* TZVideoPlayerController.m */; };
 		A1EBCC71DB512FD1763D35304CFD395D /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B91C9EAE706C9066873FCAF9EBA6133 /* ConstraintRelatableTarget.swift */; };
 		A205904322511C30051FADF076334114 /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2D752EF696E49EAF2E18B5CF440A17 /* Producer.swift */; };
 		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFEB8ECF7BCB5B9EA76218FC1E30A41 /* NetworkReachabilityManager.swift */; };
@@ -400,6 +399,7 @@
 		B074765E48FDB25CF3602D477EF5051E /* Amb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C720C6368745B48ADF712193A5EA47 /* Amb.swift */; };
 		B098321DBC8B7B7FD925A92D1FC10A71 /* DJDebugSystemLogViewController.h in Copy DJDebugSystemLog Public Headers */ = {isa = PBXBuildFile; fileRef = 56C9A0BEB0C36070FFE3C3AEB93E2178 /* DJDebugSystemLogViewController.h */; };
 		B0E679FF770EE8E7073391580C373D92 /* IQTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91313E229CD0436B9FAC5CD616E8A96 /* IQTextView.swift */; };
+		B1898231CE1DC749EACEDAECB979721B /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A641CB7BA3AA485E157D7336669F04E /* TZImagePickerController.m */; };
 		B1D5DB644DE3EC373166895CDC9DBDA3 /* NSObject+DJDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 7916FBE2480A9074CAFC9C441E24DDDC /* NSObject+DJDebug.h */; };
 		B1F711CBCFF26C54AE49586E128D28BB /* FLEXArgumentInputJSONObjectView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F70E0B1F4C8979C1D2C5C410580E8A1 /* FLEXArgumentInputJSONObjectView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B222ECB851FCD0E3F84A5E617578560A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA797CDCCC6CD1344093F386E641B398 /* Error.swift */; };
@@ -422,10 +422,10 @@
 		B926904AA40BE9C5BFE009033EBB0233 /* FLEXExplorerToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF75A3AC5012008A109B3FE509BD18F /* FLEXExplorerToolbar.m */; };
 		B9557585483AD395045D19F792D8BDE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A543C6DC2C1249FC5BCF5D78E89D91 /* UIKit.framework */; };
 		B9A425F8BBF0EDA7A88CABD7256D67CF /* FLEXHeapEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AA36DE092132876F6FD78E130FDBD10 /* FLEXHeapEnumerator.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B9C226E9244076E864C9364D627B9593 /* TZImagePickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 38B1A05B1E73D77347C9C968E5454A95 /* TZImagePickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B9C8F6DFB78131642DB6788AB99C1AB9 /* FLEXFieldEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 827AFCC9313B79E625A0B26387F23C2E /* FLEXFieldEditorView.m */; };
 		BAA164008F2E618D4703A202CFDBB9EA /* RxSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 49330591C386CEC120DC4E124BC2C9C1 /* RxSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A532CEF8413E9D79CA60E0EA85FC9A /* Validation.swift */; };
+		BBFE755D63616CD3F0538D5155EB92BC /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 982A9405935A77DF7473504E1C569388 /* UIView+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC16929DAF9DDC39DAE281C4712DA15D /* SkipWhile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D121D44E067E8C1E112205018E4D830 /* SkipWhile.swift */; };
 		BCA8A2F2142D7B60DADA0CD64D86E2BE /* FLEXManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EAFDACE0E3E159ED92B165CA5A20B5E /* FLEXManager.m */; };
 		BCD6B3BA5E1132F0FD49AC39F2BF4D62 /* IQKeyboardManagerConstantsInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB725DFD6F05D53812B64373D5261D2 /* IQKeyboardManagerConstantsInternal.swift */; };
@@ -439,12 +439,12 @@
 		C0FB4D0DC2D71DF1729A6EB9C517668A /* FLEXViewControllerExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F9EAD72D4AF62F0832549CC604718FE8 /* FLEXViewControllerExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C0FF38B601AE803E1FB0EFB67D530C09 /* ImmediateScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F76924FD220A1DDEF05F5335628234 /* ImmediateScheduler.swift */; };
 		C1A7B4103DD3551585F6F4806DEFD34D /* DJDebugSettingsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B37659FA3C3F5298224E95AFE86A3932 /* DJDebugSettingsBaseViewController.m */; };
+		C1B8A3CE39B791A3CB03C978369970D5 /* UIImage+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = B625A2658965D1D0E5F535785E88AD59 /* UIImage+Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2A40A25C7D7FACCB70C88DAE1235B52 /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C1FF548D6F7D4F9B81347F1ED16D681A /* el.lproj */; };
 		C358AC79AA2989FA8B45E93B5B76452E /* Concat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371BDF6AD705477F53D8264ED13BC22 /* Concat.swift */; };
 		C439111F22F0B47ED8B2706E07CBBA78 /* FLEXArgumentInputSwitchView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8237B85BCA2C04E684A60CA4F4DA3CEF /* FLEXArgumentInputSwitchView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C599117F5096B758BB61D7450C07C667 /* FLEXDefaultsExplorerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 411E1EAEE60AE4BDFF72CEE017062DDB /* FLEXDefaultsExplorerViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C5AD6D9CF473CCCAC8B19D67D2CE1E0E /* FLEXArgumentInputNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = D1ECF4F0B267B445BAA26C492844AA40 /* FLEXArgumentInputNumberView.m */; };
-		C5DAC32B42F1ED150E0D365D749A1606 /* TZImagePickerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 12CC8F80965D1BD6D21BF87EC1A022B9 /* TZImagePickerController-dummy.m */; };
 		C6B4E4BE9E653E719CF1183564335D24 /* KingfisherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D62D1DBC94EF989BBD6AC2072FD3495 /* KingfisherManager.swift */; };
 		C6E0A327B0829A1747CA410AF5D557C9 /* FLEXFieldEditorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9B7C3DDD9C000762FDF70B989C9C15 /* FLEXFieldEditorView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C6E8EC521BFA7742E63E599839776F26 /* FLEXLayerExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEF6416CAABFA06BB1DC9C50843B1CD /* FLEXLayerExplorerViewController.m */; };
@@ -453,13 +453,11 @@
 		C8372E410356271CC7A197C59E8A068A /* FLEXFileBrowserSearchOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0606BDBEC8C406B8B2BAFA46F99EB7 /* FLEXFileBrowserSearchOperation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C92BC0B8E4CBCFD16762838B30654F29 /* IQUIViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20A3D5C4CD19C1B02C623DC55947E3 /* IQUIViewController+Additions.swift */; };
 		C94229063A0E4AB3011547055F420848 /* AddRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0941915E0E4AFF2E056211407D2D3E /* AddRef.swift */; };
-		C971B1617A956903A1475531150EE9A0 /* TZImageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 123A47BDA1C562AB8CF2FD212CB8A7B3 /* TZImageManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C99D04344106C2D18452CD33729E69A0 /* IASKSpecifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 429BA46D507A5D67FCC797A4E85A3047 /* IASKSpecifier.m */; };
 		CA7105D2D444D1BCF3EA2B4EF38043B3 /* FLEXWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = BB81C7C1EF2CA5F8C27E1E549EDDAB0C /* FLEXWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CB132B9EE241557282BF1624E0EE9422 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 171D31DE230634F364C3CA8C9ED81CCB /* JRSwizzle.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		CB5C47140D5756043CD881689CB74F88 /* FLEXHierarchyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5088D1230A334A499B679690DC86D7 /* FLEXHierarchyTableViewController.m */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA39D5487BA91F520CEF1A183B8E501D /* Response.swift */; };
-		CB83644E3C666E85178CC575A0D2132E /* TZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF75163CA623131A8E83CBE937C12AA /* TZProgressView.m */; };
 		CC00F7DA69BDBAA26948F195BF7F3FD8 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A97362FC9D234B555F25E4A5A40354E9 /* SVProgressHUD.bundle */; };
 		CC560DE4FCF250EE5D1D91BAE50DE0B9 /* UINavigationController+DJDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CA406886CA20762A570E8B5D45698AB /* UINavigationController+DJDebug.m */; };
 		CC84A1B70E4CF8326C3401DB5566227E /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BC4BE479C9E2BAB7F7B29507B04FDE /* Queue.swift */; };
@@ -467,24 +465,20 @@
 		CDDD667095B6C5F7FCD916C6C5C59A5F /* FLEXResources.h in Headers */ = {isa = PBXBuildFile; fileRef = 67D0491342AC6CB48FC31459E842D186 /* FLEXResources.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CDEC10B227766CAF92CFAEC52163D7FD /* DJDebugHeader.h in Copy DJDebugBasic Public Headers */ = {isa = PBXBuildFile; fileRef = FD6744F70D7B1A0EADFBC38CB790E62E /* DJDebugHeader.h */; };
 		CE077BC23C937FB2F74A2200FCFC49E3 /* ReplaySubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752E063ECE9B545826FA2B9E938BDE19 /* ReplaySubject.swift */; };
-		CE133933C945CCB3851CE1BDF419860E /* UIView+Layout.h in Headers */ = {isa = PBXBuildFile; fileRef = F7F3C852EB996FFF35DD7625FDE673D7 /* UIView+Layout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE3E0802CBDE73C572A9F0C7C5C843C3 /* FLEXFieldEditorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FE03F275DEF5E8B95DF04DCC5E0532FD /* FLEXFieldEditorViewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CE72CBBBABFB787C55A8F6396890517B /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FBF878052A268FD7DEEDE373A3F261FA /* TZImagePickerController.bundle */; };
+		CE72CBBBABFB787C55A8F6396890517B /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97963091DE7C518A7CCA93CE59B0DED9 /* TZImagePickerController.bundle */; };
 		CFDBA8E1FD9978376846892B8D322C7E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		CFF0A1FAEE52B65D31181657B0AB4830 /* BehaviorSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D6B13B9B8470C93021DC845ABEC36D /* BehaviorSubject.swift */; };
 		D01468C9312BA5699139F338446BBB41 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82ED4972909534EBF96E7BFD21A20AEF /* Sequence.swift */; };
 		D06A45ED378708709FCE458EE263616E /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFE256E5F6BC0BC8DB026F90B0EB8A8 /* ConstraintInsetTarget.swift */; };
 		D12DB9A4B4F3C7F558901020CDD6087D /* Observable+StandardSequenceOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A379C0CE24A62C8B7F5C1FB9607E2E8A /* Observable+StandardSequenceOperators.swift */; };
-		D14B23A8723A9652243FF972F5529841 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2AC9779288EBD4EA712E12D7F3C4BE4 /* TZPhotoPreviewController.m */; };
 		D15772B07BE19CB626C0179A12B510B9 /* IASKSlider.h in Headers */ = {isa = PBXBuildFile; fileRef = 997E2E0B2531E0B5A9A86E4C3E6A6121 /* IASKSlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D2885A8AA4DC0A918D7DBBFA15EE2089 /* IASKPSTextFieldSpecifierViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E41C2D39A82EDF89E6C8D560EEE78AD3 /* IASKPSTextFieldSpecifierViewCell.m */; };
 		D2CD61B2CA6EA80A3E4FCB2B944C0AA6 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDB8F646E9029B838CB9A9C8528EBBE /* Event.swift */; };
-		D3091CD1CFCF99010E47761154C45789 /* NSData+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA11C6CAB8B81FD935720E967ED8E2 /* NSData+Utils.m */; };
 		D3C9720625A0462504DF0324A954F689 /* ObservableType+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA208BF50639B54E14E4DC82FFB50C7 /* ObservableType+Extensions.swift */; };
 		D3E69273B3787067C6F5A7E265558802 /* Observable+Single.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814142C3A6C85127D87AE25204695619 /* Observable+Single.swift */; };
 		D490AA0329A71B6A8C0CA1053A65A3FF /* FLEXNetworkObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 55644977E8E948DA6092E42121149554 /* FLEXNetworkObserver.m */; };
 		D4DFBAD87544D4DD1B7DF2E51867071F /* IASKAppSettingsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 723CAA72990956DE92609195BD82C261 /* IASKAppSettingsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D4EB35EDBD6E01424756FEA048607676 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D11BC4A4A287BB6E1515CB70B662E7 /* UIView+Layout.m */; };
 		D51E5BE505A809AE94449D40DBDDB257 /* BooleanDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3CD70D9DAD90C3313FAF365BC26DD5 /* BooleanDisposable.swift */; };
 		D62846CEB5D9270B0CF04C65CC42ADF4 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97855D702084983CB1A76AC67B13E130 /* SVProgressAnimatedView.m */; };
 		D65B8481AFF5531FC2E4382CBA63C057 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 441197EA5EBD45F0202FA027FE025720 /* IQKeyboardManager.bundle */; };
@@ -492,12 +486,13 @@
 		D6C2E442434D437278CAB47C4BF22587 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		D792EC20F3018A4F352D1A9D42971821 /* SubjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F707FC3319A3EFE780751A4A7FA049D9 /* SubjectType.swift */; };
 		D7B10E5DD2118651465CF79906F5CE21 /* DJDebugURLProtocol.h in Copy DJDebugAPIAlarm Public Headers */ = {isa = PBXBuildFile; fileRef = 2FE9B40A9D7ABFA58C7049E74C7FE075 /* DJDebugURLProtocol.h */; };
+		D7B31583D79F5DBF7A7CB4C619285FF8 /* TZPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FDFD528B686D6542D219861B6AC5709 /* TZPhotoPreviewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D84120AB50D2A12ADC2FAA9E59AD8CF1 /* RxMutableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1C5F2260EED68C159F8F6A5A9D6F11 /* RxMutableBox.swift */; };
 		D88B84F2760DA2F37DBE08553858084B /* FLEXGlobalsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3C22376196F82861E6EDC40B863BF10 /* FLEXGlobalsTableViewController.m */; };
-		D8AF43196C9BE8B07243D325506BCAB4 /* TZVideoPlayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D9068E701229A7AD992EB7AF41DF3D5 /* TZVideoPlayerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D90C484F43F4FDD25D783AEC25EB1C32 /* ObserverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BDB7FA6B2CEC897117A0918803B289 /* ObserverType.swift */; };
 		D94AF8DA14158AB59BD82B37D2D14E30 /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 523EB8285D47B2136578E8739F996E44 /* th.lproj */; };
 		DA03DB7141608BC576AD9D143EB5D6D7 /* FLEXFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F50CBE96F34E37127227EB77E2A4C4 /* FLEXFieldEditorViewController.m */; };
+		DA1AF4AE492F5D7C5993442C76609A1F /* TZImagePickerController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AAEEBCDB47484956DE63BDAD82DFECF9 /* TZImagePickerController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA2E3D017F2B1BAED2CA059E08DEAEA8 /* Take.swift in Sources */ = {isa = PBXBuildFile; fileRef = B737E221B9BD22584652B1210CA2943C /* Take.swift */; };
 		DA5B68ECD3F0AF8D67951B868FF9076D /* IASKSpecifierValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10CCCD478FC94FED74A6343B67068FEA /* IASKSpecifierValuesViewController.m */; };
 		DAC1AE3D0CBD838A984121397D5CB6A2 /* InAppSettingsKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B4609827E0D7D95C0980F1B23262C4C0 /* InAppSettingsKit-dummy.m */; };
@@ -512,10 +507,12 @@
 		DEC69942724163FE4144A4BBCC6E0C16 /* InAppSettingsKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55529A2A989770193E2941F46F186723 /* InAppSettingsKit.framework */; };
 		DFEF5BE6AABE7796BA1B71FDB4943313 /* Zip+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AC79B8D94CD39593CC9E04166CA369 /* Zip+Collection.swift */; };
 		DFF84AECF3B7DC49EE0C5DBFB7ACBFC4 /* Just.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B21CF399701061D21B5F25AE82BC15 /* Just.swift */; };
+		E04BB4E1753B80257646F4435FE89907 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C40AA81E0C0207A1B83CB48C52279C /* UIView+Layout.m */; };
 		E0E495BCB821993FE17DD33AFF02457B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A547AEAEAF11F81AB3E6259C850ABB19 /* CoreFoundation.framework */; };
 		E0E59A910879DCE756BD8F3D982ACCF2 /* FLEXResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 9361092DA543FF69A8C460F85A6862A0 /* FLEXResources.m */; };
 		E1985EECB64EBF89007632BAB2B587BA /* DJDebugViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A06DD4A0539151234DBC8890525430 /* DJDebugViewControllers.m */; };
 		E325E4F0ED8D9FBEEDC752571D547D6E /* IASKSettingsStoreFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C3A2EF433F6D3DF78C500B92F5CEF25 /* IASKSettingsStoreFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3F6403C6F43074920F5EF567F4EC17A /* TZImagePickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F4C0FC91EF65B677F43E106611802EB /* TZImagePickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E466D7F222E5B6E14CF9CDFC90286CF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F92FEF7F5338C4D1BA98517FFE33B1F /* Foundation.framework */; };
 		E498132C39DCF16E8BFBBD95D69A198A /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B1178A3D9AC244447C1BB9FEBD409FC6 /* es.lproj */; };
 		E546E7A42DDCC095F1EE9721385D93EF /* Using.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A40CAC2EDA2D66F70218E691C90F727 /* Using.swift */; };
@@ -523,7 +520,6 @@
 		E5DA6A115DFA8083321F853F4399A1BB /* ToArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF38B4AF59AD5F0F6205B41DB72DBFA /* ToArray.swift */; };
 		E6563930430F2F2881963BB5FC2605C2 /* FLEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3873F24812521390C8D5939D90E08E63 /* FLEX.framework */; };
 		E68C478E9E471F685966CFB71A32A956 /* ImagePrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83769D76D986EEF2CD459D92B4430108 /* ImagePrefetcher.swift */; };
-		E7242018C32ACFFABD922AE891C0DB64 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8501CFAB2D516F5BF148F6B16D15CFC /* TZImagePickerController.m */; };
 		E7613784E9AD56BA3843531F33B07957 /* FLEXArgumentInputView.h in Headers */ = {isa = PBXBuildFile; fileRef = EB3CCEE7B171BFDAD761DDFEFCB1BD80 /* FLEXArgumentInputView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E7C07B97A44004F126051C6BBB596349 /* DJDebugWebViewController.h in Copy DJDebugWebView Public Headers */ = {isa = PBXBuildFile; fileRef = F9E7079C89831517FFA527278E3A9F1C /* DJDebugWebViewController.h */; };
 		E7FDACE8AC234DB7AF4DA7D4A4058F19 /* DistinctUntilChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E349CBD61CFB17C7197C9671ECB7B /* DistinctUntilChanged.swift */; };
@@ -534,6 +530,7 @@
 		E96C1397BF09966E55FD94879C1409FE /* DJDebugWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 226BF0AC44AE9207E141808604239246 /* DJDebugWindow.h */; };
 		E9AD3D7B3B4B82CD4D9B817109239F55 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC682E9D161160058A975CAB0190CDD /* IQNSArray+Sort.swift */; };
 		EAC3F7CBA7E12748E927E245DC87C3D9 /* FLEXCookiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BDDAE1B4F7333B54A39DF38ED7DE5C05 /* FLEXCookiesTableViewController.m */; };
+		EADE1E82F73E3DBB70CD79F1E706F523 /* TZPhotoPreviewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DD5C61715D62DCFAEC2CB12A616EDF6A /* TZPhotoPreviewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB2135751AAE1F1DA4752DBA6A681B28 /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1A2C737E9B1B8E2618BA5A54987C8E /* FLEXArgumentInputColorView.m */; };
 		EB2A9010BD4C720FA637806250099C78 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50FECBA72CF6E90594E20545D0EA7B /* ConstraintMaker.swift */; };
 		EB59FAAF08AAA2D131F71EC742433B8C /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7119DE3D6C7909D03A4F13AA00DCB57 /* ConstraintMultiplierTarget.swift */; };
@@ -541,11 +538,13 @@
 		EB801B4773127C25CB39D2485031F816 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4232FF76263B9AEA487A4E6ED10FC21C /* ImageCache.swift */; };
 		EC674C45A7E4A29FB76BD4D8440A480B /* Platform.Linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7851CA9F0D91482D2697F9EB813B025C /* Platform.Linux.swift */; };
 		ECD38E6224BE111361A7FB347CB1C5B4 /* UIWindow+DJDebug.h in Copy DJDebugBasic Public Headers */ = {isa = PBXBuildFile; fileRef = 14C579D6B6BEB906D218997AF39E709A /* UIWindow+DJDebug.h */; };
+		EE156489CB9DC7EBF951AA0A5748D175 /* TZVideoPlayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A42C69FEBC4AC152BB20E28BED71A0 /* TZVideoPlayerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE5584195CEE402EDCB50244495DE116 /* JRSwizzle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35BF66A4906B7485B6DD802F8E383412 /* JRSwizzle.framework */; };
 		EE71A4ACF58CB573D13C883A282F88BC /* UIWindow+DJDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C579D6B6BEB906D218997AF39E709A /* UIWindow+DJDebug.h */; };
 		EEA38424D5393E45D12B36C017AFE16E /* FLEXArgumentInputFontView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2331724FD26C73215B296AB57A0C3644 /* FLEXArgumentInputFontView.m */; };
 		EEAC0AD242F95A72E8BBF8C9FCB9AE1D /* VirtualTimeConverterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B25C623FFBF8B5C1D47278C344AF95 /* VirtualTimeConverterType.swift */; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27EDB9432570EA964984B52A5482E96 /* Notifications.swift */; };
+		F00F74213CB7B1EEA7B3F03E1B364DD0 /* TZGifPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4CAD6E41FC5B01C127B7CD6D38552E /* TZGifPhotoPreviewController.m */; };
 		F031B27357990275FBADFC8CC38F885B /* SerialDispatchQueueScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4F2CC4F2D2F470009F8CB279422781 /* SerialDispatchQueueScheduler.swift */; };
 		F0BA7179D5D9156BB09923D49EA9C456 /* FLEXNetworkRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = A3D27B66A212606B4155AF835A2CAC6C /* FLEXNetworkRecorder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F12BEE2FC8EC939DFA3D71C7D9325281 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61521A1D5A7CDBD5A92AB831960396 /* Lock.swift */; };
@@ -554,8 +553,8 @@
 		F193C5394E96BB3155CF96706D838034 /* Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FF644B1F643E3629C8B40F7947839E /* Kingfisher.swift */; };
 		F1E3ACC74F8A1AA536F2012F95D9094E /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D4605CDB265838FC1A0C970710047 /* ConstraintMakerPriortizable.swift */; };
 		F22A223157179AFD8189BB3A3A321422 /* FLEXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FED2261E8729DB78FDBAC247C20EA3 /* FLEXUtility.m */; };
-		F3F9998F2BEEB950844AC6094DC6BF15 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11419144DB57DE971D596ADEC03B0825 /* TZPhotoPreviewCell.m */; };
 		F48E441714EA38007D21762A287DF27E /* RefCountDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0254276F4A5DC7F2080752F55EB5BCCE /* RefCountDisposable.swift */; };
+		F496E01E961B7729E610E02635C17560 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F8648390E166872472F889788288DFA8 /* TZAssetModel.m */; };
 		F4B30DBC82BDC992D131EE3B6FC72132 /* IASKSettingsReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 257C35BF053EC93940F1E9C0BC315236 /* IASKSettingsReader.m */; };
 		F545A13287E8FB33F933E5C3F77443B8 /* FLEXNetworkObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B91BE6976C07E8DE558B30B248D2A0 /* FLEXNetworkObserver.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F5949CCA059133A8210E6F0ADDFF9071 /* IASKViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 982A015AECD03D10D5850F58B99F2F0D /* IASKViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -574,6 +573,7 @@
 		FEE437FE95641008EE82D3DA87C91B91 /* FLEXKeyboardHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6877E4C72A8F58F0BEC8B2C30B78A58F /* FLEXKeyboardHelpViewController.m */; };
 		FF34E1005B8C04E58F677E48E39D695B /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = FA219C619E7D1D2BDEE4C307AB7A70B4 /* en.lproj */; };
 		FF76E84F8FC87F97F0D5E31CE9875677 /* FLEXDictionaryExplorerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D05C2BB228623115A3830D4B6B2CA7 /* FLEXDictionaryExplorerViewController.m */; };
+		FFF93BC3F8BDFD3D4EF0A27546CD3DD1 /* TZAssetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = CDACCB2358BEDF745935ED1DFB5C2090 /* TZAssetCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -791,7 +791,6 @@
 		01FF644B1F643E3629C8B40F7947839E /* Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Kingfisher.swift; path = Sources/Kingfisher.swift; sourceTree = "<group>"; };
 		0207098F8358F1A5B46791A7514181A9 /* DJDebugCustomSettingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DJDebugCustomSettingViewController.m; path = DJDebug/DJDebugBasic/DJDebugCustomSettingViewController.m; sourceTree = "<group>"; };
 		0254276F4A5DC7F2080752F55EB5BCCE /* RefCountDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RefCountDisposable.swift; path = RxSwift/Disposables/RefCountDisposable.swift; sourceTree = "<group>"; };
-		031559F8F23400C67DFC26F0AD1183A0 /* TZAssetModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZAssetModel.m; path = TZImagePickerController/TZImagePickerController/TZAssetModel.m; sourceTree = "<group>"; };
 		042E4F38F491590E96451AF7CE431249 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
 		047FFCC52F1CF2945C87DC588810A513 /* FLEXNetworkTransaction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkTransaction.h; path = Classes/Network/FLEXNetworkTransaction.h; sourceTree = "<group>"; };
 		048592B83C4E1099163E8C623D7247A8 /* Never.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Never.swift; path = RxSwift/Observables/Implementations/Never.swift; sourceTree = "<group>"; };
@@ -801,7 +800,6 @@
 		06694BA104BBC0F907E4CC3BB7A8D755 /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FLEX.framework; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06CBF20B6BFFFF0E85F04040747897D6 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIView+IQKeyboardToolbar.swift"; path = "IQKeyboardManagerSwift/IQToolbar/IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		06F9127062BD8ABF23CF1575F74AC40E /* DJDebugPageJumpRecord.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DJDebugPageJumpRecord.m; path = DJDebug/DJDebugJumpRecord/DJDebugPageJumpRecord.m; sourceTree = "<group>"; };
-		07EBD699CA2F414ABDA09C0BEB106AE3 /* TZProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZProgressView.h; path = TZImagePickerController/TZImagePickerController/TZProgressView.h; sourceTree = "<group>"; };
 		0875365A5BE000E536BA7DEC37C3DE25 /* FLEXLayerExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXLayerExplorerViewController.h; path = Classes/ObjectExplorers/FLEXLayerExplorerViewController.h; sourceTree = "<group>"; };
 		08BF55C6D40AF8E88FACFE169A22F48A /* DJDebugConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugConfig.h; path = DJDebug/DJDebugBasic/DJDebugConfig.h; sourceTree = "<group>"; };
 		08DDB81811BA52C6C7944F9F2D5786C0 /* FLEX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLEX-umbrella.h"; sourceTree = "<group>"; };
@@ -812,21 +810,20 @@
 		0A2FC9591C5923A936F12DC9B27DBD5D /* SubscribeOn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubscribeOn.swift; path = RxSwift/Observables/Implementations/SubscribeOn.swift; sourceTree = "<group>"; };
 		0A733822DA0453D1E3F6DAC4FAC4FBE7 /* UINavigationController+DJDebug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+DJDebug.h"; path = "DJDebug/DJDebugJumpRecord/UINavigationController+DJDebug.h"; sourceTree = "<group>"; };
 		0ABB5D916BE85F6220B800C41DE259B9 /* FLEXLibrariesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXLibrariesTableViewController.m; path = Classes/GlobalStateExplorers/FLEXLibrariesTableViewController.m; sourceTree = "<group>"; };
+		0B632363F120875A647B6E450DB75E37 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPreviewController.m; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewController.m; sourceTree = "<group>"; };
 		0BD8B50EA448219C9EE73F8322FE0438 /* SubscriptionDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubscriptionDisposable.swift; path = RxSwift/Disposables/SubscriptionDisposable.swift; sourceTree = "<group>"; };
 		0C7A1E545244FDEF1BD3640667F93D62 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		0EFA11C6CAB8B81FD935720E967ED8E2 /* NSData+Utils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+Utils.m"; path = "TZImagePickerController/TZImagePickerController/NSData+Utils.m"; sourceTree = "<group>"; };
+		0F4C0FC91EF65B677F43E106611802EB /* TZImagePickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImagePickerController.h; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.h; sourceTree = "<group>"; };
 		0F70E0B1F4C8979C1D2C5C410580E8A1 /* FLEXArgumentInputJSONObjectView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputJSONObjectView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputJSONObjectView.h; sourceTree = "<group>"; };
 		0F982419CEAD992248007AA3D7CCC6AD /* Kingfisher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kingfisher-prefix.pch"; sourceTree = "<group>"; };
 		0FFE256E5F6BC0BC8DB026F90B0EB8A8 /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		108A7C01DFEF4A4229C882885E463E5F /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10CCCD478FC94FED74A6343B67068FEA /* IASKSpecifierValuesViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKSpecifierValuesViewController.m; path = InAppSettingsKit/Controllers/IASKSpecifierValuesViewController.m; sourceTree = "<group>"; };
 		11393D03E6CE8A02C5F25F50BCBFF3C4 /* FLEXHierarchyTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHierarchyTableViewCell.m; path = Classes/ViewHierarchy/FLEXHierarchyTableViewCell.m; sourceTree = "<group>"; };
-		11419144DB57DE971D596ADEC03B0825 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPreviewCell.m; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewCell.m; sourceTree = "<group>"; };
-		123A47BDA1C562AB8CF2FD212CB8A7B3 /* TZImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImageManager.h; path = TZImagePickerController/TZImagePickerController/TZImageManager.h; sourceTree = "<group>"; };
 		124C703A69BC7BE80452581C8AE54D12 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		126DFFE1A0A15979290F6D52672C92B4 /* Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Rx.swift; path = RxSwift/Rx.swift; sourceTree = "<group>"; };
 		129697F1AFB3808EDD2E2B570CCC8400 /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.lproj; path = InAppSettingsKit/Resources/sv.lproj; sourceTree = "<group>"; };
-		12CC8F80965D1BD6D21BF87EC1A022B9 /* TZImagePickerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TZImagePickerController-dummy.m"; sourceTree = "<group>"; };
+		12EDC28D373F70EB13C8588B76FE9180 /* TZGifPhotoPreviewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZGifPhotoPreviewController.h; path = TZImagePickerController/TZImagePickerController/TZGifPhotoPreviewController.h; sourceTree = "<group>"; };
 		132C066BFA4F5193E840B6284337BFB7 /* DJDebugApiDetailPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugApiDetailPage.h; path = DJDebug/DJDebugAPIAlarm/DJDebugApiDetailPage.h; sourceTree = "<group>"; };
 		143572A6EA09C9EBDC03F531EB1AEF84 /* FLEXMethodCallingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXMethodCallingViewController.m; path = Classes/Editing/FLEXMethodCallingViewController.m; sourceTree = "<group>"; };
 		14C1AF45D7937B1E7CDFE500EC1F8D72 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
@@ -847,8 +844,8 @@
 		1CCEEBBE0551FD2A7D6F9C56F4ED6FFC /* FLEXExplorerToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerToolbar.h; path = Classes/ExplorerToolbar/FLEXExplorerToolbar.h; sourceTree = "<group>"; };
 		1CE510C652A8EEB8A1E0321096169FEC /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
 		1CF0D70530C36C86AABA5EC37E067DEB /* FLEXSystemLogTableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXSystemLogTableViewCell.h; path = Classes/GlobalStateExplorers/SystemLog/FLEXSystemLogTableViewCell.h; sourceTree = "<group>"; };
+		1D4D5AF262481EFCD5561315FC5605AA /* TZImagePickerController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TZImagePickerController.xcconfig; sourceTree = "<group>"; };
 		1E1E7D0FC579629575A5DD5CCFFDBDFD /* RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RxSwift.framework; path = RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E6D77A5778D0C5A2B486D4529A578C8 /* NSData+Utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+Utils.h"; path = "TZImagePickerController/TZImagePickerController/NSData+Utils.h"; sourceTree = "<group>"; };
 		1EE7509C01650EF6BBF0F1F20570D0B3 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		1F75407F541A1C82BE2AEAF477C395B2 /* ShareReplay1.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareReplay1.swift; path = RxSwift/Observables/Implementations/ShareReplay1.swift; sourceTree = "<group>"; };
 		1FF75A3AC5012008A109B3FE509BD18F /* FLEXExplorerToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXExplorerToolbar.m; path = Classes/ExplorerToolbar/FLEXExplorerToolbar.m; sourceTree = "<group>"; };
@@ -858,7 +855,6 @@
 		214514B3A9B64ADA5399E171FF54FF1A /* FLEXArgumentInputFontsPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputFontsPickerView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontsPickerView.h; sourceTree = "<group>"; };
 		21A41A71D28F2F91A8A0E56C0A74357E /* AnonymousObservable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnonymousObservable.swift; path = RxSwift/Observables/Implementations/AnonymousObservable.swift; sourceTree = "<group>"; };
 		2201489EF77CFCD4C4A3838E932138E3 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
-		2206B53822ACCF49B7F504C4557B60A5 /* TZImagePickerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TZImagePickerController-prefix.pch"; sourceTree = "<group>"; };
 		2235D5AF48C8C6E4A299118BA1C9BFF7 /* DJDebug-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DJDebug-dummy.m"; sourceTree = "<group>"; };
 		226BF0AC44AE9207E141808604239246 /* DJDebugWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugWindow.h; path = DJDebug/DJDebugBasic/DJDebugWindow.h; sourceTree = "<group>"; };
 		22799A14E58F15EFC94E3DDCCA87E0E7 /* FLEXMultilineTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXMultilineTableViewCell.m; path = Classes/Utility/FLEXMultilineTableViewCell.m; sourceTree = "<group>"; };
@@ -866,7 +862,6 @@
 		22BC4BE479C9E2BAB7F7B29507B04FDE /* Queue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = Platform/DataStructures/Queue.swift; sourceTree = "<group>"; };
 		22FADDB28E53374692AC9545DFD35A6F /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXHeapEnumerator.m; path = Classes/Utility/FLEXHeapEnumerator.m; sourceTree = "<group>"; };
 		231D988F64C90022F82E54A3F6EFEEE2 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
-		23310E1B3F5A271DF19C3AA998B0D820 /* TZAssetCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZAssetCell.m; path = TZImagePickerController/TZImagePickerController/TZAssetCell.m; sourceTree = "<group>"; };
 		2331724FD26C73215B296AB57A0C3644 /* FLEXArgumentInputFontView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputFontView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontView.m; sourceTree = "<group>"; };
 		237CDFAAE4DAE3D8419CA82238938600 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIScrollView+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
 		23AFE0512D80C3FE77FA785610D97F95 /* NSURLRequest+DJTrustSSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+DJTrustSSL.m"; path = "DJDebug/DJDebugTrustSSL/NSURLRequest+DJTrustSSL.m"; sourceTree = "<group>"; };
@@ -887,6 +882,7 @@
 		28B8AEDD93FCECF8B2B20B1D5BD1678D /* Multicast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Multicast.swift; path = RxSwift/Observables/Implementations/Multicast.swift; sourceTree = "<group>"; };
 		28CC30BE0AAF81F5CBDFACF9E11F66BA /* FLEXObjectExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXObjectExplorerViewController.m; path = Classes/ObjectExplorers/FLEXObjectExplorerViewController.m; sourceTree = "<group>"; };
 		290DEAB1235683879BC3E1E6D0D8B795 /* CombineLatest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CombineLatest.swift; path = RxSwift/Observables/Implementations/CombineLatest.swift; sourceTree = "<group>"; };
+		29131C41DC6096C8E92B80FB67655EAC /* TZImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImageManager.m; path = TZImagePickerController/TZImagePickerController/TZImageManager.m; sourceTree = "<group>"; };
 		29B8D99E122AD1779DDB82B3779AA5B0 /* FLEXUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXUtility.h; path = Classes/Utility/FLEXUtility.h; sourceTree = "<group>"; };
 		29CD5A10969FD427465393DF2FE14A94 /* FLEXArgumentInputStructView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputStructView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputStructView.h; sourceTree = "<group>"; };
 		2A5B79DB0A3993A1FD0D8E60F0A16EF4 /* FLEXArgumentInputStringView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputStringView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputStringView.m; sourceTree = "<group>"; };
@@ -894,6 +890,7 @@
 		2B343738CD0401935EF110BFC56E5C1F /* RxSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxSwift.xcconfig; sourceTree = "<group>"; };
 		2B50FECBA72CF6E90594E20545D0EA7B /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
 		2B864B9E96669C8AE4DDF4B202493856 /* FLEXRuntimeUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXRuntimeUtility.h; path = Classes/Utility/FLEXRuntimeUtility.h; sourceTree = "<group>"; };
+		2C6DEFCBCC7A1C41635EF06B6CC2C78C /* TZProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZProgressView.m; path = TZImagePickerController/TZImagePickerController/TZProgressView.m; sourceTree = "<group>"; };
 		2D317388E8B5FCA2982A385862674805 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		2D42F300D9471E491C90C562874433E3 /* TZImagePickerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TZImagePickerController.framework; path = TZImagePickerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F1D79D08FF7F379D48D733CB6E1D932 /* NSObject+DJDebugModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+DJDebugModel.h"; path = "DJDebug/DJDebugJumpRecord/NSObject+DJDebugModel.h"; sourceTree = "<group>"; };
@@ -917,7 +914,6 @@
 		380A90BB057DBE35219AA7C337634169 /* ImageProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageProcessor.swift; path = Sources/ImageProcessor.swift; sourceTree = "<group>"; };
 		3873F24812521390C8D5939D90E08E63 /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38ADFA8582FCCD93124F5AC4E09A4E21 /* FLEXSystemLogMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXSystemLogMessage.m; path = Classes/GlobalStateExplorers/SystemLog/FLEXSystemLogMessage.m; sourceTree = "<group>"; };
-		38B1A05B1E73D77347C9C968E5454A95 /* TZImagePickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImagePickerController.h; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.h; sourceTree = "<group>"; };
 		38CBE432597A6940A6F27B856421CC33 /* Platform.Darwin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Darwin.swift; path = Platform/Platform.Darwin.swift; sourceTree = "<group>"; };
 		38D46BE4C2B59E4E9C3301F5B560B2CC /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		38E0B708B65CF2756B2B5E7C3DC14E89 /* DisposeBag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DisposeBag.swift; path = RxSwift/Disposables/DisposeBag.swift; sourceTree = "<group>"; };
@@ -930,11 +926,10 @@
 		3BD4511E5A1BFC26B6D7BCBED5B4DD89 /* Sample.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sample.swift; path = RxSwift/Observables/Implementations/Sample.swift; sourceTree = "<group>"; };
 		3C61521A1D5A7CDBD5A92AB831960396 /* Lock.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Lock.swift; path = RxSwift/Concurrency/Lock.swift; sourceTree = "<group>"; };
 		3C931AF8C3671E9FD4A08E07BD2167B2 /* Disposables.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Disposables.swift; path = RxSwift/Disposables/Disposables.swift; sourceTree = "<group>"; };
-		3D9068E701229A7AD992EB7AF41DF3D5 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZVideoPlayerController.h; path = TZImagePickerController/TZImagePickerController/TZVideoPlayerController.h; sourceTree = "<group>"; };
+		3DAD2E671D1505748E09C995267F7BA0 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPreviewCell.m; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewCell.m; sourceTree = "<group>"; };
 		3F5A3EBA9A11EB5BFE3B657457A5DD24 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = InAppSettingsKit/Resources/ja.lproj; sourceTree = "<group>"; };
 		3F5FCCBC1D96277917DAEA6B7623DE93 /* DJDebug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebug.h; path = DJDebug/DJDebugBasic/DJDebug.h; sourceTree = "<group>"; };
 		3F994B3D401554CC0D11A1489A788596 /* Reactive.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reactive.swift; path = RxSwift/Reactive.swift; sourceTree = "<group>"; };
-		40E9EFB3801AB4DE0494B062246F6689 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		411E1EAEE60AE4BDFF72CEE017062DDB /* FLEXDefaultsExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXDefaultsExplorerViewController.h; path = Classes/ObjectExplorers/FLEXDefaultsExplorerViewController.h; sourceTree = "<group>"; };
 		41A6E19169A5AE6EAAE0C44DE1699E9D /* InvocableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InvocableType.swift; path = RxSwift/Schedulers/Internal/InvocableType.swift; sourceTree = "<group>"; };
 		41C4F7397D7933E085E7EC35D724C9A2 /* IASKTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKTextView.m; path = InAppSettingsKit/Views/IASKTextView.m; sourceTree = "<group>"; };
@@ -951,6 +946,7 @@
 		457675C5A47700A8DF3A704F0DEDE662 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
 		45B22FF90AD65B041A01CEBFB677B9E6 /* FLEXClassesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXClassesTableViewController.h; path = Classes/GlobalStateExplorers/FLEXClassesTableViewController.h; sourceTree = "<group>"; };
 		46C334248F6228355FD4E405CB3D87A3 /* FLEXViewExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXViewExplorerViewController.m; path = Classes/ObjectExplorers/FLEXViewExplorerViewController.m; sourceTree = "<group>"; };
+		475D9F1467F9D56F7661C68E49020212 /* TZProgressView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZProgressView.h; path = TZImagePickerController/TZImagePickerController/TZProgressView.h; sourceTree = "<group>"; };
 		48C720C6368745B48ADF712193A5EA47 /* Amb.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Amb.swift; path = RxSwift/Observables/Implementations/Amb.swift; sourceTree = "<group>"; };
 		48E38054822118C4EC09713915688BE5 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		49330591C386CEC120DC4E124BC2C9C1 /* RxSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxSwift-umbrella.h"; sourceTree = "<group>"; };
@@ -991,16 +987,16 @@
 		57BF76FAD4001C4788F0CC18EF2EB59F /* FLEXArgumentInputSwitchView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputSwitchView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputSwitchView.m; sourceTree = "<group>"; };
 		57CED13B9CDC9882F5AB98A35BF8F19A /* ElementAt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElementAt.swift; path = RxSwift/Observables/Implementations/ElementAt.swift; sourceTree = "<group>"; };
 		593373B14CDC013F91DAC0B34A0F8840 /* Do.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Do.swift; path = RxSwift/Observables/Implementations/Do.swift; sourceTree = "<group>"; };
+		5A641CB7BA3AA485E157D7336669F04E /* TZImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImagePickerController.m; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.m; sourceTree = "<group>"; };
 		5A92EEEE76632900D9A2874ED23F25EE /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		5A9EFD7FA0A25D76AC8489090507F52C /* VirtualTimeScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualTimeScheduler.swift; path = RxSwift/Schedulers/VirtualTimeScheduler.swift; sourceTree = "<group>"; };
 		5B886876F5C2DA84DEA4DEBECF5C821C /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		5CA222D45194C8CF774C10B0DCDA5E21 /* TZImagePickerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TZImagePickerController-umbrella.h"; sourceTree = "<group>"; };
+		5C8F570C075263A6DD5983BC04244666 /* TZImagePickerController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TZImagePickerController-dummy.m"; sourceTree = "<group>"; };
 		5D121D44E067E8C1E112205018E4D830 /* SkipWhile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SkipWhile.swift; path = RxSwift/Observables/Implementations/SkipWhile.swift; sourceTree = "<group>"; };
 		5D62D1DBC94EF989BBD6AC2072FD3495 /* KingfisherManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KingfisherManager.swift; path = Sources/KingfisherManager.swift; sourceTree = "<group>"; };
 		5E14C0BC56FE5315BA6A45B8A90AE3E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5E6834ECB040B547D405337CB4A243FF /* DJDebugClearCacheTool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugClearCacheTool.h; path = DJDebug/DJDebugClearCache/DJDebugClearCacheTool.h; sourceTree = "<group>"; };
 		5F086EF8A1313093544F92B26C6BEB1C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5F167BFE7ECA9FC03740FDFE7783F81B /* TZGifPhotoPreviewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZGifPhotoPreviewController.h; path = TZImagePickerController/TZImagePickerController/TZGifPhotoPreviewController.h; sourceTree = "<group>"; };
 		5FF1E8C631A6623B4642A7E2AAB97214 /* Timeout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeout.swift; path = RxSwift/Observables/Implementations/Timeout.swift; sourceTree = "<group>"; };
 		5FFFFB9E5D434CCE53BDDD1C5B368FFD /* ScheduledDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScheduledDisposable.swift; path = RxSwift/Disposables/ScheduledDisposable.swift; sourceTree = "<group>"; };
 		605EB76CBF3E28117E814AF422708F1A /* Skip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Skip.swift; path = RxSwift/Observables/Implementations/Skip.swift; sourceTree = "<group>"; };
@@ -1012,8 +1008,8 @@
 		60DF7B3D3BF39D279342981E80FE4AE5 /* FLEXArgumentInputJSONObjectView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputJSONObjectView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputJSONObjectView.m; sourceTree = "<group>"; };
 		61042881FA3D54E371FB81F49F121C78 /* InvocableScheduledItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InvocableScheduledItem.swift; path = RxSwift/Schedulers/Internal/InvocableScheduledItem.swift; sourceTree = "<group>"; };
 		6104411A8E670F1581F19D7BA2CBDA2C /* FLEXNetworkTransactionDetailTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkTransactionDetailTableViewController.m; path = Classes/Network/FLEXNetworkTransactionDetailTableViewController.m; sourceTree = "<group>"; };
-		610B6CD4BE38E5248B60F973E0B4D2D7 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPickerController.h; path = TZImagePickerController/TZImagePickerController/TZPhotoPickerController.h; sourceTree = "<group>"; };
 		614CAD42DECCE5BAD73B91749B68BDBE /* FLEXArgumentInputStringView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputStringView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputStringView.h; sourceTree = "<group>"; };
+		62C40AA81E0C0207A1B83CB48C52279C /* UIView+Layout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "TZImagePickerController/TZImagePickerController/UIView+Layout.m"; sourceTree = "<group>"; };
 		62F1BD104EDD78C449319681C110CFBB /* DJDebugViewControllers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugViewControllers.h; path = DJDebug/DJDebugBasic/DJDebugViewControllers.h; sourceTree = "<group>"; };
 		6325450C6A23C7CDF60C65A8C6FE0DDB /* Catch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Catch.swift; path = RxSwift/Observables/Implementations/Catch.swift; sourceTree = "<group>"; };
 		63BE7F36E8CBCF310790931218EC967D /* Range.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Range.swift; path = RxSwift/Observables/Implementations/Range.swift; sourceTree = "<group>"; };
@@ -1038,7 +1034,6 @@
 		6B887B0C4501A602D21FCE3AC9348A27 /* SerialDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SerialDisposable.swift; path = RxSwift/Disposables/SerialDisposable.swift; sourceTree = "<group>"; };
 		6B91C9EAE706C9066873FCAF9EBA6133 /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		6BD0ABDC1C0C2B3213E4638D35F0C56C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6C6132E8A429FD4886D2704E6B54B9AF /* TZAssetCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZAssetCell.h; path = TZImagePickerController/TZImagePickerController/TZAssetCell.h; sourceTree = "<group>"; };
 		6C78D8663D1A3ADC5606D6225D253C85 /* Observable+Binding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Observable+Binding.swift"; path = "RxSwift/Observables/Observable+Binding.swift"; sourceTree = "<group>"; };
 		6CA880097CC687DDE355B93C45AA5FFC /* Kingfisher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kingfisher-umbrella.h"; sourceTree = "<group>"; };
 		6CE9A3542AF5CCBF10926594A31AC858 /* FLEXArrayExplorerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArrayExplorerViewController.m; path = Classes/ObjectExplorers/FLEXArrayExplorerViewController.m; sourceTree = "<group>"; };
@@ -1054,6 +1049,7 @@
 		70B25C623FFBF8B5C1D47278C344AF95 /* VirtualTimeConverterType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualTimeConverterType.swift; path = RxSwift/Schedulers/VirtualTimeConverterType.swift; sourceTree = "<group>"; };
 		710F0F81E291513F81064E0D104F6213 /* Merge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Merge.swift; path = RxSwift/Observables/Implementations/Merge.swift; sourceTree = "<group>"; };
 		71204630C56725D4C650AB1D2E68FFA7 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = InAppSettingsKit/Resources/nl.lproj; sourceTree = "<group>"; };
+		716AFF4328E6E97C046F2EE8B15354E9 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+TZImagePicker.h"; path = "TZImagePickerController/TZImagePickerController/NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
 		718E36D8B1743B8EF570DFCF39F80CA1 /* pt-PT.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "pt-PT.lproj"; path = "InAppSettingsKit/Resources/pt-PT.lproj"; sourceTree = "<group>"; };
 		7203DAEC2B1D20E98DAA0035A02DFAC3 /* IQKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardManager.swift; path = IQKeyboardManagerSwift/IQKeyboardManager.swift; sourceTree = "<group>"; };
 		723CAA72990956DE92609195BD82C261 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKAppSettingsViewController.h; path = InAppSettingsKit/Controllers/IASKAppSettingsViewController.h; sourceTree = "<group>"; };
@@ -1067,6 +1063,7 @@
 		752E063ECE9B545826FA2B9E938BDE19 /* ReplaySubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaySubject.swift; path = RxSwift/Subjects/ReplaySubject.swift; sourceTree = "<group>"; };
 		758C095D6F056C04BF8F5AE53EF898F0 /* CurrentThreadScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CurrentThreadScheduler.swift; path = RxSwift/Schedulers/CurrentThreadScheduler.swift; sourceTree = "<group>"; };
 		76673CA11FE4CE2F04BA334A18024852 /* FLEXFileBrowserSearchOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFileBrowserSearchOperation.m; path = Classes/GlobalStateExplorers/FLEXFileBrowserSearchOperation.m; sourceTree = "<group>"; };
+		769261CA2033E40401C17FFD7DE4A648 /* UIImage+Utils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Utils.m"; path = "TZImagePickerController/TZImagePickerController/UIImage+Utils.m"; sourceTree = "<group>"; };
 		76ACC0CCC3D690021ACE2C56582612B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		7828FC4976AAD95A5D8C3CEE215051E0 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		7851CA9F0D91482D2697F9EB813B025C /* Platform.Linux.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.Linux.swift; path = Platform/Platform.Linux.swift; sourceTree = "<group>"; };
@@ -1098,23 +1095,24 @@
 		83769D76D986EEF2CD459D92B4430108 /* ImagePrefetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePrefetcher.swift; path = Sources/ImagePrefetcher.swift; sourceTree = "<group>"; };
 		838571C0778B4BCCCB85877A2A2BF273 /* FLEXArgumentInputView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputView.m; sourceTree = "<group>"; };
 		8541FD8A7E2768821B4F6E5850F3AB8E /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
+		856F4896FAC1C2094D6918E33D55F862 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+TZImagePicker.m"; path = "TZImagePickerController/TZImagePickerController/NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		857FC4D248956FCE8E2F21122C41A4D1 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Kingfisher.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		866810A863207DB33742E2272B171983 /* JRSwizzle-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JRSwizzle-umbrella.h"; sourceTree = "<group>"; };
 		86A9FC6D9800465161279B4DFFD75FD7 /* FLEXKeyboardHelpViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXKeyboardHelpViewController.h; path = Classes/Utility/FLEXKeyboardHelpViewController.h; sourceTree = "<group>"; };
 		86DBF0E906B92B9EAC31309BE49FC04A /* FLEXFileBrowserTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFileBrowserTableViewController.m; path = Classes/GlobalStateExplorers/FLEXFileBrowserTableViewController.m; sourceTree = "<group>"; };
 		86E476C2C769316AD18DF2C7B7AD8957 /* FLEXClassesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXClassesTableViewController.m; path = Classes/GlobalStateExplorers/FLEXClassesTableViewController.m; sourceTree = "<group>"; };
 		871CE4A59D2E129174BC1CE4444ED0D8 /* BinaryDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BinaryDisposable.swift; path = RxSwift/Disposables/BinaryDisposable.swift; sourceTree = "<group>"; };
-		87DEDFBE6E194D0DE647778D1EC1B0E4 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZVideoPlayerController.m; path = TZImagePickerController/TZImagePickerController/TZVideoPlayerController.m; sourceTree = "<group>"; };
 		8871B97601660353BBEB2BF579A20865 /* Pods-ZJArmoire-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZJArmoire-resources.sh"; sourceTree = "<group>"; };
 		8A1C052CEBB25D6BA097075F52EDCAF1 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
+		8A3201D3B47AA3953C32F45B1536C7DD /* TZPhotoPickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPickerController.m; path = TZImagePickerController/TZImagePickerController/TZPhotoPickerController.m; sourceTree = "<group>"; };
 		8A78F31720329846BC297957EEA9F138 /* FLEXArgumentInputViewFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputViewFactory.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputViewFactory.m; sourceTree = "<group>"; };
 		8ACC7CA5E8E262A5CF037BDFED190DF1 /* FLEXImageExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXImageExplorerViewController.h; path = Classes/ObjectExplorers/FLEXImageExplorerViewController.h; sourceTree = "<group>"; };
 		8AE168D1640FBFFC6C752D47278E30A9 /* IASKAppSettingsWebViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKAppSettingsWebViewController.h; path = InAppSettingsKit/Controllers/IASKAppSettingsWebViewController.h; sourceTree = "<group>"; };
-		8AF75163CA623131A8E83CBE937C12AA /* TZProgressView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZProgressView.m; path = TZImagePickerController/TZImagePickerController/TZProgressView.m; sourceTree = "<group>"; };
 		8B8C6BF04768A4C5054714BEB9C2600F /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = InAppSettingsKit/Resources/fr.lproj; sourceTree = "<group>"; };
 		8BA4D1A66059A6E50E14545F3A6E75B6 /* Reduce.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reduce.swift; path = RxSwift/Observables/Implementations/Reduce.swift; sourceTree = "<group>"; };
 		8BF27CA24EAE72849F0B05B7569B921C /* FLEXViewExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXViewExplorerViewController.h; path = Classes/ObjectExplorers/FLEXViewExplorerViewController.h; sourceTree = "<group>"; };
 		8BF639D7BC82FAD6F97B74F2DAD8E327 /* Cancelable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cancelable.swift; path = RxSwift/Cancelable.swift; sourceTree = "<group>"; };
+		8C4CAD6E41FC5B01C127B7CD6D38552E /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZGifPhotoPreviewController.m; path = TZImagePickerController/TZImagePickerController/TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
 		8C74BFF46881956A9864FDCFFD6CCBDC /* HistoricalScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalScheduler.swift; path = RxSwift/Schedulers/HistoricalScheduler.swift; sourceTree = "<group>"; };
 		8CCFC4888E299FF127DC80DEB04B105E /* TakeWhile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TakeWhile.swift; path = RxSwift/Observables/Implementations/TakeWhile.swift; sourceTree = "<group>"; };
 		8DC4ADD1C0C0609E51CCAA8014783212 /* Pods-ZJArmoire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZJArmoire-dummy.m"; sourceTree = "<group>"; };
@@ -1140,12 +1138,13 @@
 		9657B06CD8A67B368BB3B04C6AD1B3CB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		96E9FCF53DE34237D414D789DC781352 /* TailRecursiveSink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TailRecursiveSink.swift; path = RxSwift/Observers/TailRecursiveSink.swift; sourceTree = "<group>"; };
 		97855D702084983CB1A76AC67B13E130 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		97963091DE7C518A7CCA93CE59B0DED9 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = TZImagePickerController.bundle; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle; sourceTree = "<group>"; };
 		97E4A4DEE4BBBAEDB6A24B4C97DFD99E /* IASKPSTextFieldSpecifierViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKPSTextFieldSpecifierViewCell.h; path = InAppSettingsKit/Views/IASKPSTextFieldSpecifierViewCell.h; sourceTree = "<group>"; };
 		982A015AECD03D10D5850F58B99F2F0D /* IASKViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKViewController.h; path = InAppSettingsKit/Controllers/IASKViewController.h; sourceTree = "<group>"; };
+		982A9405935A77DF7473504E1C569388 /* UIView+Layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "TZImagePickerController/TZImagePickerController/UIView+Layout.h"; sourceTree = "<group>"; };
 		990EB9CAA8A2AEAE948C515053FC1B83 /* ScheduledItemType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScheduledItemType.swift; path = RxSwift/Schedulers/Internal/ScheduledItemType.swift; sourceTree = "<group>"; };
 		990F722CB737B29E73EC4781BABAA263 /* Pods-ZJArmoire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZJArmoire.debug.xcconfig"; sourceTree = "<group>"; };
 		997E2E0B2531E0B5A9A86E4C3E6A6121 /* IASKSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSlider.h; path = InAppSettingsKit/Views/IASKSlider.h; sourceTree = "<group>"; };
-		99D11BC4A4A287BB6E1515CB70B662E7 /* UIView+Layout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Layout.m"; path = "TZImagePickerController/TZImagePickerController/UIView+Layout.m"; sourceTree = "<group>"; };
 		9A85012C3AD6B092843673B8913410CE /* DJDebug-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DJDebug-umbrella.h"; sourceTree = "<group>"; };
 		9AA437C92654406C51A632F6F8AB5BFF /* TTRangeSliderDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTRangeSliderDelegate.h; path = Pod/Classes/TTRangeSliderDelegate.h; sourceTree = "<group>"; };
 		9B1C5F2260EED68C159F8F6A5A9D6F11 /* RxMutableBox.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxMutableBox.swift; path = RxSwift/RxMutableBox.swift; sourceTree = "<group>"; };
@@ -1164,14 +1163,13 @@
 		9F01E00D9832683B470F4D5901D74A90 /* FLEXWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXWindow.m; path = Classes/ExplorerToolbar/FLEXWindow.m; sourceTree = "<group>"; };
 		9F98F8C314BFA97DC105716F1C016547 /* ObserveOn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObserveOn.swift; path = RxSwift/Observables/Implementations/ObserveOn.swift; sourceTree = "<group>"; };
 		9FD9BEA9C198B03B1545E617A40F2FAB /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		A0419EA58FADAAE14178AAA45AA498F9 /* TZImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImageManager.m; path = TZImagePickerController/TZImagePickerController/TZImageManager.m; sourceTree = "<group>"; };
+		9FDFD528B686D6542D219861B6AC5709 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPreviewController.h; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewController.h; sourceTree = "<group>"; };
 		A10E81F319D178A503D59ED136CD9B07 /* FLEXDictionaryExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXDictionaryExplorerViewController.h; path = Classes/ObjectExplorers/FLEXDictionaryExplorerViewController.h; sourceTree = "<group>"; };
 		A23957DA20121DA31192070554BB3910 /* Indicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Indicator.swift; path = Sources/Indicator.swift; sourceTree = "<group>"; };
 		A25971C741ED591B30ED985FA27D649D /* RequrstModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequrstModifier.swift; path = Sources/RequrstModifier.swift; sourceTree = "<group>"; };
 		A25BF9348C9911E73BEC71B4ADFA3207 /* DJDebugAPIAlarmInfoPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DJDebugAPIAlarmInfoPage.m; path = DJDebug/DJDebugAPIAlarm/DJDebugAPIAlarmInfoPage.m; sourceTree = "<group>"; };
 		A28215119574E6026BE6964F7A354B90 /* IQKeyboardManagerSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = IQKeyboardManagerSwift.modulemap; sourceTree = "<group>"; };
 		A283766517B2362B61450A695BB62CDC /* Pods-ZJArmoire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ZJArmoire.modulemap"; sourceTree = "<group>"; };
-		A2AC9779288EBD4EA712E12D7F3C4BE4 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPreviewController.m; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewController.m; sourceTree = "<group>"; };
 		A2B48692B8C5071B224CD65202F5AFEF /* IASKTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IASKTextField.m; path = InAppSettingsKit/Views/IASKTextField.m; sourceTree = "<group>"; };
 		A2F50CBE96F34E37127227EB77E2A4C4 /* FLEXFieldEditorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXFieldEditorViewController.m; path = Classes/Editing/FLEXFieldEditorViewController.m; sourceTree = "<group>"; };
 		A30FDC9BF8AFFC06256721284B6EAFEA /* CombineLatest+arity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CombineLatest+arity.swift"; path = "RxSwift/Observables/Implementations/CombineLatest+arity.swift"; sourceTree = "<group>"; };
@@ -1183,14 +1181,14 @@
 		A59591B5DA459C6B62FA76E777A47BCD /* Deferred.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Deferred.swift; path = RxSwift/Observables/Implementations/Deferred.swift; sourceTree = "<group>"; };
 		A5D4723214C22D21F56FBF6AEA9D1EB5 /* FLEXLiveObjectsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXLiveObjectsTableViewController.m; path = Classes/GlobalStateExplorers/FLEXLiveObjectsTableViewController.m; sourceTree = "<group>"; };
 		A62772ED92FAA1CD1543B30C3792CAA1 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
-		A638E85DE9570E64615A5F156CCDE1C3 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPreviewCell.h; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewCell.h; sourceTree = "<group>"; };
 		A65DFB44CA965CEE4273584856BF424C /* FLEXClassExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXClassExplorerViewController.h; path = Classes/ObjectExplorers/FLEXClassExplorerViewController.h; sourceTree = "<group>"; };
 		A668ED839E24F6B859D750DE3F9BBE00 /* FLEXNetworkTransactionDetailTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXNetworkTransactionDetailTableViewController.h; path = Classes/Network/FLEXNetworkTransactionDetailTableViewController.h; sourceTree = "<group>"; };
 		A734E765B319A78781B28CA26524ACA4 /* FLEXArgumentInputFontView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputFontView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputFontView.h; sourceTree = "<group>"; };
+		A83113BF49AAA7B76193E4C23339593D /* TZAssetCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZAssetCell.m; path = TZImagePickerController/TZImagePickerController/TZAssetCell.m; sourceTree = "<group>"; };
 		A8D48DC2B7D1F73DAA43F07B1BF94756 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		A97362FC9D234B555F25E4A5A40354E9 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		A979130523A5AF9E66D791FA482C12D9 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
-		A981857C15E1DD11249E020ABA64F00B /* TZImagePickerController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TZImagePickerController.xcconfig; sourceTree = "<group>"; };
+		AAEEBCDB47484956DE63BDAD82DFECF9 /* TZImagePickerController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TZImagePickerController-umbrella.h"; sourceTree = "<group>"; };
 		AB63FF97DEBBECF585EF343BDFC1ACCB /* SingleAssignmentDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleAssignmentDisposable.swift; path = RxSwift/Disposables/SingleAssignmentDisposable.swift; sourceTree = "<group>"; };
 		AC07C371BF92F4F2201B5FCDAFA2657E /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Sources/Image.swift; sourceTree = "<group>"; };
 		ACBA9FB7D11B44471284D367FD7FABEF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
@@ -1205,6 +1203,7 @@
 		B19C91D59028411C351953EEE1A684D6 /* InAppSettingsKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = InAppSettingsKit.framework; path = InAppSettingsKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FBE7A122269330241C8E01CB6D103E /* InAppSettingsKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "InAppSettingsKit-prefix.pch"; sourceTree = "<group>"; };
 		B2C0E911FA80E5F9C8FDAB229FE42E06 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B33B584FF9A7720AF28F0B0E3A80B145 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZVideoPlayerController.m; path = TZImagePickerController/TZImagePickerController/TZVideoPlayerController.m; sourceTree = "<group>"; };
 		B367CFFBE502D72711A694272362F0D4 /* Resource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Sources/Resource.swift; sourceTree = "<group>"; };
 		B37659FA3C3F5298224E95AFE86A3932 /* DJDebugSettingsBaseViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DJDebugSettingsBaseViewController.m; path = DJDebug/DJDebugBasic/DJDebugSettingsBaseViewController.m; sourceTree = "<group>"; };
 		B3B01CE8CF461E6C98401FF949235E1B /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
@@ -1215,6 +1214,8 @@
 		B4A84A54C24B2135E2CD8BFD01E04EDB /* FLEXMethodCallingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXMethodCallingViewController.h; path = Classes/Editing/FLEXMethodCallingViewController.h; sourceTree = "<group>"; };
 		B4B01E2C600A5E889DB2428FDB94667F /* InAppSettingsKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = InAppSettingsKit.xcconfig; sourceTree = "<group>"; };
 		B5570704E1C8EB69849CD98AD589588A /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
+		B615FA8FFE3ACACA75CA8D706AF2DE56 /* TZImageCropManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImageCropManager.h; path = TZImagePickerController/TZImagePickerController/TZImageCropManager.h; sourceTree = "<group>"; };
+		B625A2658965D1D0E5F535785E88AD59 /* UIImage+Utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Utils.h"; path = "TZImagePickerController/TZImagePickerController/UIImage+Utils.h"; sourceTree = "<group>"; };
 		B6906B6FDB600BDCB8441CD9B1EADBE7 /* TTRangeSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTRangeSlider-dummy.m"; sourceTree = "<group>"; };
 		B737E221B9BD22584652B1210CA2943C /* Take.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Take.swift; path = RxSwift/Observables/Implementations/Take.swift; sourceTree = "<group>"; };
 		B75F63ABD859501847553AD26945B4D1 /* InAppSettingsKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = InAppSettingsKit.bundle; path = InAppSettingsKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1255,29 +1256,28 @@
 		C4E3E503FAE154071CD74CB372F8C814 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		C4E6A79F77C2B9F460BD02BF0E2E3497 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		C54AD8C337CCB8476393798F59EBA9FF /* Generate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Generate.swift; path = RxSwift/Observables/Implementations/Generate.swift; sourceTree = "<group>"; };
+		C5AF59F346A9E7C2D59F126F2ABA0EFC /* TZImagePickerController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TZImagePickerController-prefix.pch"; sourceTree = "<group>"; };
 		C5C0E2DFF0E4229FFC199529CEC77BC3 /* ConnectableObservableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectableObservableType.swift; path = RxSwift/ConnectableObservableType.swift; sourceTree = "<group>"; };
 		C6AAC8F88ADED8571A990DB92B431A37 /* InAppSettingsKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = InAppSettingsKit.modulemap; sourceTree = "<group>"; };
 		C7384F1027526A8377DEC7D95C3153A4 /* Kingfisher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Kingfisher.xcconfig; sourceTree = "<group>"; };
 		C7E130AB87ECC5136C48F517EA430165 /* ImageView+Kingfisher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ImageView+Kingfisher.swift"; path = "Sources/ImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		C84A44D77F66BE993F3471D5F60BA0D1 /* String+MD5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Sources/String+MD5.swift"; sourceTree = "<group>"; };
-		C886819E7AC93FFD2645C7DD830E1101 /* NSBundle+TZImagePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+TZImagePicker.m"; path = "TZImagePickerController/TZImagePickerController/NSBundle+TZImagePicker.m"; sourceTree = "<group>"; };
 		C8E459141ED57F6297AD55E28B212FE9 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		C8F657DC30D8F73B1A9298E06D56F467 /* IQTitleBarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQTitleBarButtonItem.swift; path = IQKeyboardManagerSwift/IQToolbar/IQTitleBarButtonItem.swift; sourceTree = "<group>"; };
 		C97FADFE1CC87965462625E85D5BCF26 /* ConcurrentDispatchQueueScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConcurrentDispatchQueueScheduler.swift; path = RxSwift/Schedulers/ConcurrentDispatchQueueScheduler.swift; sourceTree = "<group>"; };
-		C9BAB22A3668BAFF175865281D1ABDF2 /* TZImageCropManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImageCropManager.m; path = TZImagePickerController/TZImagePickerController/TZImageCropManager.m; sourceTree = "<group>"; };
-		CB43520A64F43EA080B6F162DCEE025A /* TZPhotoPickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZPhotoPickerController.m; path = TZImagePickerController/TZImagePickerController/TZPhotoPickerController.m; sourceTree = "<group>"; };
+		CBAC29FA301613F9921B6EA076FCDC6B /* TZAssetModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZAssetModel.h; path = TZImagePickerController/TZImagePickerController/TZAssetModel.h; sourceTree = "<group>"; };
 		CBFF09F965BFA286EE1165B23AB0274A /* FLEXPropertyEditorViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXPropertyEditorViewController.h; path = Classes/Editing/FLEXPropertyEditorViewController.h; sourceTree = "<group>"; };
 		CC495D6FC0C7DBB7A80CAC5C299D8FE3 /* FLEXExplorerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXExplorerViewController.h; path = Classes/ExplorerToolbar/FLEXExplorerViewController.h; sourceTree = "<group>"; };
 		CC74D780787C630BEC3696E6BD1686DE /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		CCB3E7BDFB19893FADA582A2FBE93492 /* SynchronizedUnsubscribeType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedUnsubscribeType.swift; path = RxSwift/Concurrency/SynchronizedUnsubscribeType.swift; sourceTree = "<group>"; };
 		CD8D43B50D012D887FEE09FD32FA2730 /* InfiniteSequence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfiniteSequence.swift; path = Platform/DataStructures/InfiniteSequence.swift; sourceTree = "<group>"; };
+		CDACCB2358BEDF745935ED1DFB5C2090 /* TZAssetCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZAssetCell.h; path = TZImagePickerController/TZImagePickerController/TZAssetCell.h; sourceTree = "<group>"; };
 		CE0E43FCD8CB932A28F1BE9C25A9A2E7 /* FLEXGlobalsTableViewControllerEntry.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXGlobalsTableViewControllerEntry.m; path = Classes/ObjectExplorers/FLEXGlobalsTableViewControllerEntry.m; sourceTree = "<group>"; };
 		CE47A6EE116C0C7BFAC96CAA5AE1BC33 /* FLEXArgumentInputDateView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputDateView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputDateView.h; sourceTree = "<group>"; };
 		CE757090F79AF1EDF05D72177F9BEAB3 /* DJDebugSettingsBaseViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugSettingsBaseViewController.h; path = DJDebug/DJDebugBasic/DJDebugSettingsBaseViewController.h; sourceTree = "<group>"; };
 		D1ECF4F0B267B445BAA26C492844AA40 /* FLEXArgumentInputNumberView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputNumberView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputNumberView.m; sourceTree = "<group>"; };
 		D275B026D093ED64B1B566D8A62E670C /* FLEX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FLEX.xcconfig; sourceTree = "<group>"; };
 		D27EDB9432570EA964984B52A5482E96 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		D29ADFC8BDD33814CB8449B159400F7F /* TZAssetModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZAssetModel.h; path = TZImagePickerController/TZImagePickerController/TZAssetModel.h; sourceTree = "<group>"; };
 		D375EA48064B51F9BEB86355EE45BF4F /* ShareReplay1WhileConnected.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareReplay1WhileConnected.swift; path = RxSwift/Observables/Implementations/ShareReplay1WhileConnected.swift; sourceTree = "<group>"; };
 		D3B45C4E679A69D71570E31E0B347EC3 /* FLEXNetworkSettingsTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXNetworkSettingsTableViewController.m; path = Classes/Network/FLEXNetworkSettingsTableViewController.m; sourceTree = "<group>"; };
 		D455384C3B77EFF3B211EE2670E68C30 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
@@ -1288,24 +1288,25 @@
 		D5B19A739ABC73133DE1064ADFE52BCC /* HistoricalSchedulerTimeConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalSchedulerTimeConverter.swift; path = RxSwift/Schedulers/HistoricalSchedulerTimeConverter.swift; sourceTree = "<group>"; };
 		D5D19BB53B2B30C9931799DB4E817E54 /* FLEX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FLEX-dummy.m"; sourceTree = "<group>"; };
 		D5D6B13B9B8470C93021DC845ABEC36D /* BehaviorSubject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BehaviorSubject.swift; path = RxSwift/Subjects/BehaviorSubject.swift; sourceTree = "<group>"; };
-		D695F1DCCF8852E07FFC3140BC241E86 /* NSBundle+TZImagePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+TZImagePicker.h"; path = "TZImagePickerController/TZImagePickerController/NSBundle+TZImagePicker.h"; sourceTree = "<group>"; };
+		D6A42C69FEBC4AC152BB20E28BED71A0 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZVideoPlayerController.h; path = TZImagePickerController/TZImagePickerController/TZVideoPlayerController.h; sourceTree = "<group>"; };
 		D6AA269EFE90510C8459B17AD7465D4F /* DJDebugApiDetailPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DJDebugApiDetailPage.m; path = DJDebug/DJDebugAPIAlarm/DJDebugApiDetailPage.m; sourceTree = "<group>"; };
 		D7119DE3D6C7909D03A4F13AA00DCB57 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Source/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		D722050535B075D63CC5DAFE715C9C8B /* DJDebugClearCacheTool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DJDebugClearCacheTool.m; path = DJDebug/DJDebugClearCache/DJDebugClearCacheTool.m; sourceTree = "<group>"; };
 		D74034EF19BEB3D544546C2762090029 /* FLEXKeyboardShortcutManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXKeyboardShortcutManager.m; path = Classes/Utility/FLEXKeyboardShortcutManager.m; sourceTree = "<group>"; };
 		D790B752DDF46772DACDA78141D5794F /* FLEX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLEX-prefix.pch"; sourceTree = "<group>"; };
+		D80688B22887B186337646AC8C3E6B30 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPickerController.h; path = TZImagePickerController/TZImagePickerController/TZPhotoPickerController.h; sourceTree = "<group>"; };
 		D83C5FA1A73A940F6EA6AACE94A45A18 /* TakeLast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TakeLast.swift; path = RxSwift/Observables/Implementations/TakeLast.swift; sourceTree = "<group>"; };
-		D8501CFAB2D516F5BF148F6B16D15CFC /* TZImagePickerController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImagePickerController.m; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.m; sourceTree = "<group>"; };
 		D910F1A40672FF2F1EFD7FA4608A6FA0 /* Zip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Zip.swift; path = RxSwift/Observables/Implementations/Zip.swift; sourceTree = "<group>"; };
 		D91C1CF13F0940FAFA7A81584A392E8A /* IQKeyboardManagerSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-umbrella.h"; sourceTree = "<group>"; };
 		D9846D8856338733955CA214DB2CCF4B /* FLEXInstancesTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXInstancesTableViewController.m; path = Classes/GlobalStateExplorers/FLEXInstancesTableViewController.m; sourceTree = "<group>"; };
 		DB20A3D5C4CD19C1B02C623DC55947E3 /* IQUIViewController+Additions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "IQUIViewController+Additions.swift"; path = "IQKeyboardManagerSwift/Categories/IQUIViewController+Additions.swift"; sourceTree = "<group>"; };
 		DB52FA6DC926B5F2A99754E21442A5FB /* IQKeyboardReturnKeyHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IQKeyboardReturnKeyHandler.swift; path = IQKeyboardManagerSwift/IQKeyboardReturnKeyHandler.swift; sourceTree = "<group>"; };
+		DBC79A3521ECB4E829780899AAEFD182 /* TZImageCropManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZImageCropManager.m; path = TZImagePickerController/TZImagePickerController/TZImageCropManager.m; sourceTree = "<group>"; };
 		DC9A7E69954386F2F670B8E739B184AA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCC313426F6B518A77136FDF672D082C /* TZGifPhotoPreviewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZGifPhotoPreviewController.m; path = TZImagePickerController/TZImagePickerController/TZGifPhotoPreviewController.m; sourceTree = "<group>"; };
 		DD1493D5B7EC6FAD055280F651FE5860 /* TTRangeSlider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTRangeSlider.h; path = Pod/Classes/TTRangeSlider.h; sourceTree = "<group>"; };
 		DD4E9CAE06361D34D6D73F2E0069DFFE /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = RxSwift/Observables/Implementations/Filter.swift; sourceTree = "<group>"; };
 		DD50A307D1CED3D4AA9945AD18BE3A63 /* AnonymousObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnonymousObserver.swift; path = RxSwift/Observers/AnonymousObserver.swift; sourceTree = "<group>"; };
+		DD5C61715D62DCFAEC2CB12A616EDF6A /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPreviewCell.h; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewCell.h; sourceTree = "<group>"; };
 		DDDB8F646E9029B838CB9A9C8528EBBE /* Event.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Event.swift; path = RxSwift/Event.swift; sourceTree = "<group>"; };
 		DE8990ED6B69F6E41A08C1DA7DD3B049 /* FLEXPropertyEditorViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXPropertyEditorViewController.m; path = Classes/Editing/FLEXPropertyEditorViewController.m; sourceTree = "<group>"; };
 		DEEE60C1C883870C358D9F0668E216AF /* ObservableConvertibleType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObservableConvertibleType.swift; path = RxSwift/ObservableConvertibleType.swift; sourceTree = "<group>"; };
@@ -1326,7 +1327,6 @@
 		E425743D863F5EC832EFCDB3C6C5E6C6 /* ObservableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObservableType.swift; path = RxSwift/ObservableType.swift; sourceTree = "<group>"; };
 		E4864690EC9B325A7579072C811D2804 /* Disposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Disposable.swift; path = RxSwift/Disposable.swift; sourceTree = "<group>"; };
 		E5E9BBC33FF1343FC2C454270857064A /* FLEX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FLEX.modulemap; sourceTree = "<group>"; };
-		E61649571F9CE56F17D34116D48F7DF5 /* TZImagePickerController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TZImagePickerController.modulemap; sourceTree = "<group>"; };
 		E646C46C8DAB65CAF177C9495CCED755 /* Observable+Creation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Observable+Creation.swift"; path = "RxSwift/Observables/Observable+Creation.swift"; sourceTree = "<group>"; };
 		E72435009FCE662F8C637F9BF07683E4 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = InAppSettingsKit/Resources/ru.lproj; sourceTree = "<group>"; };
 		E7466747D62646D656BDC26AFD77AE4C /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
@@ -1334,15 +1334,16 @@
 		E76C9CB6796CB9B776910ACD2BFED069 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Filter.swift; sourceTree = "<group>"; };
 		E81D35B233ACA4AE1C47DEF705AED676 /* WithLatestFrom.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WithLatestFrom.swift; path = RxSwift/Observables/Implementations/WithLatestFrom.swift; sourceTree = "<group>"; };
 		E847DD3C0DA3A2FE03D76FE551ABA773 /* FLEXArgumentInputDateView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXArgumentInputDateView.m; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputDateView.m; sourceTree = "<group>"; };
-		E884CB366FDF301C497E4A8228DE0BDF /* TZImageCropManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImageCropManager.h; path = TZImagePickerController/TZImagePickerController/TZImageCropManager.h; sourceTree = "<group>"; };
 		E93F17E9E8F1F9939DF74957D109F287 /* IASKSettingsStoreUserDefaults.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IASKSettingsStoreUserDefaults.h; path = InAppSettingsKit/Models/IASKSettingsStoreUserDefaults.h; sourceTree = "<group>"; };
 		E97353B74BBB1F6EBF4DD520C3A34E42 /* TTRangeSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTRangeSlider-prefix.pch"; sourceTree = "<group>"; };
 		E975974FE10838458AA19D36DB61EFD3 /* NSObject+DJDebugModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+DJDebugModel.m"; path = "DJDebug/DJDebugJumpRecord/NSObject+DJDebugModel.m"; sourceTree = "<group>"; };
+		EA267485C162A5A72A2AF690583DAF5B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA435B70CBEB037E820ABCB7E5AF09A0 /* DJDebugAPIAlarmInfoPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugAPIAlarmInfoPage.h; path = DJDebug/DJDebugAPIAlarm/DJDebugAPIAlarmInfoPage.h; sourceTree = "<group>"; };
 		EA928D4442F5F5057639D2E9BE46020B /* FLEXCookiesTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXCookiesTableViewController.h; path = Classes/GlobalStateExplorers/FLEXCookiesTableViewController.h; sourceTree = "<group>"; };
 		EADC5F67759FC29F0B8DFD87DCB0F0AB /* NSURLRequest+DJTrustSSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLRequest+DJTrustSSL.h"; path = "DJDebug/DJDebugTrustSSL/NSURLRequest+DJTrustSSL.h"; sourceTree = "<group>"; };
 		EB126F97EDA6E40C69815AA893879025 /* DJDebugCustomSettingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DJDebugCustomSettingViewController.h; path = DJDebug/DJDebugBasic/DJDebugCustomSettingViewController.h; sourceTree = "<group>"; };
 		EB3CCEE7B171BFDAD761DDFEFCB1BD80 /* FLEXArgumentInputView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputView.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputView.h; sourceTree = "<group>"; };
+		EBF67048C62AC7820CC907E81FEAD6D1 /* TZImageManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZImageManager.h; path = TZImagePickerController/TZImagePickerController/TZImageManager.h; sourceTree = "<group>"; };
 		EC54B2D71CBAF8611A1FBAFA4A1CD4BF /* Timer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timer.swift; path = RxSwift/Observables/Implementations/Timer.swift; sourceTree = "<group>"; };
 		ED28634D5E400867E15D1E53FCA722A9 /* RxSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RxSwift-dummy.m"; sourceTree = "<group>"; };
 		ED3C55F960827C1FFE4E83132C7079CD /* IQKeyboardManagerSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IQKeyboardManagerSwift-prefix.pch"; sourceTree = "<group>"; };
@@ -1353,6 +1354,7 @@
 		EE7C477227355E470C997350C04EECF5 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		EEFD69B44BCA54FCB69DF5DE7005F735 /* FLEXSystemLogTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLEXSystemLogTableViewCell.m; path = Classes/GlobalStateExplorers/SystemLog/FLEXSystemLogTableViewCell.m; sourceTree = "<group>"; };
 		EFCC2041E0BC88F6C7D544814B519019 /* RxSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxSwift-prefix.pch"; sourceTree = "<group>"; };
+		F0A4DC13821398A0821D08150C3A2E8A /* TZImagePickerController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TZImagePickerController.modulemap; sourceTree = "<group>"; };
 		F14E7B5629F2EB72C47752D071FCFDCC /* FLEXGlobalsTableViewControllerEntry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXGlobalsTableViewControllerEntry.h; path = Classes/ObjectExplorers/FLEXGlobalsTableViewControllerEntry.h; sourceTree = "<group>"; };
 		F2B56F07D431C6CC0F22DF8AACE0706F /* DispatchQueueConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchQueueConfiguration.swift; path = RxSwift/Schedulers/Internal/DispatchQueueConfiguration.swift; sourceTree = "<group>"; };
 		F3418E807D22417292016F8222065F70 /* FLEXKeyboardShortcutManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXKeyboardShortcutManager.h; path = Classes/Utility/FLEXKeyboardShortcutManager.h; sourceTree = "<group>"; };
@@ -1364,7 +1366,7 @@
 		F76EF2DCB13E6D6B19B5812FFA17591D /* IQKeyboardManagerSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IQKeyboardManagerSwift-dummy.m"; sourceTree = "<group>"; };
 		F798B068333063C78E76E30EAB426E34 /* DisposeBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DisposeBase.swift; path = RxSwift/Disposables/DisposeBase.swift; sourceTree = "<group>"; };
 		F7D964C414E7FE17288ED126F92EE375 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Extensions.swift"; path = "Platform/DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
-		F7F3C852EB996FFF35DD7625FDE673D7 /* UIView+Layout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Layout.h"; path = "TZImagePickerController/TZImagePickerController/UIView+Layout.h"; sourceTree = "<group>"; };
+		F8648390E166872472F889788288DFA8 /* TZAssetModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TZAssetModel.m; path = TZImagePickerController/TZImagePickerController/TZAssetModel.m; sourceTree = "<group>"; };
 		F8BB1AFAE8163FA9545A962578DA1A03 /* FLEXGlobalsTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXGlobalsTableViewController.h; path = Classes/GlobalStateExplorers/FLEXGlobalsTableViewController.h; sourceTree = "<group>"; };
 		F8C1DF5DD63B472139E17EE6A66AEEA7 /* FLEXArgumentInputViewFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLEXArgumentInputViewFactory.h; path = Classes/Editing/ArgumentInputViews/FLEXArgumentInputViewFactory.h; sourceTree = "<group>"; };
 		F90745BEA10DF3EF6506AC873FB6483C /* Sink.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sink.swift; path = RxSwift/Observables/Implementations/Sink.swift; sourceTree = "<group>"; };
@@ -1378,8 +1380,6 @@
 		FA39D5487BA91F520CEF1A183B8E501D /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
 		FA80C75AD1B4F2CAC9C8BAD35EC9DB33 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		FB0941915E0E4AFF2E056211407D2D3E /* AddRef.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AddRef.swift; path = RxSwift/Observables/Implementations/AddRef.swift; sourceTree = "<group>"; };
-		FBDE16B8D3C6BF4B14F9ACDE461E7981 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TZPhotoPreviewController.h; path = TZImagePickerController/TZImagePickerController/TZPhotoPreviewController.h; sourceTree = "<group>"; };
-		FBF878052A268FD7DEEDE373A3F261FA /* TZImagePickerController.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = TZImagePickerController.bundle; path = TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle; sourceTree = "<group>"; };
 		FBF883FE6A3ECE552818D33A4BA3728B /* ConnectableObservable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectableObservable.swift; path = RxSwift/Observables/Implementations/ConnectableObservable.swift; sourceTree = "<group>"; };
 		FCD7896C5C4A56C32FE1F594537B1587 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD54D46E5A775A559753DAB81A7C7E78 /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = Base.lproj; path = InAppSettingsKit/Resources/Base.lproj; sourceTree = "<group>"; };
@@ -1544,6 +1544,44 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/DJDebug";
+			sourceTree = "<group>";
+		};
+		0738605074A7C0773147CA802AC60B84 /* TZImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				716AFF4328E6E97C046F2EE8B15354E9 /* NSBundle+TZImagePicker.h */,
+				856F4896FAC1C2094D6918E33D55F862 /* NSBundle+TZImagePicker.m */,
+				CDACCB2358BEDF745935ED1DFB5C2090 /* TZAssetCell.h */,
+				A83113BF49AAA7B76193E4C23339593D /* TZAssetCell.m */,
+				CBAC29FA301613F9921B6EA076FCDC6B /* TZAssetModel.h */,
+				F8648390E166872472F889788288DFA8 /* TZAssetModel.m */,
+				12EDC28D373F70EB13C8588B76FE9180 /* TZGifPhotoPreviewController.h */,
+				8C4CAD6E41FC5B01C127B7CD6D38552E /* TZGifPhotoPreviewController.m */,
+				B615FA8FFE3ACACA75CA8D706AF2DE56 /* TZImageCropManager.h */,
+				DBC79A3521ECB4E829780899AAEFD182 /* TZImageCropManager.m */,
+				EBF67048C62AC7820CC907E81FEAD6D1 /* TZImageManager.h */,
+				29131C41DC6096C8E92B80FB67655EAC /* TZImageManager.m */,
+				0F4C0FC91EF65B677F43E106611802EB /* TZImagePickerController.h */,
+				5A641CB7BA3AA485E157D7336669F04E /* TZImagePickerController.m */,
+				D80688B22887B186337646AC8C3E6B30 /* TZPhotoPickerController.h */,
+				8A3201D3B47AA3953C32F45B1536C7DD /* TZPhotoPickerController.m */,
+				DD5C61715D62DCFAEC2CB12A616EDF6A /* TZPhotoPreviewCell.h */,
+				3DAD2E671D1505748E09C995267F7BA0 /* TZPhotoPreviewCell.m */,
+				9FDFD528B686D6542D219861B6AC5709 /* TZPhotoPreviewController.h */,
+				0B632363F120875A647B6E450DB75E37 /* TZPhotoPreviewController.m */,
+				475D9F1467F9D56F7661C68E49020212 /* TZProgressView.h */,
+				2C6DEFCBCC7A1C41635EF06B6CC2C78C /* TZProgressView.m */,
+				D6A42C69FEBC4AC152BB20E28BED71A0 /* TZVideoPlayerController.h */,
+				B33B584FF9A7720AF28F0B0E3A80B145 /* TZVideoPlayerController.m */,
+				B625A2658965D1D0E5F535785E88AD59 /* UIImage+Utils.h */,
+				769261CA2033E40401C17FFD7DE4A648 /* UIImage+Utils.m */,
+				982A9405935A77DF7473504E1C569388 /* UIView+Layout.h */,
+				62C40AA81E0C0207A1B83CB48C52279C /* UIView+Layout.m */,
+				E63218318D8748ACED984CD6044795AB /* Resources */,
+				F62A082CCB83208F6602A7A393B01BAF /* Support Files */,
+			);
+			name = TZImagePickerController;
+			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
 		096285A0968EC7D0A11965EBA557C7A1 /* Frameworks */ = {
@@ -1725,14 +1763,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/IQKeyboardManagerSwift";
-			sourceTree = "<group>";
-		};
-		6A58400793786C0357CB76ADB5EADA96 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FBF878052A268FD7DEEDE373A3F261FA /* TZImagePickerController.bundle */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		797A44B5996AD9B4822C02391BB5991A /* Products */ = {
@@ -1924,44 +1954,6 @@
 			path = FLEX;
 			sourceTree = "<group>";
 		};
-		8653E3394F284CA937AB9B71A896993A /* TZImagePickerController */ = {
-			isa = PBXGroup;
-			children = (
-				D695F1DCCF8852E07FFC3140BC241E86 /* NSBundle+TZImagePicker.h */,
-				C886819E7AC93FFD2645C7DD830E1101 /* NSBundle+TZImagePicker.m */,
-				1E6D77A5778D0C5A2B486D4529A578C8 /* NSData+Utils.h */,
-				0EFA11C6CAB8B81FD935720E967ED8E2 /* NSData+Utils.m */,
-				6C6132E8A429FD4886D2704E6B54B9AF /* TZAssetCell.h */,
-				23310E1B3F5A271DF19C3AA998B0D820 /* TZAssetCell.m */,
-				D29ADFC8BDD33814CB8449B159400F7F /* TZAssetModel.h */,
-				031559F8F23400C67DFC26F0AD1183A0 /* TZAssetModel.m */,
-				5F167BFE7ECA9FC03740FDFE7783F81B /* TZGifPhotoPreviewController.h */,
-				DCC313426F6B518A77136FDF672D082C /* TZGifPhotoPreviewController.m */,
-				E884CB366FDF301C497E4A8228DE0BDF /* TZImageCropManager.h */,
-				C9BAB22A3668BAFF175865281D1ABDF2 /* TZImageCropManager.m */,
-				123A47BDA1C562AB8CF2FD212CB8A7B3 /* TZImageManager.h */,
-				A0419EA58FADAAE14178AAA45AA498F9 /* TZImageManager.m */,
-				38B1A05B1E73D77347C9C968E5454A95 /* TZImagePickerController.h */,
-				D8501CFAB2D516F5BF148F6B16D15CFC /* TZImagePickerController.m */,
-				610B6CD4BE38E5248B60F973E0B4D2D7 /* TZPhotoPickerController.h */,
-				CB43520A64F43EA080B6F162DCEE025A /* TZPhotoPickerController.m */,
-				A638E85DE9570E64615A5F156CCDE1C3 /* TZPhotoPreviewCell.h */,
-				11419144DB57DE971D596ADEC03B0825 /* TZPhotoPreviewCell.m */,
-				FBDE16B8D3C6BF4B14F9ACDE461E7981 /* TZPhotoPreviewController.h */,
-				A2AC9779288EBD4EA712E12D7F3C4BE4 /* TZPhotoPreviewController.m */,
-				07EBD699CA2F414ABDA09C0BEB106AE3 /* TZProgressView.h */,
-				8AF75163CA623131A8E83CBE937C12AA /* TZProgressView.m */,
-				3D9068E701229A7AD992EB7AF41DF3D5 /* TZVideoPlayerController.h */,
-				87DEDFBE6E194D0DE647778D1EC1B0E4 /* TZVideoPlayerController.m */,
-				F7F3C852EB996FFF35DD7625FDE673D7 /* UIView+Layout.h */,
-				99D11BC4A4A287BB6E1515CB70B662E7 /* UIView+Layout.m */,
-				6A58400793786C0357CB76ADB5EADA96 /* Resources */,
-				D5EF51ABFFCA79107738654D71213363 /* Support Files */,
-			);
-			name = TZImagePickerController;
-			path = TZImagePickerController;
-			sourceTree = "<group>";
-		};
 		875B306DB5C60CA44E2EC919C11859AA /* SnapKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -2105,7 +2097,7 @@
 				875B306DB5C60CA44E2EC919C11859AA /* SnapKit */,
 				94F23DCEEB310749FCB9A27AB5D2E38B /* SVProgressHUD */,
 				34A9CDD443C4B779404E47A13BE0DA2F /* TTRangeSlider */,
-				8653E3394F284CA937AB9B71A896993A /* TZImagePickerController */,
+				0738605074A7C0773147CA802AC60B84 /* TZImagePickerController */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2197,20 +2189,6 @@
 			path = "Target Support Files/Pods-ZJArmoire";
 			sourceTree = "<group>";
 		};
-		D5EF51ABFFCA79107738654D71213363 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				40E9EFB3801AB4DE0494B062246F6689 /* Info.plist */,
-				E61649571F9CE56F17D34116D48F7DF5 /* TZImagePickerController.modulemap */,
-				A981857C15E1DD11249E020ABA64F00B /* TZImagePickerController.xcconfig */,
-				12CC8F80965D1BD6D21BF87EC1A022B9 /* TZImagePickerController-dummy.m */,
-				2206B53822ACCF49B7F504C4557B60A5 /* TZImagePickerController-prefix.pch */,
-				5CA222D45194C8CF774C10B0DCDA5E21 /* TZImagePickerController-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TZImagePickerController";
-			sourceTree = "<group>";
-		};
 		D82AEAB43544E294BC23C957D9882048 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2223,6 +2201,14 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SVProgressHUD";
+			sourceTree = "<group>";
+		};
+		E63218318D8748ACED984CD6044795AB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97963091DE7C518A7CCA93CE59B0DED9 /* TZImagePickerController.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		EB83803F1A7BE1AB9E7950132FB40030 /* IQKeyboardManagerSwift */ = {
@@ -2432,6 +2418,20 @@
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
+		F62A082CCB83208F6602A7A393B01BAF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA267485C162A5A72A2AF690583DAF5B /* Info.plist */,
+				F0A4DC13821398A0821D08150C3A2E8A /* TZImagePickerController.modulemap */,
+				1D4D5AF262481EFCD5561315FC5605AA /* TZImagePickerController.xcconfig */,
+				5C8F570C075263A6DD5983BC04244666 /* TZImagePickerController-dummy.m */,
+				C5AF59F346A9E7C2D59F126F2ABA0EFC /* TZImagePickerController-prefix.pch */,
+				AAEEBCDB47484956DE63BDAD82DFECF9 /* TZImagePickerController-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TZImagePickerController";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2522,6 +2522,28 @@
 				59A6E40AEB48620B5012BAF4C62D22DC /* IASKTextViewCell.h in Headers */,
 				F5949CCA059133A8210E6F0ADDFF9071 /* IASKViewController.h in Headers */,
 				5F6C9336B55BA3C6E2D10718EAE9C896 /* InAppSettingsKit-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7535CC22CDDE9561C66FF4219A33BF34 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CA6C5A7DC6C08641DB3D61BDA355751 /* NSBundle+TZImagePicker.h in Headers */,
+				FFF93BC3F8BDFD3D4EF0A27546CD3DD1 /* TZAssetCell.h in Headers */,
+				929A967F60F6E5213BCF0C1C635E4E37 /* TZAssetModel.h in Headers */,
+				01C9F21293C1B0FD1F4E28B2F17D8EA7 /* TZGifPhotoPreviewController.h in Headers */,
+				7C737D0073EF8DD1D8DA9EED30A44FA0 /* TZImageCropManager.h in Headers */,
+				7061C6E7D191418E35949D9065CAEE5F /* TZImageManager.h in Headers */,
+				DA1AF4AE492F5D7C5993442C76609A1F /* TZImagePickerController-umbrella.h in Headers */,
+				E3F6403C6F43074920F5EF567F4EC17A /* TZImagePickerController.h in Headers */,
+				9A66C92F05E424CB9796043BCE60ECA7 /* TZPhotoPickerController.h in Headers */,
+				EADE1E82F73E3DBB70CD79F1E706F523 /* TZPhotoPreviewCell.h in Headers */,
+				D7B31583D79F5DBF7A7CB4C619285FF8 /* TZPhotoPreviewController.h in Headers */,
+				7AC72E4860A274193FC0C70365CC8980 /* TZProgressView.h in Headers */,
+				EE156489CB9DC7EBF951AA0A5748D175 /* TZVideoPlayerController.h in Headers */,
+				C1B8A3CE39B791A3CB03C978369970D5 /* UIImage+Utils.h in Headers */,
+				BBFE755D63616CD3F0538D5155EB92BC /* UIView+Layout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2636,28 +2658,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DD93B036C8A075A0FAA2D438014E241A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				918A9269DDB7872A0B53541DC042DCB4 /* NSBundle+TZImagePicker.h in Headers */,
-				153E1835A7A8B8305C8B42C207A278FD /* NSData+Utils.h in Headers */,
-				06944D022BF12598D35151B0817FE92A /* TZAssetCell.h in Headers */,
-				4D96154E13EE43E924C3139E0658EAE3 /* TZAssetModel.h in Headers */,
-				4E85BCAED4AA698026BAAEF6FF0F400A /* TZGifPhotoPreviewController.h in Headers */,
-				700A5107A4481DA896F92160F996F4A8 /* TZImageCropManager.h in Headers */,
-				C971B1617A956903A1475531150EE9A0 /* TZImageManager.h in Headers */,
-				2F95D24E5B83BE0D363033AD1B2CD593 /* TZImagePickerController-umbrella.h in Headers */,
-				B9C226E9244076E864C9364D627B9593 /* TZImagePickerController.h in Headers */,
-				6472F8E1B6740A303C1FC0A08AA50166 /* TZPhotoPickerController.h in Headers */,
-				1052CBC92A9F96818C4A90728CD5FC27 /* TZPhotoPreviewCell.h in Headers */,
-				902A773CC337341094DB28CA3959E7DD /* TZPhotoPreviewController.h in Headers */,
-				740BCC5575FBF6BB3D72B7B722092959 /* TZProgressView.h in Headers */,
-				D8AF43196C9BE8B07243D325506BCAB4 /* TZVideoPlayerController.h in Headers */,
-				CE133933C945CCB3851CE1BDF419860E /* UIView+Layout.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E0594BC12C332F68CBA28F99391465D9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2673,9 +2673,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D6B0498B065EF056882B5F1FA70D613C /* Build configuration list for PBXNativeTarget "TZImagePickerController" */;
 			buildPhases = (
-				C327F4D6E46493CFF62AA089DB396C25 /* Sources */,
+				17D2766783A191ADED940EE654C3F854 /* Sources */,
 				B123ACC934F4791133A08165E477EBCC /* Frameworks */,
-				DD93B036C8A075A0FAA2D438014E241A /* Headers */,
+				7535CC22CDDE9561C66FF4219A33BF34 /* Headers */,
 				A0ADED51DBA51C02B7754FCD85FB29D7 /* Resources */,
 			);
 			buildRules = (
@@ -3040,6 +3040,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		17D2766783A191ADED940EE654C3F854 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				561351EE5A9275B7C7D21583556A2C03 /* NSBundle+TZImagePicker.m in Sources */,
+				1E8513465826C8C67DA99F147454D30F /* TZAssetCell.m in Sources */,
+				F496E01E961B7729E610E02635C17560 /* TZAssetModel.m in Sources */,
+				F00F74213CB7B1EEA7B3F03E1B364DD0 /* TZGifPhotoPreviewController.m in Sources */,
+				18F417413F61A60F662CAE42ADD382EA /* TZImageCropManager.m in Sources */,
+				64A6365B9EE9FEE8F26B9CE630F3F04D /* TZImageManager.m in Sources */,
+				5A68E30B3AC20DE49B073891BBD02C74 /* TZImagePickerController-dummy.m in Sources */,
+				B1898231CE1DC749EACEDAECB979721B /* TZImagePickerController.m in Sources */,
+				0949BD07FF2E1041D249BBD691DD3743 /* TZPhotoPickerController.m in Sources */,
+				62AD3C04257B9696F4B2082DD47410E0 /* TZPhotoPreviewCell.m in Sources */,
+				3D956820ED5C6E2511AA8DD66DF09870 /* TZPhotoPreviewController.m in Sources */,
+				2AF88479E909D5FD18D26D36CF657EB1 /* TZProgressView.m in Sources */,
+				8D6DEF700C323AEEFAAA434170EDC3C5 /* TZVideoPlayerController.m in Sources */,
+				5650E42B83E5CD0250C603B24D8F2EE9 /* UIImage+Utils.m in Sources */,
+				E04BB4E1753B80257646F4435FE89907 /* UIView+Layout.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32B9974868188C4803318E36329C87FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3403,28 +3425,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C327F4D6E46493CFF62AA089DB396C25 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17AAECE7923610F0599108DE89227978 /* NSBundle+TZImagePicker.m in Sources */,
-				D3091CD1CFCF99010E47761154C45789 /* NSData+Utils.m in Sources */,
-				480DA94A0A336CAE9E27C7997F91D026 /* TZAssetCell.m in Sources */,
-				01FA541C542D0FB21393665C4E72433F /* TZAssetModel.m in Sources */,
-				55F89CB073AA828B412A60B1A8714D43 /* TZGifPhotoPreviewController.m in Sources */,
-				517CA8EC6AE6989C8A9BC252E870B395 /* TZImageCropManager.m in Sources */,
-				547F994CD447A4BEEBAA006702148AC7 /* TZImageManager.m in Sources */,
-				C5DAC32B42F1ED150E0D365D749A1606 /* TZImagePickerController-dummy.m in Sources */,
-				E7242018C32ACFFABD922AE891C0DB64 /* TZImagePickerController.m in Sources */,
-				9AEF794FE8487D8CDAAA09BCC79AC1C8 /* TZPhotoPickerController.m in Sources */,
-				F3F9998F2BEEB950844AC6094DC6BF15 /* TZPhotoPreviewCell.m in Sources */,
-				D14B23A8723A9652243FF972F5529841 /* TZPhotoPreviewController.m in Sources */,
-				CB83644E3C666E85178CC575A0D2132E /* TZProgressView.m in Sources */,
-				A193B6FA8A4E8ECE55D68FCB87DA150E /* TZVideoPlayerController.m in Sources */,
-				D4EB35EDBD6E01424756FEA048607676 /* UIView+Layout.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F8ED07BA58CF62901722FC8637BB1F24 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3635,7 +3635,7 @@
 		};
 		0EA6BD31752C92EF66F375C4B78549A8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A981857C15E1DD11249E020ABA64F00B /* TZImagePickerController.xcconfig */;
+			baseConfigurationReference = 1D4D5AF262481EFCD5561315FC5605AA /* TZImagePickerController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -3667,7 +3667,7 @@
 		};
 		243335D8F8F146B37D2AC6FCE7479F4E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A981857C15E1DD11249E020ABA64F00B /* TZImagePickerController.xcconfig */;
+			baseConfigurationReference = 1D4D5AF262481EFCD5561315FC5605AA /* TZImagePickerController.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

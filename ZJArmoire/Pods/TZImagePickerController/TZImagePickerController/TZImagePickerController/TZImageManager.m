@@ -9,7 +9,7 @@
 #import "TZImageManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "TZAssetModel.h"
-#import "NSData+Utils.h"
+#import "UIImage+Utils.h"
 #import "TZImagePickerController.h"
 
 @interface TZImageManager ()
@@ -735,12 +735,11 @@ static CGFloat TZScreenScale;
 /// Judge is a assets array contain the asset 判断一个assets数组是否包含这个asset
 - (BOOL)isAssetsArray:(NSArray *)assets containAsset:(id)asset {
     if ([asset isKindOfClass:[UIImage class]]) {
-        NSData *data1 = UIImagePNGRepresentation(asset);
+        UIImage *image1 = asset;
         BOOL isEqual = false;
         for (UIImage *image in assets) {
             if ([image isKindOfClass:[UIImage class]]) {
-                NSData *data2 = UIImagePNGRepresentation(image);
-                if ([data1 isEqual:data2]) {
+                if ([image1.imageTag isEqualToString:image.imageTag]) {
                     return true;
                 }
             } else {
@@ -779,8 +778,8 @@ static CGFloat TZScreenScale;
 
 - (NSString *)getAssetIdentifier:(id)asset {
     if ([asset isKindOfClass:[UIImage class]]) {
-        NSData *data = UIImagePNGRepresentation(asset);
-        return [data MD5];
+        UIImage *image = asset;
+        return image.imageTag;
     }
     
     if (iOS8Later) {

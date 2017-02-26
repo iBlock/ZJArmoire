@@ -38,12 +38,42 @@ class ZJADaPeiController: UIViewController {
             errorView = view.loadErrorView()
             errorView?.errorInfoText = "您还没有衣服搭配哦，赶快去搭配吧！"
             errorView?.errorButtonClick = { [weak self]() -> () in
-                let addDapeiController = ZJAAddDapeiController()
-                self?.navigationController?.pushViewController(addDapeiController, animated: true)
+                SVProgressHUD.show()
+                DispatchQueue.global().async {
+                    let albumModels = self?.fetchAllClothes()
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        let addDapeiController = ZJAAddDapeiController()
+                        addDapeiController.albumModels = albumModels
+                        self?.navigationController?.pushViewController(addDapeiController, animated: true)
+                    }
+                }
             }
         } else {
             errorView?.removeFromSuperview()
         }
+    }
+    
+    func fetchAllClothes() -> [TZAlbumModel] {
+        let fetchClothesGroup = DispatchGroup()
+        let clothesTable = ZJATableClothes()
+        var albumModels = [TZAlbumModel]()
+        for item in CONFIG_YIGUI_TYPENAMES {
+            fetchClothesGroup.enter()
+            let index = CONFIG_YIGUI_TYPENAMES.index(of: item)
+            clothesTable.fetchAllClothes(index!, block: { (clothesModel:[ZJAClothesModel]) in
+                var imageList = [UIImage]()
+                for clothes in clothesModel {
+                    clothes.clothesImg.imageTag = clothes.uuid
+                    imageList.append(clothes.clothesImg)
+                }
+                let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: item, imageList: imageList)
+                albumModels.append(model)
+                fetchClothesGroup.leave()
+            })
+        }
+        fetchClothesGroup.wait()
+        return albumModels
     }
     
 }

@@ -10,11 +10,12 @@ import UIKit
 
 protocol ZJASelectedPhotoCellProtocol: NSObjectProtocol {
     func selectedPhotoCallback(selectedPhotos: NSMutableArray,
+                               selectedAssets: NSMutableArray,
                                photoCollectionViewHeight: CGFloat)
 }
 
 class ZJASelectedPhotoCell: UITableViewCell {
-    
+    var albumModels: [TZAlbumModel]!
     var selectedPhotos: NSMutableArray = NSMutableArray()
     var selectedAssets: NSMutableArray! = NSMutableArray()
     var isSelectOriginalPhoto: Bool = false
@@ -147,13 +148,14 @@ extension ZJASelectedPhotoCell {
     func reloadPhotoCollectionView() {
         self.photoCollectionView.reloadData()
         let height = self.photoCollectionView.getCollectionViewHeight()
-        self.delegate?.selectedPhotoCallback(selectedPhotos: self.selectedPhotos, photoCollectionViewHeight: height)
+        self.delegate?.selectedPhotoCallback(selectedPhotos: self.selectedPhotos, selectedAssets: self.selectedAssets, photoCollectionViewHeight: height)
     }
     
     func pushImagePickerController() {
-        let testImg: UIImage = UIImage(named: "test")!
-        let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: "我的衣柜", imageList: [testImg])
-        let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 9, albumModel: [model], delegate: self)
+//        let testImg: UIImage = UIImage(named: "test")!
+//        testImg.imageTag = "123456"
+//        let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: "我的衣柜", imageList: [testImg])
+        let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 9, albumModel: albumModels, delegate: self)
         imagePickerVc.naviBgColor = COLOR_MAIN_APP
         imagePickerVc.selectedAssets = selectedAssets
         imagePickerVc.allowTakePicture = true
@@ -179,6 +181,6 @@ extension ZJASelectedPhotoCell: TZImagePickerControllerDelegate {
         self.isSelectOriginalPhoto = isSelectOriginalPhoto;
         photoCollectionView.reloadData()
         let height = photoCollectionView.getCollectionViewHeight()
-        delegate?.selectedPhotoCallback(selectedPhotos: selectedPhotos, photoCollectionViewHeight: height)
+        delegate?.selectedPhotoCallback(selectedPhotos: selectedPhotos, selectedAssets: selectedAssets, photoCollectionViewHeight: height)
     }
 }

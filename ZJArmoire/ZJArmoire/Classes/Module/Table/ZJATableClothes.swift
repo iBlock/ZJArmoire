@@ -131,7 +131,7 @@ class ZJATableClothes: NSObject {
     
     //获取指定类型的衣服
     func fetchAllClothes(_ type: NSInteger, block:@escaping (([ZJAClothesModel])->Void)) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().sync {
             var allClothes = [ZJAClothesModel]()
             //指定查询条件
             let query = self.table_clothes.filter(self.t_clothes_type == type)
@@ -156,7 +156,7 @@ class ZJATableClothes: NSObject {
                 print("创建衣服表失败")
                 print(error)
             }
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 block(allClothes)
             }
         }

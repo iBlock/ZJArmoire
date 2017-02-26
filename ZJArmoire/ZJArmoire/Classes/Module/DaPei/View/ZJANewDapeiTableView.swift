@@ -14,6 +14,8 @@ class ZJANewDapeiTableView: UITableView {
     let temperatueCellIdentifier = "temperatueCellIdentifier"
     var tagListFrame:CGRect! = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:45)
     var photoCollectionViewHeight: CGFloat = WH_PHOTOCOLLECTION_WIDTH+WH_PHOTOCOLLECTION_LINESPEC*CGFloat(2)
+    var albumModels: [TZAlbumModel]!
+    private(set) var dapeiModel: ZJADapeiModel = ZJADapeiModel()
 
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -48,7 +50,7 @@ class ZJANewDapeiTableView: UITableView {
         tagView.addSKUTag({ [weak self](tagNameList) in
             DispatchQueue.main.async {
                 self?.reloadData()
-//                self?.currentSKUItemModel?.tagList = tagNameList as? Array<String>
+                self?.dapeiModel.taglist = tagNameList as? Array<String>
             }
         })
         tagView.didUpdatedTagListViewFrame({ [weak self](frame) in
@@ -107,10 +109,15 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell: ZJASelectedPhotoCell = tableView.dequeueReusableCell(withIdentifier: selectedPhotoCellIdentifier) as! ZJASelectedPhotoCell
             cell.delegate = self
+            cell.albumModels = albumModels
             return cell
         } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: temperatueCellIdentifier)
-            return cell!
+            let cell: ZJATemperatueCell = tableView.dequeueReusableCell(withIdentifier: temperatueCellIdentifier) as! ZJATemperatueCell
+            cell.tempblock = { [weak self](dayTemp, nightTemp) in
+                self?.dapeiModel.day_temp = dayTemp
+                self?.dapeiModel.night_temp = nightTemp
+            }
+            return cell
         }
         return UITableViewCell()
     }
@@ -174,8 +181,19 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ZJANewDapeiTableView: ZJASelectedPhotoCellProtocol {
-    func selectedPhotoCallback(selectedPhotos: NSMutableArray, photoCollectionViewHeight: CGFloat) {
+    func selectedPhotoCallback(selectedPhotos: NSMutableArray,
+                               selectedAssets: NSMutableArray,
+                               photoCollectionViewHeight: CGFloat) {
+        var clothesIdList = [String]()
+        for assets in selectedAssets {
+            if assets is UIImage {
+                let image: UIImage = assets as! UIImage
+                clothesIdList.append(image.imageTag)
+            }
+        }
+        
         self.photoCollectionViewHeight = photoCollectionViewHeight
+        self.dapeiModel.clothesIdList = clothesIdList
         reloadData()
     }
 }

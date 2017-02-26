@@ -35,18 +35,38 @@ class ZJATableDapei_Clothes: NSObject {
         }
     }
     
-    func insert() -> Bool {
-        let insert = table_dapei_clothes.insert(t_yf_dp_yf_id <- clothes_id,
-                                                t_yf_dp_dp_id <- dapei_id)
+    func insert(clothesIdList: Array<String>) -> Bool {
         do {
             db = try Connection(PATH_DATABASE_FILE)
-            try db.run(insert)
+            try db.transaction {
+                for clothesid in clothesIdList {
+                    try self.db.run(
+                        self.table_dapei_clothes.insert(self.t_yf_dp_yf_id <- clothesid,
+                                                        self.t_yf_dp_dp_id <- self.dapei_id))
+                }
+            }
             return true
         } catch {
             print("插入衣服和搭配关联表失败")
             print(error)
             return false
         }
+    }
+    
+    func fetchDapeiDetail(clothesIdList: [String]) -> [ZJAClothesModel] {
+        var dapeiClothesList = [ZJAClothesModel]()
+        do {
+            db = try Connection(PATH_DATABASE_FILE)
+            for clothesID in clothesIdList {
+                if let clothes = ZJATableClothes().fetchClothes(clothesID) {
+                    dapeiClothesList.append(clothes)
+                }
+            }
+        } catch {
+            print("获取搭配详情记录失败。")
+            print(error)
+        }
+        return dapeiClothesList
     }
     
     func fetchDapeiDetail(_ dapeiID: Int) -> [ZJAClothesModel] {

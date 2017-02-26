@@ -9,6 +9,8 @@
 import UIKit
 
 class ZJAAddDapeiController: UIViewController {
+    
+    var albumModels: [TZAlbumModel]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +47,12 @@ class ZJAAddDapeiController: UIViewController {
     }
     
     func didTappedConfirmButton() {
-        
+        saveDapeiToDatabase()
     }
     
-    private lazy var dapeiTableView: ZJANewDapeiTableView = {
+    public lazy var dapeiTableView: ZJANewDapeiTableView = {
         let tableView = ZJANewDapeiTableView(frame: CGRect.zero, style: .plain)
+        tableView.albumModels = self.albumModels
         return tableView
     }()
     
@@ -70,4 +73,24 @@ class ZJAAddDapeiController: UIViewController {
         
         return button
     }()
+}
+
+extension ZJAAddDapeiController {
+    func saveDapeiToDatabase() {
+        let model = dapeiTableView.dapeiModel
+        let dapeiTable = ZJATableDapei()
+        dapeiTable.day_temperature = model.day_temp
+        dapeiTable.night_temperature = model.night_temp
+        dapeiTable.clothesIdList = model.clothesIdList
+        dapeiTable.dapei_taglist = model.taglist
+        let now = Date()
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyyMMdd"
+        let dateStr = dformatter.string(from: now)
+        dapeiTable.dapei_date = dateStr
+        let isSuccess = dapeiTable.insert()
+        if isSuccess == true {
+            
+        }
+    }
 }

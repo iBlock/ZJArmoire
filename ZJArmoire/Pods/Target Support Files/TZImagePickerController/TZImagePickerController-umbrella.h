@@ -11,7 +11,6 @@
 #endif
 
 #import "NSBundle+TZImagePicker.h"
-#import "NSData+Utils.h"
 #import "TZAssetCell.h"
 #import "TZAssetModel.h"
 #import "TZGifPhotoPreviewController.h"
@@ -23,6 +22,7 @@
 #import "TZPhotoPreviewController.h"
 #import "TZProgressView.h"
 #import "TZVideoPlayerController.h"
+#import "UIImage+Utils.h"
 #import "UIView+Layout.h"
 
 FOUNDATION_EXPORT double TZImagePickerControllerVersionNumber;

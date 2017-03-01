@@ -14,7 +14,7 @@ class ZJAPhotoJointView: UIImageView {
         super.init(frame: frame)
     }
     
-    func configPhotoView(photoList: [ZJAClothesModel]) {
+    func configPhotoView(photoList: [ZJAClothesModel]){
         UIGraphicsBeginImageContext(frame.size)
         for i in 0..<3 {
             var leftHeight = frame.height
@@ -47,9 +47,7 @@ class ZJAPhotoJointView: UIImageView {
             photoImage.draw(in: CGRect(origin: point, size: size))
         }
         let newImg = UIGraphicsGetImageFromCurrentImageContext()
-        DispatchQueue.main.async {
-            self.image = newImg
-        }
+        self.image = newImg
         UIGraphicsEndImageContext();
     }
     

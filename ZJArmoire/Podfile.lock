@@ -36,10 +36,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DJDebug:
-    :revision: '376866'
+    :revision: '377446'
     :svn: http://svn.djcorp.cn:8088/dianshangwuxian/trunk/mobile/jzt/ios/DJComponents/DJDebug
   TZImagePickerController:
-    :commit: 91354e4dc737426f959273ae4d6a66cb790ce60d
+    :commit: f994f27da9f7fde4794ab0e449731ace7d0d434d
     :git: https://github.com/iBlock/TZImagePickerController.git
 
 SPEC CHECKSUMS:

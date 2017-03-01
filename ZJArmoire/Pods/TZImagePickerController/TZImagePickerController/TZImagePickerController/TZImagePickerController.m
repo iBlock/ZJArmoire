@@ -53,6 +53,7 @@
     // 默认的外观，你可以在这个方法后重置
     self.oKButtonTitleColorNormal   = [UIColor colorWithRed:(83/255.0) green:(179/255.0) blue:(17/255.0) alpha:1.0];
     self.oKButtonTitleColorDisabled = [UIColor colorWithRed:(83/255.0) green:(179/255.0) blue:(17/255.0) alpha:0.5];
+    self.albumType = 0;
     
     if (iOS7Later) {
         self.navigationBar.barTintColor = [UIColor colorWithRed:(34/255.0) green:(34/255.0)  blue:(34/255.0) alpha:1.0];
@@ -120,12 +121,16 @@
 
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
                             AlbumModel:(NSArray<TZAlbumModel *> *)albumList
-                              delegate:(id<TZImagePickerControllerDelegate>)delegate {
+                             AlbumType:(AlbumType)type
+                              delegate:(id<TZImagePickerControllerDelegate>)delegate
+                     pushPhotoPickerVc:(BOOL)pushPhotoPickerVc{
     self.customAlbumList = albumList;
-    return [self initWithMaxImagesCount:maxImagesCount columnNumber:4 delegate:delegate pushPhotoPickerVc:YES];
+    self.albumType = type;
+    return [self initWithMaxImagesCount:maxImagesCount columnNumber:4 delegate:delegate pushPhotoPickerVc:pushPhotoPickerVc];
 }
 
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount delegate:(id<TZImagePickerControllerDelegate>)delegate {
+    self.albumType = AlbumType_OnlySystem;
     return [self initWithMaxImagesCount:maxImagesCount columnNumber:4 delegate:delegate pushPhotoPickerVc:YES];
 }
 
@@ -138,7 +143,10 @@
     TZAlbumPickerController *albumPickerVc = [[TZAlbumPickerController alloc] init];
     albumPickerVc.columnNumber = columnNumber;
     albumPickerVc.customAlbumArr = _customAlbumList.mutableCopy;
+    albumPickerVc.albumType = _albumType;
     self = [super initWithRootViewController:albumPickerVc];
+    // 被初始化了，在这重新赋值
+    _albumType = albumPickerVc.albumType;
     if (self) {
         self.maxImagesCount = maxImagesCount > 0 ? maxImagesCount : 9; // Default is 9 / 默认最大可选9张图片
         self.pickerDelegate = delegate;
@@ -282,7 +290,8 @@
         photoPickerVc.isFirstAppear = YES;
         photoPickerVc.columnNumber = self.columnNumber;
         
-        if (self.customAlbumList) {
+        if (self.customAlbumList && (_albumType == AlbumType_All ||
+                                     _albumType == AlbumType_OnlyCustom)) {
             photoPickerVc.model = _customAlbumList[0];
             [self pushViewController:photoPickerVc animated:YES];
             _didPushPhotoPickerVc = YES;
@@ -517,7 +526,6 @@
 @interface TZAlbumPickerController ()<UITableViewDataSource,UITableViewDelegate> {
     UITableView *_tableView;
 }
-@property (nonatomic, strong) NSMutableArray *albumArr;
 
 @end
 
@@ -594,27 +602,44 @@
 #pragma mark - UITableViewDataSource && Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+    if (_albumType == AlbumType_All) {
+        if (section == 0) {
+            return _customAlbumArr.count;
+        } else if (section == 1) {
+            return _albumArr.count;
+        }
+    } else if (_albumType == AlbumType_OnlyCustom) {
         return _customAlbumArr.count;
-    } else if (section == 1) {
+    } else {
         return _albumArr.count;
     }
+    
     return 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    if (_albumType == AlbumType_All) {
+        return 2;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TZAlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TZAlbumCell"];
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
     cell.selectedCountButton.backgroundColor = imagePickerVc.oKButtonTitleColorNormal;
-    if (indexPath.section == 0) {
+    if (_albumType == AlbumType_All) {
+        if (indexPath.section == 0) {
+            cell.model = _customAlbumArr[indexPath.row];
+        } else if (indexPath.section == 1) {
+            cell.model = _albumArr[indexPath.row];
+        }
+    } else if (_albumType == AlbumType_OnlyCustom) {
         cell.model = _customAlbumArr[indexPath.row];
-    } else if (indexPath.section == 1) {
+    } else if (_albumType == AlbumType_OnlySystem) {
         cell.model = _albumArr[indexPath.row];
     }
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
@@ -643,33 +668,54 @@
     } else if (section == 1) {
         titleLabel.text = @"系统相册";
     }
-    return headerView;
+    
+    if (_albumType == AlbumType_All) {
+        return headerView;
+    }
+    
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 40;
+    if (_albumType == AlbumType_All) {
+        return 40;
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section {
-    return 40;
+    if (_albumType == AlbumType_All) {
+        return 40;
+    }
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TZPhotoPickerController *photoPickerVc = [[TZPhotoPickerController alloc] init];
     photoPickerVc.columnNumber = self.columnNumber;
-    TZAlbumModel *model; // = _albumArr[indexPath.row];
-    if (indexPath.section == 0) {
+    TZAlbumModel *model;
+    __block NSMutableArray *albumArr;
+    if (_albumType == AlbumType_All) {
+        if (indexPath.section == 0) {
+            model = _customAlbumArr[indexPath.row];
+            albumArr = _customAlbumArr;
+        } else if (indexPath.section == 1) {
+            model = _albumArr[indexPath.row];
+            albumArr = _albumArr;
+        }
+    } else if (_albumType == AlbumType_OnlyCustom) {
         model = _customAlbumArr[indexPath.row];
-    } else if (indexPath.section == 1) {
+        albumArr = _customAlbumArr;
+    } else if (_albumType == AlbumType_OnlySystem) {
         model = _albumArr[indexPath.row];
+        albumArr = _albumArr;
     }
     photoPickerVc.model = model;
-    __weak typeof(self) weakSelf = self;
     [photoPickerVc setBackButtonClickHandle:^(TZAlbumModel *model) {
         if (indexPath.section == 0) {
-            [weakSelf.customAlbumArr replaceObjectAtIndex:indexPath.row withObject:model];
+            [albumArr replaceObjectAtIndex:indexPath.row withObject:model];
         } else if (indexPath.section == 1) {
-            [weakSelf.albumArr replaceObjectAtIndex:indexPath.row withObject:model];
+            [albumArr replaceObjectAtIndex:indexPath.row withObject:model];
         }
     }];
     [self.navigationController pushViewController:photoPickerVc animated:YES];

@@ -9,22 +9,6 @@
 import Foundation
 
 extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
-    func didTappedAddPhotoButton() {
-        let cameraController = ZJACameraController()
-        cameraController.addPhotoBlock = {[weak self]() in
-            let index = NSIndexSet(index: 0)
-            self?.skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
-        }
-        navigationController?.pushViewController(cameraController, animated: true)
-    }
-    
-    func didTappedConfirmButton() {
-        if filePathPrepare() == true {
-            savePhoto()
-        }
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
     func filePathPrepare() -> Bool {
         let fileManage = FileManager()
         var isDir: ObjCBool = false

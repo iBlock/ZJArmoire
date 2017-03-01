@@ -13,6 +13,7 @@
 + (DJDebugProtocolModel *)shareInstance;
 - (void)syncUserdefault;
 @property (nonatomic, strong, readonly) NSMutableDictionary *errorApiList;
+@property (nonatomic, strong, readonly) NSMutableDictionary *errorImageList;
 
 @end
 

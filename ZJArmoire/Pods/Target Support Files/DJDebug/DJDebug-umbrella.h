@@ -12,6 +12,8 @@
 
 #import "DJDebugAPIAlarm/DJDebugAPIAlarmInfoPage.h"
 #import "DJDebugAPIAlarm/DJDebugApiDetailPage.h"
+#import "DJDebugAPIAlarm/DJDebugImageAlarmInfoPage.h"
+#import "DJDebugAPIAlarm/DJDebugImageApiDetailPage.h"
 #import "DJDebugAPIAlarm/DJDebugURLProtocol.h"
 #import "DJDebugAPIAlarm/NSObject+DJDebug.h"
 #import "DJDebugBasic/DJDebug.h"

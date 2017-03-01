@@ -32,8 +32,8 @@ class ZJASKUAddPhotoHeaderView: UITableViewHeaderFooterView {
         
         titleLabel.snp.makeConstraints({ (make) in
             make.left.equalTo(15)
-            make.top.right.bottom.equalTo(0)
-//            make.right.equalTo(editButton.snp.left).offset(0)
+            make.top.bottom.equalTo(0)
+            make.width.equalTo(100)
         })
         
         editButton.snp.makeConstraints({ (make) in

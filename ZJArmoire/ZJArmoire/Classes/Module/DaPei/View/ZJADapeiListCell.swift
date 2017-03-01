@@ -24,6 +24,10 @@ class ZJADapeiListCell: UICollectionViewCell {
         photoJointView.configPhotoView(photoList: photoList)
     }
     
+    func setupViewConstraints() {
+
+    }
+    
     func prepareUI() {
         contentView.addSubview(photoJointView)
     }

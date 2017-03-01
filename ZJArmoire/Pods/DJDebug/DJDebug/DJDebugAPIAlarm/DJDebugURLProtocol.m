@@ -18,10 +18,13 @@ static NSString *const kDJDebugAPIRequest = @"kDJDebugAPIRequest";
 static NSString *const kDJDebugAPIResponseData = @"kDJDebugAPIResponseData";
 static NSString *const kDJDebugAPIError = @"kDJDebugAPIError";
 extern NSString *kDJDebugAPISwitchState;
+extern NSString *kDJDebugImageSwitchState;
+extern NSString *kDJDebugImageSize;
 
 @interface DJDebugProtocolModel()
 
 @property (nonatomic, strong, readwrite) NSMutableDictionary *errorApiList;
+@property (nonatomic, strong, readwrite) NSMutableDictionary *errorImageList;
 
 - (void)syncUserdefault;
 
@@ -38,6 +41,33 @@ extern NSString *kDJDebugAPISwitchState;
 
 @end
 
+@implementation NSURLSessionConfiguration (DJDebug)
+
+static BOOL isSwizzed = NO;
++ (void)swizzedSessionConfig:(BOOL)state {
+    Method systemMethod = class_getClassMethod([NSURLSessionConfiguration class], @selector(defaultSessionConfiguration));
+    Method zwMethod = class_getClassMethod([DJDebugURLProtocol class], @selector(zw_defaultSessionConfiguration));
+    if (state == YES) {
+        isSwizzed = YES;
+        method_exchangeImplementations(systemMethod, zwMethod);
+    } else {
+        if (isSwizzed) {
+            isSwizzed = NO;
+            method_exchangeImplementations(systemMethod, zwMethod);
+        }
+    }
+}
+
++ (NSURLSessionConfiguration *)zw_defaultSessionConfiguration{
+    NSURLSessionConfiguration *configuration = [self zw_defaultSessionConfiguration];
+    NSArray *protocolClasses = @[[DJDebugURLProtocol class]];
+    configuration.protocolClasses = protocolClasses;
+    
+    return configuration;
+}
+
+@end
+
 @implementation DJDebugURLProtocol
 
 + (void)updateURLProtocol {
@@ -46,41 +76,12 @@ extern NSString *kDJDebugAPISwitchState;
         [NSURLProtocol registerClass:self];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.protocolClasses = @[NSClassFromString(@"DJDebugURLProtocol")];
-        [self swizzedMethodAFNetworking:state];
     } else {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.protocolClasses = nil;
         [NSURLProtocol unregisterClass:self];
     }
-}
-
-+ (void)swizzedMethodAFNetworking:(BOOL)state {
-    Class afnClass = NSClassFromString(@"AFHTTPSessionManager");
-    if (afnClass) {
-        SEL originalSelector = @selector(manager);
-        SEL swizzledSelector = @selector(DJDebug_manager);
-        SEL swizzledSelector2 = @selector(DJDebug_manager_back);
-        Method originalMethod = class_getClassMethod(afnClass, originalSelector);
-        Method swizzledMethod = class_getClassMethod(self, swizzledSelector);
-        Method swizzledMethod2 = class_getClassMethod(self, swizzledSelector2);
-        if (state) {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        } else {
-            method_exchangeImplementations(originalMethod, swizzledMethod2);
-        }
-    }
-}
-
-+ (instancetype)DJDebug_manager {
-    NSLog(@"DJDebugxxxx");
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    configuration.protocolClasses = @[NSClassFromString(@"DJDebugURLProtocol")];
-    return [[[self class] alloc] initWithBaseURL:nil sessionConfiguration:configuration];
-}
-
-- (instancetype)initWithBaseURL:(NSURL *)url
-           sessionConfiguration:(NSURLSessionConfiguration *)configuration {
-    return nil;
+    [NSURLSessionConfiguration swizzedSessionConfig:state];
 }
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
@@ -178,6 +179,7 @@ extern NSString *kDJDebugAPISwitchState;
                                                     options:NSJSONReadingMutableContainers
                                                       error:NULL];
     }
+    
     if ([responDic isKindOfClass:[NSDictionary class]]) {
         if ([responDic[@"code"] integerValue] != 0) {
             [self apiLog];
@@ -185,7 +187,68 @@ extern NSString *kDJDebugAPISwitchState;
     } else if (((NSHTTPURLResponse *)self.currentRequestInfo[kDJDebugAPIResponse]).statusCode != 200) {
         [self apiLog];
     }
+    
+    BOOL state = [[[NSUserDefaults standardUserDefaults] objectForKey:kDJDebugImageSwitchState] boolValue];
+    if (state) {
+        NSString *type = [self contentTypeForImageData:self.apiData];
+        if ([type isEqualToString:@"jpeg"] ||
+            [type isEqualToString:@"png"]) {
+            NSString *imageSize = [[NSUserDefaults standardUserDefaults] objectForKey:kDJDebugImageSize];
+            if (self.apiData.length/1024.0 > [imageSize intValue]) {
+                NSString *urlPath = [[[[connection.currentRequest.URL.path
+                                        componentsSeparatedByString:@"/"] lastObject]
+                                      componentsSeparatedByString:@"@"] firstObject];
+                NSMutableDictionary *imageApiList = [DJDebugProtocolModel shareInstance].errorImageList;
+                NSMutableDictionary *imageDic = @{}.mutableCopy;
+                imageDic[@"path"] = connection.currentRequest.URL.absoluteString;
+                imageDic[@"data"] = self.apiData;
+                imageDic[@"size"] = [self getBytesFromDataLength:self.apiData.length];
+                imageApiList[urlPath] = imageDic;
+                [[DJDebugProtocolModel shareInstance] syncUserdefault];
+            }
+        }
+    }
 }
+
+//通过图片Data数据第一个字节 来获取图片扩展名
+- (NSString *)contentTypeForImageData:(NSData *)data{
+    uint8_t c;
+    [data getBytes:&c length:1];
+    switch (c) {
+        case 0xFF:
+            return @"jpeg";
+        case 0x89:
+            return @"png";
+        case 0x47:
+            return @"gif";
+        case 0x49:
+        case 0x4D:
+            return @"tiff";
+        case 0x52:
+            if ([data length] < 12) {
+                return nil;
+            }
+            NSString *testString = [[NSString alloc] initWithData:[data subdataWithRange:NSMakeRange(0, 12)] encoding:NSASCIIStringEncoding];
+            if ([testString hasPrefix:@"RIFF"] && [testString hasSuffix:@"WEBP"]) {
+                return @"webp";
+            }
+            return nil;
+    }
+    return nil;
+}
+
+- (NSString *)getBytesFromDataLength:(NSInteger)dataLength {
+    NSString *bytes;
+    if (dataLength >= 0.1 * (1024 * 1024)) {
+        bytes = [NSString stringWithFormat:@"%0.1fM",dataLength/1024/1024.0];
+    } else if (dataLength >= 1024) {
+        bytes = [NSString stringWithFormat:@"%0.0fK",dataLength/1024.0];
+    } else {
+        bytes = [NSString stringWithFormat:@"%zdB",dataLength];
+    }
+    return bytes;
+}
+
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     self.currentRequestInfo[kDJDebugAPIRequest] = connection.currentRequest;
@@ -197,6 +260,9 @@ extern NSString *kDJDebugAPISwitchState;
 - (void)apiLog {
     NSURLRequest *urlRequest = self.currentRequestInfo[kDJDebugAPIRequest];
     NSString *urlPath = urlRequest.URL.path;
+    if (urlPath == nil) {
+        return ;
+    }
     NSMutableArray *apiList = [DJDebugProtocolModel shareInstance].errorApiList[urlPath];
     if (!apiList) {
         apiList = @[].mutableCopy;
@@ -248,7 +314,9 @@ extern NSString *kDJDebugAPISwitchState;
 
 - (void)syncUserdefault {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.errorApiList];
+    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:self.errorImageList];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"DJDebugProtocolModel"];
+    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"DJDebugProtocolImageModel"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -265,6 +333,19 @@ extern NSString *kDJDebugAPISwitchState;
         }
     }
     return _errorApiList;
+}
+
+- (NSMutableDictionary *)errorImageList {
+    if (!_errorImageList) {
+        NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"DJDebugProtocolImageModel"];
+        NSMutableDictionary *lastData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if (lastData) {
+            _errorImageList = lastData;
+        } else {
+            _errorImageList = @{}.mutableCopy;
+        }
+    }
+    return _errorImageList;
 }
 
 @end

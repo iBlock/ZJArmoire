@@ -32,6 +32,7 @@ class ZJADaPeiController: UIViewController {
     }
     
     func prepareUI() {
+        tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_Add", highlightedImage: "Global_Navi_Add", target: self, action: #selector(didTappedAddButton(sender:)))
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(dapeiCollectionView)
     }
@@ -39,6 +40,19 @@ class ZJADaPeiController: UIViewController {
     func setupViewConstraints() {
         dapeiCollectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Event and Respone
+    
+    @objc private func didTappedAddButton(sender:UIBarButtonItem?) {
+        DispatchQueue.global().async {
+            let albumModels = self.fetchAllClothes()
+            DispatchQueue.main.async {
+                let addDapeiController = ZJAAddDapeiController()
+                addDapeiController.albumModels = albumModels
+                self.navigationController?.pushViewController(addDapeiController, animated: true)
+            }
         }
     }
     
@@ -88,7 +102,7 @@ class ZJADaPeiController: UIViewController {
     }
     
     private lazy var dapeiCollectionView: ZJADapeiListCollectionView = {
-        let collectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
+        let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
         return collectionView
     }()
 }

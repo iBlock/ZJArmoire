@@ -24,6 +24,12 @@
 #define iOS9Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
 #define iOS9_1Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.1f)
 
+typedef NS_ENUM(NSUInteger, AlbumType) {
+    AlbumType_All = 0,          //显示所有相册
+    AlbumType_OnlyCustom,       //只显示用户自定义相册
+    AlbumType_OnlySystem,       //只显示系统相册
+};
+
 @protocol TZImagePickerControllerDelegate;
 @interface TZImagePickerController : UINavigationController
 
@@ -32,7 +38,9 @@
 /// 用这个方法初始化使用非手机相册
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount
                             AlbumModel:(NSArray<TZAlbumModel *> *)albumList
-                              delegate:(id<TZImagePickerControllerDelegate>)delegate;
+                             AlbumType:(AlbumType)type
+                              delegate:(id<TZImagePickerControllerDelegate>)delegate
+                     pushPhotoPickerVc:(BOOL)pushPhotoPickerVc;
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber delegate:(id<TZImagePickerControllerDelegate>)delegate;
 - (instancetype)initWithMaxImagesCount:(NSInteger)maxImagesCount columnNumber:(NSInteger)columnNumber delegate:(id<TZImagePickerControllerDelegate>)delegate pushPhotoPickerVc:(BOOL)pushPhotoPickerVc;
 /// This init method just for previewing photos / 用这个初始化方法以预览图片
@@ -144,6 +152,9 @@
 @property (nonatomic, copy) NSString *settingBtnTitleStr;
 @property (nonatomic, copy) NSString *processHintStr;
 
+/// 自定义相册类型
+@property (nonatomic, assign) AlbumType albumType;
+
 /// Public Method
 - (void)cancelButtonClick;
 
@@ -207,6 +218,8 @@
 
 @interface TZAlbumPickerController : UIViewController
 @property (nonatomic, assign) NSInteger columnNumber;
+@property (nonatomic, assign) AlbumType albumType;
+@property (nonatomic, strong) NSMutableArray *albumArr;
 @property (nonatomic, strong) NSMutableArray<TZAlbumModel *> *customAlbumArr;
 @end
 

@@ -152,13 +152,10 @@ extension ZJASelectedPhotoCell {
     }
     
     func pushImagePickerController() {
-//        let testImg: UIImage = UIImage(named: "test")!
-//        testImg.imageTag = "123456"
-//        let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: "我的衣柜", imageList: [testImg])
-        let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 9, albumModel: albumModels, delegate: self)
+        let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 9, albumModel: albumModels, albumType: .onlyCustom, delegate: self, pushPhotoPickerVc: false)
         imagePickerVc.naviBgColor = COLOR_MAIN_APP
         imagePickerVc.selectedAssets = selectedAssets
-        imagePickerVc.allowTakePicture = true
+        imagePickerVc.allowTakePicture = false
         imagePickerVc.allowPickingVideo = false
         imagePickerVc.allowPickingImage = true
         imagePickerVc.allowPickingOriginalPhoto = false

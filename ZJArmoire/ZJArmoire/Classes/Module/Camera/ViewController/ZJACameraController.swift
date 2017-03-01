@@ -204,9 +204,12 @@ extension ZJACameraController:ZJACameraActionViewDelegate {
         if cameraStartAnimalView.isHidden == false {
             return
         }
-        let viewControllers:NSArray = (self.navigationController?.viewControllers)! as NSArray
-        if viewControllers.count > 1 {
-            if viewControllers.object(at: viewControllers.count-1) as! ZJACameraController == self {
+        
+        if let viewControllers = self.navigationController?.viewControllers {
+            let count: Int = viewControllers.count
+            if count > 1 &&
+                (viewControllers as NSArray).object(at: count-1) as!
+                ZJACameraController == self {
                 _ = navigationController?.popViewController(animated: true)
             }
         } else {

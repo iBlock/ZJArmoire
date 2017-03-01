@@ -13,6 +13,7 @@ class ZJATypeListController: UIViewController {
     var countDic: NSMutableDictionary!
     var yiguiType:Int!
     var errorView: ZJAErrorView?
+    var selectedAssets: NSMutableArray! = NSMutableArray()
     let userDefault = UserDefaults.standard
     
     deinit {
@@ -90,18 +91,7 @@ class ZJATypeListController: UIViewController {
     // MARK: - Event and Respone
     
     @objc private func didTappedAddButton(sender:UIBarButtonItem?) {
-        let selectorView = ZJAPhotoSelectorView()
-        selectorView.photoTypeClick = { [weak self](type: ZJAPhotoSelectorType) -> () in
-            switch type {
-            case .takeImage:
-                let cameraController = ZJACameraController()
-                cameraController.yiguiType = self?.yiguiType
-//                self?.navigationController?.present(cameraController, animated: true, completion: nil)
-                self?.navigationController?.pushViewController(cameraController, animated: true)
-            case .selectorImage: break
-            }
-        }
-        selectorView.show()
+        navigationController?.pushViewController(ZJAAddSKUController(), animated: true)
     }
     
     // MARK: - Lazy Method

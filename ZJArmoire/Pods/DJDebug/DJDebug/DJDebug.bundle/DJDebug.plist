@@ -92,6 +92,18 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
+			<string>图片报警监控</string>
+			<key>IASKViewControllerClass</key>
+			<string>DJDebugImageAlarmInfoPage</string>
+			<key>Key</key>
+			<string>DJDebugImageAlarmInfoPage</string>
+			<key>IASKViewControllerSelector</key>
+			<string>initWithFile:key:</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
 			<string>跳页足迹</string>
 			<key>IASKViewControllerClass</key>
 			<string>DJDebugPageJumpRecord</string>

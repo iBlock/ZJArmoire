@@ -15,7 +15,7 @@ class ZJADapeiListCollectionView: UICollectionView {
     
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
-        let specing:CGFloat = 15
+        let specing:CGFloat = 5
         layout.minimumInteritemSpacing = specing
         layout.minimumLineSpacing = specing
         layout.sectionInset = UIEdgeInsetsMake(specing, specing, specing, specing)
@@ -48,7 +48,7 @@ extension ZJADapeiListCollectionView: UICollectionViewDelegate,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let collectionView:ZJADapeiListCell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath) as! ZJADapeiListCell
+        let collectionView:ZJADapeiListCell = cell as! ZJADapeiListCell
         let dpModel: ZJADapeiModel = self.dapeiModel[indexPath.row]
         let clothesModels = dpModel.clothesList
         collectionView.configCell(photoList: clothesModels!)

@@ -7,20 +7,12 @@
 //
 
 #import "DJDebugAPIAlarmInfoPage.h"
-#import "DJDebugURLProtocol.h"
 #import "IASKSpecifier.h"
 #import "DJDebugApiDetailPage.h"
 
 NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
 
 @interface DJDebugAPIAlarmInfoPage ()<UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic, strong) UITableView *apiInfoTableVeiw;
-@property (nonatomic, strong) UISwitch *switchView;
-@property (nonatomic, strong) UILabel *switchInfoLabel;
-@property (nonatomic, strong) UIView *tableHeaderView;
-@property (nonatomic, strong) DJDebugProtocolModel *debugProtocol;
-@property (nonatomic, strong) NSArray *errorApiAllKeys;
 
 @end
 
@@ -66,17 +58,12 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.debugProtocol.errorApiList count] == 0) {
-        NSString *title = @"暂时还没有错误的API请求记录。";
+    if ([self.errorApiAllKeys count] == 0) {
+        NSString *title = [self getDefaultCellTitle];
         cell.textLabel.text = title;
         cell.detailTextLabel.text = @"";
     } else {
-        NSString *apiKey = self.errorApiAllKeys[indexPath.row];
-        NSDictionary *apiInfo = [self.debugProtocol.errorApiList[apiKey] firstObject];
-        cell.textLabel.text = apiInfo[@"path"];
-        cell.detailTextLabel.textColor = [UIColor redColor];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",
-                                     [self.debugProtocol.errorApiList[apiKey] count]];
+        [self configCell:cell atindex:indexPath];
     }
 }
 
@@ -98,6 +85,9 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.errorApiAllKeys.count < 1) {
+        return UITableViewCellEditingStyleNone;
+    }
     return UITableViewCellEditingStyleDelete;
 }
 
@@ -108,7 +98,7 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
         NSString *apiKey = self.errorApiAllKeys[indexPath.row];
         [self.debugProtocol.errorApiList removeObjectForKey:apiKey];
         [self.debugProtocol syncUserdefault];
-        [tableView deleteRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView reloadData];
     }
 }
 
@@ -117,14 +107,15 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.errorApiAllKeys.count == 0 ? 1 : self.errorApiAllKeys.count;
+    NSInteger count = self.errorApiAllKeys.count == 0 ? 1 : self.errorApiAllKeys.count;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -151,7 +142,7 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
         _apiInfoTableVeiw.frame = self.view.bounds;
         _apiInfoTableVeiw.delegate = self;
         _apiInfoTableVeiw.dataSource = self;
-        _apiInfoTableVeiw.sectionHeaderHeight = 65;
+        _apiInfoTableVeiw.sectionHeaderHeight = [self getTableHeaderHeight];
         UIView *headView = [[UIView alloc] initWithFrame:CGRectZero];
         [_apiInfoTableVeiw setTableFooterView:headView];
     }
@@ -184,15 +175,17 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
         _tableHeaderView.backgroundColor = [UIColor whiteColor];
         [_tableHeaderView addSubview:self.switchView];
         [_tableHeaderView addSubview:self.switchInfoLabel];
-        UILabel *noticeLabel = [[UILabel alloc] init];
-        noticeLabel.font = [UIFont systemFontOfSize:12];
-        noticeLabel.text = @"注意：每次开关变更后需要重新打开APP才会生效";
-        noticeLabel.textColor = [UIColor redColor];
-        noticeLabel.frame = CGRectMake(15, CGRectGetMaxY(self.switchView.frame)+5, CGRectGetWidth(self.view.frame)-15, 15);
-        [_tableHeaderView addSubview:noticeLabel];
+        /*
+         UILabel *noticeLabel = [[UILabel alloc] init];
+         noticeLabel.font = [UIFont systemFontOfSize:12];
+         noticeLabel.text = @"注意：每次开关变更后需要重新打开APP才会生效";
+         noticeLabel.textColor = [UIColor redColor];
+         noticeLabel.frame = CGRectMake(15, CGRectGetMaxY(self.switchView.frame)+5, CGRectGetWidth(self.view.frame)-15, 15);
+         [_tableHeaderView addSubview:noticeLabel];
+         */
         UIView *lineView = [[UIView alloc] init];
         lineView.backgroundColor = [UIColor lightGrayColor];
-        lineView.frame = CGRectMake(15, CGRectGetMaxY(noticeLabel.frame)+5, CGRectGetWidth(self.view.frame)-15, 0.5);
+        lineView.frame = CGRectMake(15, [self getTableHeaderHeight]-0.5, CGRectGetWidth(self.view.frame)-15, 0.5);
         [_tableHeaderView addSubview:lineView];
     }
     return _tableHeaderView;
@@ -203,6 +196,23 @@ NSString *const kDJDebugAPISwitchState = @"kDJDebugAPISwitchState";
         _debugProtocol = [DJDebugProtocolModel shareInstance];
     }
     return _debugProtocol;
+}
+
+- (CGFloat)getTableHeaderHeight {
+    return 55;
+}
+
+- (void)configCell:(UITableViewCell *)cell atindex:(NSIndexPath *)indexPath {
+    NSString *apiKey = self.errorApiAllKeys[indexPath.row];
+    NSDictionary *apiInfo = [self.debugProtocol.errorApiList[apiKey] firstObject];
+    cell.textLabel.text = apiInfo[@"path"];
+    cell.detailTextLabel.textColor = [UIColor redColor];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",
+                                 [self.debugProtocol.errorApiList[apiKey] count]];
+}
+
+- (NSString *)getDefaultCellTitle {
+    return @"暂时还没有错误的API请求记录。";
 }
 
 - (NSArray *)errorApiAllKeys {

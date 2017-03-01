@@ -49,6 +49,14 @@ class ZJAEditSkuPhotoCell: UITableViewCell {
         }
     }
     
+    func didClickPhotoImage() {
+        let imagePicker = TZImagePickerController(selectedAssets: [photoImageView.image!], selectedPhotos: [photoImageView.image!], index: 0)
+        imagePicker?.maxImagesCount = 1
+        let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appdelegate.window?.rootViewController?.present(imagePicker!, animated: true, completion: nil)
+    }
+    
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "主图"
@@ -60,6 +68,9 @@ class ZJAEditSkuPhotoCell: UITableViewCell {
     
     private lazy var photoImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.isUserInteractionEnabled = true
+        let panEvent = UITapGestureRecognizer(target: self, action: #selector(didClickPhotoImage))
+        imageView.addGestureRecognizer(panEvent)
         return imageView
     }()
     

@@ -42,6 +42,10 @@
 		CC5CFF181E2B426600B9EBE6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5CFF171E2B426600B9EBE6 /* SQLite.framework */; };
 		CC5CFF1A1E2B432B00B9EBE6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5CFF191E2B432B00B9EBE6 /* SQLite.framework */; };
 		CC5CFF1B1E2B432B00B9EBE6 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC5CFF191E2B432B00B9EBE6 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CC653D501E6701DF00B49F77 /* ZJADapeiDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC653D4F1E6701DF00B49F77 /* ZJADapeiDetailController.swift */; };
+		CC653D521E670DA300B49F77 /* ZJADapeiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC653D511E670DA300B49F77 /* ZJADapeiCollectionView.swift */; };
+		CC653D541E6710DC00B49F77 /* ZJADapeiDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC653D531E6710DC00B49F77 /* ZJADapeiDetailCell.swift */; };
+		CC653D561E67195600B49F77 /* ZJADapeiDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC653D551E67195600B49F77 /* ZJADapeiDetailFooterView.swift */; };
 		CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC73E8F01D9D1AEE00C283D2 /* LaunchScreen.storyboard */; };
 		CC73E8FD1D9D1AEE00C283D2 /* ZJArmoireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC73E8FC1D9D1AEE00C283D2 /* ZJArmoireTests.swift */; };
 		CC8A55D61E5D9C9400F6AFDB /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */; };
@@ -165,6 +169,10 @@
 		CC5CFEE51E2B39CD00B9EBE6 /* ZJASQLiteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZJASQLiteManager.swift; path = ../Module/YiGui/ViewModel/ZJASQLiteManager.swift; sourceTree = "<group>"; };
 		CC5CFF171E2B426600B9EBE6 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "../SQLite.swift-master/build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
 		CC5CFF191E2B432B00B9EBE6 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC653D4F1E6701DF00B49F77 /* ZJADapeiDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADapeiDetailController.swift; sourceTree = "<group>"; };
+		CC653D511E670DA300B49F77 /* ZJADapeiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADapeiCollectionView.swift; sourceTree = "<group>"; };
+		CC653D531E6710DC00B49F77 /* ZJADapeiDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADapeiDetailCell.swift; sourceTree = "<group>"; };
+		CC653D551E67195600B49F77 /* ZJADapeiDetailFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJADapeiDetailFooterView.swift; sourceTree = "<group>"; };
 		CC73E8E41D9D1AEE00C283D2 /* ZJArmoire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJArmoire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC73E8F11D9D1AEE00C283D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC73E8F31D9D1AEE00C283D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -433,6 +441,8 @@
 				CC8A55E41E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift */,
 				CC8A55EE1E60253200F6AFDB /* ZJATemperatueCell.swift */,
 				CC8A56121E631BEA00F6AFDB /* ZJADapeiListCell.swift */,
+				CC653D531E6710DC00B49F77 /* ZJADapeiDetailCell.swift */,
+				CC653D551E67195600B49F77 /* ZJADapeiDetailFooterView.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -663,6 +673,7 @@
 			children = (
 				CCBFCCED1DA37F3300D80C78 /* ZJADaPeiController.swift */,
 				CC13E64F1E54526700F86BC7 /* ZJAAddDapeiController.swift */,
+				CC653D4F1E6701DF00B49F77 /* ZJADapeiDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -677,6 +688,7 @@
 				CC8A55D51E5D9C9400F6AFDB /* LxGridViewFlowLayout.m */,
 				CC8A55E11E5E891900F6AFDB /* ZJANewDapeiTableView.swift */,
 				CC8A56101E631B1400F6AFDB /* ZJADapeiListCollectionView.swift */,
+				CC653D511E670DA300B49F77 /* ZJADapeiCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -936,8 +948,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8A55E51E5E8B2500F6AFDB /* ZJASelectedPhotoCell.swift in Sources */,
+				CC653D501E6701DF00B49F77 /* ZJADapeiDetailController.swift in Sources */,
 				CC8A55D91E5D9CE400F6AFDB /* ZJAPreviewPhotoCell.m in Sources */,
 				CC2EA84D1E52B27700C62F1E /* ZJAClothesModel.swift in Sources */,
+				CC653D561E67195600B49F77 /* ZJADapeiDetailFooterView.swift in Sources */,
 				CCBFCCD11D9E102900D80C78 /* ZJATabBarViewController.swift in Sources */,
 				CCC96DB61DB32F7C00465131 /* ZJAHomeTableHeaderView.swift in Sources */,
 				CCA44ECF1E01136E0070FDB2 /* UIImage+CompressForSize.m in Sources */,
@@ -955,11 +969,13 @@
 				37BF234A1DF002B700666B52 /* ZJASKUTypeCollectionCell.swift in Sources */,
 				37BF23351DEDA43B00666B52 /* ZJAAddSKUController.swift in Sources */,
 				CCC6CFD11E2DCD6600D35BC3 /* ZJATodayDapeiSelectorView.swift in Sources */,
+				CC653D541E6710DC00B49F77 /* ZJADapeiDetailCell.swift in Sources */,
 				CC8A55F91E6042B700F6AFDB /* ZJATableDapei_Clothes.swift in Sources */,
 				CCC6CF821E2D18C900D35BC3 /* ZJATypeListCollectionView.swift in Sources */,
 				CC8A55E21E5E891900F6AFDB /* ZJANewDapeiTableView.swift in Sources */,
 				37D68EFB1DB7301400EFC185 /* ZJACameraEditActionView.swift in Sources */,
 				CCBFCCD71D9E15F100D80C78 /* ZJATabBar.swift in Sources */,
+				CC653D521E670DA300B49F77 /* ZJADapeiCollectionView.swift in Sources */,
 				CCA7268E1DBA49AF0099BC98 /* ZJATypeListController.swift in Sources */,
 				CCF65EF01E558291006F2F93 /* ZJAEditSkuPhotoCell.swift in Sources */,
 				37D68EFE1DB796F000EFC185 /* ZJACameraManager.swift in Sources */,

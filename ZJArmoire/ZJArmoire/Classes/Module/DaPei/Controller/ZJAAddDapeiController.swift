@@ -10,7 +10,9 @@ import UIKit
 
 class ZJAAddDapeiController: UIViewController {
     
+    typealias ConfirmButtonCallback = () -> Void
     var albumModels: [TZAlbumModel]!
+    var confirmCallback: ConfirmButtonCallback?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +92,10 @@ extension ZJAAddDapeiController {
         dapeiTable.dapei_date = dateStr
         let isSuccess = dapeiTable.insert()
         if isSuccess == true {
-            
+            confirmCallback?()
+            _ = navigationController?.popViewController(animated: true)
+        } else {
+            SVProgressHUD.showError(withStatus: "保存搭配到数据库失败。")
         }
     }
 }

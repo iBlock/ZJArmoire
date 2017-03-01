@@ -18,12 +18,7 @@ class ZJADaPeiController: UIViewController {
         super.viewDidLoad()
         prepareUI()
         setupViewConstraints()
-        
-        SVProgressHUD.show()
-        ZJATableDapei().fetchAllDapei { [weak self] (dapeiList) in
-            SVProgressHUD.dismiss()
-            self?.prepareDapeiListData(dpList: dapeiList)
-        }
+        fetchDapeilistData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,20 +34,38 @@ class ZJADaPeiController: UIViewController {
     
     func setupViewConstraints() {
         dapeiCollectionView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.top.right.equalTo(0)
+            make.bottom.equalTo(-(tabBarController?.tabBar.size.height)!)
         }
     }
     
     // MARK: - Event and Respone
     
     @objc private func didTappedAddButton(sender:UIBarButtonItem?) {
+        pushToAddDapeiController()
+    }
+    
+    func pushToAddDapeiController() {
+        SVProgressHUD.show()
         DispatchQueue.global().async {
             let albumModels = self.fetchAllClothes()
             DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
                 let addDapeiController = ZJAAddDapeiController()
                 addDapeiController.albumModels = albumModels
+                addDapeiController.confirmCallback = { [weak self] () in
+                    self?.fetchDapeilistData()
+                }
                 self.navigationController?.pushViewController(addDapeiController, animated: true)
             }
+        }
+    }
+    
+    func fetchDapeilistData() {
+        SVProgressHUD.show()
+        ZJATableDapei().fetchAllDapei { [weak self] (dapeiList) in
+            SVProgressHUD.dismiss()
+            self?.prepareDapeiListData(dpList: dapeiList)
         }
     }
     
@@ -61,16 +74,7 @@ class ZJADaPeiController: UIViewController {
             errorView = view.loadErrorView()
             errorView?.errorInfoText = "您还没有衣服搭配哦，赶快去搭配吧！"
             errorView?.errorButtonClick = { [weak self]() -> () in
-                SVProgressHUD.show()
-                DispatchQueue.global().async {
-                    let albumModels = self?.fetchAllClothes()
-                    DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
-                        let addDapeiController = ZJAAddDapeiController()
-                        addDapeiController.albumModels = albumModels
-                        self?.navigationController?.pushViewController(addDapeiController, animated: true)
-                    }
-                }
+                self?.pushToAddDapeiController()
             }
         } else {
             errorView?.removeFromSuperview()
@@ -79,6 +83,19 @@ class ZJADaPeiController: UIViewController {
         }
     }
     
+    private lazy var dapeiCollectionView: ZJADapeiListCollectionView = {
+        let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
+        collectionView.clickblock = { [weak self](dapeiModel: ZJADapeiModel) in
+            let detailVc = ZJADapeiDetailController()
+            let model: ZJADapeiModel = dapeiModel
+            detailVc.clothesList = model.clothesList
+            self?.navigationController?.pushViewController(detailVc, animated: true)
+        }
+        return collectionView
+    }()
+}
+
+extension ZJADaPeiController {
     func fetchAllClothes() -> [TZAlbumModel] {
         let fetchClothesGroup = DispatchGroup()
         let clothesTable = ZJATableClothes()
@@ -100,9 +117,4 @@ class ZJADaPeiController: UIViewController {
         fetchClothesGroup.wait()
         return albumModels
     }
-    
-    private lazy var dapeiCollectionView: ZJADapeiListCollectionView = {
-        let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
-        return collectionView
-    }()
 }

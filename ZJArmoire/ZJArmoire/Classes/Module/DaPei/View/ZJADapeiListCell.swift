@@ -29,11 +29,14 @@ class ZJADapeiListCell: UICollectionViewCell {
     }
     
     func prepareUI() {
+        contentView.layer.cornerRadius = 5
+        contentView.layer.masksToBounds = true
         contentView.addSubview(photoJointView)
     }
     
     private lazy var photoJointView: ZJAPhotoJointView = {
         let jointView: ZJAPhotoJointView = ZJAPhotoJointView(frame: self.contentView.frame)
+//        jointView.layer.cornerRadius = 5
         return jointView
     }()
 }

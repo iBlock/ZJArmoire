@@ -10,12 +10,14 @@ import UIKit
 
 class ZJADapeiListCollectionView: UICollectionView {
 
+    typealias ClickDapeiCallback = (_ dapeiModel: ZJADapeiModel) -> Void
     let categoryIdentifier = "DapeiListCellItem"
     var dapeiModel: [ZJADapeiModel]! = [ZJADapeiModel]()
+    var clickblock: ClickDapeiCallback?
     
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
-        let specing:CGFloat = 5
+        let specing:CGFloat = 10
         layout.minimumInteritemSpacing = specing
         layout.minimumLineSpacing = specing
         layout.sectionInset = UIEdgeInsetsMake(specing, specing, specing, specing)
@@ -60,6 +62,7 @@ extension ZJADapeiListCollectionView: UICollectionViewDelegate,UICollectionViewD
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath)
+        clickblock?(dapeiModel[indexPath.row])
     }
     
 }

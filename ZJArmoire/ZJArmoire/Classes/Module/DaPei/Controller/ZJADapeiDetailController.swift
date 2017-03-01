@@ -1,0 +1,80 @@
+//
+//  ZJADapeiDetailController.swift
+//  ZJArmoire
+//
+//  Created by iBlock on 2017/3/1.
+//  Copyright © 2017年 iBlock. All rights reserved.
+//
+
+import UIKit
+
+class ZJADapeiDetailController: UIViewController {
+    
+    var clothesList: [ZJAClothesModel]!
+    let CellIdentifier = "ZJADapeiDetailCell"
+    let CellFooterIdentifier = "ZJADapeiDetailFooterCell"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareUI()
+        setupViewConstraints()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func prepareUI() {
+        title = "搭配详情"
+        view.backgroundColor = COLOR_MAIN_BACKGROUND
+        view.addSubview(dapeiCollectionView)
+    }
+    
+    func setupViewConstraints() {
+        dapeiCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    private lazy var dapeiCollectionView: ZJADapeiCollectionView = {
+        let collection: ZJADapeiCollectionView = ZJADapeiCollectionView(frame: self.view.bounds)
+        collection.backgroundColor = COLOR_MAIN_BACKGROUND
+        collection.register(ZJADapeiDetailCell.self, forCellWithReuseIdentifier: self.CellIdentifier)
+        collection.delegate = self
+        collection.dataSource = self
+        collection.register(ZJADapeiDetailFooterView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: self.CellFooterIdentifier)
+        return collection
+    }()
+    
+}
+
+extension ZJADapeiDetailController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return clothesList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier, for: indexPath)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell: ZJADapeiDetailCell = cell as! ZJADapeiDetailCell
+        cell.configCell(clothesModel: clothesList[indexPath.row])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: CellFooterIdentifier, for: indexPath)
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let skuDetail = ZJAEditSkuController()
+        skuDetail.clothesModel = clothesList[indexPath.row]
+        navigationController?.pushViewController(skuDetail, animated: true)
+    }
+    
+}

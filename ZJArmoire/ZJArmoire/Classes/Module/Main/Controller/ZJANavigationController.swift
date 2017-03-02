@@ -12,7 +12,8 @@ class ZJANavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        interactivePopGestureRecognizer?.isEnabled = true
+        interactivePopGestureRecognizer?.delegate = self
         let navBar = navigationBar
         navBar.barTintColor = COLOR_MAIN_APP
         navBar.isTranslucent = false
@@ -47,6 +48,17 @@ class ZJANavigationController: UINavigationController {
      */
     @objc private func didTappedBackButton(button: UIBarButtonItem) {
         popViewController(animated: true)
+    }
+    
+}
+
+extension ZJANavigationController: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if (viewControllers.count <= 1) {
+            return false
+        }
+        return true
     }
     
 }

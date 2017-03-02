@@ -50,11 +50,7 @@ class ZJAEditSkuPhotoCell: UITableViewCell {
     }
     
     func didClickPhotoImage() {
-        let imagePicker = TZImagePickerController(selectedAssets: [photoImageView.image!], selectedPhotos: [photoImageView.image!], index: 0)
-        imagePicker?.maxImagesCount = 1
-        let appdelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appdelegate.window?.rootViewController?.present(imagePicker!, animated: true, completion: nil)
+        photoImageView.showPreviewImage()
     }
     
     private lazy var titleLabel: UILabel = {

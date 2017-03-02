@@ -23,6 +23,7 @@
 
 #import "UIView+Layout.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+Utils.h"
 #import "UIImage+CompressForSize.h"
 
 #endif /* ZJArmoire_Swift_Bridging_Header_h */

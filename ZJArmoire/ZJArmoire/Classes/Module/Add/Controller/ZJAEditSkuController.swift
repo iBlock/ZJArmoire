@@ -34,6 +34,7 @@ class ZJAEditSkuController: UIViewController {
     }
     
     func didTappedConfirmButton() {
+    
         if rightButton.titleLabel?.text == "保存" {
             rightButton.setTitle("修改", for: .normal)
             SVProgressHUD.show()
@@ -53,27 +54,6 @@ class ZJAEditSkuController: UIViewController {
             skuAddTableView.isEditSku = true
             skuAddTableView.reloadData()
         }
-        /*
-        if confirmButton.titleLabel?.text == "保存" {
-            SVProgressHUD.show()
-            let model = ZJAClothesModel(skuModel: skuAddTableView.currentSKUItemModel!)
-            let updateState = ZJATableClothes(model: model).update(clothesModel.uuid)
-            if updateState == true {
-                SVProgressHUD.showSuccess(withStatus: "修改成功")
-            } else {
-                SVProgressHUD.showSuccess(withStatus: "修改失败")
-            }
-            confirmButton.setTitle("修改", for: .normal)
-            skuAddTableView.isEditSku = false
-            skuAddTableView.isClickTypeArrowButton = false
-            skuAddTableView.reloadData()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: KEY_NOTIFICATION_REFRESH_SKU), object: nil)
-        } else {
-            confirmButton.setTitle("保存", for: .normal)
-            skuAddTableView.isEditSku = true
-            skuAddTableView.reloadData()
-        }
- */
     }
     
     func setUpViewConstraints() {

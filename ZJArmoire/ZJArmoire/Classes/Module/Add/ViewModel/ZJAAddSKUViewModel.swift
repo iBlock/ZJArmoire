@@ -60,12 +60,15 @@ extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
                     model.tagList = nil
                 }
             }
-            let isSuccess: Bool =  model.insert()
-            if isSuccess == false {
-                print("保存衣服到数据库失败\n")
-            } else {
-                self.saveTagsToDatabase(item: item, clothesName: random)
-            }
+//            let isSuccess: Bool =  model.insert()
+            /// MARK : 测试
+            model.insert(callback: { (isSuccess) in
+                if isSuccess == false {
+                    print("保存衣服到数据库失败\n")
+                } else {
+                    self.saveTagsToDatabase(item: item, clothesName: random)
+                }
+            })
         } catch let error {
             print(error)
         }

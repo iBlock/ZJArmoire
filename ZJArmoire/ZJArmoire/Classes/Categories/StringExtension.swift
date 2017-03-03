@@ -18,4 +18,13 @@ extension String {
         return random
     }
     
+    /// 获取当前时间，格式为: 20170303
+    static func getNowDateStr() -> String {
+        let now = Date()
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyyMMdd"
+        let dateStr = dformatter.string(from: now)
+        return dateStr
+    }
+    
 }

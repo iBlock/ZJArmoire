@@ -16,7 +16,7 @@ class ZJASkuEditTableView: ZJASKUAddTableView {
     let editPhotoCellIdentifier = "ZJASkuEditTableViewCell"
     
     init(frame: CGRect, style: UITableViewStyle, model: ZJAClothesModel) {
-        super.init(frame: frame, style: style)
+        super.init(frame: frame, style: style, type: model.type)
         clothesModel = model
         currentSKUItemModel = ZJASKUItemModel()
         currentSKUItemModel?.category = clothesModel.type

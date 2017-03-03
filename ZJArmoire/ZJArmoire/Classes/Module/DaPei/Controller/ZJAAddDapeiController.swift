@@ -85,11 +85,7 @@ extension ZJAAddDapeiController {
         dapeiTable.night_temperature = model.night_temp
         dapeiTable.clothesIdList = model.clothesIdList
         dapeiTable.dapei_taglist = model.taglist
-        let now = Date()
-        let dformatter = DateFormatter()
-        dformatter.dateFormat = "yyyyMMdd"
-        let dateStr = dformatter.string(from: now)
-        dapeiTable.dapei_date = dateStr
+        dapeiTable.dapei_date = String.getNowDateStr()
         let isSuccess = dapeiTable.insert()
         if isSuccess == true {
             confirmCallback?()

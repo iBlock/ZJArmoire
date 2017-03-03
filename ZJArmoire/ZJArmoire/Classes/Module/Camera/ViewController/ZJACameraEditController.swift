@@ -10,12 +10,8 @@ import UIKit
 
 class ZJACameraEditController: UIViewController {
     
-    typealias ConfirmPhotoCallback = () -> ()
+    typealias ConfirmPhotoCallback = (UIImage) -> ()
     var previewImage:UIImage?
-//    var typeName: String?
-    var type: Int?
-    var isPushAddSKUController:Bool = true
-    
     var confirmPhotoBlock: ConfirmPhotoCallback?
 
     override func viewDidLoad() {
@@ -28,20 +24,6 @@ class ZJACameraEditController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        // 针对添加单品页面的处理
-        let keyController = UIApplication.shared.keyWindow?.rootViewController
-        if (keyController?.isKind(of: ZJANavigationController.self))! {
-            let rootViewController:ZJANavigationController = keyController as! ZJANavigationController
-            let controllers = rootViewController.viewControllers
-            for item in controllers {
-                let controller:UIViewController = item
-                if controller.isKind(of: ZJAAddSKUController.self) {
-                    self.isPushAddSKUController = false
-                    break
-                }
-            }
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,11 +76,6 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     }
     
     func didTappedConfirmButton() {
-        let skuDataCenter = ZJASKUDataCenter.sharedInstance
-        let skuModel = ZJASKUItemModel()
-//        let image = previewImage?.compress()
-        skuModel.photoImage = previewImage
-        
         /*
         //图片大小 
         let imageData = UIImageJPEGRepresentation(previewImage!, 1)        //992400
@@ -127,29 +104,9 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
         }
         */
         
-        skuModel.category = type
-        skuDataCenter.addSKUItem(model: skuModel)
+        confirmPhotoBlock?(previewImage!)
         
-        confirmPhotoBlock?()
-        
-        let rootViewController:ZJANavigationController = UIApplication.shared.keyWindow?.rootViewController as! ZJANavigationController
-        if isPushAddSKUController == true {
-            rootViewController.pushViewController(ZJAAddSKUController(), animated: false)
-        }
-        
-        let controllers = rootViewController.viewControllers
-        
-        let controllerList:NSMutableArray = (controllers as NSArray).mutableCopy() as! NSMutableArray
-        for item in controllers {
-            let controller:UIViewController = item
-            if controller.isKind(of: ZJACameraEditController.self) ||
-                controller.isKind(of: ZJACameraController.self){
-                controllerList.remove(controller)
-            }
-        }
         //下面代码是为了将modal出来的拍照界面dismiss掉，测试过如果是push出来的执行也没影响
         dismiss(animated: true, completion: nil)
-
-        rootViewController.viewControllers = controllerList as NSArray as! [UIViewController]
     }
 }

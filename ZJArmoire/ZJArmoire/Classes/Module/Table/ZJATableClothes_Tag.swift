@@ -46,7 +46,7 @@ class ZJATableClothes_Tag: NSObject {
             try db.run(insert)
             return true
         } catch {
-            print("创建衣服和标签的关联表失败")
+            print("插入衣服和标签的关联表失败")
             print(error)
             return false
         }

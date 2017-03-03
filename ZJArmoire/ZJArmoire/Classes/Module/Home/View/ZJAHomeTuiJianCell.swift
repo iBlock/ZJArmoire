@@ -35,7 +35,7 @@ class ZJAHomeTuiJianCell: UITableViewCell {
     }
     
     private func prepareUI() {
-        backgroundColor = UIColor.white
+        backgroundColor = UIColor.colorWithHexString(hex: "FCFBFB")
         contentView.addSubview(tuiJianView)
         tuiJianView.addSubview(titleLabel)
         tuiJianView.addSubview(detailButton)
@@ -53,7 +53,9 @@ class ZJAHomeTuiJianCell: UITableViewCell {
     
     private func setUpViewConstraints() {
         tuiJianView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
+            make.top.bottom.equalTo(0)
         }
         
         titleLabel.snp.makeConstraints { (make) in

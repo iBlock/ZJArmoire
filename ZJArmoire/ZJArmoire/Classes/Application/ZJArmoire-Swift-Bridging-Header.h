@@ -20,6 +20,7 @@
 #import "LxGridViewFlowLayout.h"
 #import "TZImagePickerController.h"
 #import "TZPhotoPickerController.h"
+#import "ZJAWeatherNetwork.h"
 
 #import "UIView+Layout.h"
 #import "UIImage+Utils.h"

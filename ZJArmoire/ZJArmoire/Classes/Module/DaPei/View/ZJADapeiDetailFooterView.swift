@@ -30,11 +30,15 @@ class ZJADapeiDetailFooterView: UICollectionReusableView {
         }
     }
     
+    func didTappedConfirmButton() {
+        
+    }
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = COLOR_TEXT_LABEL
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "------ END ------"
+        label.text = "------ End ------"
         label.textAlignment = .center
         return label
     }()

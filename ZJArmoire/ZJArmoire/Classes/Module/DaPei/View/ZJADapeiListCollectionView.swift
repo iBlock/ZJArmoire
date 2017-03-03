@@ -12,11 +12,11 @@ class ZJADapeiListCollectionView: UICollectionView {
 
     typealias ClickDapeiCallback = (_ dapeiModel: ZJADapeiModel) -> Void
     let categoryIdentifier = "DapeiListCellItem"
+    let layout = UICollectionViewFlowLayout()
     var dapeiModel: [ZJADapeiModel]! = [ZJADapeiModel]()
     var clickblock: ClickDapeiCallback?
     
     init(frame: CGRect) {
-        let layout = UICollectionViewFlowLayout()
         let specing:CGFloat = 10
         layout.minimumInteritemSpacing = specing
         layout.minimumLineSpacing = specing
@@ -32,6 +32,10 @@ class ZJADapeiListCollectionView: UICollectionView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func getCollectionViewHeight() -> CGFloat {
+        return layout.collectionViewContentSize.height+10*CGFloat(2)
     }
     
     private func prepareUI() {

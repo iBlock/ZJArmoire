@@ -9,7 +9,7 @@
 import UIKit
 import SQLite
 
-class ZJATableClothes: NSObject {
+class ZJATableClothes: NSObject, ZJASQLiteProtocol {
     
     var uuid: String!
     var category: Int!
@@ -62,7 +62,7 @@ class ZJATableClothes: NSObject {
     }
     
     //插入数据
-    func insert() -> Bool {
+    func insert(callback: @escaping (Bool) -> Void) {
         //表结构设定
         let insert = table_clothes.insert(
             t_clothes_uuid <- uuid,
@@ -70,6 +70,11 @@ class ZJATableClothes: NSObject {
             t_clothes_photo_name <- photoName,
             t_clothes_tags <- tagList
             )
+        ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        { (isSuccess) in
+            callback(isSuccess)
+        }
+        /*
         do {
             //连接数据库
             db = try Connection(PATH_DATABASE_FILE)
@@ -79,6 +84,7 @@ class ZJATableClothes: NSObject {
             print(error)
             return false
         }
+ */
     }
     
     //更新数据
@@ -89,6 +95,7 @@ class ZJATableClothes: NSObject {
                                t_clothes_day_air <- day_air,
                                t_clothes_night_air <- night_air
         )
+        
         do {
             db = try Connection(PATH_DATABASE_FILE)
             if try db.run(sql) > 0 {
@@ -130,36 +137,33 @@ class ZJATableClothes: NSObject {
     }
     
     //获取指定类型的衣服
-    func fetchAllClothes(_ type: NSInteger, block:@escaping (([ZJAClothesModel])->Void)) {
-        DispatchQueue.global().sync {
+    func fetchAllClothes(_ type: NSInteger,
+                         block:@escaping (([ZJAClothesModel])->Void)) {
+        let query = self.table_clothes.filter(self.t_clothes_type == type)
+        ZJASQLiteManager.default.runFetchDatabase(query: query)
+        { (isSuccess: Bool, result: AnySequence<Row>?) in
             var allClothes = [ZJAClothesModel]()
-            //指定查询条件
-            let query = self.table_clothes.filter(self.t_clothes_type == type)
-            do {
-                //获取数据库连接
-                self.db = try Connection(PATH_DATABASE_FILE)
-                for clothes in try self.db.prepare(query) {
-                    let model = ZJAClothesModel()
-                    let imagePath = PATH_PHOTO_IMAGE + clothes[self.t_clothes_photo_name]
-                    model.type = clothes[self.t_clothes_type]
-                    model.uuid = clothes[self.t_clothes_uuid]
-                    model.tags = clothes[self.t_clothes_tags]
-                    if let image = UIImage(contentsOfFile: imagePath) {
-                        model.clothesImg = image
-                    } else {
-                        model.clothesImg = UIImage()
-                        print("%s图片找不到了",clothes[self.t_clothes_photo_name])
+            if isSuccess == true {
+                if let sequence = result {
+                    for clothes in sequence {
+                        let model = ZJAClothesModel()
+                        let imagePath = PATH_PHOTO_IMAGE + clothes[self.t_clothes_photo_name]
+                        model.type = clothes[self.t_clothes_type]
+                        model.uuid = clothes[self.t_clothes_uuid]
+                        model.tags = clothes[self.t_clothes_tags]
+                        if let image = UIImage(contentsOfFile: imagePath) {
+                            model.clothesImg = image
+                        } else {
+                            model.clothesImg = UIImage()
+                            print("%s图片找不到了",clothes[self.t_clothes_photo_name])
+                        }
+                        allClothes.append(model)
                     }
-                    allClothes.append(model)
                 }
-            } catch {
-                print("创建衣服表失败")
-                print(error)
+            } else {
+                print("获取指定类型的衣服失败。")
             }
-            DispatchQueue.main.async {
-                block(allClothes)
-            }
+            block(allClothes)
         }
     }
-    
 }

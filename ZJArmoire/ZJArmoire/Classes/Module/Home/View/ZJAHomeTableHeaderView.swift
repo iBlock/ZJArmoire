@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+protocol ZJAHomeTableHeaderDelegate: NSObjectProtocol {
+    func refreshTableView(index: Int)
+}
+
 class ZJAHomeTableHeaderView: UIView {
+    
+    weak var delegate: ZJAHomeTableHeaderDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,9 +33,13 @@ class ZJAHomeTableHeaderView: UIView {
         
         scrollView.contentSize = CGSize(width:size.width*3, height:frame.height)
         var x:CGFloat = 0
-        for _ in 0...3 {
+        for i in 0...3 {
             let rect = CGRect(x: x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
-            scrollView.addSubview(ZJAHomeSectionHeaderView(frame: rect))
+            let section = ZJAHomeSectionHeaderView(frame: rect)
+            if i > 0 {
+                section.airQualityLabel.isHidden = true
+            }
+            scrollView.addSubview(section)
             x += frame.size.width
         }
         addSubview(scrollView)
@@ -56,6 +66,7 @@ class ZJAHomeTableHeaderView: UIView {
         frame.origin.y = 0
         //展现当前页面内容
         scrollView.scrollRectToVisible(frame, animated:true)
+        delegate?.refreshTableView(index: sender.currentPage)
     }
     
     public lazy var pageController:UIPageControl = {
@@ -191,7 +202,7 @@ class ZJAHomeSectionHeaderView: UIView {
         return weatherLabel
     }()
     
-    private lazy var airQualityLabel:UILabel = {
+    public lazy var airQualityLabel:UILabel = {
         let airQualityLabel = UILabel()
         airQualityLabel.layer.cornerRadius = 10.0
         airQualityLabel.layer.masksToBounds = true

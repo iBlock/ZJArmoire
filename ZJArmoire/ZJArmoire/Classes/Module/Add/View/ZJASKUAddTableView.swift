@@ -24,12 +24,12 @@ class ZJASKUAddTableView: UITableView {
     
     var isClickTypeArrowButton:Bool = false
     var tagListFrame:CGRect! = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:45)
-    
-    var currentSKUItemModel:ZJASKUItemModel?
+    var currentSKUItemModel:ZJASKUItemModel!
+    var defaultType: Int! = 0
 
-    override init(frame: CGRect, style: UITableViewStyle) {
+    init(frame: CGRect, style: UITableViewStyle, type: Int) {
         super.init(frame: frame, style: style)
-        
+        defaultType = type
         prepareUI()
         prepareOverriteData()
         setUpViewConstraints()
@@ -45,7 +45,10 @@ class ZJASKUAddTableView: UITableView {
     
     func prepareUI() -> Void {
         if skuItemArray.count > 0 {
-            currentSKUItemModel = skuItemArray.object(at: 0) as? ZJASKUItemModel
+            currentSKUItemModel = skuItemArray.object(at: 0) as! ZJASKUItemModel
+        } else {
+            currentSKUItemModel = ZJASKUItemModel()
+            currentSKUItemModel.category = defaultType
         }
         backgroundColor = COLOR_MAIN_BACKGROUND
         estimatedRowHeight = 85
@@ -74,7 +77,7 @@ class ZJASKUAddTableView: UITableView {
         tagView.addSKUTag({ [weak self](tagNameList) in
             DispatchQueue.main.async {
                 self?.reloadData()
-                self?.currentSKUItemModel?.tagList = tagNameList as? Array<String>
+                self?.currentSKUItemModel.tagList = tagNameList as? Array<String>
             }
         })
         tagView.didUpdatedTagListViewFrame({ [weak self](frame) in
@@ -190,11 +193,7 @@ extension ZJASKUAddTableView: UITableViewDelegate {
             let panGester = UITapGestureRecognizer(target: self, action: #selector(didTappendArrowButton(sender:)))
             headerView.addGestureRecognizer(panGester)
             headerView.configHeaderView(isClickArrowButton: isClickTypeArrowButton)
-            if let category = currentSKUItemModel?.category {
-                headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[Int(category)])
-            } else {
-                headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[0])
-            }
+            headerView.configCell(type: CONFIG_YIGUI_TYPENAMES[currentSKUItemModel.category])
         case 2:
             if isCanEditSku() == true {
                 tagListHeaderView.isUserInteractionEnabled = true
@@ -230,7 +229,7 @@ extension ZJASKUAddTableView: UITableViewDataSource {
             (cell as! ZJASKUTypeViewCell).clickTypeBtnBlock =
             {[weak self](indexPath) in
                 let indexSet = NSIndexSet(index: 1)
-                self?.currentSKUItemModel?.category = indexPath.row
+                self?.currentSKUItemModel.category = indexPath.row
                 self?.isClickTypeArrowButton = !(self?.isClickTypeArrowButton)!
                 self?.reloadSections(indexSet as IndexSet, with: .automatic)
             }

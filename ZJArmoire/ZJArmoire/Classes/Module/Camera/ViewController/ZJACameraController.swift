@@ -11,12 +11,10 @@ import AVFoundation
 
 class ZJACameraController: UIViewController {
     
-    typealias ConfirmPhotoCallback = () -> ()
+    typealias ConfirmPhotoCallback = (UIImage) -> ()
     
     var avCaptureSesstion: AVCaptureSession?
     var addPhotoBlock: ConfirmPhotoCallback?
-//    var typeName: String?
-    var yiguiType:Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +53,6 @@ class ZJACameraController: UIViewController {
         cameraManager.initalSession(preview: self.view)
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
-        
-        if yiguiType == nil {
-            yiguiType = 0
-        }
     }
     
     private func setUpViewControllerConstraints() {
@@ -186,9 +180,8 @@ extension ZJACameraController:ZJACameraManagerProtocol {
         let cameraEditController = ZJACameraEditController()
         let image = takeImage?.compress()
         cameraEditController.previewImage = image
-        cameraEditController.type = self.yiguiType
-        cameraEditController.confirmPhotoBlock = {[weak self] () in
-            self?.addPhotoBlock?()
+        cameraEditController.confirmPhotoBlock = {[weak self] (image) in
+            self?.addPhotoBlock?(image)
         }
         navigationController?.pushViewController(cameraEditController, animated: true)
     }
@@ -205,16 +198,17 @@ extension ZJACameraController:ZJACameraActionViewDelegate {
             return
         }
         
-        if let viewControllers = self.navigationController?.viewControllers {
-            let count: Int = viewControllers.count
-            if count > 1 &&
-                (viewControllers as NSArray).object(at: count-1) as!
-                ZJACameraController == self {
-                _ = navigationController?.popViewController(animated: true)
-            }
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
+//        if let viewControllers = self.navigationController?.viewControllers {
+//            let count: Int = viewControllers.count
+//            if count > 1 &&
+//                (viewControllers as NSArray).object(at: count-1) as!
+//                ZJACameraController == self {
+//                _ = navigationController?.popViewController(animated: true)
+//            }
+//        } else {
+//            dismiss(animated: true, completion: nil)
+//        }
     }
 }
 

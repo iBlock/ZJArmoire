@@ -11,7 +11,7 @@ import UIKit
 class ZJATypeListController: UIViewController {
     
     var countDic: NSMutableDictionary!
-    var yiguiType:Int!
+    var yiguiType:Int! = 0
     var errorView: ZJAErrorView?
     var selectedAssets: NSMutableArray! = NSMutableArray()
     let userDefault = UserDefaults.standard
@@ -91,7 +91,9 @@ class ZJATypeListController: UIViewController {
     // MARK: - Event and Respone
     
     @objc private func didTappedAddButton(sender:UIBarButtonItem?) {
-        navigationController?.pushViewController(ZJAAddSKUController(), animated: true)
+        let addSkuVc = ZJAAddSKUController()
+        addSkuVc.yiguiType = self.yiguiType
+        navigationController?.pushViewController(addSkuVc, animated: true)
     }
     
     // MARK: - Lazy Method

@@ -11,6 +11,7 @@ import UIKit
 class ZJADaPeiController: UIViewController {
     
     var errorView: ZJAErrorView?
+    var isSelecter: Bool = false
     
     // MARK: - Life Cycle
     
@@ -33,6 +34,9 @@ class ZJADaPeiController: UIViewController {
     }
     
     func prepareUI() {
+        if isSelecter == true {
+            title = "选择搭配"
+        }
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(dapeiCollectionView)
     }
@@ -40,7 +44,11 @@ class ZJADaPeiController: UIViewController {
     func setupViewConstraints() {
         dapeiCollectionView.snp.makeConstraints { (make) in
             make.left.top.right.equalTo(0)
-            make.bottom.equalTo(-(tabBarController?.tabBar.size.height)!)
+            if isSelecter == true {
+                make.bottom.equalTo(0)
+            } else {
+                make.bottom.equalTo(-(tabBarController?.tabBar.size.height)!)
+            }
         }
     }
     
@@ -92,8 +100,9 @@ class ZJADaPeiController: UIViewController {
         let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
         collectionView.clickblock = { [weak self](dapeiModel: ZJADapeiModel) in
             let detailVc = ZJADapeiDetailController()
+            detailVc.isSelecter = (self?.isSelecter)!
             let model: ZJADapeiModel = dapeiModel
-            detailVc.clothesList = model.clothesList
+            detailVc.dapeiModel = model
             self?.navigationController?.pushViewController(detailVc, animated: true)
         }
         return collectionView

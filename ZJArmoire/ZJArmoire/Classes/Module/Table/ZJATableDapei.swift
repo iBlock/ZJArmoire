@@ -80,7 +80,7 @@ class ZJATableDapei: NSObject {
         }
     }
     
-    /** 根据时间查询预先搭配好的记录 */
+    /// 根据时间查询预先搭配好的记录
     func fetchPrepareDapeiId(dapeiDate: String) -> String? {
         let query = table_dapei.filter(t_dapei_date == dapeiDate)
         do {
@@ -96,23 +96,48 @@ class ZJATableDapei: NSObject {
         return nil
     }
     
-    func fetchAllDapei(block:@escaping (([ZJADapeiModel])->Void)) {
+    /// 根据搭配ID列表获取搭配
+    func fetchDapei(dpIdList: [String], block: @escaping ([ZJADapeiModel])->Void) {
+        DispatchQueue.global().async {
+            var dapeiList = [ZJADapeiModel]()
+            do {
+                self.db = try Connection(PATH_DATABASE_FILE)
+                for dpId in dpIdList {
+                    let query = self.table_dapei.filter(self.t_dapei_id == dpId)
+                    for dapei in try self.db.prepare(query) {
+                        dapeiList.append(self.buildDapeiModel(dapei: dapei))
+                        break
+                    }
+                }
+            } catch {
+                print("根据搭配ID列表获取搭配失败。")
+                print(error)
+            }
+            DispatchQueue.main.async {
+                block(dapeiList)
+            }
+        }
+        
+    }
+    
+    /// 获取数据库所有搭配
+    func fetchAllDapei(block:@escaping ([ZJADapeiModel])->Void) {
+        var dapeiList = [ZJADapeiModel]()
+        ZJASQLiteManager.default.runFetchDatabase(query: table_dapei) { (isSuccess, result) in
+            if isSuccess == true {
+                if let list = result {
+                    for dapei in list {
+                        dapeiList.append(self.buildDapeiModel(dapei: dapei))
+                    }
+                }
+            }
+        }
         DispatchQueue.global().async {
             var dapeiList = [ZJADapeiModel]()
             do {
                 self.db = try Connection(PATH_DATABASE_FILE)
                 for dapei in try self.db.prepare(self.table_dapei) {
-                    let model = ZJADapeiModel()
-                    model.dapei_id = dapei[self.t_dapei_id]
-                    model.dapei_time = dapei[self.t_dapei_date]
-                    model.day_temp = dapei[self.t_dapei_day_air]
-                    model.night_temp = dapei[self.t_dapei_night_air]
-                    let taglistStr = dapei[self.t_dapei_taglist]
-                    model.taglist = taglistStr?.components(separatedBy: ",")
-                    let clothesList = dapei[self.t_dapei_clotheslist]
-                    model.clothesList = ZJATableDapei_Clothes().fetchDapeiDetail(clothesIdList: clothesList.components(separatedBy: ","))
-                    model.history_air = dapei[self.t_dapei_history_air]
-                    dapeiList.append(model)
+                    dapeiList.append(self.buildDapeiModel(dapei: dapei))
                 }
             } catch {
                 print("获取搭配列表失败。")
@@ -124,30 +149,21 @@ class ZJATableDapei: NSObject {
         }
     }
     
-    func fetchDapei(dayTemp: Int, nightTemp: Int) -> String? {
-        var dayAirList: Array<Int> = Array()
-        dayAirList.append(dayTemp)
-        var nightAirList: Array<Int> = Array()
-        nightAirList.append(nightTemp)
-        for i in 1 ..< 4 {
-            dayAirList.append(dayTemp-i)
-            dayAirList.append(dayTemp+i)
-            nightAirList.append(nightTemp-i)
-            nightAirList.append(nightTemp+i)
+    func buildDapeiModel(dapei: Row) -> ZJADapeiModel {
+        let model = ZJADapeiModel()
+        model.dapei_id = dapei[t_dapei_id]
+        model.dapei_time = dapei[t_dapei_date]
+        model.day_temp = dapei[t_dapei_day_air]
+        model.night_temp = dapei[t_dapei_night_air]
+        let taglistStr = dapei[t_dapei_taglist]
+        model.taglist = taglistStr?.components(separatedBy: ",")
+        let clothesList = dapei[t_dapei_clotheslist]
+        ZJATableDapei_Clothes().fetchDapeiDetail(clothesIdList: clothesList.components(separatedBy: ",")) { (clothesModels) in
+            model.clothesList = clothesModels
         }
-        
-        let query = table_dapei.filter(dayAirList.contains(t_dapei_day_air) && nightAirList.contains(t_dapei_night_air))
-        do {
-            //获取数据库连接
-            db = try Connection(PATH_DATABASE_FILE)
-            for dapei in try db.prepare(query) {
-                return dapei[t_dapei_id]
-            }
-        } catch {
-            print("根据早晚温度获取搭配记录失败")
-            print(error)
-        }
-        return nil
+//        model.clothesList = ZJATableDapei_Clothes().fetchDapeiDetail(clothesIdList: clothesList.components(separatedBy: ","))
+        model.history_air = dapei[t_dapei_history_air]
+        return model
     }
     
 }

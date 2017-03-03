@@ -11,6 +11,8 @@ import RxSwift
 
 class ZJAAddSKUController: UIViewController {
     
+    var yiguiType: Int! = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
@@ -62,11 +64,17 @@ class ZJAAddSKUController: UIViewController {
             switch type {
             case .takeImage:
                 let cameraController = ZJACameraController()
-                cameraController.addPhotoBlock = {[weak self]() in
+                cameraController.addPhotoBlock = {[weak self](image) in
+                    let dateCenter = ZJASKUDataCenter.sharedInstance
+                    let skuModel = ZJASKUItemModel()
+                    skuModel.photoImage = image
+                    skuModel.category = self?.yiguiType
+                    dateCenter.addSKUItem(model: skuModel)
                     self?.reloadAddPhotoTableView()
                 }
-//                self?.navigationController?.present(cameraController, animated: true, completion: nil)
-                self?.navigationController?.pushViewController(cameraController, animated: true)
+                let cameraNavi = UINavigationController(rootViewController: cameraController)
+                self?.navigationController?.present(cameraNavi, animated: true, completion: nil)
+//                self?.navigationController?.pushViewController(cameraController, animated: true)
             case .selectorImage:
                 self?.pushImagePickerController()
             }
@@ -112,7 +120,7 @@ class ZJAAddSKUController: UIViewController {
     }
     
     public lazy var skuAddTableView:ZJASKUAddTableView = {
-        let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain)
+        let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain, type: self.yiguiType)
         clothesTableView.delaysContentTouches = false
         clothesTableView.skuDelegate = self
         return clothesTableView
@@ -154,7 +162,7 @@ extension ZJAAddSKUController: TZImagePickerControllerDelegate {
             let skuModel = ZJASKUItemModel()
             let image = item.compress()
             skuModel.photoImage = image
-            skuModel.category = 0
+            skuModel.category = yiguiType
             dateCenter.addSKUItem(model: skuModel)
         }
         reloadAddPhotoTableView()

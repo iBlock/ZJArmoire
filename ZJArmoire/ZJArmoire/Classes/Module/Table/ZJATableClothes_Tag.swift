@@ -22,18 +22,15 @@ class ZJATableClothes_Tag: NSObject {
     private let t_yf_tag_tag_id = Expression<String>("tag_id")
     
     func initTable() {
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            try db.run(table_clothes_tag.create(ifNotExists: true, block: { (t) in
-                t.column(t_yf_tag_id, primaryKey: true)
-                t.column(t_yf_tag_clothes_id)
-                t.column(t_yf_tag_tag_id)
-            }))
-            
-            try db.run(table_clothes_tag.createIndex([t_yf_tag_clothes_id,t_yf_tag_tag_id], unique: true, ifNotExists: true))
-        } catch {
+        let query = table_clothes_tag.create(ifNotExists: true, block: { (t) in
+            t.column(t_yf_tag_id, primaryKey: true)
+            t.column(t_yf_tag_clothes_id)
+            t.column(t_yf_tag_tag_id)
+        })
+        let query2 = table_clothes_tag.createIndex([t_yf_tag_clothes_id,t_yf_tag_tag_id], unique: true, ifNotExists: true)
+        let isSuccess = ZJASQLiteManager.default.runCreateDatabaseTable(querys: [query,query2])
+        if isSuccess == false {
             print("创建衣服和标签关联表失败")
-            print(error)
         }
     }
     
@@ -41,14 +38,10 @@ class ZJATableClothes_Tag: NSObject {
         let insert = table_clothes_tag.insert(
             t_yf_tag_clothes_id <- clothes_id,
             t_yf_tag_tag_id <- tag_id)
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            try db.run(insert)
-            return true
-        } catch {
+        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        if isSuccess == false {
             print("插入衣服和标签的关联表失败")
-            print(error)
-            return false
         }
+        return isSuccess
     }
 }

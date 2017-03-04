@@ -20,69 +20,49 @@ class ZJATableDapei_Clothes: NSObject {
     private let t_yf_dp_dp_id = Expression<String>("dapei_id")
     
     func initTable() {
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            try db.run(table_dapei_clothes.create(ifNotExists: true, block: { (t) in
-                t.column(t_yf_dp_id, primaryKey: true)
-                t.column(t_yf_dp_yf_id)
-                t.column(t_yf_dp_dp_id)
-            }))
-            try db.run(table_dapei_clothes.createIndex([t_yf_dp_yf_id, t_yf_dp_dp_id], unique: true, ifNotExists: true))
-        } catch {
+        let query1 = table_dapei_clothes.create(ifNotExists: true, block: { (t) in
+            t.column(t_yf_dp_id, primaryKey: true)
+            t.column(t_yf_dp_yf_id)
+            t.column(t_yf_dp_dp_id)
+        })
+        let query2 = table_dapei_clothes.createIndex([t_yf_dp_yf_id, t_yf_dp_dp_id], unique: true, ifNotExists: true)
+        let isSuccess = ZJASQLiteManager.default.runCreateDatabaseTable(querys: [query1,query2])
+        if isSuccess == false {
             print("创建衣服和搭配记录的关联表失败")
-            print(error)
         }
     }
     
+    /// 插入衣服和搭配关联表
     func insert(clothesIdList: Array<String>) -> Bool {
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            try db.transaction {
-                for clothesid in clothesIdList {
-                    try self.db.run(
-                        self.table_dapei_clothes.insert(self.t_yf_dp_yf_id <- clothesid,
-                                                        self.t_yf_dp_dp_id <- self.dapei_id))
-                }
-            }
-            return true
-        } catch {
+    var insertList: [Insert] = [Insert]()
+        for clothesid in clothesIdList {
+            let insert = self.table_dapei_clothes.insert(
+                t_yf_dp_yf_id <- clothesid,
+                t_yf_dp_dp_id <- dapei_id)
+            insertList.append(insert)
+        }
+        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: insertList)
+        if isSuccess == false {
             print("插入衣服和搭配关联表失败")
-            print(error)
-            return false
         }
+        return isSuccess
     }
     
-    func fetchDapeiDetail(clothesIdList: [String],
-                          callback:([ZJAClothesModel])->Void) {
-        var dapeiClothesList = [ZJAClothesModel]()
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            for clothesID in clothesIdList {
-                if let clothes = ZJATableClothes().fetchClothes(clothesID) {
-                    dapeiClothesList.append(clothes)
-                }
-            }
-        } catch {
-            print("获取搭配详情记录失败。")
-            print(error)
-        }
-        callback(dapeiClothesList)
-    }
-    
+    /// 根据搭配ID获取搭配衣服列表
     func fetchDapeiDetail(dapeiID: String) -> [ZJAClothesModel] {
         let sql = table_dapei_clothes.filter(t_yf_dp_dp_id == dapeiID)
-        var dapeiClothesList = [ZJAClothesModel]()
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            for dp in try db.prepare(sql) {
-                let clothesID = dp[t_yf_dp_yf_id]
-                if let clothes = ZJATableClothes().fetchClothes(clothesID) {
-                    dapeiClothesList.append(clothes)
-                }
+        let dapeiClothesList = [ZJAClothesModel]()
+        var clothesIdList = [String]()
+        let sequence = ZJASQLiteManager.default.runFetchDatabase(querys: [sql])
+        if let result = sequence.first {
+            for dp in result {
+                let clothesID = dp[self.t_yf_dp_yf_id]
+                clothesIdList.append(clothesID)
             }
-        } catch {
+            let models = ZJATableClothes().fetchClothes(clothesIdList: clothesIdList)
+            return models
+        } else {
             print("获取搭配详情记录失败。")
-            print(error)
         }
         return dapeiClothesList
     }

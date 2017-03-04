@@ -9,17 +9,6 @@
 import Foundation
 import SQLite
 
-typealias InsertCallback = (Bool) -> Void
-
-typealias ZJADatabaseUpdateBlock = (Bool!) -> Void
-typealias ZJADatabaseInitBlock = (Bool) -> Void
-typealias ZJADatabaseFetchResultBlock = (Bool,AnySequence<Row>?) -> Void
-
-@objc protocol ZJASQLiteProtocol {
-//    func initTable()
-//    func insert()
-}
-
 class ZJASQLiteManager: NSObject {
     
     var db: Connection!
@@ -28,56 +17,65 @@ class ZJASQLiteManager: NSObject {
     
     override init() {
         super.init()
-        createdsqlite3()
+        do {
+            self.db = try Connection(PATH_DATABASE_FILE)
+        } catch {
+            print("!!!!!!!!!!!!!!!!!连接数据库失败\n")
+        }
+    }
+    
+    /// 数据库统一创建表格方法
+    public func runCreateDatabaseTable(querys: [String]) -> Bool {
+        var isSuccess = false
+        do {
+            try db.transaction {
+                for query in querys {
+                    try self.db.run(query)
+                }
+            }
+            isSuccess = true
+        } catch {
+            print(error)
+        }
+        return isSuccess
     }
     
     /// 数据库统一更新事务
-    public func runUpdateDatabase(querys: [Expressible], block: @escaping ZJADatabaseUpdateBlock) {
-        serialDispatchQueue.sync {
-            var isSuccess = false
-            do {
-                self.db = try Connection(PATH_DATABASE_FILE)
-                try self.db.transaction {
-                    for query in querys {
-                        try self.db.run(query.expression.template, query.expression.bindings)
-                    }
+    public func runUpdateDatabase(querys: [Expressible]) -> Bool {
+        var isSuccess = false
+        do {
+            try self.db.transaction {
+                for query in querys {
+                    try self.db.run(query.expression.template,
+                                    query.expression.bindings)
                 }
-                isSuccess = true
-            } catch {
-                isSuccess = false
-                print("!!!!!!!!!!!!!!!!数据库写入出错了，快来看看吧")
-                print(error)
             }
-            
-            DispatchQueue.main.async {
-                block(isSuccess)
-            }
+            isSuccess = true
+        } catch {
+            isSuccess = false
+            print("!!!!!!!!!!!!!!!!数据库写入出错了，快来看看吧\n")
+            print(error)
         }
+        return isSuccess
     }
     
     /// 数据库统一查询方法
-    public func runFetchDatabase(query: QueryType,
-                                 block: @escaping ZJADatabaseFetchResultBlock) {
-        serialDispatchQueue.async {
-            var isSuccess = false
-            var result: AnySequence<Row>?
-            do {
-                self.db = try Connection(PATH_DATABASE_FILE)
-                result = try self.db.prepare(query)
-                isSuccess = true
-            } catch {
-                isSuccess = false
-                print("!!!!!!!!!!!!!!!!数据库读取出错了，快来看看吧\n")
-                print(error)
+    public func runFetchDatabase(querys: [QueryType]) -> [AnySequence<Row>] {
+        var result: [AnySequence<Row>] = [AnySequence<Row>]()
+        do {
+            for query in querys {
+                let sequence = try self.db.prepare(query)
+                result.append(sequence)
             }
-            DispatchQueue.main.async {
-                block(isSuccess, result)
-            }
+        } catch {
+            print("!!!!!!!!!!!!!!!!数据库读取出错了，快来看看吧\n")
+            print(error)
         }
+        return result
     }
     
     //创建数据库文件
-    private func createdsqlite3()  {
+    public func createdsqlite3()  {
         ZJATableClothes().initTable()
         ZJATableTags().initTable()
         ZJATableClothes_Tag().initTable()

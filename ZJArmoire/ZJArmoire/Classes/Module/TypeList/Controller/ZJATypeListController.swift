@@ -34,8 +34,13 @@ class ZJATypeListController: UIViewController {
     }
     
     func loadClothesInDatabase() {
-        ZJATableClothes().fetchAllClothes(yiguiType) { [weak self] (list) in
-            self?.prepareTypeListData(list: list)
+        SVProgressHUD.show()
+        DispatchQueue.global().async {
+            let list = ZJATableClothes().fetchAllClothes(self.yiguiType)
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.prepareTypeListData(list: list)
+            }
         }
     }
     
@@ -44,7 +49,6 @@ class ZJATypeListController: UIViewController {
     }
     
     func prepareTypeListData(list: Array<ZJAClothesModel>) {
-        loadingView.stopAnimating()
         if let countList = userDefault.object(forKey: KEY_USERDEFAULT_TYPE_COUNT) {
             countDic = NSMutableDictionary(dictionary: countList as! NSDictionary)
         } else {

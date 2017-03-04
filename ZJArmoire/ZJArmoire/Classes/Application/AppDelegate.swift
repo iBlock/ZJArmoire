@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         let debugConfig = DJDebugConfig()
         DJDebug.initWith(debugConfig)
-        _ = ZJASQLiteManager() //如果没有,默认创建数据库及表格
+        ZJASQLiteManager.default.createdsqlite3() //如果没有,默认创建数据库及表格
         let keyboardManager = IQKeyboardManager.sharedManager()
         keyboardManager.toolbarDoneBarButtonItemText = "确认"
         keyboardManager.enable = true

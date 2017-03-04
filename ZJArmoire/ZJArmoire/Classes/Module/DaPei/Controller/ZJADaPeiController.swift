@@ -75,11 +75,9 @@ class ZJADaPeiController: UIViewController {
     }
     
     func fetchDapeilistData() {
-        SVProgressHUD.show()
-        ZJATableDapei().fetchAllDapei { [weak self] (dapeiList) in
-            SVProgressHUD.dismiss()
-            self?.prepareDapeiListData(dpList: dapeiList)
-        }
+//        SVProgressHUD.show()
+        let dapeiList = ZJATableDapei().fetchAllDapei()
+        prepareDapeiListData(dpList: dapeiList)
     }
     
     func prepareDapeiListData(dpList: [ZJADapeiModel]) {
@@ -111,24 +109,23 @@ class ZJADaPeiController: UIViewController {
 
 extension ZJADaPeiController {
     func fetchAllClothes() -> [TZAlbumModel] {
-        let fetchClothesGroup = DispatchGroup()
+//        let fetchClothesGroup = DispatchGroup()
         let clothesTable = ZJATableClothes()
         var albumModels = [TZAlbumModel]()
         for item in CONFIG_YIGUI_TYPENAMES {
-            fetchClothesGroup.enter()
+//            fetchClothesGroup.enter()
             let index = CONFIG_YIGUI_TYPENAMES.index(of: item)
-            clothesTable.fetchAllClothes(index!, block: { (clothesModel:[ZJAClothesModel]) in
-                var imageList = [UIImage]()
-                for clothes in clothesModel {
-                    clothes.clothesImg.imageTag = clothes.uuid
-                    imageList.append(clothes.clothesImg)
-                }
-                let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: item, imageList: imageList)
-                albumModels.append(model)
-                fetchClothesGroup.leave()
-            })
+            let clothesModel = clothesTable.fetchAllClothes(index!)
+            var imageList = [UIImage]()
+            for clothes in clothesModel {
+                clothes.clothesImg.imageTag = clothes.uuid
+                imageList.append(clothes.clothesImg)
+            }
+            let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: item, imageList: imageList)
+            albumModels.append(model)
+//            fetchClothesGroup.leave()
         }
-        fetchClothesGroup.wait()
+//        fetchClothesGroup.wait()
         return albumModels
     }
 }

@@ -20,27 +20,20 @@ class ZJATableTags: NSObject {
     private let t_tag_name = Expression<String>("tag_name")
     
     func initTable() {
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            try db.run(table_tag.create(ifNotExists: true, block: { (t) in
-                t.column(t_tag_id, primaryKey: true)
-                t.column(t_tag_name, unique: true)
-            }))
-        } catch {
-            print("创建标签表失败")
-            print(error)
+        let query = table_tag.create(ifNotExists: true, block: { (t) in
+            t.column(t_tag_id, primaryKey: true)
+            t.column(t_tag_name, unique: true)
+        })
+        
+        let isSuccess = ZJASQLiteManager.default.runCreateDatabaseTable(querys: [query])
+        if isSuccess == false {
+            print("创建标签表失败\n")
         }
     }
     
     func insert() -> Bool {
         let insert = table_tag.insert(or: .ignore, (t_tag_name <- tagName))
-        do {
-            db = try Connection(PATH_DATABASE_FILE)
-            try db.run(insert)
-            return true
-        } catch {
-            print(error)
-            return false
-        }
+        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        return isSuccess
     }
 }

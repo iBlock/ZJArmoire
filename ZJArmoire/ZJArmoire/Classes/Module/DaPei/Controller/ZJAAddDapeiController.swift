@@ -81,8 +81,6 @@ extension ZJAAddDapeiController {
     func saveDapeiToDatabase() {
         let model = dapeiTableView.dapeiModel
         let dapeiTable = ZJATableDapei()
-        dapeiTable.day_temperature = model.day_temp
-        dapeiTable.night_temperature = model.night_temp
         dapeiTable.clothesIdList = model.clothesIdList
         dapeiTable.dapei_taglist = model.taglist
         dapeiTable.dapei_date = String.getNowDateStr()

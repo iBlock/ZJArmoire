@@ -41,7 +41,7 @@ class ZJATableDapei_Clothes: NSObject {
                 t_yf_dp_dp_id <- dapei_id)
             insertList.append(insert)
         }
-        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: insertList)
+        let isSuccess = ZJASQLiteManager.default.runInsertDatabase(querys: insertList)
         if isSuccess == false {
             print("插入衣服和搭配关联表失败")
         }

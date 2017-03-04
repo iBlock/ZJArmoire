@@ -9,6 +9,9 @@
 import UIKit
 
 class ZJATodayDapeiCell: UITableViewCell {
+    
+    let CellIdentifier = "ZJATodayDapeiCellIdentifier"
+    var dapeiModel: ZJADapeiModel = ZJADapeiModel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,16 +24,21 @@ class ZJATodayDapeiCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         prepareUI()
+        setupViewConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(dapeiModel: [ZJADapeiModel]?) {
-        if dapeiModel != nil {
-            dapeiCollectionView.dapeiModel = dapeiModel
-            dapeiCollectionView.reloadData()
+    func configCell(dapeiModel: ZJADapeiModel) {
+        self.dapeiModel = dapeiModel
+        dapeiCollectionView.reloadData()
+    }
+    
+    func setupViewConstraints() {
+        dapeiCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -42,12 +50,32 @@ class ZJATodayDapeiCell: UITableViewCell {
         contentView.addSubview(dapeiCollectionView)
     }
     
-    private lazy var dapeiCollectionView: ZJADapeiListCollectionView = {
-        let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.contentView.bounds)
-        collectionView.clickblock = { [weak self](dapeiModel: ZJADapeiModel) in
-            
-        }
+    private lazy var dapeiCollectionView: ZJAHomeTodayDapeiCollectionView = {
+        let collectionView: ZJAHomeTodayDapeiCollectionView = ZJAHomeTodayDapeiCollectionView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 0))
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(ZJATypelistCollectionCell.self, forCellWithReuseIdentifier: self.CellIdentifier)
         return collectionView
     }()
 
+}
+
+extension ZJATodayDapeiCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if dapeiModel.dapei_id != nil {
+            return dapeiModel.clothesList.count
+        }
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier, for: indexPath)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let typeCell: ZJATypelistCollectionCell = cell as! ZJATypelistCollectionCell
+        let image = dapeiModel.clothesList[indexPath.row].clothesImg
+        typeCell.configCell(image: image!)
+    }
 }

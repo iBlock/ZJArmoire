@@ -15,6 +15,10 @@ class ZJASQLiteManager: NSObject {
     static let `default` = ZJASQLiteManager()
     let serialDispatchQueue = DispatchQueue(label: "cn.iblock.ZJASQLiteManagerQueue")
     
+    enum ZJASQLiteError:Error{
+        case UPDATE(name:String,score:Int)
+    }
+    
     override init() {
         super.init()
         do {
@@ -41,13 +45,33 @@ class ZJASQLiteManager: NSObject {
     }
     
     /// 数据库统一更新事务
-    public func runUpdateDatabase(querys: [Expressible]) -> Bool {
+    public func runUpdateDatabase(querys: [Update]) -> Bool {
         var isSuccess = false
         do {
             try self.db.transaction {
                 for query in querys {
-                    try self.db.run(query.expression.template,
-                                    query.expression.bindings)
+                    let state = try self.db.run(query)
+                    if state <= 0 {
+                        throw ZJASQLiteError.UPDATE(name: "数据库更新数据出错", score: state)
+                    }
+                }
+            }
+            isSuccess = true
+        } catch {
+            isSuccess = false
+            print("!!!!!!!!!!!!!!!!数据库写入出错了，快来看看吧\n")
+            print(error)
+        }
+        return isSuccess
+    }
+    
+    /// 数据库统一插入事务
+    public func runInsertDatabase(querys: [Insert]) -> Bool {
+        var isSuccess = false
+        do {
+            try self.db.transaction {
+                for query in querys {
+                    try self.db.run(query)
                 }
             }
             isSuccess = true
@@ -81,5 +105,6 @@ class ZJASQLiteManager: NSObject {
         ZJATableClothes_Tag().initTable()
         ZJATableDapei().initTable()
         ZJATableDapei_Clothes().initTable()
+        ZJATableDapeiLog().initTable()
     }
 }

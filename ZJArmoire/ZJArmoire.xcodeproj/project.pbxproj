@@ -89,6 +89,7 @@
 		CCBFCCF01DA37F4B00D80C78 /* ZJAMineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */; };
 		CCBFCCF51DA3A53F00D80C78 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBFCCF41DA3A53F00D80C78 /* UIViewExtension.swift */; };
 		CCBFCCF71DA3B18600D80C78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCBFCCF61DA3B18600D80C78 /* Assets.xcassets */; };
+		CCC21CF71E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC21CF61E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift */; };
 		CCC6CF821E2D18C900D35BC3 /* ZJATypeListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6CF811E2D18C900D35BC3 /* ZJATypeListCollectionView.swift */; };
 		CCC6CF841E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6CF831E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift */; };
 		CCC6CFCF1E2DCADA00D35BC3 /* ZJATodayDapeiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6CFCE1E2DCADA00D35BC3 /* ZJATodayDapeiController.swift */; };
@@ -230,6 +231,7 @@
 		CCBFCCEF1DA37F4B00D80C78 /* ZJAMineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAMineController.swift; sourceTree = "<group>"; };
 		CCBFCCF41DA3A53F00D80C78 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CCBFCCF61DA3B18600D80C78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CCC21CF61E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeTodayDapeiCollectionView.swift; sourceTree = "<group>"; };
 		CCC6CF811E2D18C900D35BC3 /* ZJATypeListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATypeListCollectionView.swift; sourceTree = "<group>"; };
 		CCC6CF831E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATypeListCollectionCell.swift; sourceTree = "<group>"; };
 		CCC6CFCE1E2DCADA00D35BC3 /* ZJATodayDapeiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATodayDapeiController.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				CC653D601E69045100B49F77 /* Cell */,
 				CCC96DB51DB32F7C00465131 /* ZJAHomeTableHeaderView.swift */,
 				CCC96DB91DB338A300465131 /* ZJAHomeTableView.swift */,
+				CCC21CF61E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				CC8A55ED1E600F1100F6AFDB /* ZJATaglistHeaderView.swift in Sources */,
 				CC8A55FE1E6042F200F6AFDB /* ZJADapeiModel.swift in Sources */,
 				CCBFCCD51D9E143400D80C78 /* ZJANavigationController.swift in Sources */,
+				CCC21CF71E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift in Sources */,
 				CC8A55FB1E6042B700F6AFDB /* ZJATableTags.swift in Sources */,
 				CC56432E1DF0846C00FEC5A8 /* SYTagListView.m in Sources */,
 				CCC96DBE1DB4943A00465131 /* ZJAYiGuiTypeCell.swift in Sources */,

@@ -38,7 +38,7 @@ class ZJATableClothes_Tag: NSObject {
         let insert = table_clothes_tag.insert(
             t_yf_tag_clothes_id <- clothes_id,
             t_yf_tag_tag_id <- tag_id)
-        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        let isSuccess = ZJASQLiteManager.default.runInsertDatabase(querys: [insert])
         if isSuccess == false {
             print("插入衣服和标签的关联表失败")
         }

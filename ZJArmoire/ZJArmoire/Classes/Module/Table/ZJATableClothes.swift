@@ -69,7 +69,7 @@ class ZJATableClothes: NSObject {
             t_clothes_photo_name <- photoName,
             t_clothes_tags <- tagList
             )
-        return ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        return ZJASQLiteManager.default.runInsertDatabase(querys: [insert])
     }
     
     //根据衣服ID更新数据

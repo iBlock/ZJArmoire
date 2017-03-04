@@ -48,7 +48,7 @@ class ZJATableDapei: NSObject {
                                         t_dapei_date <- dapei_date,
                                         t_dapei_clotheslist <- clothesIdStr,
                                         t_dapei_taglist <- dpTaglistStr)
-        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        let isSuccess = ZJASQLiteManager.default.runInsertDatabase(querys: [insert])
         if isSuccess == true {
             syncDapei_ClothesTable(dapeiID: uuid)
         } else {
@@ -117,6 +117,8 @@ class ZJATableDapei: NSObject {
         let taglistStr = dapei[t_dapei_taglist]
         model.taglist = taglistStr?.components(separatedBy: ",")
         model.clothesList = clothesModels
+        model.clothesIdList = clothesList.components(separatedBy: ",")
+        
         return model
     }
 }

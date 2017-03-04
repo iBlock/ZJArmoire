@@ -17,8 +17,8 @@ class ZJAHomeTableView: UITableView {
     let cellIdentifier: String = "ZJAHomeTableViewCell"
     let todayDapeiCellIdentifier: String = "todayDapeiCellIdentifier"
     let defaultCellIdentifer: String = "ZJAHomeTodayDefaultCell"
-    var todayModel: ZJADapeiModel?
-    var tuiJianDapeiModels: [ZJADapeiModel]?
+    var todayModel: ZJADapeiModel! = ZJADapeiModel()
+    var tuiJianDapeiModels: [ZJADapeiModel] = [ZJADapeiModel]()
     var todayDapeiCellHeight: CGFloat = 0
     
     weak var tableDelegate: ZJAHomeTableViewDelegate?
@@ -29,6 +29,7 @@ class ZJAHomeTableView: UITableView {
         dataSource = self
         separatorStyle = .none
         backgroundColor = UIColor.white
+        estimatedRowHeight = 150
         let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:174))
         tableHeaderView = ZJAHomeTableHeaderView(frame: frame)
         register(ZJAHomeTuiJianCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -62,17 +63,22 @@ extension ZJAHomeTableView: UITableViewDataSource {
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
+//        if tuiJianDapeiModels.count > 0 {
+//            return 2
+//        }
         return 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            if todayModel == nil {
+            if todayModel.dapei_id == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: defaultCellIdentifer)
                 return cell!
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: todayDapeiCellIdentifier)
-                return cell!
+                let cell: ZJATodayDapeiCell = tableView.dequeueReusableCell(withIdentifier: todayDapeiCellIdentifier) as! ZJATodayDapeiCell
+                cell.configCell(dapeiModel: todayModel)
+                todayDapeiCellHeight = cell.getCellHeight()
+                return cell
             }
         } else if indexPath.section == 1 {
             let tuiJianCell:ZJAHomeTuiJianCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJAHomeTuiJianCell!
@@ -89,16 +95,7 @@ extension ZJAHomeTableView: UITableViewDataSource {
 
 extension ZJAHomeTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            if todayModel != nil {
-                let cell: ZJATodayDapeiCell = cell as! ZJATodayDapeiCell
-                todayDapeiCellHeight = cell.getCellHeight()
-            }
-        }
+        return 40
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -117,9 +114,12 @@ extension ZJAHomeTableView: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if todayModel != nil {
-            return todayDapeiCellHeight
+        if indexPath.section == 0 {
+            if todayModel.dapei_id != nil {
+                return todayDapeiCellHeight
+            }
         }
+        
         return 150
     }
     
@@ -131,8 +131,3 @@ extension ZJAHomeTableView: UITableViewDelegate {
         rootVc?.pushViewController(dapeiVc, animated: true)
     }
 }
-
-
-
-
-

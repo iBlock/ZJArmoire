@@ -16,7 +16,6 @@ class ZJATableDapeiLog: NSObject {
     var dapeiDateStr: String!
     var day_air: Int!
     var night_air: Int!
-    var dpClothesList: String!
     
     private let table_dapei_log = Table("Table_DaPei_Log")
     private let t_dp_log_id = Expression<Int>("id")
@@ -24,7 +23,6 @@ class ZJATableDapeiLog: NSObject {
     private let t_dp_log_night_air = Expression<Int>("dapei_log_night_air")
     private let t_dp_log_date = Expression<String>("dapei_log_date")
     private let t_dp_log_dpid = Expression<String>("dapei_log_dpid")
-    private let t_dp_log_dpclothes = Expression<String>("dapei_log_clotheslist")
     
     func initTable() {
         let query = table_dapei_log.create(ifNotExists: true, block: { (t) in
@@ -33,21 +31,33 @@ class ZJATableDapeiLog: NSObject {
             t.column(t_dp_log_dpid)
             t.column(t_dp_log_day_air)
             t.column(t_dp_log_night_air)
-            t.column(t_dp_log_dpclothes)
         })
         let isSuccess = ZJASQLiteManager.default.runCreateDatabaseTable(querys: [query])
         if isSuccess == false {
             print("创建历史搭配日期表失败")
         }
     }
+    
+    func update() -> Bool {
+        let query = table_dapei_log.filter(t_dp_log_date == dapeiDateStr)
+        let updateQuery = query.update(t_dp_log_date <- dapeiDateStr,
+                                       t_dp_log_dpid <- dapeiID,
+                                       t_dp_log_day_air <- day_air,
+                                       t_dp_log_night_air <- night_air)
+        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [updateQuery])
+        if isSuccess == false {
+            print("搭配记录不存在，插入记录\n")
+            return insert()
+        }
+        return isSuccess
+    }
 
     func insert() -> Bool {
         let insert = table_dapei_log.insert(t_dp_log_date <- dapeiDateStr,
                                             t_dp_log_dpid <- dapeiID,
                                             t_dp_log_day_air <- day_air,
-                                            t_dp_log_night_air <- night_air,
-                                            t_dp_log_dpclothes <- dpClothesList)
-        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+                                            t_dp_log_night_air <- night_air)
+        let isSuccess = ZJASQLiteManager.default.runInsertDatabase(querys: [insert])
         if isSuccess == false {
             print("插入搭配记录表失败")
         }
@@ -62,6 +72,7 @@ class ZJATableDapeiLog: NSObject {
             for dapei in result {
                 let dpId = dapei[t_dp_log_dpid]
                 dapeiModel = ZJATableDapei().fetchDapei(dpId: dpId)
+                break
             }
         } else {
             print("从搭配记录表中根据时间获取搭配失败。\n")

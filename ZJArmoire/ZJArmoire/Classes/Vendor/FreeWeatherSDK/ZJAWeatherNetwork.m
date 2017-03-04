@@ -25,16 +25,20 @@
     NSURLSessionDataTask *task = [requestSession dataTaskWithRequest:request
                                                    completionHandler:^(NSData * _Nullable body , NSURLResponse * _Nullable response, NSError * _Nullable error)
     {
-        NSError *err;
-        NSDictionary<NSString *,id> *dic =
-        [NSJSONSerialization JSONObjectWithData:body
-                                        options:NSJSONReadingMutableContainers
-                                          error:&err];
-        if(err) {
-            NSLog(@"json解析失败：%@",err);
-        } else {
+        if (body) {
+            NSError *err;
+            NSDictionary<NSString *,id> *dic =
+            [NSJSONSerialization JSONObjectWithData:body
+                                            options:NSJSONReadingMutableContainers
+                                              error:&err];
+            if(err) {
+                NSLog(@"json解析失败：%@",err);
+            }
             callback(dic);
+        } else {
+            callback(nil);
         }
+        
         
 //                                                       NSLog(@"Response object: %@" , response);
 //                                                       NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];

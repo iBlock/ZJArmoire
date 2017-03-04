@@ -33,7 +33,7 @@ class ZJATableTags: NSObject {
     
     func insert() -> Bool {
         let insert = table_tag.insert(or: .ignore, (t_tag_name <- tagName))
-        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [insert])
+        let isSuccess = ZJASQLiteManager.default.runInsertDatabase(querys: [insert])
         return isSuccess
     }
 }

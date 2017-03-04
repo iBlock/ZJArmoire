@@ -11,8 +11,12 @@ import SnapKit
 
 class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     
-    var homeData: [String:Any] = ["0":[]]
-    var currentIndexDic: [String: Any] = [:]
+    let KEY_TODAY = "TodayDapei"
+    let KEY_TUIJIAN = "TuiJianDapei"
+    var homeData: [String:[String:Any]] = ["0":[:]]
+//    var currentIndexDic: [String: Any] = [:]
+    var todayModel: ZJADapeiModel = ZJADapeiModel()
+    var tuijianModels: [ZJADapeiModel] = [ZJADapeiModel]()
     var currentIndex = 0
     
     // MARK: - Life Cycle
@@ -23,17 +27,25 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
         prepareData()
         prepareUI()
         setUpViewConstraints()
+        
+        requestWeatherNetwork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationItem.title = "今天 · 北京";
-        
-        requestWeatherNetwork()
     }
     
     func didTappedButton(sender: UIButton) {
         navigationController?.pushViewController(ZJAAddDapeiController(), animated: true)
+    }
+    
+    func reloadHomeTable() {
+        DispatchQueue.main.async {
+            self.homeTableView.todayModel = self.todayModel
+            self.homeTableView.tuiJianDapeiModels = self.tuijianModels
+            self.homeTableView.reloadData()
+        }
     }
     
     private func prepareData() {
@@ -47,7 +59,9 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     
     private func setUpViewConstraints() {
         homeTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(view).inset(UIEdgeInsetsMake(0.5, 0, 0, 0))
+            make.left.right.equalTo(0)
+            make.top.equalTo(0.5)
+            make.bottom.equalTo(-(tabBarController?.tabBar.size.height)!)
         }
     }
     
@@ -64,10 +78,26 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
 extension ZJAHomeViewController {
     
     func requestWeatherNetwork() {
-        ZJAWeatherNetwork.requestWeather { (result) in
-            let resultDic: [String:Any] = result!
-            let a = resultDic["hello"]
+        DispatchQueue.global().async {
+            ZJAWeatherNetwork.requestWeather { (result) in
+                //            let resultDic: [String:Any] = result!
+                //            let a = resultDic["hello"]
+                
+                self.fetchIndexData(index: 0)
+                self.reloadHomeTable()
+            }
         }
+    }
+    
+    func fetchIndexData(index: Int) {
+        let nowDate = String.getNowDateStr()
+        let logTable = ZJATableDapeiLog()
+        let dpModel = logTable.fetchDapeiModel(dateStr: nowDate)
+        tuijianModels = logTable.fetchDapeiList(dayAir: 5, nightAir: 15)
+        if let model = dpModel {
+            todayModel = model
+        }
+        homeData[String(index)] = [KEY_TODAY:todayModel,KEY_TUIJIAN:tuijianModels]
     }
     
 }
@@ -76,6 +106,16 @@ extension ZJAHomeViewController {
 extension ZJAHomeViewController {
     func selectorTodayDapeiCallback(notification: Notification) {
         let dapeiModel: ZJADapeiModel = notification.object as! ZJADapeiModel
-        let str = dapeiModel.dapei_id
+        let table = ZJATableDapeiLog()
+        table.dapeiDateStr = String.getNowDateStr()
+        table.dapeiID = dapeiModel.dapei_id
+        table.day_air = 6
+        table.night_air = 14
+        let isSuccess = table.update()
+        
+        if isSuccess == true {
+            todayModel = dapeiModel
+            reloadHomeTable()
+        }
     }
 }

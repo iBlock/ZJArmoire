@@ -20,6 +20,7 @@ class ZJAHomeTableView: UITableView {
     var todayModel: ZJADapeiModel! = ZJADapeiModel()
     var tuiJianDapeiModels: [ZJADapeiModel] = [ZJADapeiModel]()
     var todayDapeiCellHeight: CGFloat = 0
+    var tuijianDapeiCellHeight: CGFloat = 0
     
     weak var tableDelegate: ZJAHomeTableViewDelegate?
 
@@ -32,23 +33,10 @@ class ZJAHomeTableView: UITableView {
         estimatedRowHeight = 150
         let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:174))
         tableHeaderView = ZJAHomeTableHeaderView(frame: frame)
-        register(ZJAHomeTuiJianCell.self, forCellReuseIdentifier: cellIdentifier)
+        register(ZJATuiJianDapeiCell.self, forCellReuseIdentifier: cellIdentifier)
         register(ZJADefaultTodayDapeiCell.self, forCellReuseIdentifier: defaultCellIdentifer)
         register(ZJATodayDapeiCell.self, forCellReuseIdentifier: todayDapeiCellIdentifier)
-//        prepareCellModel()
     }
-    
-//    func prepareCellModel() {
-//        let currentDate = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale.current // 设置时区
-//        dateFormatter.dateFormat = "yyyyMMdd"
-//        let stringDate = dateFormatter.string(from: currentDate)
-//        let dapeiId = ZJATableDapei().fetchPrepareDapeiId(dapeiDate:stringDate)
-//        if dapeiId != nil {
-//            
-//        }
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -63,9 +51,9 @@ extension ZJAHomeTableView: UITableViewDataSource {
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-//        if tuiJianDapeiModels.count > 0 {
-//            return 2
-//        }
+        if tuiJianDapeiModels.count > 0 {
+            return 2
+        }
         return 1
     }
     
@@ -81,15 +69,14 @@ extension ZJAHomeTableView: UITableViewDataSource {
                 return cell
             }
         } else if indexPath.section == 1 {
-            let tuiJianCell:ZJAHomeTuiJianCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJAHomeTuiJianCell!
-            tuiJianCell.detailButton.addTarget(self, action: #selector(didTappedDetailButton(sender:)), for: .touchUpInside)
-            return tuiJianCell
+            if tuiJianDapeiModels.count > 0 {
+                let tuiJianCell:ZJATuiJianDapeiCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJATuiJianDapeiCell!
+                tuiJianCell.configCell(dapeiModel: tuiJianDapeiModels)
+                tuijianDapeiCellHeight = tuiJianCell.getCellHeight()
+                return tuiJianCell
+            }
         }
         return UITableViewCell()
-    }
-    
-    func didTappedDetailButton(sender: UIButton) {
-        self.tableDelegate?.didTappedButton(sender: sender)
     }
 }
 
@@ -102,7 +89,11 @@ extension ZJAHomeTableView: UITableViewDelegate {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.white
         let titleLabel = UILabel()
-        titleLabel.text = "今日搭配"
+        if section == 0 {
+            titleLabel.text = "今日搭配"
+        } else if section == 1 {
+            titleLabel.text = "推荐搭配"
+        }
         titleLabel.textColor = COLOR_TEXT_LABEL
         titleLabel.font = UIFont.systemFont(ofSize: 16)
         headerView.addSubview(titleLabel)
@@ -117,6 +108,10 @@ extension ZJAHomeTableView: UITableViewDelegate {
         if indexPath.section == 0 {
             if todayModel.dapei_id != nil {
                 return todayDapeiCellHeight
+            }
+        } else if indexPath.section == 1 {
+            if tuiJianDapeiModels.count > 0 {
+                return tuijianDapeiCellHeight
             }
         }
         

@@ -12,7 +12,7 @@ class ZJADapeiListCollectionView: UICollectionView {
 
     typealias ClickDapeiCallback = (_ dapeiModel: ZJADapeiModel) -> Void
     let categoryIdentifier = "DapeiListCellItem"
-    let layout = UICollectionViewFlowLayout()
+    var layout = UICollectionViewFlowLayout()
     var dapeiModel: [ZJADapeiModel]! = [ZJADapeiModel]()
     var clickblock: ClickDapeiCallback?
     
@@ -25,9 +25,13 @@ class ZJADapeiListCollectionView: UICollectionView {
         let itemWidth = (frame.width - specing*CGFloat(3))/CGFloat(2)
         layout.itemSize = CGSize(width: itemWidth, height: SCREEN_WIDTH * 0.5)
         super.init(frame: frame, collectionViewLayout: layout)
-        
         prepareUI()
-        register(ZJADapeiListCell.self, forCellWithReuseIdentifier: categoryIdentifier)
+    }
+    
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        self.layout = layout as! UICollectionViewFlowLayout
+        prepareUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,6 +43,7 @@ class ZJADapeiListCollectionView: UICollectionView {
     }
     
     private func prepareUI() {
+        register(ZJADapeiListCell.self, forCellWithReuseIdentifier: categoryIdentifier)
         backgroundColor = COLOR_MAIN_BACKGROUND
         delegate = self
         dataSource = self

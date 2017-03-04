@@ -25,7 +25,7 @@ class ZJATypelistCollectionCell: UICollectionViewCell {
     
     private func prepareUI() {
         contentView.backgroundColor = UIColor.white
-        contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 5
         contentView.layer.masksToBounds = true
         contentView.addSubview(typeImageView)
     }
@@ -38,8 +38,6 @@ class ZJATypelistCollectionCell: UICollectionViewCell {
     
     private lazy var typeImageView:UIImageView = {
         let imageView = UIImageView()
-//        imageView.layer.cornerRadius = 10.0
-//        imageView.layer.masksToBounds = true
         return imageView
     }()
 }

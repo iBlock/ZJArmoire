@@ -12,6 +12,7 @@ protocol ZJASelectedPhotoCellProtocol: NSObjectProtocol {
     func selectedPhotoCallback(selectedPhotos: NSMutableArray,
                                selectedAssets: NSMutableArray,
                                photoCollectionViewHeight: CGFloat)
+    func changePhotoLocationCallback(selectedAssets: NSMutableArray)
 }
 
 class ZJASelectedPhotoCell: UITableViewCell {
@@ -130,6 +131,7 @@ extension ZJASelectedPhotoCell: UICollectionViewDelegate, UICollectionViewDataSo
         selectedAssets.insert(asset, at: destinationIndexPath.item)
         
         collectionView.reloadData()
+        delegate?.changePhotoLocationCallback(selectedAssets: selectedAssets)
     }
 }
 

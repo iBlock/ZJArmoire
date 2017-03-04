@@ -96,6 +96,7 @@ class ZJADaPeiController: UIViewController {
     
     private lazy var dapeiCollectionView: ZJADapeiListCollectionView = {
         let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
+        collectionView.isSelecter = self.isSelecter
         collectionView.clickblock = { [weak self](dapeiModel: ZJADapeiModel) in
             let detailVc = ZJADapeiDetailController()
             detailVc.isSelecter = (self?.isSelecter)!

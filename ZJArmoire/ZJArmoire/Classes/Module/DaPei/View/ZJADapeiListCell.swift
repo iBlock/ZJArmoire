@@ -14,29 +14,45 @@ class ZJADapeiListCell: UICollectionViewCell {
         super.init(frame: frame)
         
         prepareUI()
+        setupViewConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(photoList: [ZJAClothesModel]) {
+    func configCell(photoList: [ZJAClothesModel], isSelector: Bool) {
         photoJointView.configPhotoView(photoList: photoList)
+        if isSelector == true {
+            iconImageView.isHidden = false
+        } else {
+            iconImageView.isHidden = true
+        }
     }
     
     func setupViewConstraints() {
-
+        iconImageView.snp.makeConstraints { (make) in
+            make.right.equalTo(-5)
+            make.top.equalTo(5)
+            make.size.equalTo(CGSize(width: 40, height: 40))
+        }
     }
     
     func prepareUI() {
         contentView.layer.cornerRadius = 5
         contentView.layer.masksToBounds = true
         contentView.addSubview(photoJointView)
+        photoJointView.addSubview(iconImageView)
     }
     
     private lazy var photoJointView: ZJAPhotoJointView = {
         let jointView: ZJAPhotoJointView = ZJAPhotoJointView(frame: self.contentView.frame)
 //        jointView.layer.cornerRadius = 5
         return jointView
+    }()
+    
+    private lazy var iconImageView: UIImageView = {
+        let imgView = UIImageView(image: UIImage(named: "Dapei_已勾选"))
+        return imgView
     }()
 }

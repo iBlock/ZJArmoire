@@ -41,6 +41,7 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     }
     
     func reloadHomeTable() {
+        ZJAMemonry.default.todayDapeiId = todayModel.dapei_id
         DispatchQueue.main.async {
             self.homeTableView.todayModel = self.todayModel
             self.homeTableView.tuiJianDapeiModels = self.tuijianModels

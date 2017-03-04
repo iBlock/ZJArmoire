@@ -41,7 +41,7 @@ class ZJAPhotoJointView: UIImageView {
             if i <= photoList.count-1 {
                 photoImage = photoList[i].clothesImg
             } else {
-                photoImage = UIImage()
+                photoImage = UIImage(named: "test")!
             }
             
             let size = CGSize(width: topWidth, height: height)

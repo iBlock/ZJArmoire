@@ -53,7 +53,9 @@ class ZJATuiJianDapeiCell: UITableViewCell {
     private lazy var tuiJianCollectionView: ZJADapeiListCollectionView = {
         let frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 0)
         let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: frame, collectionViewLayout: self.collectionLayout)
+        collectionView.isSelecter = true
         collectionView.backgroundColor = UIColor.white
+        collectionView.isUserInteractionEnabled = false
         return collectionView
     }()
 

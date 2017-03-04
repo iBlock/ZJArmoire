@@ -15,6 +15,7 @@ class ZJADapeiListCollectionView: UICollectionView {
     var layout = UICollectionViewFlowLayout()
     var dapeiModel: [ZJADapeiModel]! = [ZJADapeiModel]()
     var clickblock: ClickDapeiCallback?
+    var isSelecter: Bool = false
     
     init(frame: CGRect) {
         let specing:CGFloat = 10
@@ -62,7 +63,13 @@ extension ZJADapeiListCollectionView: UICollectionViewDelegate,UICollectionViewD
         let collectionView:ZJADapeiListCell = cell as! ZJADapeiListCell
         let dpModel: ZJADapeiModel = self.dapeiModel[indexPath.row]
         let clothesModels = dpModel.clothesList
-        collectionView.configCell(photoList: clothesModels!)
+        var showSelectorImg = false
+        if isSelecter == true {
+            showSelectorImg = dpModel.dapei_id == ZJAMemonry.default.todayDapeiId
+        } else {
+            showSelectorImg = false
+        }
+        collectionView.configCell(photoList: clothesModels!, isSelector: showSelectorImg)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

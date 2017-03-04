@@ -61,9 +61,11 @@ extension ZJAHomeTableView: UITableViewDataSource {
         if indexPath.section == 0 {
             if todayModel.dapei_id == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: defaultCellIdentifer)
+                cell?.selectionStyle = .none
                 return cell!
             } else {
                 let cell: ZJATodayDapeiCell = tableView.dequeueReusableCell(withIdentifier: todayDapeiCellIdentifier) as! ZJATodayDapeiCell
+                cell.selectionStyle = .none
                 cell.configCell(dapeiModel: todayModel)
                 todayDapeiCellHeight = cell.getCellHeight()
                 return cell
@@ -71,6 +73,7 @@ extension ZJAHomeTableView: UITableViewDataSource {
         } else if indexPath.section == 1 {
             if tuiJianDapeiModels.count > 0 {
                 let tuiJianCell:ZJATuiJianDapeiCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJATuiJianDapeiCell!
+                tuiJianCell.selectionStyle = .none
                 tuiJianCell.configCell(dapeiModel: tuiJianDapeiModels)
                 tuijianDapeiCellHeight = tuiJianCell.getCellHeight()
                 return tuiJianCell

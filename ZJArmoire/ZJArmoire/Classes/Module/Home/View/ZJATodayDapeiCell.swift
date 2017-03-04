@@ -54,6 +54,7 @@ class ZJATodayDapeiCell: UITableViewCell {
         let collectionView: ZJAHomeTodayDapeiCollectionView = ZJAHomeTodayDapeiCollectionView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 0))
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isUserInteractionEnabled = false
         collectionView.register(ZJATypelistCollectionCell.self, forCellWithReuseIdentifier: self.CellIdentifier)
         return collectionView
     }()

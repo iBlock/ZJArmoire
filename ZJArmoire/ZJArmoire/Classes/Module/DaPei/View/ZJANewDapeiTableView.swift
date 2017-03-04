@@ -185,6 +185,16 @@ extension ZJANewDapeiTableView: ZJASelectedPhotoCellProtocol {
     func selectedPhotoCallback(selectedPhotos: NSMutableArray,
                                selectedAssets: NSMutableArray,
                                photoCollectionViewHeight: CGFloat) {
+        self.photoCollectionViewHeight = photoCollectionViewHeight
+        self.dapeiModel.clothesIdList = buildClothesIdList(selectedAssets: selectedAssets)
+        reloadData()
+    }
+    
+    func changePhotoLocationCallback(selectedAssets: NSMutableArray) {
+        self.dapeiModel.clothesIdList = buildClothesIdList(selectedAssets: selectedAssets)
+    }
+    
+    func buildClothesIdList(selectedAssets: NSMutableArray) -> [String] {
         var clothesIdList = [String]()
         for assets in selectedAssets {
             if assets is UIImage {
@@ -192,9 +202,6 @@ extension ZJANewDapeiTableView: ZJASelectedPhotoCellProtocol {
                 clothesIdList.append(image.imageTag)
             }
         }
-        
-        self.photoCollectionViewHeight = photoCollectionViewHeight
-        self.dapeiModel.clothesIdList = clothesIdList
-        reloadData()
+        return clothesIdList
     }
 }

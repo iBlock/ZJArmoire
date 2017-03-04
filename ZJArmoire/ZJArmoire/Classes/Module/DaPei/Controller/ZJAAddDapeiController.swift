@@ -29,9 +29,6 @@ class ZJAAddDapeiController: UIViewController {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(dapeiTableView)
         view.addSubview(confirmButton)
-//        let clothesList = ZJATableClothes().fetchAllClothes(0)
-//        let view = ZJAPhotoJointView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH/2, height: 200), photoList: clothesList)
-//        self.view.addSubview(view)
     }
     
     func setUpViewConstraints() {
@@ -80,6 +77,11 @@ class ZJAAddDapeiController: UIViewController {
 extension ZJAAddDapeiController {
     func saveDapeiToDatabase() {
         let model = dapeiTableView.dapeiModel
+        if model.clothesIdList == nil {
+            SVProgressHUD.showError(withStatus: "你还没有选择单品哦!")
+            return
+        }
+
         let dapeiTable = ZJATableDapei()
         dapeiTable.clothesIdList = model.clothesIdList
         dapeiTable.dapei_taglist = model.taglist

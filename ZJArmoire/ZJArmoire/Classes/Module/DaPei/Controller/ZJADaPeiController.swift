@@ -75,9 +75,14 @@ class ZJADaPeiController: UIViewController {
     }
     
     func fetchDapeilistData() {
-//        SVProgressHUD.show()
-        let dapeiList = ZJATableDapei().fetchAllDapei()
-        prepareDapeiListData(dpList: dapeiList)
+        SVProgressHUD.show()
+        DispatchQueue.global().async {
+            let dapeiList = ZJATableDapei().fetchAllDapei()
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.prepareDapeiListData(dpList: dapeiList)
+            }
+        }
     }
     
     func prepareDapeiListData(dpList: [ZJADapeiModel]) {

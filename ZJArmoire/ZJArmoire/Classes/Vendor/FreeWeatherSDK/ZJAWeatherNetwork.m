@@ -25,6 +25,8 @@
     NSURLSessionDataTask *task = [requestSession dataTaskWithRequest:request
                                                    completionHandler:^(NSData * _Nullable body , NSURLResponse * _Nullable response, NSError * _Nullable error)
     {
+        NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
+        NSLog(@"Response body: %@" , bodyString);
         if (body) {
             NSError *err;
             NSDictionary<NSString *,id> *dic =
@@ -34,17 +36,14 @@
             if(err) {
                 NSLog(@"json解析失败：%@",err);
             }
-            callback(dic);
+            if ([dic[@"status"] integerValue] == 0) {
+                callback(dic[@"result"]);
+            } else {
+                callback(@{});
+            }
         } else {
-            callback(nil);
+            callback(@{});
         }
-        
-        
-//                                                       NSLog(@"Response object: %@" , response);
-//                                                       NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
-//                                                       
-//                                                       //打印应答中的body
-//                                                       NSLog(@"Response body: %@" , bodyString);
     }];
     
     [task resume];

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ZJAHomeTableViewDelegate: NSObjectProtocol {
-    func didTappedButton(sender: UIButton)
+//    func didTappedButton(sender: UIButton)
 }
 
 class ZJAHomeTableView: UITableView {
@@ -21,6 +21,7 @@ class ZJAHomeTableView: UITableView {
     var tuiJianDapeiModels: [ZJADapeiModel] = [ZJADapeiModel]()
     var todayDapeiCellHeight: CGFloat = 0
     var tuijianDapeiCellHeight: CGFloat = 0
+    var tableHeader: ZJAHomeTableHeaderView!
     
     weak var tableDelegate: ZJAHomeTableViewDelegate?
 
@@ -32,7 +33,8 @@ class ZJAHomeTableView: UITableView {
         backgroundColor = UIColor.white
         estimatedRowHeight = 150
         let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:174))
-        tableHeaderView = ZJAHomeTableHeaderView(frame: frame)
+        tableHeader = ZJAHomeTableHeaderView(frame: frame)
+        tableHeaderView = tableHeader
         register(ZJATuiJianDapeiCell.self, forCellReuseIdentifier: cellIdentifier)
         register(ZJADefaultTodayDapeiCell.self, forCellReuseIdentifier: defaultCellIdentifer)
         register(ZJATodayDapeiCell.self, forCellReuseIdentifier: todayDapeiCellIdentifier)

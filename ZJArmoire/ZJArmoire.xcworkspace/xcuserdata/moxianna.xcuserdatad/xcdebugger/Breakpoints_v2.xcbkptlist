@@ -36,22 +36,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZJArmoire/Classes/Module/YiGui/ViewModel/ZJASQLiteManager.swift"
-            timestampString = "510314177.583713"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "runUpdateDatabase(querys:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZJArmoire/Classes/Module/YiGui/ViewModel/ZJASQLiteManager.swift"
             timestampString = "510314179.934261"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

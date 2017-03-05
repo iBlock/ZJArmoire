@@ -18,6 +18,7 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     var todayModel: ZJADapeiModel = ZJADapeiModel()
     var tuijianModels: [ZJADapeiModel] = [ZJADapeiModel]()
     var currentIndex = 0
+    var weatherList = [ZJAWeatherModel]()
     
     // MARK: - Life Cycle
     
@@ -36,15 +37,14 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
         tabBarController?.navigationItem.title = "今天 · 北京";
     }
     
-    func didTappedButton(sender: UIButton) {
-        navigationController?.pushViewController(ZJAAddDapeiController(), animated: true)
-    }
-    
     func reloadHomeTable() {
-        ZJAMemonry.default.todayDapeiId = todayModel.dapei_id
+        if let dapeiID = todayModel.dapei_id {
+            ZJAMemonry.default.todayDapeiId = dapeiID
+        }
+        homeTableView.todayModel = todayModel
+        homeTableView.tuiJianDapeiModels = tuijianModels
         DispatchQueue.main.async {
-            self.homeTableView.todayModel = self.todayModel
-            self.homeTableView.tuiJianDapeiModels = self.tuijianModels
+            self.homeTableView.tableHeader.configHeaderView(weathers: self.weatherList)
             self.homeTableView.reloadData()
         }
     }
@@ -71,6 +71,7 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     private lazy var homeTableView:ZJAHomeTableView = {
         let homeTable: ZJAHomeTableView = ZJAHomeTableView(frame: self.view.bounds, style: .plain)
         homeTable.tableDelegate = self
+        homeTable.tableHeader.delegate = self
         return homeTable
     }()
 
@@ -81,37 +82,83 @@ extension ZJAHomeViewController {
     func requestWeatherNetwork() {
         DispatchQueue.global().async {
             ZJAWeatherNetwork.requestWeather { (result) in
-                //            let resultDic: [String:Any] = result!
-                //            let a = resultDic["hello"]
-                
-                self.fetchIndexData(index: 0)
-                self.reloadHomeTable()
+                if let count = result?.count {
+                    if count > 0 {
+                        self.buildWeatherModels(result: result!)
+                        self.fetchIndexData(index: 0)
+                    }
+                }
             }
         }
     }
     
     func fetchIndexData(index: Int) {
-        let nowDate = String.getNowDateStr()
+        currentIndex = index
+        let weatherModel = weatherList[index]
+        let nowDate = weatherModel.date
         let logTable = ZJATableDapeiLog()
-        let dpModel = logTable.fetchDapeiModel(dateStr: nowDate)
-        tuijianModels = logTable.fetchDapeiList(dayAir: 5, nightAir: 15)
+        let dpModel = logTable.fetchDapeiModel(dateStr: nowDate!)
+        tuijianModels = logTable.fetchDapeiList(dayAir: Int(weatherModel.dayTemp), nightAir: Int(weatherModel.nightTemp))
         if let model = dpModel {
             todayModel = model
+        } else {
+            todayModel = ZJADapeiModel()
         }
-        homeData[String(index)] = [KEY_TODAY:todayModel,KEY_TUIJIAN:tuijianModels]
+        reloadHomeTable()
     }
     
+    func buildWeatherModels(result: [String: Any]) {
+        let todayWeather = ZJAWeatherModel()
+        todayWeather.nowTemp = result["temp"] as! String!
+        todayWeather.dayTemp = result["temphigh"] as! String!
+        todayWeather.nightTemp = result["templow"] as! String!
+        todayWeather.winddirect = result["winddirect"] as! String!
+        todayWeather.windpower = result["windpower"] as! String!
+        
+        let dateStr: String = result["date"] as! String!
+        todayWeather.date = dateStr.replacingOccurrences(of: "-", with: "")
+        todayWeather.img = UIImage.imag(forweahter: result["img"] as! String)
+        let aqiDic: [String:Any] = result["aqi"] as! [String : Any]
+        let qualityStr: String = aqiDic["quality"] as! String
+        todayWeather.aqi = aqiDic["aqi"] as! String! + "空气质量 " + qualityStr
+        todayWeather.updateTime = result["updatetime"] as! String!
+        weatherList.append(todayWeather)
+        
+        for i in 1...6 {
+            let model = ZJAWeatherModel()
+            let weathers: [[String:Any]] = result["daily"] as! [[String : Any]]
+            let weather = weathers[i]
+            let night:[String:String] = weather["night"] as! [String : String]
+            let day:[String:String] = weather["day"] as! [String : String]
+            model.nowTemp = weather["week"] as! String!
+            model.dayTemp = day["temphigh"] as String!
+            model.nightTemp = night["templow"] as String!
+            model.winddirect = day["winddirect"] as String!
+            model.windpower = day["windpower"] as String!
+            model.date = weather["date"] as! String!
+            model.img = UIImage.imag(forweahter: day["img"]! as String)
+            weatherList.append(model)
+        }
+    }
+    
+}
+
+extension ZJAHomeViewController: ZJAHomeTableHeaderDelegate {
+    func refreshTableView(index: Int) {
+        fetchIndexData(index: index)
+    }
 }
 
 /// MARK - 选择今日搭配通知回调
 extension ZJAHomeViewController {
     func selectorTodayDapeiCallback(notification: Notification) {
         let dapeiModel: ZJADapeiModel = notification.object as! ZJADapeiModel
+        let weatherModel = weatherList[currentIndex]
         let table = ZJATableDapeiLog()
-        table.dapeiDateStr = String.getNowDateStr()
+        table.dapeiDateStr = weatherModel.date
         table.dapeiID = dapeiModel.dapei_id
-        table.day_air = 6
-        table.night_air = 14
+        table.day_air = Int(weatherModel.dayTemp)
+        table.night_air = Int(weatherModel.nightTemp)
         let isSuccess = table.update()
         
         if isSuccess == true {

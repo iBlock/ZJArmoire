@@ -17,6 +17,7 @@ protocol ZJAHomeTableHeaderDelegate: NSObjectProtocol {
 class ZJAHomeTableHeaderView: UIView {
     
     weak var delegate: ZJAHomeTableHeaderDelegate?
+    var weatherList: [ZJAWeatherModel] = [ZJAWeatherModel]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,11 +30,22 @@ class ZJAHomeTableHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configHeaderView(weathers: [ZJAWeatherModel]) {
+        weatherList = weathers
+        var count = 0
+        for subview in scrollView.subviews {
+            if subview.isKind(of: ZJAHomeSectionHeaderView.self) {
+                (subview as! ZJAHomeSectionHeaderView).configSection(weather: weatherList[count])
+                count += 1
+            }
+        }
+    }
+    
     private func prepareUI() {
         
-        scrollView.contentSize = CGSize(width:size.width*3, height:frame.height)
+        scrollView.contentSize = CGSize(width:size.width*7, height:frame.height)
         var x:CGFloat = 0
-        for i in 0...3 {
+        for i in 0...6 {
             let rect = CGRect(x: x, y: frame.origin.y, width: frame.size.width, height: frame.size.height)
             let section = ZJAHomeSectionHeaderView(frame: rect)
             if i > 0 {
@@ -72,7 +84,7 @@ class ZJAHomeTableHeaderView: UIView {
     public lazy var pageController:UIPageControl = {
         let pageController = UIPageControl()
         pageController.backgroundColor = UIColor.clear
-        pageController.numberOfPages = 3
+        pageController.numberOfPages = 7
         pageController.addTarget(self, action: .pageControlValueChange, for: .valueChanged)
         return pageController
     }()
@@ -98,6 +110,7 @@ extension ZJAHomeTableHeaderView: UIScrollViewDelegate {
         let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         //设置pageController的当前页
         pageController.currentPage = page
+        delegate?.refreshTableView(index: page)
     }
 }
 
@@ -117,13 +130,23 @@ class ZJAHomeSectionHeaderView: UIView {
     }
     
     private func prepareUI() {
-        temperatureLabel.text = "19°"
+        temperatureLabel.text = "null°"
         addSubview(temperatureLabel)
-        let url = URL(string: "http://app1.showapi.com/weather/icon/day/01.png")
-        weatherImage.kf.setImage(with: url)
+//        let url = URL(string: "http://app1.showapi.com/weather/icon/day/01.png")
+//        weatherImage.kf.setImage(with: url)
         addSubview(weatherImage)
         addSubview(weatherInfoView)
         addSubview(updateTimerLabel)
+    }
+    
+    public func configSection(weather: ZJAWeatherModel) {
+        temperatureLabel.text = weather.nowTemp + "°"
+        weatherImage.image = weather.img
+        weatherLabel.text = weather.nightTemp+"~"+weather.dayTemp+"°"+" "+weather.winddirect+" "+weather.windpower
+        airQualityLabel.text = weather.aqi
+        if let updateTime = weather.updateTime {
+            updateTimerLabel.text = updateTime+" 更新"
+        }
     }
     
     // MARK: - 统一添加界面约束
@@ -196,7 +219,7 @@ class ZJAHomeSectionHeaderView: UIView {
     
     private lazy var weatherLabel:UILabel = {
         let weatherLabel = UILabel()
-        weatherLabel.text = "10~22°   多云"
+        weatherLabel.text = "null~null°   null"
         weatherLabel.textColor = UIColor.white
         weatherLabel.font = UIFont.systemFont(ofSize: 17)
         return weatherLabel
@@ -207,7 +230,7 @@ class ZJAHomeSectionHeaderView: UIView {
         airQualityLabel.layer.cornerRadius = 10.0
         airQualityLabel.layer.masksToBounds = true
         airQualityLabel.backgroundColor = UIColor.colorWithHexString(hex: "7ED321")
-        airQualityLabel.text = "43  空气质量 优"
+        airQualityLabel.text = "null  空气质量 null"
         airQualityLabel.font = UIFont.systemFont(ofSize: 12)
         airQualityLabel.textAlignment = .center
         airQualityLabel.textColor = UIColor.white
@@ -225,7 +248,7 @@ class ZJAHomeSectionHeaderView: UIView {
         let timerLabel = UILabel()
         timerLabel.textAlignment = .center
         timerLabel.textColor = UIColor.white
-        timerLabel.text = "22:53 更新"
+        timerLabel.text = "null 更新"
         timerLabel.font = UIFont.systemFont(ofSize: 10)
         return timerLabel
     }()

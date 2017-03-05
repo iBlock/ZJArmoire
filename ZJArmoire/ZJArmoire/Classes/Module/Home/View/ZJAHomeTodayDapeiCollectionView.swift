@@ -18,7 +18,7 @@ class ZJAHomeTodayDapeiCollectionView: UICollectionView {
         layout.minimumLineSpacing = specing
         layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15)
         layout.scrollDirection = .vertical
-        let itemWidth = (SCREEN_WIDTH - specing*CGFloat(2)-30)/CGFloat(3)
+        let itemWidth = (SCREEN_WIDTH - specing*2-30)/3-1
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth * 1.1)
         super.init(frame: frame, collectionViewLayout: layout)
         

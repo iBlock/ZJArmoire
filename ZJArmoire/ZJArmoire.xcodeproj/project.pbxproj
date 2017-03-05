@@ -92,6 +92,8 @@
 		CCC21CF71E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC21CF61E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift */; };
 		CCC21CFB1E6AF7B5000DB89F /* ZJATuiJianDapeiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC21CFA1E6AF7B5000DB89F /* ZJATuiJianDapeiCell.swift */; };
 		CCC21CFD1E6B09A1000DB89F /* ZJAMemonry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC21CFC1E6B09A1000DB89F /* ZJAMemonry.swift */; };
+		CCC21D001E6BCBC5000DB89F /* ZJAWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC21CFF1E6BCBC5000DB89F /* ZJAWeatherModel.swift */; };
+		CCC21D021E6BCDA8000DB89F /* weatherImg.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CCC21D011E6BCDA8000DB89F /* weatherImg.bundle */; };
 		CCC6CF821E2D18C900D35BC3 /* ZJATypeListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6CF811E2D18C900D35BC3 /* ZJATypeListCollectionView.swift */; };
 		CCC6CF841E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6CF831E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift */; };
 		CCC6CFCF1E2DCADA00D35BC3 /* ZJATodayDapeiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC6CFCE1E2DCADA00D35BC3 /* ZJATodayDapeiController.swift */; };
@@ -235,6 +237,8 @@
 		CCC21CF61E6AE766000DB89F /* ZJAHomeTodayDapeiCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAHomeTodayDapeiCollectionView.swift; sourceTree = "<group>"; };
 		CCC21CFA1E6AF7B5000DB89F /* ZJATuiJianDapeiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATuiJianDapeiCell.swift; sourceTree = "<group>"; };
 		CCC21CFC1E6B09A1000DB89F /* ZJAMemonry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAMemonry.swift; sourceTree = "<group>"; };
+		CCC21CFF1E6BCBC5000DB89F /* ZJAWeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAWeatherModel.swift; sourceTree = "<group>"; };
+		CCC21D011E6BCDA8000DB89F /* weatherImg.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = weatherImg.bundle; sourceTree = "<group>"; };
 		CCC6CF811E2D18C900D35BC3 /* ZJATypeListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATypeListCollectionView.swift; sourceTree = "<group>"; };
 		CCC6CF831E2D1AC500D35BC3 /* ZJATypeListCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATypeListCollectionCell.swift; sourceTree = "<group>"; };
 		CCC6CFCE1E2DCADA00D35BC3 /* ZJATodayDapeiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJATodayDapeiController.swift; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 			children = (
 				CC653D5B1E685B8D00B49F77 /* ZJAWeatherNetwork.h */,
 				CC653D5C1E685B8D00B49F77 /* ZJAWeatherNetwork.m */,
+				CCC21D011E6BCDA8000DB89F /* weatherImg.bundle */,
 			);
 			path = FreeWeatherSDK;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 		CCBFCCC51D9E0D2A00D80C78 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CCC21CFE1E6BCBB0000DB89F /* Model */,
 				CCBFCCCD1D9E0FE200D80C78 /* View */,
 				CCBFCCCB1D9E0D6500D80C78 /* Controller */,
 			);
@@ -756,6 +762,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CCC21CFE1E6BCBB0000DB89F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CCC21CFF1E6BCBC5000DB89F /* ZJAWeatherModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CCC6CFCB1E2DCAC100D35BC3 /* Today */ = {
@@ -922,6 +936,7 @@
 			files = (
 				CCBFCCF71DA3B18600D80C78 /* Assets.xcassets in Resources */,
 				CC73E8F21D9D1AEE00C283D2 /* LaunchScreen.storyboard in Resources */,
+				CCC21D021E6BCDA8000DB89F /* weatherImg.bundle in Resources */,
 				37BF23291DE55A5E00666B52 /* DJDebug.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1032,6 +1047,7 @@
 				CC8A55F81E6042B700F6AFDB /* ZJATableClothes.swift in Sources */,
 				CC8A56001E60722D00F6AFDB /* ZJATableDapeiLog.swift in Sources */,
 				CC8A55EF1E60253200F6AFDB /* ZJATemperatueCell.swift in Sources */,
+				CCC21D001E6BCBC5000DB89F /* ZJAWeatherModel.swift in Sources */,
 				CC8A55FA1E6042B700F6AFDB /* ZJATableDapei.swift in Sources */,
 				37BF23371DEDA4F700666B52 /* ZJASKUAddCell.swift in Sources */,
 				CC26033B1DA4131B0090F916 /* HttpUtil.m in Sources */,

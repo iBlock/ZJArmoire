@@ -121,4 +121,11 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return image!
     }
+    
+    static func imag(forweahter name: String) -> UIImage {
+        let path = Bundle.main.resourcePath
+        let weatherPath = path?.appending("/weatherImg.bundle/weathercn")
+        let imgPath = weatherPath?.appending("/"+name+".png")
+        return UIImage(contentsOfFile: imgPath!)!
+    }
 }

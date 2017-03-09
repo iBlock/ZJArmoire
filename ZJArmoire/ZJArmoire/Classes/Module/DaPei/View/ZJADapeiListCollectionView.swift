@@ -62,14 +62,13 @@ extension ZJADapeiListCollectionView: UICollectionViewDelegate,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let collectionView:ZJADapeiListCell = cell as! ZJADapeiListCell
         let dpModel: ZJADapeiModel = self.dapeiModel[indexPath.row]
-        let clothesModels = dpModel.clothesList
         var showSelectorImg = false
         if isSelecter == true {
             showSelectorImg = dpModel.dapei_id == ZJAMemonry.default.todayDapeiId
         } else {
             showSelectorImg = false
         }
-        collectionView.configCell(photoList: clothesModels!, isSelector: showSelectorImg)
+        collectionView.configCell(dpModel: dpModel, isSelector: showSelectorImg)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

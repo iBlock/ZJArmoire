@@ -94,10 +94,13 @@ extension ZJAHomeViewController {
     
     func fetchIndexData(index: Int) {
         currentIndex = index
+        if weatherList.count == 0 {
+            return
+        }
         let weatherModel = weatherList[index]
         let nowDate = weatherModel.date
         let logTable = ZJATableDapeiLog()
-        let dpModel = logTable.fetchDapeiModel(dateStr: nowDate!)
+        let dpModel = logTable.fetchDapeiModel(dateStr: nowDate)
         tuijianModels = logTable.fetchDapeiList(dayAir: Int(weatherModel.dayTemp), nightAir: Int(weatherModel.nightTemp))
         if let model = dpModel {
             todayModel = model
@@ -109,13 +112,13 @@ extension ZJAHomeViewController {
     
     func buildWeatherModels(result: [String: Any]) {
         let todayWeather = ZJAWeatherModel()
-        todayWeather.nowTemp = result["temp"] as! String!
-        todayWeather.dayTemp = result["temphigh"] as! String!
-        todayWeather.nightTemp = result["templow"] as! String!
-        todayWeather.winddirect = result["winddirect"] as! String!
-        todayWeather.windpower = result["windpower"] as! String!
+        todayWeather.nowTemp = result["temp"] as! String
+        todayWeather.dayTemp = result["temphigh"] as! String
+        todayWeather.nightTemp = result["templow"] as! String
+        todayWeather.winddirect = result["winddirect"] as! String
+        todayWeather.windpower = result["windpower"] as! String
         
-        let dateStr: String = result["date"] as! String!
+        let dateStr: String = result["date"] as! String
         todayWeather.date = dateStr.replacingOccurrences(of: "-", with: "")
         todayWeather.img = UIImage.imag(forweahter: result["img"] as! String)
         let aqiDic: [String:Any] = result["aqi"] as! [String : Any]
@@ -130,12 +133,12 @@ extension ZJAHomeViewController {
             let weather = weathers[i]
             let night:[String:String] = weather["night"] as! [String : String]
             let day:[String:String] = weather["day"] as! [String : String]
-            model.nowTemp = weather["week"] as! String!
-            model.dayTemp = day["temphigh"] as String!
-            model.nightTemp = night["templow"] as String!
-            model.winddirect = day["winddirect"] as String!
-            model.windpower = day["windpower"] as String!
-            model.date = weather["date"] as! String!
+            model.nowTemp = weather["week"] as! String
+            model.dayTemp = day["temphigh"]! as String
+            model.nightTemp = night["templow"]! as String
+            model.winddirect = day["winddirect"]! as String
+            model.windpower = day["windpower"]! as String
+            model.date = weather["date"] as! String
             model.img = UIImage.imag(forweahter: day["img"]! as String)
             weatherList.append(model)
         }

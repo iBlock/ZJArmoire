@@ -13,4 +13,7 @@ class ZJASKUItemModel: NSObject {
     var category:Int! = 0
     var tagList:Array<String>?
     var isSelecter:Bool! = false
+    
+    /// 用来提升Cell滑动性能，如果有值直接使用，否则压缩后赋值
+    var cellImg: UIImage?
 }

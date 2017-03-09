@@ -34,11 +34,11 @@ class ZJATypeListController: UIViewController {
     }
     
     func loadClothesInDatabase() {
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
         DispatchQueue.global().async {
             let list = ZJATableClothes().fetchAllClothes(self.yiguiType)
             DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
+//                SVProgressHUD.dismiss()
                 self.prepareTypeListData(list: list)
             }
         }

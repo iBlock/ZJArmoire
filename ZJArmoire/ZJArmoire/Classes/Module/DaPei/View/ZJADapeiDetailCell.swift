@@ -21,7 +21,14 @@ class ZJADapeiDetailCell: UICollectionViewCell {
     }
     
     func configCell(clothesModel: ZJAClothesModel) {
-        imgView.image = clothesModel.clothesImg
+        var cellImg: UIImage
+        if let img = clothesModel.cellImg {
+            cellImg = img
+        } else {
+            cellImg = clothesModel.clothesImg.autoResizeImage(newSize: self.size)
+            clothesModel.cellImg = cellImg
+        }
+        imgView.image = cellImg
         typeLabel.text = CONFIG_YIGUI_TYPENAMES[clothesModel.type]
     }
     

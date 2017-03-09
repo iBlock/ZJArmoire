@@ -34,6 +34,7 @@ class ZJATypeListCollectionView: UICollectionView {
     
     private func prepareUI() {
         backgroundColor = COLOR_MAIN_BACKGROUND
+//        backgroundColor = UIColor.white
         delegate = self
         dataSource = self
     }
@@ -43,8 +44,20 @@ extension ZJATypeListCollectionView: UICollectionViewDelegate,UICollectionViewDa
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let collectionView:ZJATypelistCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath) as! ZJATypelistCollectionCell
-        collectionView.configCell(image: clothesModelList[indexPath.row].clothesImg)
         return collectionView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell: ZJATypelistCollectionCell = cell as! ZJATypelistCollectionCell
+        let model: ZJAClothesModel = clothesModelList[indexPath.row]
+        var cellImg: UIImage
+        if let img = model.cellImg {
+            cellImg = img
+        } else {
+            cellImg = model.clothesImg.autoResizeImage(newSize: cell.size)!
+            model.cellImg = cellImg
+        }
+        cell.configCell(image: cellImg)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -21,8 +21,15 @@ class ZJADapeiListCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(photoList: [ZJAClothesModel], isSelector: Bool) {
-        photoJointView.configPhotoView(photoList: photoList)
+    func configCell(dpModel: ZJADapeiModel!, isSelector: Bool) {
+        var cellImg: UIImage
+        if let img = dpModel.cellImg {
+            cellImg = img
+        } else {
+            cellImg = photoJointView.configPhotoView(photoList: dpModel.clothesList)
+            dpModel.cellImg = cellImg
+        }
+        photoJointView.image = cellImg
         if isSelector == true {
             iconImageView.isHidden = false
         } else {

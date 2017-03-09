@@ -100,9 +100,6 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
         let addPhotoCell:ZJASKUAddPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: addPhotoCellIdentifier, for: indexPath) as! ZJASKUAddPhotoCell
         addPhotoCell.photoImageView.addTarget(self, action: #selector(didTapCollectionView(sender:)), for: .touchUpInside)
         addPhotoCell.deleteButton.addTarget(self, action: #selector(didTappedPhotoDeleteBtn(sender:)), for: .touchUpInside)
-        let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel
-        let photoImage:UIImage = itemModel.photoImage!
-        addPhotoCell.configCell(image: photoImage, isEdit: skuInstance.isEditState)
         
         if skuInstance.selCellIndexPath == nil {
             cellIndexPath = indexPath
@@ -123,6 +120,22 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
             } else {
                 (cell as! ZJASKUAddPhotoCell).photoImageView.layer.borderWidth = 0
             }
+        }
+        
+        if cell .isKind(of: ZJASKUAddPhotoCell.self) {
+            let viewCell: ZJASKUAddPhotoCell = cell as! ZJASKUAddPhotoCell
+            let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel
+            let skuInstance:ZJASKUDataCenter! = ZJASKUDataCenter.sharedInstance
+            var photoImage:UIImage
+            
+            if let img = itemModel.cellImg {
+                photoImage = img
+            } else {
+                photoImage = itemModel.photoImage!.autoResizeImage(newSize: viewCell.size)
+                itemModel.cellImg = photoImage
+            }
+            
+            viewCell.configCell(image: photoImage, isEdit: skuInstance.isEditState)
         }
     }
     

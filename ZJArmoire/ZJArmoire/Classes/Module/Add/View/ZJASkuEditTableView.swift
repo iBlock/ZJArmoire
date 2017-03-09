@@ -45,7 +45,14 @@ class ZJASkuEditTableView: ZJASKUAddTableView {
     }
     
     override func configPhotoCell(cell: UITableViewCell) {
-        (cell as! ZJAEditSkuPhotoCell).configCell(image: clothesModel.clothesImg)
+        var cellImg: UIImage
+        if let img = clothesModel.cellImg {
+            cellImg = img
+        } else {
+            cellImg = clothesModel.clothesImg.resizeImageWithNewSize(newSize: cell.size)
+            clothesModel.cellImg = cellImg
+        }
+        (cell as! ZJAEditSkuPhotoCell).configCell(image: cellImg)
         tagListHeaderView.reset(withTags: currentSKUItemModel?.tagList)
     }
     

@@ -17,11 +17,11 @@ extension UIImage {
      
      - returns: 返回缩放后的图片
      */
-    func equalScaleWithWidth(newWidth: CGFloat) -> CGSize {
+    func equalScaleWithWidth(newWidth: CGFloat) -> UIImage {
         // 新的高度 / 新的宽度 = 原来的高度 / 原来的宽度
         let newHeight = newWidth * (size.height * scale) / (size.width * scale)
         let newSize = CGSize(width: newWidth, height: newHeight)
-        return newSize
+        return resizeImageWithNewSize(newSize: newSize)
     }
     
     /**
@@ -31,11 +31,11 @@ extension UIImage {
      
      - returns: 返回缩放后的图片
      */
-    func equalScaleWithWHeight(newHeight: CGFloat) -> CGSize {
+    func equalScaleWithWHeight(newHeight: CGFloat) -> UIImage {
         // 新的高度 / 新的宽度 = 原来的高度 / 原来的宽度
         let newWidth = newHeight / (size.height * scale) * (size.width * scale)
         let newSize = CGSize(width: newWidth, height: newHeight)
-        return newSize
+        return resizeImageWithNewSize(newSize: newSize)
     }
     
     /**
@@ -62,7 +62,7 @@ extension UIImage {
             rect.origin.y = (newSize.height - rect.size.height) * 0.5
         }
         
-        UIGraphicsBeginImageContext(newSize)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
         let context = UIGraphicsGetCurrentContext()
         context!.setFillColor(UIColor.clear.cgColor)
         UIRectFill(CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
@@ -70,6 +70,28 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        return newImage!
+    }
+    
+    /**
+     自动缩放图片到指定的尺寸
+     
+     - parameter newSize: 需要缩放的尺寸
+     
+     - returns: 返回缩放后的图片
+     */
+    func autoResizeImage(newSize: CGSize) -> UIImage! {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(UIColor.clear.cgColor)
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        UIRectFill(rect)
+        self.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if newImage == nil {
+            return UIImage()
+        }
         return newImage!
     }
     

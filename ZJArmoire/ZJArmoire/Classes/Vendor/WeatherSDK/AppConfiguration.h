@@ -31,7 +31,7 @@ static NSString * const APP_SECRET = @"dce484098f856719b27d7b0fa2f17f04";
  *  Api绑定的域名，只包含域名和端口号
  *  比如：baidu.com:8080
  */
-static NSString * const APP_HOST = @"ali-weather.showapi.com";
+static NSString * const APP_HOST = @"saweather.market.alicloudapi.com";
 
 /**
  *  缓存策略:
@@ -46,4 +46,4 @@ static int const  APP_CACHE_POLICY = 1;
  *  超时时间，单位为秒
  */
 
-static int const  APP_CONNECTION_TIMEOUT = 5;
+static int const  APP_CONNECTION_TIMEOUT = 10;

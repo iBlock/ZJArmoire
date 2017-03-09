@@ -17,4 +17,7 @@ class ZJADapeiModel: NSObject {
     var history_air: String!
     var clothesIdList: Array<String>!
     var taglist: Array<String>?
+    
+    /// 用来提升图片Cell滑动性能，如果有值直接使用，否则压缩后赋值
+    var cellImg: UIImage?
 }

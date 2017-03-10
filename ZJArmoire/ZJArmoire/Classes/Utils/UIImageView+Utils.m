@@ -14,7 +14,10 @@ static UIImageView *imageView;
 @implementation UIImageView (Utils)
 
 - (void)showPreviewImage {
-    UIImage *image = self.image;
+    [self showPreviewImageWithImage:self.image];
+}
+
+- (void)showPreviewImageWithImage:(UIImage *)image {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0,0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     oldframe = [self convertRect:self.bounds toView:window];

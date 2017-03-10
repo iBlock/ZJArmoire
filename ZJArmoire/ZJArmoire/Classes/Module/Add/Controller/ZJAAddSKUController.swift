@@ -58,60 +58,6 @@ class ZJAAddSKUController: UIViewController {
         }
     }
     
-    func didTappedAddPhotoButton() {
-        let selectorView = ZJAPhotoSelectorView()
-        selectorView.photoTypeClick = { [weak self](type: ZJAPhotoSelectorType) -> () in
-            switch type {
-            case .takeImage:
-                let cameraController = ZJACameraController()
-                cameraController.addPhotoBlock = {[weak self](image) in
-                    let dateCenter = ZJASKUDataCenter.sharedInstance
-                    let skuModel = ZJASKUItemModel()
-                    skuModel.photoImage = image
-                    skuModel.category = self?.yiguiType
-                    dateCenter.addSKUItem(model: skuModel)
-                    self?.reloadAddPhotoTableView()
-                }
-                let cameraNavi = UINavigationController(rootViewController: cameraController)
-                self?.navigationController?.present(cameraNavi, animated: true, completion: nil)
-//                self?.navigationController?.pushViewController(cameraController, animated: true)
-            case .selectorImage:
-                self?.pushImagePickerController()
-            }
-        }
-        selectorView.show()
-        
-        /*
-        let cameraController = ZJACameraController()
-        cameraController.addPhotoBlock = {[weak self]() in
-            let index = NSIndexSet(index: 0)
-            self?.skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
-        }
-        navigationController?.pushViewController(cameraController, animated: true)
- */
-    }
-    
-    func reloadAddPhotoTableView() {
-        let index = NSIndexSet(index: 0)
-        skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
-    }
-    
-    func pushImagePickerController() {
-        let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 1, delegate: self)
-        imagePickerVc.naviBgColor = COLOR_MAIN_APP
-        imagePickerVc.allowTakePicture = false
-        imagePickerVc.allowPickingVideo = false
-        imagePickerVc.allowPickingImage = true
-        imagePickerVc.allowPickingOriginalPhoto = false
-        imagePickerVc.allowPickingGif = false
-        imagePickerVc.sortAscendingByModificationDate = true
-        imagePickerVc.allowCrop = false
-        imagePickerVc.needCircleCrop = false
-        imagePickerVc.circleCropRadius = 100
-        
-        navigationController?.present(imagePickerVc, animated: true, completion: nil)
-    }
-    
     func didTappedConfirmButton() {
         if filePathPrepare() == true {
             savePhoto()
@@ -122,7 +68,6 @@ class ZJAAddSKUController: UIViewController {
     public lazy var skuAddTableView:ZJASKUAddTableView = {
         let clothesTableView:ZJASKUAddTableView = ZJASKUAddTableView(frame: self.view.bounds, style: .plain, type: self.yiguiType)
         clothesTableView.delaysContentTouches = false
-        clothesTableView.skuDelegate = self
         return clothesTableView
     }()
     
@@ -153,18 +98,4 @@ class ZJAAddSKUController: UIViewController {
         
         return button
     }()
-}
-
-extension ZJAAddSKUController: TZImagePickerControllerDelegate {
-    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
-        let dateCenter = ZJASKUDataCenter.sharedInstance
-        for item in photos {
-            let skuModel = ZJASKUItemModel()
-            let image = item.compress()
-            skuModel.photoImage = image
-            skuModel.category = yiguiType
-            dateCenter.addSKUItem(model: skuModel)
-        }
-        reloadAddPhotoTableView()
-    }
 }

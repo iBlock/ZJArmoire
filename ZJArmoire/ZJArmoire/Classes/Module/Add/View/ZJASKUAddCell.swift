@@ -11,15 +11,17 @@ import UIKit
 class ZJASKUAddCell: UITableViewCell {
     
     typealias ClickPhotoIndexCallback = (ZJASKUItemModel) -> ()
-    typealias ClickAddButtonCallback = () -> ()
+    typealias SelectedPhotoCallback = ([UIImage]!) -> ()
     
     let addPhotoCellIdentifier = "ZJASKUAddPhotoCellIdentifier"
     let addButtonCellIdentifier = "ZJASKUAddButtonCellIdentifier"
+    let collectionLayout = UICollectionViewFlowLayout()
     var itemWidth:CGFloat = 0
     var cellIndexPath:IndexPath?
     var selPhotoCell:ZJASKUAddPhotoCell?
     var clickIndexBlock:ClickPhotoIndexCallback?
-    var clickAddButtonblock:ClickAddButtonCallback?
+    var selectedPhotoBlock: SelectedPhotoCallback?
+//    var clickAddButtonblock:ClickAddButtonCallback?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,11 +44,8 @@ class ZJASKUAddCell: UITableViewCell {
     }
     
     public func getCollectionItemHeight() -> CGFloat {
-        return itemWidth
-    }
-    
-    public func configCell() {
-        self.addPhotoCollectionView.reloadData()
+        let height = collectionLayout.collectionViewContentSize.height
+        return height
     }
     
     private func prepareUI() {
@@ -60,16 +59,15 @@ class ZJASKUAddCell: UITableViewCell {
     }
     
     public lazy var addPhotoCollectionView:UICollectionView = {
-        let collectionLayout = UICollectionViewFlowLayout()
         let specing:CGFloat = 15
-        collectionLayout.minimumInteritemSpacing = specing
-        collectionLayout.minimumLineSpacing = specing
-        collectionLayout.sectionInset = UIEdgeInsetsMake(0, specing, 0, specing)
-        collectionLayout.scrollDirection = .vertical
+        self.collectionLayout.minimumInteritemSpacing = specing
+        self.collectionLayout.minimumLineSpacing = specing
+        self.collectionLayout.sectionInset = UIEdgeInsetsMake(0, specing, 0, specing)
+        self.collectionLayout.scrollDirection = .vertical
         self.itemWidth = (SCREEN_WIDTH - specing*CGFloat(4))/CGFloat(3)
-        collectionLayout.itemSize = CGSize(width: self.itemWidth, height: self.itemWidth)
-        
-        let collectionView:UICollectionView = UICollectionView(frame: self.frame, collectionViewLayout: collectionLayout)
+        self.collectionLayout.itemSize = CGSize(width: self.itemWidth, height: self.itemWidth)
+        let frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 0)
+        let collectionView:UICollectionView = UICollectionView(frame: frame, collectionViewLayout: self.collectionLayout)
         collectionView.backgroundColor = UIColor.white
         collectionView.register(ZJASKUAddPhotoCell.self, forCellWithReuseIdentifier: self.addPhotoCellIdentifier)
         collectionView.register(ZJASKUAddButtonCell.self, forCellWithReuseIdentifier: self.addButtonCellIdentifier)
@@ -138,7 +136,15 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
             viewCell.configCell(image: photoImage, isEdit: skuInstance.isEditState)
         }
     }
+
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        didTappedAddPhotoButton()
+    }
     
+}
+
+extension ZJASKUAddCell {
     @objc public func didTapCollectionView(sender:UIButton) {
         let cell:ZJASKUAddPhotoCell = sender.superview?.superview as! ZJASKUAddPhotoCell
         selPhotoCell?.photoImageView.layer.borderWidth = 0
@@ -156,10 +162,53 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
         ZJASKUDataCenter.sharedInstance.removeSKUItem(index: (cellIndexPath?.row)!)
         addPhotoCollectionView.reloadData()
     }
-
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        self.clickAddButtonblock?()
+    
+    func didTappedAddPhotoButton() {
+        let selectorView = ZJAPhotoSelectorView()
+        selectorView.photoTypeClick = { [weak self](type: ZJAPhotoSelectorType) -> () in
+            switch type {
+            case .takeImage:
+                let cameraController = ZJACameraController()
+                cameraController.addPhotoBlock = {[weak self](image) in
+                    self?.selectedPhotoBlock?([image])
+                }
+                let cameraNavi = UINavigationController(rootViewController: cameraController)
+                let tabVc = ZJATabBarController.sharedInstance
+                tabVc.navigationController?.present(cameraNavi, animated: true, completion: nil)
+            case .selectorImage:
+                self?.pushImagePickerController()
+            }
+        }
+        selectorView.show()
+        
+        /*
+         let cameraController = ZJACameraController()
+         cameraController.addPhotoBlock = {[weak self]() in
+         let index = NSIndexSet(index: 0)
+         self?.skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
+         }
+         navigationController?.pushViewController(cameraController, animated: true)
+         */
     }
     
+    func pushImagePickerController() {
+        let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 1, delegate: self)
+        imagePickerVc.naviBgColor = COLOR_MAIN_APP
+        imagePickerVc.allowTakePicture = false
+        imagePickerVc.allowPickingVideo = false
+        imagePickerVc.allowPickingImage = true
+        imagePickerVc.allowPickingOriginalPhoto = false
+        imagePickerVc.allowPickingGif = false
+        imagePickerVc.sortAscendingByModificationDate = true
+        imagePickerVc.allowCrop = false
+        imagePickerVc.needCircleCrop = false
+        let tabVc = ZJATabBarController.sharedInstance
+        tabVc.navigationController?.present(imagePickerVc, animated: true, completion: nil)
+    }
+}
+
+extension ZJASKUAddCell: TZImagePickerControllerDelegate {
+    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
+        selectedPhotoBlock?(photos)
+    }
 }

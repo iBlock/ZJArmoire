@@ -15,4 +15,6 @@
  */
 - (void)showPreviewImage;
 
+- (void)showPreviewImageWithImage:(UIImage *)image;
+
 @end

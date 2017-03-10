@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol ZJASKUAddTableViewDelegate:NSObjectProtocol {
-    func didTappedAddPhotoButton()
-}
-
 class ZJASKUAddTableView: UITableView {
     
     let ZJASKUAddCellIdentifier = "ZJASKUAddCellIdentifier"
@@ -19,8 +15,6 @@ class ZJASKUAddTableView: UITableView {
     let ZJASKUAddPhotoHeaderViewIdentifier = "ZJASKUAddPhotoHeaderViewIdentifier"
     let ZJASKUTypeHeaderViewIdentifier = "ZJASKUTypeHeaderViewIdentifier"
     let ZJASKUTagCellIdentifier = "ZJASKUTagCellIdentifier"
-    
-    weak var skuDelegate:ZJASKUAddTableViewDelegate?
     
     var isClickTypeArrowButton:Bool = false
     var tagListFrame:CGRect! = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:45)
@@ -85,6 +79,7 @@ class ZJASKUAddTableView: UITableView {
         })
         return tagView
     }()
+    
 }
 
 extension ZJASKUAddTableView: UITableViewDelegate {
@@ -266,6 +261,23 @@ extension ZJASKUAddTableView {
         reloadSections(index as IndexSet, with: .none)
     }
     
+    func addSkuItem(images:[UIImage]!) {
+        let dateCenter = ZJASKUDataCenter.sharedInstance
+        for item in images {
+            let skuModel = ZJASKUItemModel()
+            let image = item.compress()!
+            skuModel.photoImage = image
+            skuModel.category = defaultType
+            dateCenter.addSKUItem(model: skuModel)
+        }
+        reloadAddPhotoTableView()
+    }
+    
+    func reloadAddPhotoTableView() {
+        let index = NSIndexSet(index: 0)
+        reloadSections(index as IndexSet, with: .automatic)
+    }
+    
 }
 
 // MARK: - Overrite Method
@@ -276,7 +288,7 @@ extension ZJASKUAddTableView {
     }
     
     func configPhotoCell(cell: UITableViewCell) {
-        (cell as! ZJASKUAddCell).configCell()
+        
     }
     
     func fetchAddPhotoCellHeaderHeight() -> CGFloat {
@@ -290,11 +302,7 @@ extension ZJASKUAddTableView {
     func fetchAddPhotoCellHeight(tableView: UITableView) -> CGFloat {
         let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
         let itemHeight = cell.getCollectionItemHeight()
-        if skuItemArray.count > 2 {
-            return itemHeight*2+15
-        } else {
-            return itemHeight
-        }
+        return itemHeight
     }
     
     func fetchAddPhotoCellFooterHeight() -> CGFloat {
@@ -323,17 +331,18 @@ extension ZJASKUAddTableView {
     }
     
     func customAddPhotoCell(tableView: UITableView) -> UITableViewCell {
-        let cell:UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier)
-        (cell as! ZJASKUAddCell).clickIndexBlock = {[weak self] (itemModel:ZJASKUItemModel) in
+        let cell:ZJASKUAddCell = tableView.dequeueReusableCell(withIdentifier: ZJASKUAddCellIdentifier) as! ZJASKUAddCell
+        cell.clickIndexBlock = {[weak self] (itemModel:ZJASKUItemModel) in
             self?.currentSKUItemModel = itemModel
             self?.tagListHeaderView.reset(withTags: itemModel.tagList)
             let indexSet = NSIndexSet(index: 1)
             self?.reloadSections(indexSet as IndexSet, with: .automatic)
         }
-        (cell as! ZJASKUAddCell).clickAddButtonblock = {[weak self] in
-            self?.skuDelegate?.didTappedAddPhotoButton()
+        cell.selectedPhotoBlock = { [weak self] (imags:[UIImage]!) in
+            self?.addSkuItem(images: imags)
         }
-        return cell!
+        
+        return cell
     }
     
     func isCanEditSku() -> Bool {

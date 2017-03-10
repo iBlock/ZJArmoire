@@ -132,6 +132,12 @@ extension UIImage {
         return newImage!
     }
     
+    /// 获取图片大小
+    func getImageSize() -> Int {
+        let data = UIImagePNGRepresentation(self)!
+        return data.count/1024
+    }
+    
     /** 根据颜色及大小生成图片 */
     static func colorImage(color:UIColor, size:CGSize) -> UIImage {
         let rect = CGRect(origin: CGPoint(), size: size)

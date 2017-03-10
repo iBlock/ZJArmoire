@@ -87,19 +87,19 @@ extension ZJAHomeTableView: UITableViewDataSource {
 
 extension ZJAHomeTableView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 42
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.white
+        headerView.backgroundColor = UIColor.colorWithHexString(hex: "f5fafb")
         let titleLabel = UILabel()
         if section == 0 {
             titleLabel.text = "今日搭配"
         } else if section == 1 {
             titleLabel.text = "推荐搭配"
         }
-        titleLabel.textColor = COLOR_TEXT_LABEL
+        titleLabel.textColor = UIColor.colorWithHexString(hex: "213550")
         titleLabel.font = UIFont.systemFont(ofSize: 16)
         headerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension ZJAAddSKUController: ZJASKUAddTableViewDelegate {
+extension ZJAAddSKUController {
     func filePathPrepare() -> Bool {
         let fileManage = FileManager()
         var isDir: ObjCBool = false

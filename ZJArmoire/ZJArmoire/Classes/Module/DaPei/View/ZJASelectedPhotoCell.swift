@@ -166,7 +166,6 @@ extension ZJASelectedPhotoCell {
         imagePickerVc.showSelectBtn = true
         imagePickerVc.allowCrop = false
         imagePickerVc.needCircleCrop = false
-        imagePickerVc.circleCropRadius = 100
         
         let delegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         delegate.window?.rootViewController?.present(imagePickerVc, animated: true, completion: nil)

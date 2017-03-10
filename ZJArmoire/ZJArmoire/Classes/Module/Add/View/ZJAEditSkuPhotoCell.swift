@@ -10,6 +10,8 @@ import UIKit
 
 class ZJAEditSkuPhotoCell: UITableViewCell {
     
+    var actualImg: UIImage!
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         prepareUI()
@@ -20,8 +22,16 @@ class ZJAEditSkuPhotoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(image: UIImage) {
-        photoImageView.image = image
+    func configCell(clothesModel: ZJAClothesModel) {
+        var cellImg: UIImage
+        if let img = clothesModel.cellImg {
+            cellImg = img
+        } else {
+            cellImg = clothesModel.clothesImg.resizeImageWithNewSize(newSize: self.size)
+            clothesModel.cellImg = cellImg
+        }
+        actualImg = clothesModel.clothesImg
+        photoImageView.image = cellImg
     }
     
     func prepareUI() {
@@ -50,7 +60,7 @@ class ZJAEditSkuPhotoCell: UITableViewCell {
     }
     
     func didClickPhotoImage() {
-        photoImageView.showPreviewImage()
+        photoImageView.showPreviewImage(with: actualImg)
     }
     
     private lazy var titleLabel: UILabel = {

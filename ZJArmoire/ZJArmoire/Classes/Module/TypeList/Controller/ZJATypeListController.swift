@@ -18,6 +18,7 @@ class ZJATypeListController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        print("%s已释放", NSStringFromClass(self.classForCoder))
     }
 
     override func viewDidLoad() {

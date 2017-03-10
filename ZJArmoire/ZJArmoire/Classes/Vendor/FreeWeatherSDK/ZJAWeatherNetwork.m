@@ -10,7 +10,7 @@
 #import "AppInclude.h"
 
 @implementation ZJAWeatherNetwork
-
+/*
 + (void)requestWeather:(void (^)(NSDictionary<NSString *,id> *))callback {
     HttpUtil *httpUtil = [HttpUtil instance];
     NSString *path = @"/area-to-weather";
@@ -36,7 +36,7 @@
         }
     }];
 }
-
+*/
 /*
 + (void)requestWeather:(void (^)(NSDictionary<NSString *,id> *))callback {
     NSString *appcode = @"15364f47413c4a87b9d02375b6ccef8d";
@@ -78,7 +78,6 @@
 }
  */
 
-/*
 + (void)requestWeather:(void (^)(NSDictionary<NSString *,id> *))callback {
     NSString *appcode = @"15364f47413c4a87b9d02375b6ccef8d";
     NSString *host = @"http://jisutqybmf.market.alicloudapi.com";
@@ -117,6 +116,5 @@
     
     [task resume];
 }
- */
 
 @end

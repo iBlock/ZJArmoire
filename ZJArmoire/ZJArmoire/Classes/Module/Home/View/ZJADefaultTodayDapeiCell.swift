@@ -55,7 +55,8 @@ class ZJADefaultTodayDapeiCell: UITableViewCell {
     private lazy var backGroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.backgroundColor = UIColor.colorWithHexString(hex: "fbfbfb")
+//        view.backgroundColor = UIColor.colorWithHexString(hex: "fbfbfb")
+        view.backgroundColor = UIColor.white
         return view
     }()
     

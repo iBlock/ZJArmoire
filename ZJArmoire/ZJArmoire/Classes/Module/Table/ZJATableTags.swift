@@ -12,7 +12,6 @@ import SQLite
 class ZJATableTags: NSObject {
     
     var tagName: String!
-    var db: Connection!
     
     //标签表
     private let table_tag = Table("Table_Tag_List")

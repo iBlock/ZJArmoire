@@ -12,7 +12,6 @@ import SQLite
 class ZJATableDapeiLog: NSObject {
     
     var dapeiID: String!
-    var db: Connection!
     var dapeiDateStr: String!
     var day_air: Int!
     var night_air: Int!
@@ -85,6 +84,7 @@ class ZJATableDapeiLog: NSObject {
         dayAirList.append(dayAir)
         var nightAirList: Array<Int> = Array()
         nightAirList.append(nightAir)
+        // 根据早晚温度从数据库中获取匹配数据，前后可浮动3度
         for i in 1 ..< 4 {
             dayAirList.append(dayAir-i)
             dayAirList.append(dayAir+i)
@@ -92,7 +92,8 @@ class ZJATableDapeiLog: NSObject {
             nightAirList.append(nightAir+i)
         }
         
-        let query = table_dapei_log.filter(dayAirList.contains(t_dp_log_day_air) && nightAirList.contains(t_dp_log_night_air))
+        let query = table_dapei_log.filter(dayAirList.contains(t_dp_log_day_air)
+            && nightAirList.contains(t_dp_log_night_air))
         let sequnce = ZJASQLiteManager.default.runFetchDatabase(querys: [query])
         var dpModels = [ZJADapeiModel]()
         if let result = sequnce.first {

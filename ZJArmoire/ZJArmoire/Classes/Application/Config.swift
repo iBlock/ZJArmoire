@@ -13,7 +13,7 @@ let SCREEN_WIDTH = SCREEN_BOUNDS.width
 let SCREEN_HEIGHT = SCREEN_BOUNDS.height
 
 //主工程颜色
-let COLOR_MAIN_APP = UIColor.colorWithHexString(hex: "00bb9c")
+let COLOR_MAIN_APP = UIColor.colorWithHexString(hex: "0fd4c2")
 let COLOR_TABLE_LINE = UIColor.colorWithHexString(hex: "d9d9d9")
 let COLOR_MAIN_BACKGROUND = UIColor.colorWithHexString(hex: "f5f5f5")
 let COLOR_BORDER_LINE = UIColor.colorWithHexString(hex: "e6e6e6")

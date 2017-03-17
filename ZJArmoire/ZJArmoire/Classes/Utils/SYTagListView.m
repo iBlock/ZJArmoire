@@ -450,8 +450,8 @@ alpha:1.0]
         _tagTextField.placeholder = @"  添加标签";
         _tagTextField.font = [UIFont systemFontOfSize:13];
         _tagTextField.textColor = ColorOfHex(0x666666);
-        [_tagTextField setValue:ColorOfHex(0x00bb9c) forKeyPath:@"_placeholderLabel.textColor"];
-        _tagTextField.tintColor = ColorOfHex(0x00bb9c);
+        [_tagTextField setValue:ColorOfHex(0x0fd4c2) forKeyPath:@"_placeholderLabel.textColor"];
+        _tagTextField.tintColor = ColorOfHex(0x0fd4c2);
         _tagTextField.delegate = self;
         _tagTextField.zja_delegate = self;
         _tagTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;

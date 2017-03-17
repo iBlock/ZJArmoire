@@ -10,7 +10,6 @@ import Foundation
 import SQLite
 
 class ZJATableDapei_Clothes: NSObject {
-    var db: Connection!
     var clothes_id: String!
     var dapei_id: String!
     

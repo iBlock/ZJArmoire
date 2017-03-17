@@ -37,7 +37,7 @@ class ZJADaPeiController: UIViewController {
         if isSelecter == true {
             title = "选择搭配"
         }
-        view.backgroundColor = COLOR_MAIN_BACKGROUND
+        view.backgroundColor = UIColor.white
         view.addSubview(dapeiCollectionView)
     }
     

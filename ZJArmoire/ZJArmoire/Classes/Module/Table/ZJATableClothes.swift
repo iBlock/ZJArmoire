@@ -18,8 +18,6 @@ class ZJATableClothes: NSObject {
     var day_air: Int?
     var night_air: Int?
     
-    var db: Connection!
-    
     //衣服表
     private let table_clothes = Table("Table_Clothes_List")
     private let t_clothes_id = Expression<Int>("id")

@@ -27,7 +27,7 @@ class ZJASKUTypeCollectionCell: UICollectionViewCell {
     }
     
     private func prepareUI() {
-        backgroundColor = UIColor.colorHex(hex: "00bb9c", alpha: 0.5)
+        backgroundColor = UIColor.colorHex(hex: "0fd4c2", alpha: 0.5)
         contentView.addSubview(typeButton)
     }
     

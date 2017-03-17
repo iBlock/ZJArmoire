@@ -13,7 +13,6 @@ class ZJATableClothes_Tag: NSObject {
     
     var clothes_id: String!
     var tag_id: String!
-    var db: Connection!
     
     //衣服和标签的关联表
     private let table_clothes_tag = Table("Table_Clothes_Tag")

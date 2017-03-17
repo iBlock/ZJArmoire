@@ -45,7 +45,7 @@ class ZJADapeiListCollectionView: UICollectionView {
     
     private func prepareUI() {
         register(ZJADapeiListCell.self, forCellWithReuseIdentifier: categoryIdentifier)
-        backgroundColor = COLOR_MAIN_BACKGROUND
+        backgroundColor = UIColor.white
         delegate = self
         dataSource = self
     }

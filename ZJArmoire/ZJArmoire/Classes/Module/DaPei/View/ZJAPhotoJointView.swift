@@ -41,7 +41,7 @@ class ZJAPhotoJointView: UIImageView {
             if i <= photoList.count-1 {
                 photoImage = photoList[i].clothesImg
             } else {
-                photoImage = UIImage(named: "test")!
+                photoImage = UIImage(named: "Dapei_default")!
             }
             let size = CGSize(width: topWidth, height: height)
             photoImage.draw(in: CGRect(origin: point, size: size))

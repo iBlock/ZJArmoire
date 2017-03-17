@@ -64,7 +64,7 @@ class ZJAYiGuiTypeCell: UICollectionViewCell {
     private lazy var yiGuiTypeView:UIView = {
         let typeView = UIView()
         typeView.layer.cornerRadius = 5
-        typeView.backgroundColor = UIColor.colorHex(hex: "00bb9c", alpha: CGFloat(0.3))
+        typeView.backgroundColor = UIColor.colorHex(hex: "0fd4c2", alpha: CGFloat(0.3))
         typeView.layer.masksToBounds = true
         
         typeView.addSubview(self.typeImageView)

@@ -48,21 +48,22 @@ class ZJADefaultTodayDapeiCell: UITableViewCell {
         iconImgView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalTo(titleLabel.snp.left).offset(-10)
-            make.size.equalTo(CGSize(width: 64, height: 62))
+            make.size.equalTo(CGSize(width: 84, height: 82))
         }
     }
     
     private lazy var backGroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-//        view.backgroundColor = UIColor.colorWithHexString(hex: "fbfbfb")
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.colorWithHexString(hex: "f5f5f5")
+//        view.backgroundColor = UIColor.white
         return view
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "快去添加搭配吧~~"
+        label.textColor = COLOR_TEXT_LABEL
         label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()

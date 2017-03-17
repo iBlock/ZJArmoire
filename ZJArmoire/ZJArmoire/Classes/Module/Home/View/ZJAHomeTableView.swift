@@ -32,7 +32,7 @@ class ZJAHomeTableView: UITableView {
         separatorStyle = .none
         backgroundColor = UIColor.white
         estimatedRowHeight = 150
-        let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:174))
+        let frame = CGRect(origin: frame.origin, size: CGSize(width:frame.width,height:160))
         tableHeader = ZJAHomeTableHeaderView(frame: frame)
         tableHeaderView = tableHeader
         register(ZJATuiJianDapeiCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -92,7 +92,8 @@ extension ZJAHomeTableView: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.colorWithHexString(hex: "f5fafb")
+//        headerView.backgroundColor = UIColor.colorWithHexString(hex: "f5fafb")
+        headerView.backgroundColor = UIColor.white
         let titleLabel = UILabel()
         if section == 0 {
             titleLabel.text = "今日搭配"
@@ -102,8 +103,20 @@ extension ZJAHomeTableView: UITableViewDelegate {
         titleLabel.textColor = UIColor.colorWithHexString(hex: "213550")
         titleLabel.font = UIFont.systemFont(ofSize: 16)
         headerView.addSubview(titleLabel)
+        
+        let button = UIButton(type: UIButtonType.custom)
+        button.setTitle("选择 >", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(UIColor.colorWithHexString(hex: "213550"), for: .normal)
+        headerView.addSubview(button)
+        
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(15)
+            make.top.bottom.equalTo(0)
+        }
+        
+        button.snp.makeConstraints { (make) in
+            make.right.equalTo(-15)
             make.top.bottom.equalTo(0)
         }
         return headerView

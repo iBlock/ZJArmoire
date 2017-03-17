@@ -11,7 +11,6 @@ import SQLite
 
 class ZJATableDapei: NSObject {
     
-    var db: Connection!
     var clothesIdList: Array<String>!
     var dapei_date: String!
     var dapei_taglist: Array<String>?

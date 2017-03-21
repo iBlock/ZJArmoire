@@ -43,6 +43,13 @@ class ZJAHomeTableView: UITableView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func didPushDapeiListPage() {
+        let dapeiVc = ZJADaPeiController()
+        dapeiVc.isSelecter = true
+        let rootVc = ZJATabBarController.sharedInstance.navigationController
+        rootVc?.pushViewController(dapeiVc, animated: true)
+    }
 
 }
 
@@ -76,7 +83,7 @@ extension ZJAHomeTableView: UITableViewDataSource {
             if tuiJianDapeiModels.count > 0 {
                 let tuiJianCell:ZJATuiJianDapeiCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJATuiJianDapeiCell!
                 tuiJianCell.selectionStyle = .none
-                tuiJianCell.configCell(dapeiModel: tuiJianDapeiModels)
+                tuiJianCell.configCell(todayModel: todayModel, dapeiModels: tuiJianDapeiModels)
                 tuijianDapeiCellHeight = tuiJianCell.getCellHeight()
                 return tuiJianCell
             }
@@ -106,9 +113,13 @@ extension ZJAHomeTableView: UITableViewDelegate {
         
         let button = UIButton(type: UIButtonType.custom)
         button.setTitle("选择 >", for: .normal)
+        button.isUserInteractionEnabled = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(UIColor.colorWithHexString(hex: "213550"), for: .normal)
         headerView.addSubview(button)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didPushDapeiListPage))
+        headerView.addGestureRecognizer(gesture)
         
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(15)
@@ -138,9 +149,6 @@ extension ZJAHomeTableView: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let dapeiVc = ZJADaPeiController()
-        dapeiVc.isSelecter = true
-        let rootVc = ZJATabBarController.sharedInstance.navigationController
-        rootVc?.pushViewController(dapeiVc, animated: true)
+        didPushDapeiListPage()
     }
 }

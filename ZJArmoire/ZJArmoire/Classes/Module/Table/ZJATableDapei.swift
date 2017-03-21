@@ -73,6 +73,23 @@ class ZJATableDapei: NSObject {
         return dpModel
     }
     
+    /// 根据搭配ID删除搭配
+    func deleteDapei(dpIdList: [String]) -> Bool {
+        var querys: [Delete] = [Delete]()
+        for dpId in dpIdList {
+            let query = table_dapei.filter(t_dapei_id == dpId)
+            querys.append(query.delete())
+        }
+        let isSuccess = ZJASQLiteManager.default.runDeleteDatabase(querys: querys)
+        if isSuccess == false {
+            print("搭配ID为：" + dpIdList.joined(separator: ",") + "的搭配删除失败")
+        } else {
+            // 删除搭配后更新搭配列表
+            NotificationCenter.default.post(name: Notification.Name(KEY_NOTIFICATION_UPDATE_DAPEI_LIST), object: nil)
+        }
+        return isSuccess
+    }
+    
     /// 根据搭配ID列表获取搭配
     func fetchDapeiList(dpIdList: [String]) -> [ZJADapeiModel] {
         var dapeiList = [ZJADapeiModel]()
@@ -85,7 +102,9 @@ class ZJATableDapei: NSObject {
         let sequensList = ZJASQLiteManager.default.runFetchDatabase(querys: querys)
         for sequens in sequensList {
             for result in sequens {
-                dapeiList.append(buildDapeiModel(dapei: result))
+                if let model = buildDapeiModel(dapei: result) {
+                    dapeiList.append(model)
+                }
                 break
             }
         }
@@ -98,7 +117,9 @@ class ZJATableDapei: NSObject {
         let result = ZJASQLiteManager.default.runFetchDatabase(querys: [table_dapei])
         if let list = result.first {
             for dapei in list {
-                dapeiList.append(buildDapeiModel(dapei: dapei))
+                if let model = buildDapeiModel(dapei: dapei) {
+                    dapeiList.append(model)
+                }
             }
         } else {
             print("获取搭配列表失败。")
@@ -107,9 +128,14 @@ class ZJATableDapei: NSObject {
     }
     
     /// 构造搭配模型
-    func buildDapeiModel(dapei: Row) -> ZJADapeiModel {
+    func buildDapeiModel(dapei: Row) -> ZJADapeiModel? {
         let clothesList = dapei[t_dapei_clotheslist]
         let clothesModels = ZJATableClothes().fetchClothes(clothesIdList: clothesList.components(separatedBy: ","))
+        if clothesModels.count == 0 {
+            // 如果该搭配的衣服都已经删除了，那么该条搭配记录也没意义了，删除
+            _ = self.deleteDapei(dpIdList: [dapei[t_dapei_id]])
+            return nil
+        }
         let model = ZJADapeiModel()
         model.dapei_id = dapei[t_dapei_id]
         model.dapei_time = dapei[t_dapei_date]

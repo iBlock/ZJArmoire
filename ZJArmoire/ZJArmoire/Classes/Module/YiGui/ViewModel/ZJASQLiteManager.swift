@@ -17,6 +17,7 @@ class ZJASQLiteManager: NSObject {
     
     enum ZJASQLiteError:Error{
         case UPDATE(name:String,score:Int)
+        case DELETE(name:String,score:Int)
     }
     
     override init() {
@@ -59,7 +60,28 @@ class ZJASQLiteManager: NSObject {
             isSuccess = true
         } catch {
             isSuccess = false
-            print("!!!!!!!!!!!!!!!!数据库写入出错了，快来看看吧\n")
+            print("!!!!!!!!!!!!!!!!数据库更新出错了，快来看看吧\n")
+            print(error)
+        }
+        return isSuccess
+    }
+    
+    /// 数据库统一删除操作
+    public func runDeleteDatabase(querys: [Delete]) -> Bool {
+        var isSuccess = false
+        do {
+            try self.db.transaction {
+                for query in querys {
+                    let state = try self.db.run(query)
+                    if state <= 0 {
+                        throw ZJASQLiteError.DELETE(name: "数据库删除数据出错", score: state)
+                    }
+                }
+            }
+            isSuccess = true
+        } catch {
+            isSuccess = false
+            print("!!!!!!!!!!!!!!!!数据库删除出错了，快来看看吧\n")
             print(error)
         }
         return isSuccess

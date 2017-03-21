@@ -9,11 +9,32 @@
 #import "ZJAWeatherNetwork.h"
 #import "AppInclude.h"
 
+NSString *kWeatherDic = @"KEY_WEATHER_DIC";
+NSString *kLastCacheTime = @"KEY_CACHE_WEATHER_TIME";
+
 @implementation ZJAWeatherNetwork
 
 + (void)requestWeather:(void (^)(NSDictionary<NSString *,id> *))callback {
     HttpUtil *httpUtil = [HttpUtil instance];
     NSString *path = @"/area-to-weather";
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDate *lastTime = [userDefault objectForKey:kLastCacheTime];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMdd"];
+    NSString *lastDateStr = [formatter stringFromDate:lastTime];
+    NSString *nowDateStr = [formatter stringFromDate:[NSDate date]];
+    if ([nowDateStr isEqualToString:lastDateStr]) {
+        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:lastTime];
+        if (timeInterval <= 60 * 60 * 2) {
+            NSDictionary *weatherDic = [NSKeyedUnarchiver unarchiveObjectWithData:[userDefault objectForKey:kWeatherDic]];
+            if (weatherDic) {
+                callback(weatherDic);
+                return;
+            }
+        }
+    }
+    
     [httpUtil httpGet:path pathParams:nil queryParams:@{@"areaid":@"101010100",@"needMoreDay":@"1"} headerParams:nil completionBlock:^(NSData * _Nullable body , NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
         NSLog(@"Response body: %@" , bodyString);
@@ -27,7 +48,12 @@
                 NSLog(@"json解析失败：%@",err);
             }
             if ([dic[@"showapi_res_code"] integerValue] == 0) {
-                callback(dic[@"showapi_res_body"]);
+                NSDictionary *weatherDic = dic[@"showapi_res_body"];
+                NSData *archiverData = [NSKeyedArchiver archivedDataWithRootObject:weatherDic];
+                [userDefault setObject:archiverData forKey:kWeatherDic];
+                [userDefault setObject:[NSDate date] forKey:kLastCacheTime];
+                callback(weatherDic);
+                
             } else {
                 NSLog(@"请求失败了，error = %@", dic[@"showapi_res_error"]);
                 callback(@{});

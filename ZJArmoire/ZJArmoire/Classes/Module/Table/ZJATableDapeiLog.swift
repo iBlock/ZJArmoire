@@ -63,6 +63,7 @@ class ZJATableDapeiLog: NSObject {
         return isSuccess
     }
     
+    /** 根据搭配时间获取搭配记录 */
     func fetchDapeiModel(dateStr: String) -> ZJADapeiModel? {
         let query = table_dapei_log.filter(t_dp_log_date == dateStr)
         let sequnce = ZJASQLiteManager.default.runFetchDatabase(querys: [query])
@@ -99,7 +100,10 @@ class ZJATableDapeiLog: NSObject {
         if let result = sequnce.first {
             var dpidList = [String]()
             for dapei in result {
-                dpidList.append(dapei[t_dp_log_dpid])
+                let dpID = dapei[t_dp_log_dpid]
+                if dpidList.contains(dpID) == false {
+                    dpidList.append(dpID)
+                }
             }
             dpModels = ZJATableDapei().fetchDapeiList(dpIdList: dpidList)
         } else {

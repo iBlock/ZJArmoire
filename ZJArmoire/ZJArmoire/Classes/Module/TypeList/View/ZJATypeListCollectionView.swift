@@ -9,9 +9,11 @@
 import Foundation
 
 class ZJATypeListCollectionView: UICollectionView {
-    
+    typealias SelectorClothesCallback = (ZJAClothesModel) -> Void
     let categoryIdentifier = "YiGuiTypeCellItem"
+    var isDelete: Bool = false
     var clothesModelList: Array<ZJAClothesModel> = []
+    var selectorClothesBlock: SelectorClothesCallback?
     
     init(frame: CGRect) {
         let layout = UICollectionViewFlowLayout()
@@ -50,14 +52,7 @@ extension ZJATypeListCollectionView: UICollectionViewDelegate,UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell: ZJATypelistCollectionCell = cell as! ZJATypelistCollectionCell
         let model: ZJAClothesModel = clothesModelList[indexPath.row]
-        var cellImg: UIImage
-        if let img = model.cellImg {
-            cellImg = img
-        } else {
-            cellImg = model.clothesImg.autoResizeImage(newSize: cell.size)!
-            model.cellImg = cellImg
-        }
-        cell.configCell(image: cellImg)
+        cell.configCell(clothesModel: model, isDelete: isDelete)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -68,6 +63,12 @@ extension ZJATypeListCollectionView: UICollectionViewDelegate,UICollectionViewDa
         collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath)
         let editVC = ZJAEditSkuController()
         let model: ZJAClothesModel = clothesModelList[indexPath.row]
+        if isDelete == true {
+            model.isSelector = !model.isSelector
+            collectionView.reloadItems(at: [indexPath])
+            selectorClothesBlock?(model)
+            return
+        }
         editVC.clothesModel = model
         ZJATabBarController.sharedInstance.navigationController?.pushViewController(editVC, animated: true)
     }

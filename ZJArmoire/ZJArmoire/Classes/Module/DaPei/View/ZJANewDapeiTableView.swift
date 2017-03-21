@@ -11,7 +11,7 @@ import UIKit
 class ZJANewDapeiTableView: UITableView {
     
     let selectedPhotoCellIdentifier = "selectedPhotoCellIdentifier"
-    let temperatueCellIdentifier = "temperatueCellIdentifier"
+//    let temperatueCellIdentifier = "temperatueCellIdentifier"
     var tagListFrame:CGRect! = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:45)
     var photoCollectionViewHeight: CGFloat = WH_PHOTOCOLLECTION_WIDTH+WH_PHOTOCOLLECTION_LINESPEC*CGFloat(2)
     var albumModels: [TZAlbumModel]!
@@ -34,7 +34,7 @@ class ZJANewDapeiTableView: UITableView {
         separatorStyle = .none
         dataSource = self
         register(ZJASelectedPhotoCell.self, forCellReuseIdentifier: selectedPhotoCellIdentifier)
-        register(ZJATemperatueCell.self, forCellReuseIdentifier: temperatueCellIdentifier)
+//        register(ZJATemperatueCell.self, forCellReuseIdentifier: temperatueCellIdentifier)
     }
     
     func prepareUI() {
@@ -47,7 +47,6 @@ class ZJANewDapeiTableView: UITableView {
     
     lazy var tagListHeaderView:ZJATaglistHeaderView = {
         let tagView: ZJATaglistHeaderView = ZJATaglistHeaderView(frame: self.tagListFrame)
-        tagView.topLine.isHidden = true
         tagView.addSKUTag({ [weak self](tagNameList) in
             DispatchQueue.main.async {
                 self?.reloadData()
@@ -64,11 +63,11 @@ class ZJANewDapeiTableView: UITableView {
 extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else if section == 2 {
-            return 0
-        }
+//        if section == 0 {
+//            return 1
+//        } else if section == 2 {
+//            return 0
+//        }
         return 1
     }
     
@@ -76,7 +75,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
                    heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 50
-        } else if section == 2 {
+        } else if section == 1 {
             return tagListFrame.size.height
         }
         return 0
@@ -91,15 +90,13 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     public func tableView(_ tableView: UITableView,
                           heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return photoCollectionViewHeight
-        } else if indexPath.section == 1 {
-            return 80
         }
         
         return 0
@@ -112,14 +109,15 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             cell.albumModels = albumModels
             return cell
-        } else if indexPath.section == 1 {
-            let cell: ZJATemperatueCell = tableView.dequeueReusableCell(withIdentifier: temperatueCellIdentifier) as! ZJATemperatueCell
-            cell.tempblock = { [weak self](dayTemp, nightTemp) in
-                self?.dapeiModel.day_temp = dayTemp
-                self?.dapeiModel.night_temp = nightTemp
-            }
-            return cell
         }
+//        else if indexPath.section == 1 {
+//            let cell: ZJATemperatueCell = tableView.dequeueReusableCell(withIdentifier: temperatueCellIdentifier) as! ZJATemperatueCell
+//            cell.tempblock = { [weak self](dayTemp, nightTemp) in
+//                self?.dapeiModel.day_temp = dayTemp
+//                self?.dapeiModel.night_temp = nightTemp
+//            }
+//            return cell
+//        }
         return UITableViewCell()
     }
     
@@ -162,7 +160,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
             })
             
             return headerView
-        } else if section == 2 {
+        } else if section == 1 {
             return tagListHeaderView
         }
         

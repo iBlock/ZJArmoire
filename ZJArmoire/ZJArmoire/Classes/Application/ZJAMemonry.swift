@@ -12,6 +12,4 @@ class ZJAMemonry: NSObject {
     
     static let `default` = ZJAMemonry()
 
-    /// 今天选择搭配的ID
-    var todayDapeiId: String = ""
 }

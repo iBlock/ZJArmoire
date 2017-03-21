@@ -102,6 +102,23 @@ class ZJATableClothes: NSObject {
         return model
     }
     
+    /// 根据衣服ID列表删除指定衣服
+    func deleteClothes(clothesIdList: [String]) -> Bool {
+        var queryList: [Delete] = [Delete]()
+        for clothesID in clothesIdList {
+            let query = table_clothes.filter(t_clothes_uuid == clothesID)
+            queryList.append(query.delete())
+        }
+        let isSuccess = ZJASQLiteManager.default.runDeleteDatabase(querys: queryList)
+        if isSuccess == false {
+            print("衣服ID为：" + clothesIdList.joined(separator: ",") + "的衣服删除失败")
+        } else {
+            // 删除衣服后更新搭配列表
+            NotificationCenter.default.post(name: Notification.Name(KEY_NOTIFICATION_UPDATE_DAPEI_LIST), object: nil)
+        }
+        return isSuccess
+    }
+    
     /// 根据衣服ID列表批量获取衣服
     func fetchClothes(clothesIdList: [String]) -> [ZJAClothesModel] {
         var dapeiClothesList = [ZJAClothesModel]()

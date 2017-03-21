@@ -13,8 +13,7 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     
     let KEY_TODAY = "TodayDapei"
     let KEY_TUIJIAN = "TuiJianDapei"
-    var homeData: [String:[String:Any]] = ["0":[:]]
-//    var currentIndexDic: [String: Any] = [:]
+//    var homeData: [String:[String:Any]] = ["0":[:]]
     var todayModel: ZJADapeiModel = ZJADapeiModel()
     var tuijianModels: [ZJADapeiModel] = [ZJADapeiModel]()
     var currentIndex = 0
@@ -38,9 +37,6 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     }
     
     func reloadHomeTable() {
-        if let dapeiID = todayModel.dapei_id {
-            ZJAMemonry.default.todayDapeiId = dapeiID
-        }
         homeTableView.todayModel = todayModel
         homeTableView.tuiJianDapeiModels = tuijianModels
         DispatchQueue.main.async {
@@ -79,6 +75,7 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
 
 extension ZJAHomeViewController {
     
+    /** 请求天气数据 */
     func requestWeatherNetwork() {
         DispatchQueue.global().async {
             ZJAWeatherNetwork.requestWeather { (result) in
@@ -92,6 +89,7 @@ extension ZJAHomeViewController {
         }
     }
     
+    /** 根据index获取第index天的数据 */
     func fetchIndexData(index: Int) {
         currentIndex = index
         if weatherList.count == 0 {

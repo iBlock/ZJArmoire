@@ -133,46 +133,24 @@ class ZJAHomeSectionHeaderView: UIView {
     }
     
     private func prepareUI() {
-        /*
-        addSubview(temperatureLabel)
-        addSubview(weatherImage)
-        addSubview(weatherLabel)
-        addSubview(weatherTempLabel)
-        addSubview(windPowerLabel)
-        addSubview(airQualityLabel)
-        addSubview(lineView)
-        addSubview(lineView2)
- */
         addSubview(updateTimerLabel)
         addSubview(dateLabel)
         addSubview(content1)
         addSubview(weatherDetailLabel)
-//        addSubview(content2)
     }
     
     public func configSection(weather: ZJAWeatherModel) {
-        /*
-        temperatureLabel.text = weather.nowTemp + "°"
-        weatherImage.image = weather.img
-        weatherLabel.text = weather.nightTemp+"~"+weather.dayTemp+"°"+" "+weather.winddirect+" "+weather.windpower
-        airQualityLabel.text = weather.aqi
-        if let updateTime = weather.updateTime {
-            updateTimerLabel.text = updateTime+" 更新"
-        }
- */
         temperatureLabel.text = weather.nowTemp + "°C"
         weatherImage.kf.setImage(with: weather.imgUrl)
         weatherLabel.text = weather.weather
         dateLabel.text = weather.formatDateStr
         updateTimerLabel.text = weather.updateFormatStr
         
-//        windPowerLabel.text = weather.winddirect + " " + weather.windpower
-//        weatherTempLabel.text = weather.nightTemp + " ~ " + weather.dayTemp + "°C"
-//        airQualityLabel.text = weather.aqi
         let powerStr = weather.winddirect + " " + weather.windpower
         let tempStr = weather.nightTemp + " ~ " + weather.dayTemp + "°C"
         let airStr = weather.aqi
-        let weatherStr = powerStr + "\t\t|\t\t" + tempStr + "\t\t|\t\t" + airStr
+        var weatherStr = powerStr + "  |  " + tempStr + "  |  " + airStr
+        weatherStr = weatherStr.replacingOccurrences(of: "\n", with: "")
         weatherDetailLabel.text = weatherStr
     }
     
@@ -185,31 +163,18 @@ class ZJAHomeSectionHeaderView: UIView {
             make.centerX.equalToSuperview()
         }
         
-        /*
-        content2.snp.makeConstraints { (make) in
-            make.top.equalTo(content1.snp.bottom).offset(20)
-            make.size.equalTo(CGSize(width: 265, height: 20))
-            make.centerX.equalToSuperview()
-        }
- */
-        
         temperatureLabel.snp.makeConstraints { (make) in
-//            make.centerX.equalToSuperview().offset(-100)
-//            make.right.equalTo(weatherImage.snp.left).offset(-20)
             make.right.equalTo(weatherImage.snp.left).offset(-10)
             make.top.equalTo(5)
         }
         
         weatherImage.snp.makeConstraints { (make) in
-//            make.centerX.equalToSuperview().offset(50)
-//            make.left.equalTo(temperatureLabel.snp.right).offset(20)
             make.right.equalTo(weatherLabel.snp.left).offset(-10)
             make.top.equalTo(5)
             make.size.equalTo(CGSize(width: 50, height: 50))
         }
         
         weatherLabel.snp.makeConstraints({ (make) in
-//            make.left.equalTo(weatherImage.snp.right).offset(5)
             make.right.equalTo(0)
             make.top.equalTo(30)
         })
@@ -228,38 +193,6 @@ class ZJAHomeSectionHeaderView: UIView {
             make.top.equalTo(content1.snp.bottom).offset(20)
             make.left.right.equalTo(0)
         }
-        
-        /*
-        windPowerLabel.snp.makeConstraints { (make) in
-//            make.right.equalTo(weatherTempLabel.snp.left).offset(-40)
-            make.left.equalTo(0)
-            make.top.equalTo(0)
-        }
-        
-        weatherTempLabel.snp.makeConstraints { (make) in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(temperatureLabel.snp.bottom).offset(15)
-            make.left.equalTo(windPowerLabel.snp.right).offset(40)
-            make.top.equalTo(0)
-        }
-        
-        airQualityLabel.snp.makeConstraints({ (make) in
-            make.left.equalTo(weatherTempLabel.snp.right).offset(40)
-            make.top.equalTo(0)
-        })
-        
-        lineView.snp.makeConstraints({ (make) in
-            make.right.equalTo(weatherTempLabel.snp.left).offset(-20)
-            make.size.equalTo(CGSize(width:0.5,height:20))
-            make.top.equalTo(weatherTempLabel).offset(0)
-        })
-        
-        lineView2.snp.makeConstraints { (make) in
-            make.left.equalTo(weatherTempLabel.snp.right).offset(20.5)
-            make.size.equalTo(CGSize(width:0.5,height:20))
-            make.top.equalTo(weatherTempLabel).offset(0)
-        }
- */
     }
     
     //MARK: - Setter and Getter
@@ -281,16 +214,6 @@ class ZJAHomeSectionHeaderView: UIView {
         return label
     }()
     
-    private lazy var content2: UIView = {
-        let view = UIView()
-        view.addSubview(self.weatherTempLabel)
-        view.addSubview(self.windPowerLabel)
-        view.addSubview(self.airQualityLabel)
-        view.addSubview(self.lineView)
-        view.addSubview(self.lineView2)
-        return view
-    }()
-    
     /** 温度 */
     public lazy var temperatureLabel:UILabel = {
         let label = UILabel()
@@ -306,23 +229,13 @@ class ZJAHomeSectionHeaderView: UIView {
         return imageView
     }()
     
+    /** 天气情况 */
     private lazy var weatherLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
-    
-    /** 温度详细 */
-    /*
-    private lazy var weatherInfoView:UIView = {
-        let weatherView = UIView()
-        weatherView.addSubview(self.lineView)
-        weatherView.addSubview(self.weatherLabel)
-        weatherView.addSubview(self.airQualityLabel)
-        return weatherView
-    }()
- */
     
     /** 风力大小 */
     private lazy var windPowerLabel: UILabel = {
@@ -332,46 +245,11 @@ class ZJAHomeSectionHeaderView: UIView {
         return label
     }()
     
-    /** 天气范围 */
-    private lazy var weatherTempLabel:UILabel = {
-        let weatherLabel = UILabel()
-        weatherLabel.text = "null ~ null°C"
-        weatherLabel.textColor = UIColor.white
-        weatherLabel.font = UIFont.systemFont(ofSize: 17)
-        return weatherLabel
-    }()
-    
-    /** 空气质量 */
-    public lazy var airQualityLabel:UILabel = {
-        let airQualityLabel = UILabel()
-//        airQualityLabel.layer.cornerRadius = 10.0
-//        airQualityLabel.layer.masksToBounds = true
-//        airQualityLabel.backgroundColor = UIColor.colorWithHexString(hex: "7ED321")
-        airQualityLabel.text = "null null"
-        airQualityLabel.font = UIFont.systemFont(ofSize: 17)
-        airQualityLabel.textAlignment = .center
-        airQualityLabel.textColor = UIColor.white
-        return airQualityLabel
-    }()
-    
-    private lazy var lineView:UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = UIColor.white
-        return lineView
-    }()
-    
-    private lazy var lineView2: UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = UIColor.white
-        return lineView
-    }()
-    
     /** 更新时间 */
     private lazy var updateTimerLabel:UILabel = {
         let timerLabel = UILabel()
         timerLabel.textAlignment = .center
         timerLabel.textColor = UIColor.white
-        timerLabel.text = "null 更新"
         timerLabel.font = UIFont.systemFont(ofSize: 10)
         return timerLabel
     }()

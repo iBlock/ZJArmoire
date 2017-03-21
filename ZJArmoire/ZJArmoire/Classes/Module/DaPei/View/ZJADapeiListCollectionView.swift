@@ -13,7 +13,8 @@ class ZJADapeiListCollectionView: UICollectionView {
     typealias ClickDapeiCallback = (_ dapeiModel: ZJADapeiModel) -> Void
     let categoryIdentifier = "DapeiListCellItem"
     var layout = UICollectionViewFlowLayout()
-    var dapeiModel: [ZJADapeiModel]! = [ZJADapeiModel]()
+    var dapeiModels: [ZJADapeiModel]! = [ZJADapeiModel]()
+    var todayModel: ZJADapeiModel?
     var clickblock: ClickDapeiCallback?
     var isSelecter: Bool = false
     
@@ -61,23 +62,21 @@ extension ZJADapeiListCollectionView: UICollectionViewDelegate,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let collectionView:ZJADapeiListCell = cell as! ZJADapeiListCell
-        let dpModel: ZJADapeiModel = self.dapeiModel[indexPath.row]
-        var showSelectorImg = false
-        if isSelecter == true {
-            showSelectorImg = dpModel.dapei_id == ZJAMemonry.default.todayDapeiId
-        } else {
-            showSelectorImg = false
+        let dpModel: ZJADapeiModel = self.dapeiModels[indexPath.row]
+        var isSelector = false
+        if let dpId = todayModel?.dapei_id {
+            isSelector = dpModel.dapei_id == dpId
         }
-        collectionView.configCell(dpModel: dpModel, isSelector: showSelectorImg)
+        collectionView.configCell(dpModel: dpModel, isSelector: isSelector)
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dapeiModel.count
+        return dapeiModels.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.dequeueReusableCell(withReuseIdentifier: categoryIdentifier, for: indexPath)
-        clickblock?(dapeiModel[indexPath.row])
+        clickblock?(dapeiModels[indexPath.row])
     }
     
 }

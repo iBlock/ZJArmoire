@@ -41,8 +41,9 @@ class ZJATuiJianDapeiCell: UITableViewCell {
         }
     }
     
-    func configCell(dapeiModel: [ZJADapeiModel]) {
-        tuiJianCollectionView.dapeiModel = dapeiModel
+    func configCell(todayModel: ZJADapeiModel, dapeiModels: [ZJADapeiModel]) {
+        tuiJianCollectionView.dapeiModels = dapeiModels
+        tuiJianCollectionView.todayModel = todayModel
         tuiJianCollectionView.reloadData()
     }
     

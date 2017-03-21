@@ -15,9 +15,15 @@ class ZJADaPeiController: UIViewController {
     
     // MARK: - Life Cycle
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        print("%s已释放", NSStringFromClass(self.classForCoder))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+        prepareData()
         setupViewConstraints()
         fetchDapeilistData()
     }
@@ -25,7 +31,8 @@ class ZJADaPeiController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationItem.title = "搭配列表";
-        tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_Add", highlightedImage: "Global_Navi_Add", target: self, action: #selector(didTappedAddButton(sender:)))
+        let barButton = UIBarButtonItem.rightItem(title: "添加", target: self, action: #selector(didTappedAddButton(sender:)))
+        tabBarController?.navigationItem.rightBarButtonItem = barButton
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -39,6 +46,10 @@ class ZJADaPeiController: UIViewController {
         }
         view.backgroundColor = UIColor.white
         view.addSubview(dapeiCollectionView)
+    }
+    
+    func prepareData() {
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchDapeilistData), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_UPDATE_DAPEI_LIST), object: nil)
     }
     
     func setupViewConstraints() {
@@ -94,7 +105,7 @@ class ZJADaPeiController: UIViewController {
             }
         } else {
             errorView?.removeFromSuperview()
-            dapeiCollectionView.dapeiModel = dpList
+            dapeiCollectionView.dapeiModels = dpList
             dapeiCollectionView.reloadData()
         }
     }

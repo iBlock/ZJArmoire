@@ -77,7 +77,7 @@ extension ZJATodayDapeiCell: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let typeCell: ZJATypelistCollectionCell = cell as! ZJATypelistCollectionCell
-        let image = dapeiModel.clothesList[indexPath.row].clothesImg
-        typeCell.configCell(image: image!)
+        let clothesModel: ZJAClothesModel = dapeiModel.clothesList[indexPath.row]
+        typeCell.configCell(clothesModel: clothesModel, isDelete: false)
     }
 }

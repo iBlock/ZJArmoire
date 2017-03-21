@@ -18,6 +18,7 @@ class ZJAClothesModel: NSObject {
     
     /// 用来提升Cell滑动性能，如果有值直接使用，否则压缩后赋值
     var cellImg: UIImage?
+    var isSelector: Bool = false
     
     override init() {
         super.init()

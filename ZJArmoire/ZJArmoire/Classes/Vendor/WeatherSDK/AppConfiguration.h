@@ -40,7 +40,7 @@ static NSString * const APP_HOST = @"saweather.market.alicloudapi.com";
  *  2:返回缓存否则加载，很少使用
  *  3:只返回缓存，没有也不加载，很少使用
  */
-static int const  APP_CACHE_POLICY = 1;
+static int const  APP_CACHE_POLICY = 0;
 
 /**
  *  超时时间，单位为秒

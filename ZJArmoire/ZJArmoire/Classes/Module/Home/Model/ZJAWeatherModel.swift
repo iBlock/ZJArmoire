@@ -42,7 +42,7 @@ class ZJAWeatherModel: NSObject {
         
         winddirect = nowDic["wind_direction"] as! String
         let power = nowDic["wind_power"] as! String
-        windpower = power.components(separatedBy: "<").first!.replacingOccurrences(of: " ", with: "")
+        windpower = power.components(separatedBy: " ").first!
         
         date = f1Dic["day"] as! String
         let dformatter = DateFormatter()
@@ -75,8 +75,13 @@ class ZJAWeatherModel: NSObject {
         formatDateStr = dateStr + " " + weekday
         winddirect = resultDic["day_wind_direction"] as! String
         let power = resultDic["day_wind_power"] as! String
-        windpower = power.components(separatedBy: "<").first!
-        aqi = "降水概率 " + (resultDic["jiangshui"] as! String)
+        windpower = power.components(separatedBy: " ").first!
+        if let js = resultDic["jiangshui"] {
+            aqi = "降水概率 " + (js as! String)
+        } else {
+            aqi = "降水概率 0%"
+        }
+        
         imgUrl = URL(string: resultDic["day_weather_pic"] as! String)!
     }
     

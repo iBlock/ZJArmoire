@@ -13,6 +13,7 @@ class ZJAAddDapeiController: UIViewController {
     typealias ConfirmButtonCallback = () -> Void
     var albumModels: [TZAlbumModel]!
     var confirmCallback: ConfirmButtonCallback?
+    var isEdit: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,12 @@ class ZJAAddDapeiController: UIViewController {
     }
     
     func prepareUI() {
-        title = "新建搭配"
+        if isEdit == true {
+            title = "编辑搭配"
+            navigationItem.leftBarButtonItem = UIBarButtonItem.leftItem(title: "取消", target: self, action: #selector(didTappedCancelButton))
+        } else {
+            title = "新建搭配"
+        }
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(dapeiTableView)
         view.addSubview(confirmButton)
@@ -47,6 +53,10 @@ class ZJAAddDapeiController: UIViewController {
     
     func didTappedConfirmButton() {
         saveDapeiToDatabase()
+    }
+    
+    func didTappedCancelButton() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     public lazy var dapeiTableView: ZJANewDapeiTableView = {

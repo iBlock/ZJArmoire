@@ -69,7 +69,29 @@ class ZJADaPeiController: UIViewController {
         pushToAddDapeiController()
     }
     
+    // 获取搭配照片数据
+    func fetchAlbumModels(block: @escaping ([TZAlbumModel]) -> Void) {
+        SVProgressHUD.show()
+        DispatchQueue.global().async {
+            let albumModels = self.fetchAllClothes()
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                block(albumModels)
+            }
+        }
+    }
+    
+    // 进入添加搭配页面
     func pushToAddDapeiController() {
+        fetchAlbumModels { (albumModels) in
+            let addDapeiController = ZJAAddDapeiController()
+            addDapeiController.albumModels = albumModels
+            addDapeiController.confirmCallback = { [weak self] () in
+                self?.fetchDapeilistData()
+            }
+            self.navigationController?.pushViewController(addDapeiController, animated: true)
+        }
+        /*
         SVProgressHUD.show()
         DispatchQueue.global().async {
             let albumModels = self.fetchAllClothes()
@@ -82,6 +104,19 @@ class ZJADaPeiController: UIViewController {
                 }
                 self.navigationController?.pushViewController(addDapeiController, animated: true)
             }
+        }
+ */
+    }
+    
+    // 进入搭配详情页面
+    func pushToDapeiDetailController(dapeiModel: ZJADapeiModel) {
+        let detailVc = ZJADapeiDetailController()
+        detailVc.isSelecter = isSelecter
+        let model: ZJADapeiModel = dapeiModel
+        detailVc.dapeiModel = model
+        fetchAlbumModels {[weak self] (albumModels) in
+            detailVc.albumModels = albumModels
+            self?.navigationController?.pushViewController(detailVc, animated: true)
         }
     }
     
@@ -114,11 +149,7 @@ class ZJADaPeiController: UIViewController {
         let collectionView: ZJADapeiListCollectionView = ZJADapeiListCollectionView(frame: self.view.bounds)
         collectionView.isSelecter = self.isSelecter
         collectionView.clickblock = { [weak self](dapeiModel: ZJADapeiModel) in
-            let detailVc = ZJADapeiDetailController()
-            detailVc.isSelecter = (self?.isSelecter)!
-            let model: ZJADapeiModel = dapeiModel
-            detailVc.dapeiModel = model
-            self?.navigationController?.pushViewController(detailVc, animated: true)
+            self?.pushToDapeiDetailController(dapeiModel: dapeiModel)
         }
         return collectionView
     }()
@@ -126,11 +157,9 @@ class ZJADaPeiController: UIViewController {
 
 extension ZJADaPeiController {
     func fetchAllClothes() -> [TZAlbumModel] {
-//        let fetchClothesGroup = DispatchGroup()
         let clothesTable = ZJATableClothes()
         var albumModels = [TZAlbumModel]()
         for item in CONFIG_YIGUI_TYPENAMES {
-//            fetchClothesGroup.enter()
             let index = CONFIG_YIGUI_TYPENAMES.index(of: item)
             let clothesModel = clothesTable.fetchAllClothes(index!)
             var imageList = [UIImage]()
@@ -140,9 +169,7 @@ extension ZJADaPeiController {
             }
             let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: item, imageList: imageList)
             albumModels.append(model)
-//            fetchClothesGroup.leave()
         }
-//        fetchClothesGroup.wait()
         return albumModels
     }
 }

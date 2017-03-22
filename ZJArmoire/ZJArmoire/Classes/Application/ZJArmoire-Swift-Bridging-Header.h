@@ -24,6 +24,7 @@
 #import "AppInclude.h"
 
 #import "UIView+Layout.h"
+#import "UIView+Extension.h"
 #import "UIImage+Utils.h"
 #import "UIImageView+Utils.h"
 #import "UIImage+CompressForSize.h"

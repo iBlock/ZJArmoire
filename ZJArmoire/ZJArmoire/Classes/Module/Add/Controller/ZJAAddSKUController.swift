@@ -39,26 +39,32 @@ class ZJAAddSKUController: UIViewController {
     
     private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
+        navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(title: "确定", target: self, action: #selector(didTappedConfirmButton))
         title = "添加单品"
         view.addSubview(skuAddTableView)
-        view.addSubview(confirmButton)
+//        view.addSubview(confirmButton)
     }
     
     func setUpViewConstraints() {
         skuAddTableView.snp.makeConstraints { (make) in
-            make.left.top.right.equalTo(0)
-            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
+            make.left.top.right.bottom.equalTo(0)
+//            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
         }
         
-        confirmButton.snp.makeConstraints { (make) in
-            make.left.equalTo(15)
-            make.right.equalTo(-15)
-            make.height.equalTo(44)
-            make.bottom.equalTo(-10)
-        }
+//        confirmButton.snp.makeConstraints { (make) in
+//            make.left.equalTo(15)
+//            make.right.equalTo(-15)
+//            make.height.equalTo(44)
+//            make.bottom.equalTo(-10)
+//        }
     }
     
     func didTappedConfirmButton() {
+        let skuItemArray = NSArray(array: ZJASKUDataCenter.sharedInstance.skuItemArray)
+        if skuItemArray.count <= 0 {
+            SVProgressHUD.showInfo(withStatus: "你还没有添加衣服哦!")
+            return
+        }
         if filePathPrepare() == true {
             savePhoto()
         }

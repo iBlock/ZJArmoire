@@ -72,8 +72,7 @@ extension UIView {
     
 }
 
-//加载错误界面
-
+/** 加载错误界面 */
 extension UIView {
     func loadErrorView() -> ZJAErrorView {
         let errorView = ZJAErrorView(frame: bounds)

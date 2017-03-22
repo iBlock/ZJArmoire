@@ -15,6 +15,7 @@ class ZJATypeListController: UIViewController {
     var errorView: ZJAErrorView?
     var selectedAssets: NSMutableArray! = NSMutableArray()
     let userDefault = UserDefaults.standard
+    var naviTool: ZJANaviToolView!
     var deleteClothesModels = [ZJAClothesModel]()
     
     deinit {
@@ -47,6 +48,8 @@ class ZJATypeListController: UIViewController {
     
     func prepareData() {
         NotificationCenter.default.addObserver(self, selector: #selector(loadClothesInDatabase), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_REFRESH_SKU), object: nil)
+        naviTool = ZJANaviToolView(title: "删除"+title!)
+        naviTool.isAutoDismiss = false
     }
     
     func prepareTypeListData(list: Array<ZJAClothesModel>) {
@@ -75,8 +78,8 @@ class ZJATypeListController: UIViewController {
     }
     
     private func prepareUI() {
-        title = CONFIG_YIGUI_TYPENAMES[yiguiType]//self.typeTitle(type: yiguiType)
-        didChangeRightBar(isDelete: false)
+        title = CONFIG_YIGUI_TYPENAMES[yiguiType]
+        navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_More", highlightedImage: "Global_Navi_More", target: self, action: #selector(didTappedMoreButton(sender:)))
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(typeListCollectionView)
         view.addSubview(loadingView)
@@ -85,19 +88,16 @@ class ZJATypeListController: UIViewController {
     func didChangeRightBar(isDelete: Bool) {
         if isDelete == true {
             didChangeRightButtonState(isEnable: false)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightItemButton)
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_More", highlightedImage: "Global_Navi_More", target: self, action: #selector(didTappedMoreButton(sender:)))
         }
     }
     
     func didChangeRightButtonState(isEnable: Bool) {
         if isEnable == true {
-            rightItemButton.isUserInteractionEnabled = true
-            rightItemButton.setTitleColor(UIColor.white, for: .normal)
+            naviTool.rightButton.isUserInteractionEnabled = true
+            naviTool.rightButton.setTitleColor(UIColor.white, for: .normal)
         } else {
-            rightItemButton.isUserInteractionEnabled = false
-            rightItemButton.setTitleColor(UIColor.colorHex(hex: "ffffff", alpha: 0.5), for: .normal)
+            naviTool.rightButton.isUserInteractionEnabled = false
+            naviTool.rightButton.setTitleColor(UIColor.colorHex(hex: "ffffff", alpha: 0.5), for: .normal)
         }
     }
     
@@ -124,10 +124,19 @@ class ZJATypeListController: UIViewController {
         let action2 = UIAlertAction(title: "删除", style: .destructive)
         { (action) in
             self.didChangeRightBar(isDelete: true)
+            self.naviTool.show(animated: false)
             self.typeListCollectionView.isDelete = true
             self.typeListCollectionView.reloadData()
         }
-        
+        naviTool.cancelCallback {[weak self] in
+            self?.naviTool.dismiss(animated: true)
+            self?.deleteClothesModels.removeAll()
+            self?.typeListCollectionView.isDelete = false
+            self?.typeListCollectionView.reloadData()
+        }
+        naviTool.confirmCallback {[weak self] in
+            self?.didTappedConfirmDelete()
+        }
         let action3 = UIAlertAction(title: "取消", style: .cancel)
         { (action) in
             
@@ -141,25 +150,15 @@ class ZJATypeListController: UIViewController {
     func didTappedConfirmDelete() {
         let sheet = UIAlertController(title: "删除", message: "衣服删除后将无法恢复，确认删除吗？", preferredStyle: .alert)
         let action1 = UIAlertAction(title: "取消", style: .default)
-        { (action) in
-            self.didChangeRightBar(isDelete: false)
-            self.typeListCollectionView.isDelete = false
-            self.typeListCollectionView.reloadData()
-            self.deleteClothesModels.removeAll()
-        }
+        { (action) in }
         let action2 = UIAlertAction(title: "确认", style: .destructive)
         { (action) in
             self.didChangeRightBar(isDelete: false)
             self.typeListCollectionView.isDelete = false
-            
-            if self.deleteClothesModels.count > 0 {
-                /// 删除数据
-                self.didDeleteClothesforDatabase()
-                self.deleteClothesModels.removeAll()
-                self.loadClothesInDatabase()
-            } else {
-                self.typeListCollectionView.reloadData()
-            }
+            /// 删除数据
+            self.didDeleteClothesforDatabase()
+            self.deleteClothesModels.removeAll()
+            self.loadClothesInDatabase()
         }
         sheet.addAction(action1)
         sheet.addAction(action2)
@@ -200,18 +199,6 @@ class ZJATypeListController: UIViewController {
     private lazy var loadingView: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         return activity
-    }()
-    
-    private lazy var rightItemButton: UIButton = {
-        let itemButton = UIButton(type: .custom)
-        itemButton.size = CGSize(width: 50, height: 44)
-        itemButton.contentHorizontalAlignment = .right
-        itemButton.setTitle("删除", for: .normal)
-        itemButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        itemButton.setTitleColor(UIColor.white, for: .normal)
-        itemButton.setTitleColor(UIColor(white: 0.9, alpha: 1), for: .disabled)
-        itemButton.addTarget(self, action: #selector(didTappedConfirmDelete), for: .touchUpInside)
-        return itemButton
     }()
 }
 

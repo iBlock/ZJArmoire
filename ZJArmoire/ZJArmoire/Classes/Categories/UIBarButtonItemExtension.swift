@@ -24,7 +24,7 @@ extension UIBarButtonItem {
         itemButton.size = CGSize(width: 50, height: 44)
         itemButton.contentHorizontalAlignment = .left
         itemButton.setTitle(title, for: .normal)
-        itemButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        itemButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         itemButton.addTarget(target, action: action, for: .touchUpInside)
         return UIBarButtonItem(customView: itemButton)
     }

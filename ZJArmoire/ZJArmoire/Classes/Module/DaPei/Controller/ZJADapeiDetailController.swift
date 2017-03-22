@@ -12,6 +12,7 @@ class ZJADapeiDetailController: UIViewController {
     
     var isSelecter: Bool = false
     var dapeiModel: ZJADapeiModel!
+    var albumModels: [TZAlbumModel]!
     let CellIdentifier = "ZJADapeiDetailCell"
     let CellFooterIdentifier = "ZJADapeiDetailFooterCell"
     let CellFooterIdentifier2 = "ZJADapeiDetailFooterCell2"
@@ -29,8 +30,35 @@ class ZJADapeiDetailController: UIViewController {
     
     func prepareUI() {
         title = "搭配详情"
+        navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(normalImage: "Global_Navi_More", highlightedImage: "Global_Navi_More", target: self, action: #selector(didTappedMoreButton(sender:)))
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(dapeiCollectionView)
+    }
+    
+    func didTappedMoreButton(sender: UIButton) {
+        let sheet = UIAlertController(title: "编辑搭配", message: nil, preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "修改", style: .default)
+        { (action) in
+            let editVc = ZJAAddDapeiController()
+            editVc.isEdit = true
+            editVc.albumModels = self.albumModels
+            let naviVc = ZJANavigationController(rootViewController: editVc)
+            self.navigationController?.present(naviVc, animated: true, completion: nil)
+        }
+        
+        let action2 = UIAlertAction(title: "删除", style: .destructive)
+        { (action) in
+            
+        }
+        
+        let action3 = UIAlertAction(title: "取消", style: .cancel)
+        { (action) in
+            
+        }
+        sheet.addAction(action1)
+        sheet.addAction(action2)
+        sheet.addAction(action3)
+        present(sheet, animated: true, completion: nil)
     }
     
     func setupViewConstraints() {

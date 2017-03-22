@@ -12,6 +12,7 @@ class ZJASKUAddCell: UITableViewCell {
     
     typealias ClickPhotoIndexCallback = (ZJASKUItemModel) -> ()
     typealias SelectedPhotoCallback = ([UIImage]!) -> ()
+    typealias DeletePhotoCallback = () -> Void
     
     let addPhotoCellIdentifier = "ZJASKUAddPhotoCellIdentifier"
     let addButtonCellIdentifier = "ZJASKUAddButtonCellIdentifier"
@@ -21,6 +22,7 @@ class ZJASKUAddCell: UITableViewCell {
     var selPhotoCell:ZJASKUAddPhotoCell?
     var clickIndexBlock:ClickPhotoIndexCallback?
     var selectedPhotoBlock: SelectedPhotoCallback?
+    var deletePhotoBlock: DeletePhotoCallback?
 //    var clickAddButtonblock:ClickAddButtonCallback?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -123,7 +125,7 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
         if cell .isKind(of: ZJASKUAddPhotoCell.self) {
             let viewCell: ZJASKUAddPhotoCell = cell as! ZJASKUAddPhotoCell
             let itemModel:ZJASKUItemModel = dataCenter.skuItemArray.object(at: indexPath.row) as! ZJASKUItemModel
-            let skuInstance:ZJASKUDataCenter! = ZJASKUDataCenter.sharedInstance
+//            let skuInstance:ZJASKUDataCenter! = ZJASKUDataCenter.sharedInstance
             var photoImage:UIImage
             
             if let img = itemModel.cellImg {
@@ -133,7 +135,7 @@ extension ZJASKUAddCell: UICollectionViewDelegate, UICollectionViewDataSource {
                 itemModel.cellImg = photoImage
             }
             
-            viewCell.configCell(image: photoImage, isEdit: skuInstance.isEditState)
+            viewCell.configCell(image: photoImage, isEdit: true)
         }
     }
 
@@ -156,13 +158,16 @@ extension ZJASKUAddCell {
         ZJASKUDataCenter.sharedInstance.selCellIndexPath = cellIndexPath
     }
     
+    // 点击删除图片按钮
     @objc public func didTappedPhotoDeleteBtn(sender: UIButton) {
         let cell:ZJASKUAddPhotoCell = sender.superview?.superview?.superview as! ZJASKUAddPhotoCell
         cellIndexPath = self.addPhotoCollectionView.indexPath(for: cell)
         ZJASKUDataCenter.sharedInstance.removeSKUItem(index: (cellIndexPath?.row)!)
         addPhotoCollectionView.reloadData()
+        deletePhotoBlock?()
     }
     
+    // 点击添加图片按钮
     func didTappedAddPhotoButton() {
         let selectorView = ZJAPhotoSelectorView()
         selectorView.photoTypeClick = { [weak self](type: ZJAPhotoSelectorType) -> () in
@@ -180,17 +185,9 @@ extension ZJASKUAddCell {
             }
         }
         selectorView.show()
-        
-        /*
-         let cameraController = ZJACameraController()
-         cameraController.addPhotoBlock = {[weak self]() in
-         let index = NSIndexSet(index: 0)
-         self?.skuAddTableView.reloadSections(index as IndexSet, with: .automatic)
-         }
-         navigationController?.pushViewController(cameraController, animated: true)
-         */
     }
     
+    // 弹出照片选择界面
     func pushImagePickerController() {
         let imagePickerVc: TZImagePickerController! = TZImagePickerController(maxImagesCount: 1, delegate: self)
         imagePickerVc.naviBgColor = COLOR_MAIN_APP
@@ -207,6 +204,7 @@ extension ZJASKUAddCell {
     }
 }
 
+// 照片选择回调函数
 extension ZJASKUAddCell: TZImagePickerControllerDelegate {
     func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
         selectedPhotoBlock?(photos)

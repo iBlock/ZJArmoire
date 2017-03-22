@@ -171,12 +171,14 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         switch section {
-        case 0:
+        case 0: break
+            /*
             if ZJASKUDataCenter.sharedInstance.isEditState == true {
                 (view as! ZJASKUAddPhotoHeaderView).editButton.setTitle("完成", for: .normal)
             } else {
                 (view as! ZJASKUAddPhotoHeaderView).editButton.setTitle("删除", for: .normal)
             }
+ */
         case 1:
             let headerView = view as! ZJASKUTypeHeaderView
             if isCanEditSku() == false {
@@ -239,6 +241,7 @@ extension ZJASKUAddTableView: UITableViewDataSource {
 // MARK: - Event and Respones
 extension ZJASKUAddTableView {
     
+    // 点击类别下拉按钮
     @objc func didTappendArrowButton(sender:UIButton) {
         if self.isCanEditSku() == false {
             return
@@ -250,17 +253,7 @@ extension ZJASKUAddTableView {
         self.endUpdates()
     }
     
-    @objc func didTappedEditButton(sender: UIButton) {
-        let skuInstance = ZJASKUDataCenter.sharedInstance
-        if skuInstance.isEditState == true {
-            skuInstance.isEditState = false
-        } else {
-            skuInstance.isEditState = true
-        }
-        let index = NSIndexSet(index: 0)
-        reloadSections(index as IndexSet, with: .none)
-    }
-    
+    // 添加衣服单品
     func addSkuItem(images:[UIImage]!) {
         let dateCenter = ZJASKUDataCenter.sharedInstance
         for item in images {
@@ -273,6 +266,7 @@ extension ZJASKUAddTableView {
         reloadAddPhotoTableView()
     }
     
+    // 刷新衣服Cell
     func reloadAddPhotoTableView() {
         let index = NSIndexSet(index: 0)
         reloadSections(index as IndexSet, with: .automatic)
@@ -311,7 +305,6 @@ extension ZJASKUAddTableView {
     
     func customAddPhotoCellHeader(tableView: UITableView) -> UIView {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ZJASKUAddPhotoHeaderViewIdentifier)
-        (headerView as! ZJASKUAddPhotoHeaderView).editButton.addTarget(self, action: #selector(didTappedEditButton(sender:)), for: .touchUpInside)
         return headerView!
     }
     
@@ -340,6 +333,9 @@ extension ZJASKUAddTableView {
         }
         cell.selectedPhotoBlock = { [weak self] (imags:[UIImage]!) in
             self?.addSkuItem(images: imags)
+        }
+        cell.deletePhotoBlock = {[weak self] in
+            self?.reloadAddPhotoTableView()
         }
         
         return cell

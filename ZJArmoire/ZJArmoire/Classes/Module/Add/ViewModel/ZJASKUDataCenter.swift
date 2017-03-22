@@ -13,7 +13,7 @@ class ZJASKUDataCenter: NSObject {
     
     var skuItemArray:NSArray! = NSArray()
     var selCellIndexPath:IndexPath?
-    var isEditState: Bool! = false
+//    var isEditState: Bool! = false
     
     private var skuItemMutableList:NSMutableArray! = NSMutableArray()
     

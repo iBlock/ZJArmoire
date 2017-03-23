@@ -45,7 +45,8 @@ class ZJADapeiDetailCell: UICollectionViewCell {
         }
         
         typeLabel.snp.makeConstraints { (make) in
-            make.left.bottom.right.equalTo(0)
+            make.left.equalTo(5)
+            make.bottom.right.equalTo(0)
             make.height.equalTo(30)
         }
     }

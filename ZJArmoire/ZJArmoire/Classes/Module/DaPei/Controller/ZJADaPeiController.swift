@@ -12,6 +12,7 @@ class ZJADaPeiController: UIViewController {
     
     var errorView: ZJAErrorView?
     var isSelecter: Bool = false
+    var dapeiList: [ZJADapeiModel] = [ZJADapeiModel]()
     
     // MARK: - Life Cycle
     
@@ -86,8 +87,12 @@ class ZJADaPeiController: UIViewController {
         fetchAlbumModels { (albumModels) in
             let addDapeiController = ZJAAddDapeiController()
             addDapeiController.albumModels = albumModels
-            addDapeiController.confirmCallback = { [weak self] () in
-                self?.fetchDapeilistData()
+            addDapeiController.confirmCallback = { [weak self] (isEdit) in
+                if isEdit == true {
+                    self?.prepareDapeiListData(dpList: (self?.dapeiList)!)
+                } else {
+                    self?.fetchDapeilistData()
+                }
             }
             self.navigationController?.pushViewController(addDapeiController, animated: true)
         }
@@ -123,10 +128,10 @@ class ZJADaPeiController: UIViewController {
     func fetchDapeilistData() {
         SVProgressHUD.show()
         DispatchQueue.global().async {
-            let dapeiList = ZJATableDapei().fetchAllDapei()
+            self.dapeiList = ZJATableDapei().fetchAllDapei()
             DispatchQueue.main.async {
                 SVProgressHUD.dismiss()
-                self.prepareDapeiListData(dpList: dapeiList)
+                self.prepareDapeiListData(dpList: self.dapeiList)
             }
         }
     }

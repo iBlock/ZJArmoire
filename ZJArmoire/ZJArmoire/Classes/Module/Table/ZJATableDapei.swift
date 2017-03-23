@@ -36,6 +36,7 @@ class ZJATableDapei: NSObject {
         }
     }
     
+    /// 插入搭配记录
     func insert() -> Bool {
         var dpTaglistStr: String?
         if let dpTaglist = dapei_taglist {
@@ -54,6 +55,29 @@ class ZJATableDapei: NSObject {
             print("插入搭配记录表失败")
         }
         
+        return isSuccess
+    }
+    
+    /// 根据搭配ID更新搭配
+    func update(dpId: String) -> Bool {
+        let alice = table_dapei.filter(t_dapei_id == dpId)
+        let clothesIdStr = clothesIdList.joined(separator: ",")
+        var dpTaglistStr: String?
+        if let dpTaglist = dapei_taglist {
+            dpTaglistStr = dpTaglist.joined(separator: ",")
+        }
+        let sql = alice.update(
+            t_dapei_clotheslist <- clothesIdStr,
+            t_dapei_taglist <- dpTaglistStr
+        )
+        
+        let isSuccess = ZJASQLiteManager.default.runUpdateDatabase(querys: [sql])
+        if isSuccess == false {
+            print("dpId = " + dpId + " 的搭配更新失败")
+        } else {
+            // 更新衣服后更新搭配列表
+            NotificationCenter.default.post(name: Notification.Name(KEY_NOTIFICATION_UPDATE_DAPEI_LIST), object: nil)
+        }
         return isSuccess
     }
     
@@ -140,7 +164,12 @@ class ZJATableDapei: NSObject {
         model.dapei_id = dapei[t_dapei_id]
         model.dapei_time = dapei[t_dapei_date]
         let taglistStr = dapei[t_dapei_taglist]
-        model.taglist = taglistStr?.components(separatedBy: ",")
+        if taglistStr?.isEmpty == true {
+            model.taglist = nil
+        } else {
+            model.taglist = taglistStr?.components(separatedBy: ",")
+        }
+        
         model.clothesList = clothesModels
         model.clothesIdList = clothesList.components(separatedBy: ",")
         

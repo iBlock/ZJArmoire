@@ -10,10 +10,12 @@ import UIKit
 
 class ZJAAddDapeiController: UIViewController {
     
-    typealias ConfirmButtonCallback = () -> Void
+    typealias ConfirmButtonCallback = (_ isEdit:Bool) -> Void
     var albumModels: [TZAlbumModel]!
     var confirmCallback: ConfirmButtonCallback?
+    /// 是否编辑状态
     var isEdit: Bool = false
+    var editDapeiMdoel: ZJADapeiModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,27 +34,36 @@ class ZJAAddDapeiController: UIViewController {
         } else {
             title = "新建搭配"
         }
+        navigationItem.rightBarButtonItem = UIBarButtonItem.rightItem(title: "确定", target: self, action: #selector(didTappedConfirmButton))
         view.backgroundColor = COLOR_MAIN_BACKGROUND
         view.addSubview(dapeiTableView)
-        view.addSubview(confirmButton)
+//        view.addSubview(confirmButton)
     }
     
     func setUpViewConstraints() {
         dapeiTableView.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(0)
-            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
+            make.left.right.top.bottom.equalTo(0)
+//            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
         }
         
+        /*
         confirmButton.snp.makeConstraints { (make) in
             make.left.equalTo(15)
             make.right.equalTo(-15)
             make.height.equalTo(44)
             make.bottom.equalTo(-10)
         }
+ */
     }
     
     func didTappedConfirmButton() {
-        saveDapeiToDatabase()
+        if isEdit == true {
+            // 更新搭配
+            updateDapeiToDatabase()
+        } else {
+            // 保存新搭配到数据库
+            saveDapeiToDatabase()
+        }
     }
     
     func didTappedCancelButton() {
@@ -62,9 +73,13 @@ class ZJAAddDapeiController: UIViewController {
     public lazy var dapeiTableView: ZJANewDapeiTableView = {
         let tableView = ZJANewDapeiTableView(frame: CGRect.zero, style: .plain)
         tableView.albumModels = self.albumModels
+        if self.isEdit == true {
+            tableView.editDapeiModel = self.editDapeiMdoel
+        }
         return tableView
     }()
     
+    /*
     private lazy var confirmButton:UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         button.setTitle("确认", for: .normal)
@@ -82,13 +97,15 @@ class ZJAAddDapeiController: UIViewController {
         
         return button
     }()
+ */
 }
 
 extension ZJAAddDapeiController {
+    /// 插入搭配
     func saveDapeiToDatabase() {
         let model = dapeiTableView.dapeiModel
         if model.clothesIdList == nil {
-            SVProgressHUD.showError(withStatus: "你还没有选择单品哦!")
+            SVProgressHUD.showInfo(withStatus: "你还没有选择单品哦!")
             return
         }
 
@@ -98,10 +115,29 @@ extension ZJAAddDapeiController {
         dapeiTable.dapei_date = String.getNowDateStr()
         let isSuccess = dapeiTable.insert()
         if isSuccess == true {
-            confirmCallback?()
+            confirmCallback?(isEdit)
             _ = navigationController?.popViewController(animated: true)
         } else {
             SVProgressHUD.showError(withStatus: "保存搭配到数据库失败。")
+        }
+    }
+    
+    /// 更新搭配
+    func updateDapeiToDatabase() {
+        let model = dapeiTableView.dapeiModel
+        if model.clothesIdList == nil {
+            SVProgressHUD.showInfo(withStatus: "你还没有选择单品哦!")
+            return
+        }
+        let dapeiTable = ZJATableDapei()
+        dapeiTable.clothesIdList = model.clothesIdList
+        dapeiTable.dapei_taglist = model.taglist
+        let isSuccess = dapeiTable.update(dpId: model.dapei_id)
+        if isSuccess == true {
+            confirmCallback?(isEdit)
+            navigationController?.dismiss(animated: true, completion: nil)
+        } else {
+            SVProgressHUD.showError(withStatus: "更新搭配失败，请重新尝试。")
         }
     }
 }

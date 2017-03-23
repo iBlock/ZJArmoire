@@ -13,8 +13,9 @@ class ZJANewDapeiTableView: UITableView {
     let selectedPhotoCellIdentifier = "selectedPhotoCellIdentifier"
 //    let temperatueCellIdentifier = "temperatueCellIdentifier"
     var tagListFrame:CGRect! = CGRect(x:0,y:0,width:SCREEN_WIDTH,height:45)
-    var photoCollectionViewHeight: CGFloat = WH_PHOTOCOLLECTION_WIDTH+WH_PHOTOCOLLECTION_LINESPEC*CGFloat(2)
+    var photoCollectionViewHeight: CGFloat = WH_PHOTOCOLLECTION_WIDTH+WH_PHOTOCOLLECTION_LINESPEC
     var albumModels: [TZAlbumModel]!
+    var editDapeiModel: ZJADapeiModel?
     private(set) var dapeiModel: ZJADapeiModel = ZJADapeiModel()
 
     override init(frame: CGRect, style: UITableViewStyle) {
@@ -43,6 +44,10 @@ class ZJANewDapeiTableView: UITableView {
     
     func setupViewConstraints() {
         
+    }
+    
+    func copyEditDapeiModel() {
+        dapeiModel = editDapeiModel!
     }
     
     lazy var tagListHeaderView:ZJATaglistHeaderView = {
@@ -74,7 +79,7 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 50
+            return 40
         } else if section == 1 {
             return tagListFrame.size.height
         }
@@ -121,6 +126,26 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let displayCell = cell as! ZJASelectedPhotoCell
+            // 下面代码是为了处理编辑搭配
+            if let model = editDapeiModel {
+                let mutableArray = NSMutableArray()
+                for clothes in model.clothesList {
+                    let image = clothes.clothesImg!
+                    image.imageTag = clothes.uuid
+                    mutableArray.add(image)
+                }
+                displayCell.reloadPhotoCollection(photos: mutableArray, assets: mutableArray.mutableCopy() as! NSMutableArray)
+                tagListHeaderView.reset(withTags: model.taglist)
+                // 避免循环调用reloadPhotoCollection
+                copyEditDapeiModel()
+                editDapeiModel = nil
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -140,9 +165,9 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
             infoTitle.textAlignment = .right
             headerView.addSubview(infoTitle)
             
-            let bottomLine = UIView()
-            bottomLine.backgroundColor = COLOR_TABLE_LINE
-            headerView.addSubview(bottomLine)
+//            let bottomLine = UIView()
+//            bottomLine.backgroundColor = COLOR_TABLE_LINE
+//            headerView.addSubview(bottomLine)
             
             title.snp.makeConstraints { (make) in
                 make.left.equalTo(15)
@@ -154,10 +179,10 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
                 make.centerY.equalToSuperview()
             }
             
-            bottomLine.snp.makeConstraints({ (make) in
-                make.left.right.bottom.equalTo(0)
-                make.height.equalTo(0.5)
-            })
+//            bottomLine.snp.makeConstraints({ (make) in
+//                make.left.right.bottom.equalTo(0)
+//                make.height.equalTo(0.5)
+//            })
             
             return headerView
         } else if section == 1 {
@@ -172,11 +197,6 @@ extension ZJANewDapeiTableView: UITableViewDelegate, UITableViewDataSource {
         return UIView()
     }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
-            
-        }
-    }
 }
 
 extension ZJANewDapeiTableView: ZJASelectedPhotoCellProtocol {
@@ -188,7 +208,8 @@ extension ZJANewDapeiTableView: ZJASelectedPhotoCellProtocol {
         reloadData()
     }
     
-    func changePhotoLocationCallback(selectedAssets: NSMutableArray) {
+    func changePhotoLocationCallback(selectedPhotos: NSMutableArray,
+                                     selectedAssets: NSMutableArray) {
         self.dapeiModel.clothesIdList = buildClothesIdList(selectedAssets: selectedAssets)
     }
     

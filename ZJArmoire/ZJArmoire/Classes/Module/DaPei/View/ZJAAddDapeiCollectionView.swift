@@ -24,14 +24,14 @@ class ZJAAddDapeiCollectionView: UICollectionView {
     }
     
     func getCollectionViewHeight() -> CGFloat {
-        return layout.collectionViewContentSize.height+WH_PHOTOCOLLECTION_LINESPEC*CGFloat(2)
+        return layout.collectionViewContentSize.height+WH_PHOTOCOLLECTION_LINESPEC
     }
     
     func prepareUI() {
         backgroundColor = UIColor.white
         alwaysBounceVertical = true
         isScrollEnabled = false
-        contentInset = UIEdgeInsets(top: WH_PHOTOCOLLECTION_LINESPEC, left: 15, bottom: WH_PHOTOCOLLECTION_LINESPEC, right: 15)
+        contentInset = UIEdgeInsets(top: 0, left: 15, bottom: WH_PHOTOCOLLECTION_LINESPEC, right: 15)
         keyboardDismissMode = .onDrag
     }
     

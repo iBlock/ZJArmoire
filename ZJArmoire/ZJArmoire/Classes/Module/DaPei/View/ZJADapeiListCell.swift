@@ -22,14 +22,19 @@ class ZJADapeiListCell: UICollectionViewCell {
     }
     
     func configCell(dpModel: ZJADapeiModel!, isSelector: Bool) {
-        var cellImg: UIImage
+        var cellImg: UIImage = UIImage()
         if let img = dpModel.cellImg {
             cellImg = img
+            photoJointView.image = cellImg
         } else {
-            cellImg = photoJointView.configPhotoView(photoList: dpModel.clothesList)
-            dpModel.cellImg = cellImg
+            DispatchQueue.global().async {
+                cellImg = self.photoJointView.configPhotoView(photoList: dpModel.clothesList)
+                DispatchQueue.main.async {
+                    dpModel.cellImg = cellImg
+                    self.photoJointView.image = cellImg
+                }
+            }
         }
-        photoJointView.image = cellImg
         if isSelector == true {
             iconImageView.isHidden = false
         } else {

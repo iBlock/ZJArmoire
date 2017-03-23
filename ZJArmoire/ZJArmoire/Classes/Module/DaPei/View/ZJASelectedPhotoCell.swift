@@ -12,16 +12,18 @@ protocol ZJASelectedPhotoCellProtocol: NSObjectProtocol {
     func selectedPhotoCallback(selectedPhotos: NSMutableArray,
                                selectedAssets: NSMutableArray,
                                photoCollectionViewHeight: CGFloat)
-    func changePhotoLocationCallback(selectedAssets: NSMutableArray)
+    func changePhotoLocationCallback(selectedPhotos: NSMutableArray,
+                                     selectedAssets: NSMutableArray)
 }
 
 class ZJASelectedPhotoCell: UITableViewCell {
     var albumModels: [TZAlbumModel]!
     var selectedPhotos: NSMutableArray = NSMutableArray()
-    var selectedAssets: NSMutableArray! = NSMutableArray()
+    var selectedAssets: NSMutableArray = NSMutableArray()
     var isSelectOriginalPhoto: Bool = false
     weak var delegate: ZJASelectedPhotoCellProtocol?
     let photoCellIdentifier = "ZJAPhotoCellIdentifier"
+    let addPhotoCellIdentifier = "ZJAddPhotoCellIdentifier"
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,11 +43,22 @@ class ZJASelectedPhotoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(photos: NSMutableArray,
-                    assets: NSMutableArray) {
+    /** 刷新图片CollectionView */
+    func reloadPhotoCollection(photos: NSMutableArray,
+                               assets: NSMutableArray) {
         selectedAssets = assets
         selectedPhotos = photos
-        photoCollectionView.reloadData( )
+        photoCollectionView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.init(uptimeNanoseconds: 1)) { 
+            self.reloadPhotoCallback()
+        }
+        
+    }
+    
+    func reloadPhotoCallback() {
+        let height = photoCollectionView.getCollectionViewHeight()
+        delegate?.selectedPhotoCallback(selectedPhotos: selectedPhotos, selectedAssets: selectedAssets, photoCollectionViewHeight: height)
     }
     
     func prepareUI() {
@@ -67,6 +80,7 @@ class ZJASelectedPhotoCell: UITableViewCell {
     public lazy var photoCollectionView: ZJAAddDapeiCollectionView = {
         let collectionView = ZJAAddDapeiCollectionView(frame: CGRect.zero)
         collectionView.register(ZJAPreviewPhotoCell.self, forCellWithReuseIdentifier: self.photoCellIdentifier)
+        collectionView.register(ZJASKUAddButtonCell.self, forCellWithReuseIdentifier: self.addPhotoCellIdentifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
@@ -93,22 +107,30 @@ extension ZJASelectedPhotoCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: ZJAPreviewPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: photoCellIdentifier, for: indexPath) as! ZJAPreviewPhotoCell
-        cell.videoImageView.isHidden = true
         if indexPath.row == self.selectedPhotos.count {
-            cell.imageView.image = UIImage(named: "AlbumAddBtn.png")
-            cell.deleteBtn.isHidden = true
-            cell.gifLable.isHidden = true
-        } else {
-            cell.imageView.image = selectedPhotos[indexPath.row] as? UIImage
-            cell.asset = selectedAssets[indexPath.row];
-            cell.deleteBtn.isHidden = false
+            let cell: ZJASKUAddButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: addPhotoCellIdentifier, for: indexPath) as! ZJASKUAddButtonCell
+            return cell
         }
-        cell.gifLable.isHidden = true
-        cell.deleteBtn.tag = indexPath.row
+        
+        let cell: ZJAPreviewPhotoCell = collectionView.dequeueReusableCell(withReuseIdentifier: photoCellIdentifier, for: indexPath) as! ZJAPreviewPhotoCell
         cell.deleteBtn.addTarget(self, action: #selector(deleteBtnClick(sender:)), for: .touchUpInside)
         
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == self.selectedPhotos.count  {
+            return
+        }
+        let displayCell = cell as! ZJAPreviewPhotoCell
+        displayCell.videoImageView.isHidden = true
+        var photo = selectedPhotos[indexPath.row] as? UIImage
+        photo = photo?.autoResizeImage(newSize: cell.size)
+        displayCell.imageView.image = photo
+        displayCell.asset = selectedAssets[indexPath.row];
+        displayCell.deleteBtn.isHidden = false
+        displayCell.gifLable.isHidden = true
+        displayCell.deleteBtn.tag = indexPath.row
     }
     
     //MARK: - LxGridViewDataSource
@@ -131,7 +153,8 @@ extension ZJASelectedPhotoCell: UICollectionViewDelegate, UICollectionViewDataSo
         selectedAssets.insert(asset, at: destinationIndexPath.item)
         
         collectionView.reloadData()
-        delegate?.changePhotoLocationCallback(selectedAssets: selectedAssets)
+        delegate?.changePhotoLocationCallback(selectedPhotos: selectedPhotos,
+                                              selectedAssets: selectedAssets)
     }
 }
 

@@ -41,6 +41,11 @@ class ZJADapeiDetailController: UIViewController {
         { (action) in
             let editVc = ZJAAddDapeiController()
             editVc.isEdit = true
+            editVc.editDapeiMdoel = self.dapeiModel
+            editVc.confirmCallback = {[weak self] (isEdit) in
+                self?.dapeiModel = editVc.editDapeiMdoel
+                self?.dapeiCollectionView.reloadData()
+            }
             editVc.albumModels = self.albumModels
             let naviVc = ZJANavigationController(rootViewController: editVc)
             self.navigationController?.present(naviVc, animated: true, completion: nil)
@@ -94,7 +99,13 @@ extension ZJADapeiDetailController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell: ZJADapeiDetailCell = cell as! ZJADapeiDetailCell
-        cell.configCell(clothesModel: dapeiModel.clothesList[indexPath.row])
+        // 根据衣服ID列表顺序来显示衣服
+        let clothesId = dapeiModel.clothesIdList[indexPath.row]
+        for dpModel in dapeiModel.clothesList {
+            if dpModel.uuid == clothesId {
+                cell.configCell(clothesModel: dpModel)
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,

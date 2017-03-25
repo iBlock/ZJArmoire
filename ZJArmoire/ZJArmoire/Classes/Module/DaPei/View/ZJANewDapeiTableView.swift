@@ -221,6 +221,7 @@ extension ZJANewDapeiTableView: ZJASelectedPhotoCellProtocol {
                 clothesIdList.append(image.imageTag)
             }
         }
+        
         return clothesIdList
     }
 }

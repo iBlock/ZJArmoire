@@ -171,7 +171,11 @@ class ZJATableDapei: NSObject {
         }
         
         model.clothesList = clothesModels
-        model.clothesIdList = clothesList.components(separatedBy: ",")
+        var clothesIds = [String]()
+        for item in clothesModels {
+            clothesIds.append(item.uuid)
+        }
+        model.clothesIdList = clothesIds
         
         return model
     }

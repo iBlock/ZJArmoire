@@ -4,7 +4,7 @@
 //
 //  Created by iBlock on 16/10/4.
 //  Copyright © 2016年 iBlock. All rights reserved.
-//
+//  搭配列表页
 
 import UIKit
 
@@ -70,21 +70,9 @@ class ZJADaPeiController: UIViewController {
         pushToAddDapeiController()
     }
     
-    // 获取搭配照片数据
-    func fetchAlbumModels(block: @escaping ([TZAlbumModel]) -> Void) {
-        SVProgressHUD.show()
-        DispatchQueue.global().async {
-            let albumModels = self.fetchAllClothes()
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-                block(albumModels)
-            }
-        }
-    }
-    
     // 进入添加搭配页面
     func pushToAddDapeiController() {
-        fetchAlbumModels { (albumModels) in
+        ZJACameraDataCenter.fetchAlbumModels { (albumModels) in
             let addDapeiController = ZJAAddDapeiController()
             addDapeiController.albumModels = albumModels
             addDapeiController.confirmCallback = { [weak self] (isEdit) in
@@ -119,7 +107,7 @@ class ZJADaPeiController: UIViewController {
         detailVc.isSelecter = isSelecter
         let model: ZJADapeiModel = dapeiModel
         detailVc.dapeiModel = model
-        fetchAlbumModels {[weak self] (albumModels) in
+        ZJACameraDataCenter.fetchAlbumModels {[weak self] (albumModels) in
             detailVc.albumModels = albumModels
             self?.navigationController?.pushViewController(detailVc, animated: true)
         }
@@ -134,6 +122,7 @@ class ZJADaPeiController: UIViewController {
                 self.prepareDapeiListData(dpList: self.dapeiList)
             }
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: KEY_NOTIFICATION_REFRESH_HOME), object: nil)
     }
     
     func prepareDapeiListData(dpList: [ZJADapeiModel]) {
@@ -158,23 +147,4 @@ class ZJADaPeiController: UIViewController {
         }
         return collectionView
     }()
-}
-
-extension ZJADaPeiController {
-    func fetchAllClothes() -> [TZAlbumModel] {
-        let clothesTable = ZJATableClothes()
-        var albumModels = [TZAlbumModel]()
-        for item in CONFIG_YIGUI_TYPENAMES {
-            let index = CONFIG_YIGUI_TYPENAMES.index(of: item)
-            let clothesModel = clothesTable.fetchAllClothes(index!)
-            var imageList = [UIImage]()
-            for clothes in clothesModel {
-                clothes.clothesImg.imageTag = clothes.uuid
-                imageList.append(clothes.clothesImg)
-            }
-            let model: TZAlbumModel = TZImageManager.default().getCustomAlbum(withName: item, imageList: imageList)
-            albumModels.append(model)
-        }
-        return albumModels
-    }
 }

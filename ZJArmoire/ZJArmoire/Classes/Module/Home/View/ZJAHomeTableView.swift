@@ -50,6 +50,16 @@ class ZJAHomeTableView: UITableView {
         let rootVc = ZJATabBarController.sharedInstance.navigationController
         rootVc?.pushViewController(dapeiVc, animated: true)
     }
+    
+    func didPushDapeiDetailPage(dpModel: ZJADapeiModel) {
+        let detailVc = ZJADapeiDetailController()
+        detailVc.dapeiModel = dpModel
+        ZJACameraDataCenter.fetchAlbumModels { (albumModel) in
+            detailVc.albumModels = albumModel
+        }
+        let rootVc = ZJATabBarController.sharedInstance.navigationController
+        rootVc?.pushViewController(detailVc, animated: true)
+    }
 
 }
 
@@ -83,6 +93,9 @@ extension ZJAHomeTableView: UITableViewDataSource {
             if tuiJianDapeiModels.count > 0 {
                 let tuiJianCell:ZJATuiJianDapeiCell! = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! ZJATuiJianDapeiCell!
                 tuiJianCell.selectionStyle = .none
+                tuiJianCell.tuiJianCollectionView.clickblock = {[weak self](dapeiModel) in
+                    self?.didPushDapeiDetailPage(dpModel: dapeiModel)
+                }
                 tuiJianCell.configCell(todayModel: todayModel, dapeiModels: tuiJianDapeiModels)
                 tuijianDapeiCellHeight = tuiJianCell.getCellHeight()
                 return tuiJianCell
@@ -149,6 +162,14 @@ extension ZJAHomeTableView: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        didPushDapeiListPage()
+        if indexPath.section == 0 {
+            if todayModel.dapei_id == nil {
+                didPushDapeiListPage()
+            } else {
+                didPushDapeiDetailPage(dpModel: todayModel)
+            }
+        } else {
+            print("")
+        }
     }
 }

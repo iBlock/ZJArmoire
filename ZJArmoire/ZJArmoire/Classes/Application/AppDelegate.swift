@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func globalConfig() {
         SVProgressHUD.setDefaultMaskType(.clear)
-        SVProgressHUD.setMinimumDismissTimeInterval(1)
+        SVProgressHUD.setMinimumDismissTimeInterval(2)
     }
 }
 

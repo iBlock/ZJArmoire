@@ -4,7 +4,7 @@
 //
 //  Created by iBlock on 16/9/30.
 //  Copyright © 2016年 iBlock. All rights reserved.
-//
+//  首页
 
 import UIKit
 import SnapKit
@@ -45,8 +45,14 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
         }
     }
     
+    // 刷新首页
+    func refreshHome() {
+        refreshTableView(index: currentIndex)
+    }
+    
     private func prepareData() {
         NotificationCenter.default.addObserver(self, selector: #selector(selectorTodayDapeiCallback), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_SELECTER_DAPEI), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshHome), name: NSNotification.Name(rawValue: KEY_NOTIFICATION_REFRESH_HOME), object: nil)
     }
     
     private func prepareUI() {

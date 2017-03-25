@@ -79,4 +79,11 @@ extension ZJADapeiListCollectionView: UICollectionViewDelegate,UICollectionViewD
         clickblock?(dapeiModels[indexPath.row])
     }
     
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isKind(of: UITableViewCell.self) == true {
+            
+        }
+        return false
+    }
+    
 }

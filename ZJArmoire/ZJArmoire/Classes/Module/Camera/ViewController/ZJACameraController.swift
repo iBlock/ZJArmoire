@@ -49,7 +49,7 @@ class ZJACameraController: UIViewController {
     }
     
     private func prepareUI() {
-        view.backgroundColor = COLOR_MAIN_BACKGROUND
+//        view.backgroundColor = UIColor.colorHex(hex: "000000", alpha: 0.3)
         cameraManager.initalSession(preview: self.view)
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
@@ -94,60 +94,6 @@ class ZJACameraController: UIViewController {
         return actionView
     }()
     
-    /*
-    /** 获取拍照设备 */
-    private lazy var captureDevice:AVCaptureDevice = {
-        var device:AVCaptureDevice! = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-        do {
-            try device.lockForConfiguration()
-        } catch {
-            
-        }
-        
-        return device
-    }()
-    
-    /** 获取硬件输入流 */
-    private lazy var captureDeviceInput:AVCaptureDeviceInput = {
-        var deviceInput:AVCaptureDeviceInput!
-        do {
-            deviceInput = try AVCaptureDeviceInput(device: self.captureDevice)
-        } catch let error as NSError {
-            print(error)
-        }
-        return deviceInput
-    }()
-    
-    /** 协调输入和输出的会话 */
-    private lazy var captureSession:AVCaptureSession = {
-        let session = AVCaptureSession()
-        if session.canAddInput(self.captureDeviceInput) {
-            session.addInput(self.captureDeviceInput)
-        }
-        
-        if session.canAddOutput(self.captureStillImageOutput) {
-            session.addOutput(self.captureStillImageOutput)
-        }
-        
-        self.avCaptureSesstion = session
-        
-        return session
-    }()
-    
-    /** 图像预览图层 */
-    lazy var captureVideoViewLayer:AVCaptureVideoPreviewLayer = {
-        let viewLayer:AVCaptureVideoPreviewLayer! = AVCaptureVideoPreviewLayer(session: self.captureSession)
-        viewLayer.frame = self.view.layer.frame
-        return viewLayer
-    }()
-    
-    //使用AVCaptureStillImageOutput捕获静态图片
-    
-    public lazy var captureStillImageOutput:AVCaptureStillImageOutput = {
-        return AVCaptureStillImageOutput()
-    }()
- */
-    
     public lazy var cameraStartAnimalView:UIImageView = {
         let animalView = UIImageView(image: UIImage(named: "Camera_Start"))
         return animalView
@@ -156,6 +102,7 @@ class ZJACameraController: UIViewController {
 }
 
 extension ZJACameraController:ZJACameraManagerProtocol {
+    /// 相机权限认证
     func cameraAuthorResult(manager: ZJACameraManager) {
         if manager.isAuthor == true {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.8, execute: {

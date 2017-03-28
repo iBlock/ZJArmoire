@@ -22,6 +22,8 @@ class ZJAHomeTableView: UITableView {
     var todayDapeiCellHeight: CGFloat = 0
     var tuijianDapeiCellHeight: CGFloat = 0
     var tableHeader: ZJAHomeTableHeaderView!
+    var currentIndex: Int = 0
+    var weekDay: String = ""
     
     weak var tableDelegate: ZJAHomeTableViewDelegate?
 
@@ -116,7 +118,15 @@ extension ZJAHomeTableView: UITableViewDelegate {
         headerView.backgroundColor = UIColor.white
         let titleLabel = UILabel()
         if section == 0 {
-            titleLabel.text = "今日搭配"
+            if currentIndex == 0 {
+                titleLabel.text = "今日搭配"
+            } else if currentIndex == 1 {
+                titleLabel.text = "明日搭配"
+            } else if currentIndex == 2 {
+                titleLabel.text = "后日搭配"
+            } else if currentIndex > 2 {
+                titleLabel.text = weekDay+"搭配"
+            }
         } else if section == 1 {
             titleLabel.text = "推荐搭配"
         }

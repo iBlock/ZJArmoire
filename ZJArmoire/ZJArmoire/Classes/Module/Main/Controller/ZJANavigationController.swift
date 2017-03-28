@@ -20,7 +20,6 @@ class ZJANavigationController: UINavigationController {
         navBar.barStyle = UIBarStyle.black
         navBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navBar.shadowImage = UIImage()
-        
         navigationBar.titleTextAttributes = [
             NSFontAttributeName : UIFont.systemFont(ofSize: 18),
             NSForegroundColorAttributeName : UIColor.white

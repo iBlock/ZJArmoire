@@ -32,6 +32,7 @@
 		CC13E64E1E54316F00F86BC7 /* ZJASkuEditTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E64D1E54316F00F86BC7 /* ZJASkuEditTableView.swift */; };
 		CC13E6501E54526700F86BC7 /* ZJAAddDapeiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E64F1E54526700F86BC7 /* ZJAAddDapeiController.swift */; };
 		CC13E6521E54533F00F86BC7 /* ZJAPhotoJointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E6511E54533F00F86BC7 /* ZJAPhotoJointView.swift */; };
+		CC19BBE41E88007000D7B96D /* ZJACameraZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC19BBE31E88007000D7B96D /* ZJACameraZoomView.swift */; };
 		CC210A2E1E8168490068BFF1 /* ZJANaviToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC210A2D1E8168490068BFF1 /* ZJANaviToolView.swift */; };
 		CC210A361E8181290068BFF1 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = CC210A351E8181290068BFF1 /* UIView+Extension.m */; };
 		CC26033B1DA4131B0090F916 /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CC2603381DA4131B0090F916 /* HttpUtil.m */; };
@@ -158,6 +159,7 @@
 		CC13E64D1E54316F00F86BC7 /* ZJASkuEditTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJASkuEditTableView.swift; sourceTree = "<group>"; };
 		CC13E64F1E54526700F86BC7 /* ZJAAddDapeiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAAddDapeiController.swift; sourceTree = "<group>"; };
 		CC13E6511E54533F00F86BC7 /* ZJAPhotoJointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJAPhotoJointView.swift; sourceTree = "<group>"; };
+		CC19BBE31E88007000D7B96D /* ZJACameraZoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJACameraZoomView.swift; sourceTree = "<group>"; };
 		CC210A2D1E8168490068BFF1 /* ZJANaviToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZJANaviToolView.swift; sourceTree = "<group>"; };
 		CC210A341E8181290068BFF1 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		CC210A351E8181290068BFF1 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				37D68EF61DB611C100EFC185 /* ZJACameraActionView.swift */,
 				37D68EFA1DB7301400EFC185 /* ZJACameraEditActionView.swift */,
 				CCA726971DBB36CA0099BC98 /* ZJAPhotoSelectorView.swift */,
+				CC19BBE31E88007000D7B96D /* ZJACameraZoomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1082,6 +1085,7 @@
 				37D68EF51DB5F98A00EFC185 /* ZJACameraController.swift in Sources */,
 				CC653D5F1E69044D00B49F77 /* ZJADefaultTodayDapeiCell.swift in Sources */,
 				37BF23461DEFF6CD00666B52 /* ZJASKUAddButtonCell.swift in Sources */,
+				CC19BBE41E88007000D7B96D /* ZJACameraZoomView.swift in Sources */,
 				37BF233E1DEE6E1F00666B52 /* ZJASKUAddPhotoCell.swift in Sources */,
 				CC26033C1DA4131B0090F916 /* SignUtil.m in Sources */,
 				37BF232D1DED820500666B52 /* ZJASKUAddTableView.swift in Sources */,

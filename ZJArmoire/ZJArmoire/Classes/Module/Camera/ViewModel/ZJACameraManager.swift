@@ -58,11 +58,11 @@ class ZJACameraManager: NSObject {
         do {
             try self.videoInput = AVCaptureDeviceInput(device: self.backCarmer())
         } catch{
-            print("error")
+            print("相机启动异常")
         }
         self.stillImageOutput = AVCaptureStillImageOutput()
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-        self.previewLayer!.frame = CGRect(x: 0, y:0, width:SCREEN_WIDTH,height:SCREEN_HEIGHT-100)
+        self.previewLayer!.frame = CGRect(x: 0, y:(SCREEN_HEIGHT-SCREEN_WIDTH-100)/2, width:SCREEN_WIDTH,height:SCREEN_WIDTH)
         self.previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
         preview.layer.addSublayer(self.previewLayer!)
         let outputSettings :NSDictionary = NSDictionary(object: AVVideoCodecJPEG, forKey: AVVideoCodecKey as NSCopying)
@@ -250,6 +250,7 @@ class ZJACameraManager: NSObject {
         }
     }
     
+    /// 检查相机权限
     func checkAuthorizationStatus() {
         let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch authorizationStatus {

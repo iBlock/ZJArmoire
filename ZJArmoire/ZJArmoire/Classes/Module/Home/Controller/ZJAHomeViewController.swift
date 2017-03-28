@@ -33,12 +33,15 @@ class ZJAHomeViewController: UIViewController, ZJAHomeTableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.navigationItem.title = "今天 · 北京";
+        tabBarController?.navigationItem.title = "北京";
     }
     
     func reloadHomeTable() {
         homeTableView.todayModel = todayModel
         homeTableView.tuiJianDapeiModels = tuijianModels
+        homeTableView.currentIndex = currentIndex
+        let weatherModel = weatherList[currentIndex]
+        homeTableView.weekDay = weatherModel.weekday
         DispatchQueue.main.async {
             self.homeTableView.tableHeader.configHeaderView(weathers: self.weatherList)
             self.homeTableView.reloadData()

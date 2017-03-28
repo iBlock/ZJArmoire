@@ -16,7 +16,7 @@ class ZJACameraEditController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        automaticallyAdjustsScrollViewInsets = false
         prepareUI()
         setUpViewConstraints()
     }
@@ -38,7 +38,8 @@ class ZJACameraEditController: UIViewController {
     
     private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
-        view.addSubview(previewImageView)
+//        view.addSubview(previewImageView)
+        view.addSubview(cameraZoomView)
         view.addSubview(editImageActionView)
     }
     
@@ -47,10 +48,10 @@ class ZJACameraEditController: UIViewController {
             make.left.right.bottom.equalTo(0)
             make.height.equalTo(100)
         }
-        previewImageView.snp.makeConstraints { (make) in
-            make.left.top.right.equalTo(0)
-            make.bottom.equalTo(editImageActionView.snp.top)
-        }
+//        previewImageView.snp.makeConstraints { (make) in
+//            make.left.top.right.equalTo(0)
+//            make.bottom.equalTo(editImageActionView.snp.top)
+//        }
     }
     
     // MARK: - Lazy Method
@@ -58,6 +59,13 @@ class ZJACameraEditController: UIViewController {
     private lazy var previewImageView:UIImageView = {
         let imageView = UIImageView(image: self.previewImage)
         return imageView
+    }()
+    
+    private lazy var cameraZoomView: ZJACameraZoomView = {
+        let frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_WIDTH)
+        let zoomView: ZJACameraZoomView = ZJACameraZoomView(frame: frame, zoomImage: self.previewImage!)
+        zoomView.center = self.view.center
+        return zoomView
     }()
     
     private lazy var editImageActionView:UIView = {
@@ -76,36 +84,7 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     }
     
     func didTappedConfirmButton() {
-        /*
-        //图片大小 
-        let imageData = UIImageJPEGRepresentation(previewImage!, 1)        //992400
-        let length: UInt = UInt(imageData!.count)
-        let length2 = (previewImage?.cgImage)!.width * (previewImage?.cgImage)!.bytesPerRow
-        
-        let image1 = previewImage?.compress()
-        let imageData3: Data = UIImageJPEGRepresentation(image1!, 1)!
-        let length4 = (image1?.cgImage)!.width * (image1?.cgImage)!.bytesPerRow
-        
-        var paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        var documentsDirectory = paths[0] 
-        var filePath = documentsDirectory.appending("/1.png")
-        var filePath2 = documentsDirectory.appending("/2.png")
-        var filePath3 = documentsDirectory.appending("/3.png")
-        
-//        (imageData as! NSData).write(toFile: filePath, atomically: true)
-//        (imageData2 as! NSData).write(toFile: filePath2, atomically: true)
-        
-//        (imageData3 as NSData).write(toFile: filePath3, atomically: true)
-        do {
-            try imageData?.write(to: URL(fileURLWithPath: filePath), options: .atomic)
-            try imageData3.write(to: URL(fileURLWithPath: filePath3), options: .atomic)
-        } catch let error {
-            print(error)
-        }
-        */
-        
         confirmPhotoBlock?(previewImage!)
-        
         //下面代码是为了将modal出来的拍照界面dismiss掉，测试过如果是push出来的执行也没影响
         dismiss(animated: true, completion: nil)
     }

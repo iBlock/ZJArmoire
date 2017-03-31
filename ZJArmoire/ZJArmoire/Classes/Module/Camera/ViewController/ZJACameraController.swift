@@ -15,6 +15,14 @@ class ZJACameraController: UIViewController {
     
     var avCaptureSesstion: AVCaptureSession?
     var addPhotoBlock: ConfirmPhotoCallback?
+    
+    deinit {
+        if cameraManager.previewLayer != nil {
+            cameraManager.previewLayer?.removeFromSuperlayer()
+        }
+        
+        maskLayer.delegate = nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +57,11 @@ class ZJACameraController: UIViewController {
     }
     
     private func prepareUI() {
-//        view.backgroundColor = UIColor.colorHex(hex: "000000", alpha: 0.3)
-        cameraManager.initalSession(preview: self.view)
+        view.backgroundColor = UIColor.black
+        cameraManager.initalSession(preview: cameraPreview)
+        view.addSubview(cameraPreview)
+//        view.layer.insertSublayer(maskLayer, above: cameraManager.previewLayer)
+//        maskLayer.setNeedsDisplay()
         view.addSubview(cameraStartAnimalView)
         view.addSubview(captureActionView)
     }
@@ -86,6 +97,19 @@ class ZJACameraController: UIViewController {
         let manager = ZJACameraManager()
         manager.cameraManagerDelegate = self
         return manager
+    }()
+    
+    lazy var cameraPreview: UIView = {
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT-100)
+        return view
+    }()
+    
+    lazy var maskLayer: CALayer = {
+        let layer = CALayer()
+        layer.frame = self.view.layer.bounds
+        layer.delegate = self
+        return layer
     }()
     
     private lazy var captureActionView:ZJACameraActionView = {
@@ -125,7 +149,8 @@ extension ZJACameraController:ZJACameraManagerProtocol {
     func cameraTakePhoneResult(manager: ZJACameraManager) {
         let takeImage = manager.takePhoneImage
         let cameraEditController = ZJACameraEditController()
-        let image = takeImage?.compress()
+//        let image = takeImage?.compress()
+        let image = takeImage?.autoResizeImage(newSize: cameraPreview.size)
         cameraEditController.previewImage = image
         cameraEditController.confirmPhotoBlock = {[weak self] (image) in
             self?.addPhotoBlock?(image)
@@ -146,16 +171,6 @@ extension ZJACameraController:ZJACameraActionViewDelegate {
         }
         
         dismiss(animated: true, completion: nil)
-//        if let viewControllers = self.navigationController?.viewControllers {
-//            let count: Int = viewControllers.count
-//            if count > 1 &&
-//                (viewControllers as NSArray).object(at: count-1) as!
-//                ZJACameraController == self {
-//                _ = navigationController?.popViewController(animated: true)
-//            }
-//        } else {
-//            dismiss(animated: true, completion: nil)
-//        }
     }
 }
 
@@ -163,5 +178,17 @@ extension ZJACameraController:CAAnimationDelegate {
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         cameraStartAnimalView.isHidden = true
         cameraStartAnimalView.removeFromSuperview()
+    }
+}
+
+extension ZJACameraController: CALayerDelegate {
+    func draw(_ layer: CALayer, in ctx: CGContext) {
+        if layer == maskLayer {
+            UIGraphicsBeginImageContextWithOptions(maskLayer.frame.size, false, 1.0)
+            ctx.setFillColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor)
+            ctx.fill(maskLayer.frame)
+            let scanFrame = view.convert(cameraPreview.frame, from: cameraPreview.superview)
+            ctx.clear(scanFrame)
+        }
     }
 }

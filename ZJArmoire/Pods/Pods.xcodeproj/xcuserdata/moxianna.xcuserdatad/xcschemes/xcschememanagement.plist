@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RSKImageCropper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RxSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,12 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0FC1A64D1FBD420901A4235811F5EB16</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>18F4E85ACB7DFC4793ADE37B9AE7F96A</key>
+		<key>16D6FBAB2B70CC1139A8A7133A05AE06</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,17 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>2BF05624B4BCCC58B2BC4F21BD3F0BB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>32D239C53D12DB5A4AD85324EC4E5A97</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3FCE57514D48346588FE469EB3F6F135</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>47890C8404D53E4D3B1191229647611C</key>
+		<key>4059506AEC1EFDA51AE0E65C5D32712E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +117,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85DDBD15DCCFF7E9C181ABBEB0E490AC</key>
+		<key>6E2F27174BAD480DCFD75BF2CE0D50D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7A967E5380DEC2C348FE6BF1B5890E51</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8053A1246E7985A4800FB882FDB47508</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,12 +147,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BAB9B4B2B851D079A0FCA5E250A3F360</key>
+		<key>C4944FEC314D1A66588651D006273ADE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C4944FEC314D1A66588651D006273ADE</key>
+		<key>E4B032B41CBB8892B6B9CDF0CF3047D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

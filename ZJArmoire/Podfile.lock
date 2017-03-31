@@ -9,6 +9,7 @@ PODS:
   - IQKeyboardManagerSwift (4.0.7)
   - JRSwizzle (1.0)
   - Kingfisher (3.1.3)
+  - RSKImageCropper (1.6.1)
   - RxSwift (3.0.1)
   - SnapKit (3.0.1)
   - SVProgressHUD (2.1.2)
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - InAppSettingsKit (= 2.8)
   - IQKeyboardManagerSwift (= 4.0.7)
   - Kingfisher (= 3.1.3)
+  - RSKImageCropper (= 1.6.1)
   - RxSwift (= 3.0.1)
   - SnapKit (= 3.0.1)
   - SVProgressHUD (= 2.1.2)
@@ -36,10 +38,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   DJDebug:
-    :revision: '377446'
+    :revision: '381423'
     :svn: http://svn.djcorp.cn:8088/dianshangwuxian/trunk/mobile/jzt/ios/DJComponents/DJDebug
   TZImagePickerController:
-    :commit: f994f27da9f7fde4794ab0e449731ace7d0d434d
+    :commit: 1594d513fe9fe77bff199f0c28580a33b792bda6
     :git: https://github.com/iBlock/TZImagePickerController.git
 
 SPEC CHECKSUMS:
@@ -50,12 +52,13 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   Kingfisher: 007f5851c18c81e7cc106c9cbac1bafea1cce5dc
+  RSKImageCropper: 0df8c99e77a8ea7ca7a8b83ef468556f31584254
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   TTRangeSlider: 2f2ce4a33b32bb323c6575b9f5161c4664459c58
   TZImagePickerController: 87a138ae5d585225aaa6c8abe2cface0f0ad19dd
 
-PODFILE CHECKSUM: 10c5f2a133e1145fa09bc37d4b2a3c895f1f19e4
+PODFILE CHECKSUM: 5283662a06efe028a18da2023260c6b96357aa66
 
 COCOAPODS: 1.2.0.beta.1

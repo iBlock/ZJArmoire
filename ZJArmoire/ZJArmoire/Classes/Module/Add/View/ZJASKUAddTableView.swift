@@ -172,13 +172,6 @@ extension ZJASKUAddTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         switch section {
         case 0: break
-            /*
-            if ZJASKUDataCenter.sharedInstance.isEditState == true {
-                (view as! ZJASKUAddPhotoHeaderView).editButton.setTitle("完成", for: .normal)
-            } else {
-                (view as! ZJASKUAddPhotoHeaderView).editButton.setTitle("删除", for: .normal)
-            }
- */
         case 1:
             let headerView = view as! ZJASKUTypeHeaderView
             if isCanEditSku() == false {

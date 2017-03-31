@@ -38,8 +38,7 @@ class ZJACameraEditController: UIViewController {
     
     private func prepareUI() {
         view.backgroundColor = COLOR_MAIN_BACKGROUND
-//        view.addSubview(previewImageView)
-        view.addSubview(cameraZoomView)
+        view.addSubview(previewImageView)
         view.addSubview(editImageActionView)
     }
     
@@ -48,10 +47,10 @@ class ZJACameraEditController: UIViewController {
             make.left.right.bottom.equalTo(0)
             make.height.equalTo(100)
         }
-//        previewImageView.snp.makeConstraints { (make) in
-//            make.left.top.right.equalTo(0)
-//            make.bottom.equalTo(editImageActionView.snp.top)
-//        }
+        previewImageView.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(0)
+            make.bottom.equalTo(editImageActionView.snp.top)
+        }
     }
     
     // MARK: - Lazy Method
@@ -59,13 +58,6 @@ class ZJACameraEditController: UIViewController {
     private lazy var previewImageView:UIImageView = {
         let imageView = UIImageView(image: self.previewImage)
         return imageView
-    }()
-    
-    private lazy var cameraZoomView: ZJACameraZoomView = {
-        let frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_WIDTH)
-        let zoomView: ZJACameraZoomView = ZJACameraZoomView(frame: frame, zoomImage: self.previewImage!)
-        zoomView.center = self.view.center
-        return zoomView
     }()
     
     private lazy var editImageActionView:UIView = {
@@ -84,8 +76,21 @@ extension ZJACameraEditController: ZJACamereEditActionProtocol {
     }
     
     func didTappedConfirmButton() {
-        confirmPhotoBlock?(previewImage!)
-        //下面代码是为了将modal出来的拍照界面dismiss掉，测试过如果是push出来的执行也没影响
+        let zoomController = RSKImageCropViewController(image: previewImage!, cropMode: .square)
+        zoomController.delegate = self
+        navigationController?.pushViewController(zoomController, animated: true)
+    }
+}
+
+extension ZJACameraEditController: RSKImageCropViewControllerDelegate {
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController,
+                                 didCropImage croppedImage: UIImage,
+                                 usingCropRect cropRect: CGRect) {
+        confirmPhotoBlock?(croppedImage)
         dismiss(animated: true, completion: nil)
     }
 }

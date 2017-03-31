@@ -207,6 +207,25 @@ extension ZJASKUAddCell {
 // 照片选择回调函数
 extension ZJASKUAddCell: TZImagePickerControllerDelegate {
     func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool) {
-        selectedPhotoBlock?(photos)
+        
+        let zoomController = RSKImageCropViewController(image: photos.first!, cropMode: .square)
+        zoomController.delegate = self
+        let tabVc = ZJATabBarController.sharedInstance
+        tabVc.navigationController?.present(zoomController, animated: false, completion: nil)
+    }
+}
+
+extension ZJASKUAddCell: RSKImageCropViewControllerDelegate {
+    func imageCropViewControllerDidCancelCrop(_ controller: RSKImageCropViewController) {
+        let tabVc = ZJATabBarController.sharedInstance
+        tabVc.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func imageCropViewController(_ controller: RSKImageCropViewController,
+                                 didCropImage croppedImage: UIImage,
+                                 usingCropRect cropRect: CGRect) {
+        selectedPhotoBlock?([croppedImage])
+        let tabVc = ZJATabBarController.sharedInstance
+        tabVc.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

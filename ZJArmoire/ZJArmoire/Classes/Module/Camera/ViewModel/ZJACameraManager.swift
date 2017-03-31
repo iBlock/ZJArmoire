@@ -41,7 +41,7 @@ class ZJACameraManager: NSObject {
     private var session          :AVCaptureSession?
     private var videoInput       :AVCaptureDeviceInput?
     private var stillImageOutput :AVCaptureStillImageOutput?
-    private var previewLayer     :AVCaptureVideoPreviewLayer?
+    public var previewLayer     :AVCaptureVideoPreviewLayer?
     private var flashLightState  :KFlashLightState?
     private var sessionQueue = DispatchQueue(label: "com.ZJArmoire.camera.capture_session")
     
@@ -62,8 +62,9 @@ class ZJACameraManager: NSObject {
         }
         self.stillImageOutput = AVCaptureStillImageOutput()
         self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-        self.previewLayer!.frame = CGRect(x: 0, y:(SCREEN_HEIGHT-SCREEN_WIDTH-100)/2, width:SCREEN_WIDTH,height:SCREEN_WIDTH)
-        self.previewLayer!.videoGravity = AVLayerVideoGravityResizeAspectFill
+//        self.previewLayer!.frame = CGRect(x: 0, y:0, width:SCREEN_WIDTH,height:SCREEN_HEIGHT-100)
+        self.previewLayer!.frame = preview.bounds
+        self.previewLayer!.videoGravity = AVLayerVideoGravityResize
         preview.layer.addSublayer(self.previewLayer!)
         let outputSettings :NSDictionary = NSDictionary(object: AVVideoCodecJPEG, forKey: AVVideoCodecKey as NSCopying)
         self.stillImageOutput!.outputSettings = outputSettings as [NSObject : AnyObject]
